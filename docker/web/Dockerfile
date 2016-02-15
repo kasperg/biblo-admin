@@ -1,0 +1,12 @@
+FROM reload/drupal-apache-ssl
+
+# Install mysql-client to support mysql commands from Drush.
+# For some reason this package is not available without updating.
+RUN apt-get update
+RUN apt-get install mysql-client -y
+# vhost exposes /var/www/html as docroot. drupal-project assumes /web to be
+# docroot. Symlink web to html to make it work for both parties.
+RUN rm -rf /var/www/html
+RUN ln -s /var/www/web /var/www/html
+# Make drush command universally available.
+RUN ln -s /var/www/vendor/bin/drush /usr/local/bin/drush
