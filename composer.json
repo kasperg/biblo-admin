@@ -1,14 +1,7 @@
 {
-    "name": "drupal-composer/drupal-project",
-    "description": "Project template for Drupal 8 projects with composer",
+    "name": "dbcdk/biblo-admin",
+    "description": "Administration interface for biblo.dk based on Drupal 8",
     "type": "project",
-    "license": "GPL-2.0+",
-    "authors": [
-        {
-            "name": "",
-            "role": ""
-        }
-    ],
     "repositories": [
         {
             "type": "composer",
@@ -21,15 +14,6 @@
         "drupal/core": "8.0.*",
         "drush/drush": "~8.0",
         "drupal/console": "~0.10"
-    },
-    "require-dev": {
-        "behat/mink": "~1.6",
-        "behat/mink-goutte-driver": "~1.2",
-        "jcalderonzumba/gastonjs": "^1.1@dev",
-        "jcalderonzumba/mink-phantomjs-driver": "dev-master#10d7c48c9a4129463052321b52450d98983c4332",
-        "mikey179/vfsStream": "~1.2",
-        "phpunit/phpunit": "~4.8",
-        "symfony/css-selector": "2.7.*"
     },
     "conflict": {
         "drupal/drupal": "*"
