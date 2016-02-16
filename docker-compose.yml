@@ -11,6 +11,7 @@ web:
   working_dir: '/var/www/web'
   links:
     - db
+    - service
 db:
   image: mariadb
   ports:
@@ -22,3 +23,29 @@ db:
     MYSQL_DATABASE: db
     MYSQL_USER: db
     MYSQL_PASSWORD: bP4pFxUvFcF2b1bV
+service:
+  build: .
+  dockerfile: docker/service/Dockerfile
+  ports:
+    - '3000/tcp'
+  environment:
+    USE_ENV_CONFIG: 1
+    DATABASE_HOST: service_db
+    DATABASE_PORT: 5432
+    DATABASE_DB: db
+    DATABASE_USER: db
+    DATABASE_PASSWORD: qiBme2Zjsp1fEwwD
+    APPLICATION_NAME: AppName
+    AMAZON_S3_KEYID: AmazonS3KeyId
+    AMAZON_S3_KEY: AmazonS3Key
+    UNILOGINSECRET: UniLoginSecret
+  links:
+    - service_db
+service_db:
+  image: postgres
+  ports:
+    - '5432/tcp'
+  environment:
+    POSTGRES_DB: db
+    POSTGRES_USER: db
+    POSTGRES_PASSWORD: qiBme2Zjsp1fEwwD
