@@ -16,7 +16,7 @@ db:
   ports:
     - '3306/tcp'
   volumes:
-    - './docker/db/db.sql.gz:/docker-entrypoint-initdb.d/db.sql.gz'
+    - './docker/db/db.sql.gz:/docker-entrypoint-initdb.d/db.sql.gz:ro'
   environment:
     MYSQL_ROOT_PASSWORD: v6o73qsjBQpbNjaH
     MYSQL_DATABASE: db
