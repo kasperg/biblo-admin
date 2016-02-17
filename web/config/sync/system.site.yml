@@ -1,0 +1,14 @@
+uuid: baedff3c-3e27-419c-bc52-82ae679cb470
+name: 'Biblo Admin'
+mail: info+biblo@reload.dk
+slogan: 'Administration interface for Biblo.dk'
+page:
+  403: ''
+  404: ''
+  front: /user/login
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
