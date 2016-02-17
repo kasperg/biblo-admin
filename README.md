@@ -28,3 +28,9 @@ Afterwards remember to fix file permissions.
 
 Note that this generates quite a lot of noise in the log. The process completes
 anyhow.
+
+## Continuous Integration
+
+* We use Scrutinizer to analyze the code for code standards, debugging code and general mistakes.
+  * Codesniffer runs with Drupal standards.
+  * The ESLint file (`.eslintrc`) in the root of the project is a duplicate of Drupal 8's `.eslintrc` file. This is needed because Scrutinizer assumes that the ESLint config file is placed in the root.
