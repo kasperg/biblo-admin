@@ -16,6 +16,7 @@ The project structure is based on [`drupal-composer/drupal-project`](https://git
   1. Run `composer install`
   2. Run `docker-compose build`
   3. Run `docker-compose up`
+  4. Run `docker-compose run web drush cim -y`
 3. Profit!
 
 ### Optional installation instructions
