@@ -1,15 +1,15 @@
-uuid: eb65f522-cce6-4c9a-8700-bb24b09bf66d
+uuid: 696554e7-0fa9-4f8f-9a16-22f0da0bd494
 langcode: en
 status: true
 dependencies:
   theme:
-    - seven
+    - adminimal_theme
 _core:
-  default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
-id: seven_local_actions
-theme: seven
+  default_config_hash: ik4PTMlBD0MWansnSMpSXq5SUlWRJ1IVVt6C7AIbQmc
+id: adminimal_theme_local_actions
+theme: adminimal_theme
 region: content
-weight: -3
+weight: -10
 provider: null
 plugin: local_actions_block
 settings:
