@@ -49,3 +49,11 @@ service_db:
     POSTGRES_DB: db
     POSTGRES_USER: db
     POSTGRES_PASSWORD: qiBme2Zjsp1fEwwD
+swagger:
+  image: moander/swagger-codegen
+  volumes:
+    - './docker/swagger/config.json:/var/usr/swagger/config.json:ro'
+    # This is where the client code will be generated
+    - './lib/client:/var/usr/client'
+  links:
+    - service
