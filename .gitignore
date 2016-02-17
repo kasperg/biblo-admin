@@ -7,3 +7,6 @@
 !/web/modules/custom
 !/web/themes/custom
 !/web/profiles/custom
+
+# Ignore Docker Compose override file to provide secret keys.
+docker-compose.override.yml

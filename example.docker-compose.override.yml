@@ -1,0 +1,5 @@
+service:
+  environment:
+    AMAZON_S3_KEYID: AmazonS3KeyId
+    AMAZON_S3_KEY: AmazonS3Key
+    UNILOGINSECRET: UniLoginSecret
