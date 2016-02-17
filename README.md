@@ -14,9 +14,13 @@ The project structure is based on [`drupal-composer/drupal-project`](https://git
 1. Clone this repository
 2. From the root of the cloned repository:
   1. Run `composer install`
-	2. Run `docker-compose build`
-	3. Run `docker-compose up`
+  2. Run `docker-compose build`
+  3. Run `docker-compose up`
 3. Profit!
+
+### Optional installation instructions
+
+* If you wish to provide "real data" instead of using "dummy fallbacks", then copy `example.docker-compose.override.yml` to `docker-compose.override.yml` and fill out the required enviroment variables.
 
 ## Webservice client generation
 
