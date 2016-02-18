@@ -1,17 +1,17 @@
-uuid: 73d3ce46-0555-44b6-9900-f1faf6321513
+uuid: da0f7c11-2707-448a-a75b-91b89487dfe4
 langcode: en
 status: true
 dependencies:
   module:
     - user
   theme:
-    - seven
+    - adminimal_theme
 _core:
-  default_config_hash: 4QlSnWBcxxKMIFRM8sbu_MjSkcp3NjGgnVrc-lynQHI
-id: seven_login
-theme: seven
-region: header
-weight: 0
+  default_config_hash: 862sIulDdHmF0vBU1s2j2_a_CwkxursrL0pIrMDzzOg
+id: adminimal_theme_login
+theme: adminimal_theme
+region: content
+weight: 10
 provider: null
 plugin: user_login_block
 settings:
