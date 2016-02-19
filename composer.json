@@ -27,7 +27,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "post-install-cmd": "sh ./scripts/composer/post-install.sh"
+        "post-install-cmd": "sh ./scripts/composer/post-install.sh",
+        "docker-swagger-generate": "docker-compose run swagger generate -i http://service:3000/explorer/swagger.json -l php -o /var/usr/client -c /var/usr/swagger/config.json"
     },
     "extra": {
         "installer-paths": {
