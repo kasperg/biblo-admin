@@ -6,6 +6,10 @@ web:
   volumes:
     - './web:/var/www/web'
     - './vendor:/var/www/vendor'
+    # This is required to make the generated community service client available in
+    # the container. composer generates a symlink from /vendor/name/package to
+    # the local path. This makes this symlink work on the container as well.
+    - './lib:/var/www/lib'
     - './docker/docker.settings.php:/var/www/html/sites/default/settings.php:ro'
     - './docker/docker.services.yml:/var/www/html/sites/default/services.yml:ro'
   working_dir: '/var/www/web'

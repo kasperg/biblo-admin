@@ -1,6 +1,11 @@
 {
-  "apiPackage": "DBCDK\\CommunityServices",
-  "modelPackage": "DBCDK\\CommunityServices\\Model",
-  "packagePath": "",
-  "srcBasePath": ""
+    "apiPackage": "DBCDK\\CommunityServices\\Api",
+    "modelPackage": "DBCDK\\CommunityServices\\Model",
+    "variableNamingConvention": "camelCase",
+    "invokerPackage": "DBCDK\\CommunityServices",
+    "packagePath": "",
+    "srcBasePath": "src",
+    "composerVendorName": "dbcdk",
+    "composerProjectName": "communityservices",
+    "artifactVersion": "1.0.0"
 }
