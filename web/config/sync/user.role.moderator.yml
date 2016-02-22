@@ -1,0 +1,14 @@
+uuid: d7b1ca0e-4271-4124-a560-9610e1a55679
+langcode: en
+status: true
+dependencies: {  }
+id: moderator
+label: Moderator
+weight: 2
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'cancel account'
+  - 'change own username'
+  - 'access administration pages'
+  - 'view the administration theme'
