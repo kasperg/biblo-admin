@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "12502d93ee3c377035391d801e61ac32",
-    "content-hash": "e16d50bfb152792dc5fd77e5beafbd01",
+    "hash": "348de9080c084c21e6784304d27433ad",
+    "content-hash": "df350602c66efe018a4e3031d342a9e7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -272,6 +272,49 @@
             ],
             "description": "Provides a way to patch Composer packages.",
             "time": "2015-07-09 18:27:46"
+        },
+        {
+            "name": "dbcdk/communityservices",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "./lib/client/",
+                "reference": "034a1323da2f760cf8dac3f881e6989d",
+                "shasum": null
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~0.6.1",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DBCDK\\CommunityServices\\": "src/"
+                }
+            },
+            "license": [
+                "Apache v2"
+            ],
+            "authors": [
+                {
+                    "name": "Swagger and contributors",
+                    "homepage": "https://github.com/swagger-api/swagger-codegen"
+                }
+            ],
+            "homepage": "http://swagger.io",
+            "keywords": [
+                "api",
+                "php",
+                "sdk",
+                "swagger"
+            ]
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -733,16 +776,16 @@
         },
         {
             "name": "drupal/console",
-            "version": "0.10.11",
+            "version": "0.10.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/DrupalConsole.git",
-                "reference": "74434a9d2314c6b199422259788e4318782d86a4"
+                "reference": "031274758630e35c1468cea85cae5d10b7b220b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/74434a9d2314c6b199422259788e4318782d86a4",
-                "reference": "74434a9d2314c6b199422259788e4318782d86a4",
+                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/031274758630e35c1468cea85cae5d10b7b220b7",
+                "reference": "031274758630e35c1468cea85cae5d10b7b220b7",
                 "shasum": ""
             },
             "require": {
@@ -813,7 +856,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2016-02-12 07:00:18"
+            "time": "2016-02-16 02:13:15"
         },
         {
             "name": "drupal/core",
@@ -1403,16 +1446,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "f5d04bdd2881ac89abde1fb78cc234bce24327bb"
+                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5d04bdd2881ac89abde1fb78cc234bce24327bb",
-                "reference": "f5d04bdd2881ac89abde1fb78cc234bce24327bb",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/2e89629ff057ebb49492ba08e6995d3a6a80021b",
+                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b",
                 "shasum": ""
             },
             "require": {
@@ -1457,7 +1500,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2016-01-23 01:23:02"
+            "time": "2016-02-18 21:54:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

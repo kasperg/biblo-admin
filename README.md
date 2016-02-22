@@ -27,12 +27,9 @@ The project structure is based on [`drupal-composer/drupal-project`](https://git
 
 To generate a PHP webservice client for accessing [the community service](https://github.com/DBCDK/dbc-community-service) run the following command:
 
-`docker-compose run swagger generate -i http://service:3000/explorer/swagger.json -l php -o /var/usr/client -c /var/usr/swagger/config.json`
+`composer docker-swagger-generate`
 
 Afterwards remember to fix file permissions.
-
-Note that this generates quite a lot of noise in the log. The process completes
-anyhow.
 
 ## Continuous Integration
 
