@@ -39,7 +39,8 @@ class CommunityApiClient {
     if (empty($config)) {
       $this->config = new Configuration();
       $config = \Drupal::config('dbcdk_community.settings');
-      $this->config->setHost($config->get('community_service_url'));
+      $host = rtrim($config->get('community_service_url'), '/');
+      $this->config->setHost($host);
     }
     else {
       $this->config = $config;
