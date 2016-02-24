@@ -1,0 +1,6 @@
+name: 'DBCDK Community'
+type: module
+description: 'This module allows administration of certain part of the DBCDK Community Service.'
+package: DBCDK
+version: 8.x-1.0
+core: 8.x
