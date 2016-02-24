@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoCollectionApi
+ * QuarantineApi
  * PHP version 5
  *
  * @category Class
@@ -39,7 +39,7 @@ use \DBCDK\CommunityServices\ApiException;
 use \DBCDK\CommunityServices\ObjectSerializer;
 
 /**
- * VideoCollectionApi Class Doc Comment
+ * QuarantineApi Class Doc Comment
  *
  * @category Class
  * @package  DBCDK\CommunityServices
@@ -47,7 +47,7 @@ use \DBCDK\CommunityServices\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class VideoCollectionApi
+class QuarantineApi
 {
 
     /**
@@ -82,7 +82,7 @@ class VideoCollectionApi
     /**
      * Set the API client
      * @param \DBCDK\CommunityServices\ApiClient $apiClient set the API client
-     * @return VideoCollectionApi
+     * @return QuarantineApi
      */
     public function setApiClient(ApiClient $apiClient)
     {
@@ -92,36 +92,36 @@ class VideoCollectionApi
   
     
     /**
-     * videoCollectionFind
+     * quarantineFind
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection[]
+     * @return \DBCDK\CommunityServices\Model\Quarantine[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFind($filter = null)
+    public function quarantineFind($filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionFindWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->quarantineFindWithHttpInfo ($filter);
         return $response; 
     }
 
 
     /**
-     * videoCollectionFindWithHttpInfo
+     * quarantineFindWithHttpInfo
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindWithHttpInfo($filter = null)
+    public function quarantineFindWithHttpInfo($filter = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/videoCollections";
+        $resourcePath = "/Quarantines";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -156,19 +156,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection[]'
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine[]'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine[]', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection[]', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -178,36 +178,36 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionUpsert
+     * quarantineUpsert
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Quarantine
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionUpsert($data = null)
+    public function quarantineUpsert($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionUpsertWithHttpInfo ($data);
+        list($response, $statusCode, $httpHeader) = $this->quarantineUpsertWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * videoCollectionUpsertWithHttpInfo
+     * quarantineUpsertWithHttpInfo
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionUpsertWithHttpInfo($data = null)
+    public function quarantineUpsertWithHttpInfo($data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/videoCollections";
+        $resourcePath = "/Quarantines";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "PUT";
         $httpBody = '';
@@ -242,19 +242,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -264,36 +264,36 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionCreate
+     * quarantineCreate
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Quarantine
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreate($data = null)
+    public function quarantineCreate($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionCreateWithHttpInfo ($data);
+        list($response, $statusCode, $httpHeader) = $this->quarantineCreateWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * videoCollectionCreateWithHttpInfo
+     * quarantineCreateWithHttpInfo
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateWithHttpInfo($data = null)
+    public function quarantineCreateWithHttpInfo($data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/videoCollections";
+        $resourcePath = "/Quarantines";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "POST";
         $httpBody = '';
@@ -328,19 +328,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -350,7 +350,7 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionCreateChangeStreamGetVideoCollectionsChangeStream
+     * quarantineCreateChangeStreamGetQuarantinesChangeStream
      *
      * Create a change stream.
      *
@@ -358,15 +358,15 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateChangeStreamGetVideoCollectionsChangeStream($options = null)
+    public function quarantineCreateChangeStreamGetQuarantinesChangeStream($options = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionCreateChangeStreamGetVideoCollectionsChangeStreamWithHttpInfo ($options);
+        list($response, $statusCode, $httpHeader) = $this->quarantineCreateChangeStreamGetQuarantinesChangeStreamWithHttpInfo ($options);
         return $response; 
     }
 
 
     /**
-     * videoCollectionCreateChangeStreamGetVideoCollectionsChangeStreamWithHttpInfo
+     * quarantineCreateChangeStreamGetQuarantinesChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -374,12 +374,12 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateChangeStreamGetVideoCollectionsChangeStreamWithHttpInfo($options = null)
+    public function quarantineCreateChangeStreamGetQuarantinesChangeStreamWithHttpInfo($options = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/videoCollections/change-stream";
+        $resourcePath = "/Quarantines/change-stream";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -436,7 +436,7 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionCreateChangeStreamPostVideoCollectionsChangeStream
+     * quarantineCreateChangeStreamPostQuarantinesChangeStream
      *
      * Create a change stream.
      *
@@ -444,15 +444,15 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateChangeStreamPostVideoCollectionsChangeStream($options = null)
+    public function quarantineCreateChangeStreamPostQuarantinesChangeStream($options = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionCreateChangeStreamPostVideoCollectionsChangeStreamWithHttpInfo ($options);
+        list($response, $statusCode, $httpHeader) = $this->quarantineCreateChangeStreamPostQuarantinesChangeStreamWithHttpInfo ($options);
         return $response; 
     }
 
 
     /**
-     * videoCollectionCreateChangeStreamPostVideoCollectionsChangeStreamWithHttpInfo
+     * quarantineCreateChangeStreamPostQuarantinesChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -460,12 +460,12 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCreateChangeStreamPostVideoCollectionsChangeStreamWithHttpInfo($options = null)
+    public function quarantineCreateChangeStreamPostQuarantinesChangeStreamWithHttpInfo($options = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/videoCollections/change-stream";
+        $resourcePath = "/Quarantines/change-stream";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "POST";
         $httpBody = '';
@@ -524,7 +524,7 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionCount
+     * quarantineCount
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -532,15 +532,15 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCount($where = null)
+    public function quarantineCount($where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionCountWithHttpInfo ($where);
+        list($response, $statusCode, $httpHeader) = $this->quarantineCountWithHttpInfo ($where);
         return $response; 
     }
 
 
     /**
-     * videoCollectionCountWithHttpInfo
+     * quarantineCountWithHttpInfo
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -548,12 +548,12 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionCountWithHttpInfo($where = null)
+    public function quarantineCountWithHttpInfo($where = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/videoCollections/count";
+        $resourcePath = "/Quarantines/count";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -610,36 +610,36 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionFindOne
+     * quarantineFindOne
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @return \DBCDK\CommunityServices\Model\Quarantine
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindOne($filter = null)
+    public function quarantineFindOne($filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionFindOneWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->quarantineFindOneWithHttpInfo ($filter);
         return $response; 
     }
 
 
     /**
-     * videoCollectionFindOneWithHttpInfo
+     * quarantineFindOneWithHttpInfo
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindOneWithHttpInfo($filter = null)
+    public function quarantineFindOneWithHttpInfo($filter = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/videoCollections/findOne";
+        $resourcePath = "/Quarantines/findOne";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -674,19 +674,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -696,38 +696,38 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionUpdateAll
+     * quarantineUpdateAll
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data An object of model property name/value pairs (optional)
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionUpdateAll($where = null, $data = null)
+    public function quarantineUpdateAll($where = null, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionUpdateAllWithHttpInfo ($where, $data);
+        list($response, $statusCode, $httpHeader) = $this->quarantineUpdateAllWithHttpInfo ($where, $data);
         return $response; 
     }
 
 
     /**
-     * videoCollectionUpdateAllWithHttpInfo
+     * quarantineUpdateAllWithHttpInfo
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data An object of model property name/value pairs (optional)
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionUpdateAllWithHttpInfo($where = null, $data = null)
+    public function quarantineUpdateAllWithHttpInfo($where = null, $data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/videoCollections/update";
+        $resourcePath = "/Quarantines/update";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "POST";
         $httpBody = '';
@@ -788,42 +788,42 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionFindById
+     * quarantineFindById
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @return \DBCDK\CommunityServices\Model\Quarantine
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindById($id, $filter = null)
+    public function quarantineFindById($id, $filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionFindByIdWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->quarantineFindByIdWithHttpInfo ($id, $filter);
         return $response; 
     }
 
 
     /**
-     * videoCollectionFindByIdWithHttpInfo
+     * quarantineFindByIdWithHttpInfo
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionFindByIdWithHttpInfo($id, $filter = null)
+    public function quarantineFindByIdWithHttpInfo($id, $filter = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionFindById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineFindById');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}";
+        $resourcePath = "/Quarantines/{id}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -866,19 +866,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -888,7 +888,7 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionExistsHeadVideoCollectionsid
+     * quarantineExistsHeadQuarantinesid
      *
      * Check whether a model instance exists in the data source.
      *
@@ -896,15 +896,15 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionExistsHeadVideoCollectionsid($id)
+    public function quarantineExistsHeadQuarantinesid($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionExistsHeadVideoCollectionsidWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->quarantineExistsHeadQuarantinesidWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * videoCollectionExistsHeadVideoCollectionsidWithHttpInfo
+     * quarantineExistsHeadQuarantinesidWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -912,16 +912,16 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionExistsHeadVideoCollectionsidWithHttpInfo($id)
+    public function quarantineExistsHeadQuarantinesidWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionExistsHeadVideoCollectionsid');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineExistsHeadQuarantinesid');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}";
+        $resourcePath = "/Quarantines/{id}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "HEAD";
         $httpBody = '';
@@ -982,42 +982,42 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionPrototypeUpdateAttributes
+     * quarantinePrototypeUpdateAttributes
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\Quarantine
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeUpdateAttributes($id, $data = null)
+    public function quarantinePrototypeUpdateAttributes($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeUpdateAttributesWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeUpdateAttributesWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * videoCollectionPrototypeUpdateAttributesWithHttpInfo
+     * quarantinePrototypeUpdateAttributesWithHttpInfo
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\VideoCollection $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    public function quarantinePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeUpdateAttributes');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeUpdateAttributes');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}";
+        $resourcePath = "/Quarantines/{id}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "PUT";
         $httpBody = '';
@@ -1060,19 +1060,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1082,7 +1082,7 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionDeleteById
+     * quarantineDeleteById
      *
      * Delete a model instance by id from the data source.
      *
@@ -1090,15 +1090,15 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionDeleteById($id)
+    public function quarantineDeleteById($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionDeleteByIdWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->quarantineDeleteByIdWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * videoCollectionDeleteByIdWithHttpInfo
+     * quarantineDeleteByIdWithHttpInfo
      *
      * Delete a model instance by id from the data source.
      *
@@ -1106,16 +1106,16 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionDeleteByIdWithHttpInfo($id)
+    public function quarantineDeleteByIdWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionDeleteById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineDeleteById');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}";
+        $resourcePath = "/Quarantines/{id}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "DELETE";
         $httpBody = '';
@@ -1176,7 +1176,7 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionExistsGetVideoCollectionsidExists
+     * quarantineExistsGetQuarantinesidExists
      *
      * Check whether a model instance exists in the data source.
      *
@@ -1184,15 +1184,15 @@ class VideoCollectionApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionExistsGetVideoCollectionsidExists($id)
+    public function quarantineExistsGetQuarantinesidExists($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionExistsGetVideoCollectionsidExistsWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->quarantineExistsGetQuarantinesidExistsWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * videoCollectionExistsGetVideoCollectionsidExistsWithHttpInfo
+     * quarantineExistsGetQuarantinesidExistsWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -1200,16 +1200,16 @@ class VideoCollectionApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionExistsGetVideoCollectionsidExistsWithHttpInfo($id)
+    public function quarantineExistsGetQuarantinesidExistsWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionExistsGetVideoCollectionsidExists');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineExistsGetQuarantinesidExists');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/exists";
+        $resourcePath = "/Quarantines/{id}/exists";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -1270,428 +1270,42 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionPrototypeGetOriginal
+     * quarantinePrototypeGetProfiles
      *
-     * Fetches hasOne relation original.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeGetOriginal($id, $refresh = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeGetOriginalWithHttpInfo ($id, $refresh);
-        return $response; 
-    }
-
-
-    /**
-     * videoCollectionPrototypeGetOriginalWithHttpInfo
-     *
-     * Fetches hasOne relation original.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeGetOriginalWithHttpInfo($id, $refresh = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeGetOriginal');
-        }
-  
-        // parse inputs
-        $resourcePath = "/videoCollections/{id}/original";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($refresh !== null) {
-            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * videoCollectionPrototypeUpdateOriginal
-     *
-     * Update original of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeUpdateOriginal($id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeUpdateOriginalWithHttpInfo ($id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * videoCollectionPrototypeUpdateOriginalWithHttpInfo
-     *
-     * Update original of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeUpdateOriginalWithHttpInfo($id, $data = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeUpdateOriginal');
-        }
-  
-        // parse inputs
-        $resourcePath = "/videoCollections/{id}/original";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "PUT";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * videoCollectionPrototypeCreateOriginal
-     *
-     * Creates a new instance in original of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeCreateOriginal($id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeCreateOriginalWithHttpInfo ($id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * videoCollectionPrototypeCreateOriginalWithHttpInfo
-     *
-     * Creates a new instance in original of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeCreateOriginalWithHttpInfo($id, $data = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeCreateOriginal');
-        }
-  
-        // parse inputs
-        $resourcePath = "/videoCollections/{id}/original";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "POST";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * videoCollectionPrototypeDestroyOriginal
-     *
-     * Deletes original of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeDestroyOriginal($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeDestroyOriginalWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * videoCollectionPrototypeDestroyOriginalWithHttpInfo
-     *
-     * Deletes original of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function videoCollectionPrototypeDestroyOriginalWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeDestroyOriginal');
-        }
-  
-        // parse inputs
-        $resourcePath = "/videoCollections/{id}/original";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "DELETE";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * videoCollectionPrototypeGetResolutions
-     *
-     * Queries resolutions of videoCollection.
+     * Queries profiles of Quarantine.
      *
      * @param string $id PersistedModel id (required)
      * @param string $filter  (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject[]
+     * @return \DBCDK\CommunityServices\Model\Profile[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeGetResolutions($id, $filter = null)
+    public function quarantinePrototypeGetProfiles($id, $filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeGetResolutionsWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeGetProfilesWithHttpInfo ($id, $filter);
         return $response; 
     }
 
 
     /**
-     * videoCollectionPrototypeGetResolutionsWithHttpInfo
+     * quarantinePrototypeGetProfilesWithHttpInfo
      *
-     * Queries resolutions of videoCollection.
+     * Queries profiles of Quarantine.
      *
      * @param string $id PersistedModel id (required)
      * @param string $filter  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Profile[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeGetResolutionsWithHttpInfo($id, $filter = null)
+    public function quarantinePrototypeGetProfilesWithHttpInfo($id, $filter = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeGetResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeGetProfiles');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions";
+        $resourcePath = "/Quarantines/{id}/profiles";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -1734,19 +1348,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject[]'
+                $headerParams, '\DBCDK\CommunityServices\Model\Profile[]'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Profile[]', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject[]', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1756,42 +1370,42 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionPrototypeCreateResolutions
+     * quarantinePrototypeCreateProfiles
      *
-     * Creates a new instance in resolutions of this model.
+     * Creates a new instance in profiles of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
+     * @param \DBCDK\CommunityServices\Model\Profile $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Profile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeCreateResolutions($id, $data = null)
+    public function quarantinePrototypeCreateProfiles($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeCreateResolutionsWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeCreateProfilesWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * videoCollectionPrototypeCreateResolutionsWithHttpInfo
+     * quarantinePrototypeCreateProfilesWithHttpInfo
      *
-     * Creates a new instance in resolutions of this model.
+     * Creates a new instance in profiles of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Profile $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeCreateResolutionsWithHttpInfo($id, $data = null)
+    public function quarantinePrototypeCreateProfilesWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeCreateResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeCreateProfiles');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions";
+        $resourcePath = "/Quarantines/{id}/profiles";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "POST";
         $httpBody = '';
@@ -1834,19 +1448,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
+                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1856,40 +1470,40 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionPrototypeDeleteResolutions
+     * quarantinePrototypeDeleteProfiles
      *
-     * Deletes all resolutions of this model.
+     * Deletes all profiles of this model.
      *
      * @param string $id PersistedModel id (required)
      * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeDeleteResolutions($id)
+    public function quarantinePrototypeDeleteProfiles($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeDeleteResolutionsWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeDeleteProfilesWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * videoCollectionPrototypeDeleteResolutionsWithHttpInfo
+     * quarantinePrototypeDeleteProfilesWithHttpInfo
      *
-     * Deletes all resolutions of this model.
+     * Deletes all profiles of this model.
      *
      * @param string $id PersistedModel id (required)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeDeleteResolutionsWithHttpInfo($id)
+    public function quarantinePrototypeDeleteProfilesWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeDeleteResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeDeleteProfiles');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions";
+        $resourcePath = "/Quarantines/{id}/profiles";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "DELETE";
         $httpBody = '';
@@ -1942,42 +1556,42 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionPrototypeCountResolutions
+     * quarantinePrototypeCountProfiles
      *
-     * Counts resolutions of videoCollection.
+     * Counts profiles of Quarantine.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeCountResolutions($id, $where = null)
+    public function quarantinePrototypeCountProfiles($id, $where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeCountResolutionsWithHttpInfo ($id, $where);
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeCountProfilesWithHttpInfo ($id, $where);
         return $response; 
     }
 
 
     /**
-     * videoCollectionPrototypeCountResolutionsWithHttpInfo
+     * quarantinePrototypeCountProfilesWithHttpInfo
      *
-     * Counts resolutions of videoCollection.
+     * Counts profiles of Quarantine.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeCountResolutionsWithHttpInfo($id, $where = null)
+    public function quarantinePrototypeCountProfilesWithHttpInfo($id, $where = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeCountResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeCountProfiles');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions/count";
+        $resourcePath = "/Quarantines/{id}/profiles/count";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -2042,48 +1656,48 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionPrototypeFindByIdResolutions
+     * quarantinePrototypeExistsProfiles
      *
-     * Find a related item by id for resolutions.
+     * Check the existence of profiles relation to an item by id.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $fk Foreign key for profiles (required)
      * @param string $id PersistedModel id (required)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
+     * @return bool
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeFindByIdResolutions($fk, $id)
+    public function quarantinePrototypeExistsProfiles($fk, $id)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeFindByIdResolutionsWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeExistsProfilesWithHttpInfo ($fk, $id);
         return $response; 
     }
 
 
     /**
-     * videoCollectionPrototypeFindByIdResolutionsWithHttpInfo
+     * quarantinePrototypeExistsProfilesWithHttpInfo
      *
-     * Find a related item by id for resolutions.
+     * Check the existence of profiles relation to an item by id.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $fk Foreign key for profiles (required)
      * @param string $id PersistedModel id (required)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of bool, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeFindByIdResolutionsWithHttpInfo($fk, $id)
+    public function quarantinePrototypeExistsProfilesWithHttpInfo($fk, $id)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling videoCollectionPrototypeFindByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling quarantinePrototypeExistsProfiles');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeFindByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeExistsProfiles');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions/{fk}";
+        $resourcePath = "/Quarantines/{id}/profiles/rel/{fk}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
+        $method = "HEAD";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2128,19 +1742,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
+                $headerParams, 'bool'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'bool', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -2150,48 +1764,48 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionPrototypeUpdateByIdResolutions
+     * quarantinePrototypeLinkProfiles
      *
-     * Update a related item by id for resolutions.
+     * Add a related item by id for profiles.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $fk Foreign key for profiles (required)
      * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
+     * @param \DBCDK\CommunityServices\Model\QuarantineProfile $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\QuarantineProfile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeUpdateByIdResolutions($fk, $id, $data = null)
+    public function quarantinePrototypeLinkProfiles($fk, $id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeUpdateByIdResolutionsWithHttpInfo ($fk, $id, $data);
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeLinkProfilesWithHttpInfo ($fk, $id, $data);
         return $response; 
     }
 
 
     /**
-     * videoCollectionPrototypeUpdateByIdResolutionsWithHttpInfo
+     * quarantinePrototypeLinkProfilesWithHttpInfo
      *
-     * Update a related item by id for resolutions.
+     * Add a related item by id for profiles.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $fk Foreign key for profiles (required)
      * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\QuarantineProfile $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\QuarantineProfile, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeUpdateByIdResolutionsWithHttpInfo($fk, $id, $data = null)
+    public function quarantinePrototypeLinkProfilesWithHttpInfo($fk, $id, $data = null)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling videoCollectionPrototypeUpdateByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling quarantinePrototypeLinkProfiles');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeUpdateByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeLinkProfiles');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions/{fk}";
+        $resourcePath = "/Quarantines/{id}/profiles/rel/{fk}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "PUT";
         $httpBody = '';
@@ -2242,19 +1856,19 @@ class VideoCollectionApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
+                $headerParams, '\DBCDK\CommunityServices\Model\QuarantineProfile'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\QuarantineProfile', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\QuarantineProfile', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -2264,46 +1878,368 @@ class VideoCollectionApi
     }
     
     /**
-     * videoCollectionPrototypeDestroyByIdResolutions
+     * quarantinePrototypeUnlinkProfiles
      *
-     * Delete a related item by id for resolutions.
+     * Remove the profiles relation to an item by id.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $fk Foreign key for profiles (required)
      * @param string $id PersistedModel id (required)
      * @return void
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeDestroyByIdResolutions($fk, $id)
+    public function quarantinePrototypeUnlinkProfiles($fk, $id)
     {
-        list($response, $statusCode, $httpHeader) = $this->videoCollectionPrototypeDestroyByIdResolutionsWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeUnlinkProfilesWithHttpInfo ($fk, $id);
         return $response; 
     }
 
 
     /**
-     * videoCollectionPrototypeDestroyByIdResolutionsWithHttpInfo
+     * quarantinePrototypeUnlinkProfilesWithHttpInfo
      *
-     * Delete a related item by id for resolutions.
+     * Remove the profiles relation to an item by id.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $fk Foreign key for profiles (required)
      * @param string $id PersistedModel id (required)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function videoCollectionPrototypeDestroyByIdResolutionsWithHttpInfo($fk, $id)
+    public function quarantinePrototypeUnlinkProfilesWithHttpInfo($fk, $id)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling videoCollectionPrototypeDestroyByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling quarantinePrototypeUnlinkProfiles');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling videoCollectionPrototypeDestroyByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeUnlinkProfiles');
         }
   
         // parse inputs
-        $resourcePath = "/videoCollections/{id}/resolutions/{fk}";
+        $resourcePath = "/Quarantines/{id}/profiles/rel/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantinePrototypeFindByIdProfiles
+     *
+     * Find a related item by id for profiles.
+     *
+     * @param string $fk Foreign key for profiles (required)
+     * @param string $id PersistedModel id (required)
+     * @return \DBCDK\CommunityServices\Model\Profile
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeFindByIdProfiles($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeFindByIdProfilesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * quarantinePrototypeFindByIdProfilesWithHttpInfo
+     *
+     * Find a related item by id for profiles.
+     *
+     * @param string $fk Foreign key for profiles (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeFindByIdProfilesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling quarantinePrototypeFindByIdProfiles');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeFindByIdProfiles');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}/profiles/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantinePrototypeUpdateByIdProfiles
+     *
+     * Update a related item by id for profiles.
+     *
+     * @param string $fk Foreign key for profiles (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Profile $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Profile
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeUpdateByIdProfiles($fk, $id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeUpdateByIdProfilesWithHttpInfo ($fk, $id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * quarantinePrototypeUpdateByIdProfilesWithHttpInfo
+     *
+     * Update a related item by id for profiles.
+     *
+     * @param string $fk Foreign key for profiles (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Profile $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeUpdateByIdProfilesWithHttpInfo($fk, $id, $data = null)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling quarantinePrototypeUpdateByIdProfiles');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeUpdateByIdProfiles');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}/profiles/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "PUT";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantinePrototypeDestroyByIdProfiles
+     *
+     * Delete a related item by id for profiles.
+     *
+     * @param string $fk Foreign key for profiles (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeDestroyByIdProfiles($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeDestroyByIdProfilesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * quarantinePrototypeDestroyByIdProfilesWithHttpInfo
+     *
+     * Delete a related item by id for profiles.
+     *
+     * @param string $fk Foreign key for profiles (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeDestroyByIdProfilesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling quarantinePrototypeDestroyByIdProfiles');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeDestroyByIdProfiles');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}/profiles/{fk}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "DELETE";
         $httpBody = '';

@@ -57,7 +57,6 @@ class User implements ArrayAccess
         'challenges' => 'object',
         'email' => 'string',
         'emailVerified' => 'bool',
-        'verificationToken' => 'string',
         'status' => 'string',
         'created' => '\DateTime',
         'lastUpdated' => '\DateTime',
@@ -75,7 +74,6 @@ class User implements ArrayAccess
         'challenges' => 'challenges',
         'email' => 'email',
         'emailVerified' => 'emailVerified',
-        'verificationToken' => 'verificationToken',
         'status' => 'status',
         'created' => 'created',
         'lastUpdated' => 'lastUpdated',
@@ -93,7 +91,6 @@ class User implements ArrayAccess
         'challenges' => 'setChallenges',
         'email' => 'setEmail',
         'emailVerified' => 'setEmailVerified',
-        'verificationToken' => 'setVerificationToken',
         'status' => 'setStatus',
         'created' => 'setCreated',
         'lastUpdated' => 'setLastUpdated',
@@ -111,7 +108,6 @@ class User implements ArrayAccess
         'challenges' => 'getChallenges',
         'email' => 'getEmail',
         'emailVerified' => 'getEmailVerified',
-        'verificationToken' => 'getVerificationToken',
         'status' => 'getStatus',
         'created' => 'getCreated',
         'lastUpdated' => 'getLastUpdated',
@@ -156,12 +152,6 @@ class User implements ArrayAccess
     protected $emailVerified;
     
     /**
-      * $verificationToken 
-      * @var string
-      */
-    protected $verificationToken;
-    
-    /**
       * $status 
       * @var string
       */
@@ -199,7 +189,6 @@ class User implements ArrayAccess
             $this->challenges = $data["challenges"];
             $this->email = $data["email"];
             $this->emailVerified = $data["emailVerified"];
-            $this->verificationToken = $data["verificationToken"];
             $this->status = $data["status"];
             $this->created = $data["created"];
             $this->lastUpdated = $data["lastUpdated"];
@@ -330,27 +319,6 @@ class User implements ArrayAccess
     {
         
         $this->emailVerified = $emailVerified;
-        return $this;
-    }
-    
-    /**
-     * Gets verificationToken
-     * @return string
-     */
-    public function getVerificationToken()
-    {
-        return $this->verificationToken;
-    }
-  
-    /**
-     * Sets verificationToken
-     * @param string $verificationToken 
-     * @return $this
-     */
-    public function setVerificationToken($verificationToken)
-    {
-        
-        $this->verificationToken = $verificationToken;
         return $this;
     }
     

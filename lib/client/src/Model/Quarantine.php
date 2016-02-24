@@ -1,6 +1,6 @@
 <?php
 /**
- * Group
+ * Quarantine
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace DBCDK\CommunityServices\Model;
 
 use \ArrayAccess;
 /**
- * Group Class Doc Comment
+ * Quarantine Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,19 +44,17 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Group implements ArrayAccess
+class Quarantine implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'name' => 'string',
-        'description' => 'string',
-        'colour' => 'string',
-        'timeCreated' => '\DateTime',
-        'id' => 'double',
-        'groupownerid' => 'double'
+        'reason' => 'string',
+        'end' => '\DateTime',
+        'start' => '\DateTime',
+        'id' => 'double'
     );
   
     /** 
@@ -64,12 +62,10 @@ class Group implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'name' => 'name',
-        'description' => 'description',
-        'colour' => 'colour',
-        'timeCreated' => 'timeCreated',
-        'id' => 'id',
-        'groupownerid' => 'groupownerid'
+        'reason' => 'reason',
+        'end' => 'end',
+        'start' => 'start',
+        'id' => 'id'
     );
   
     /**
@@ -77,12 +73,10 @@ class Group implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'name' => 'setName',
-        'description' => 'setDescription',
-        'colour' => 'setColour',
-        'timeCreated' => 'setTimeCreated',
-        'id' => 'setId',
-        'groupownerid' => 'setGroupownerid'
+        'reason' => 'setReason',
+        'end' => 'setEnd',
+        'start' => 'setStart',
+        'id' => 'setId'
     );
   
     /**
@@ -90,50 +84,36 @@ class Group implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'name' => 'getName',
-        'description' => 'getDescription',
-        'colour' => 'getColour',
-        'timeCreated' => 'getTimeCreated',
-        'id' => 'getId',
-        'groupownerid' => 'getGroupownerid'
+        'reason' => 'getReason',
+        'end' => 'getEnd',
+        'start' => 'getStart',
+        'id' => 'getId'
     );
   
     
     /**
-      * $name 
+      * $reason 
       * @var string
       */
-    protected $name;
+    protected $reason;
     
     /**
-      * $description 
-      * @var string
-      */
-    protected $description;
-    
-    /**
-      * $colour 
-      * @var string
-      */
-    protected $colour;
-    
-    /**
-      * $timeCreated 
+      * $end 
       * @var \DateTime
       */
-    protected $timeCreated;
+    protected $end;
+    
+    /**
+      * $start 
+      * @var \DateTime
+      */
+    protected $start;
     
     /**
       * $id 
       * @var double
       */
     protected $id;
-    
-    /**
-      * $groupownerid 
-      * @var double
-      */
-    protected $groupownerid;
     
 
     /**
@@ -143,96 +123,73 @@ class Group implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->name = $data["name"];
-            $this->description = $data["description"];
-            $this->colour = $data["colour"];
-            $this->timeCreated = $data["timeCreated"];
+            $this->reason = $data["reason"];
+            $this->end = $data["end"];
+            $this->start = $data["start"];
             $this->id = $data["id"];
-            $this->groupownerid = $data["groupownerid"];
         }
     }
     
     /**
-     * Gets name
+     * Gets reason
      * @return string
      */
-    public function getName()
+    public function getReason()
     {
-        return $this->name;
+        return $this->reason;
     }
   
     /**
-     * Sets name
-     * @param string $name 
+     * Sets reason
+     * @param string $reason 
      * @return $this
      */
-    public function setName($name)
+    public function setReason($reason)
     {
         
-        $this->name = $name;
+        $this->reason = $reason;
         return $this;
     }
     
     /**
-     * Gets description
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-  
-    /**
-     * Sets description
-     * @param string $description 
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        
-        $this->description = $description;
-        return $this;
-    }
-    
-    /**
-     * Gets colour
-     * @return string
-     */
-    public function getColour()
-    {
-        return $this->colour;
-    }
-  
-    /**
-     * Sets colour
-     * @param string $colour 
-     * @return $this
-     */
-    public function setColour($colour)
-    {
-        
-        $this->colour = $colour;
-        return $this;
-    }
-    
-    /**
-     * Gets timeCreated
+     * Gets end
      * @return \DateTime
      */
-    public function getTimeCreated()
+    public function getEnd()
     {
-        return $this->timeCreated;
+        return $this->end;
     }
   
     /**
-     * Sets timeCreated
-     * @param \DateTime $timeCreated 
+     * Sets end
+     * @param \DateTime $end 
      * @return $this
      */
-    public function setTimeCreated($timeCreated)
+    public function setEnd($end)
     {
         
-        $this->timeCreated = $timeCreated;
+        $this->end = $end;
+        return $this;
+    }
+    
+    /**
+     * Gets start
+     * @return \DateTime
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+  
+    /**
+     * Sets start
+     * @param \DateTime $start 
+     * @return $this
+     */
+    public function setStart($start)
+    {
+        
+        $this->start = $start;
         return $this;
     }
     
@@ -254,27 +211,6 @@ class Group implements ArrayAccess
     {
         
         $this->id = $id;
-        return $this;
-    }
-    
-    /**
-     * Gets groupownerid
-     * @return double
-     */
-    public function getGroupownerid()
-    {
-        return $this->groupownerid;
-    }
-  
-    /**
-     * Sets groupownerid
-     * @param double $groupownerid 
-     * @return $this
-     */
-    public function setGroupownerid($groupownerid)
-    {
-        
-        $this->groupownerid = $groupownerid;
         return $this;
     }
     
