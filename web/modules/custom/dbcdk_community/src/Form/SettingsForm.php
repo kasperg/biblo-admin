@@ -49,7 +49,7 @@ class SettingsForm extends ConfigFormBase {
         '#type' => 'textfield',
         '#title' => $this->t('Community Service Url'),
         '#default_value' => $config->get('community_service_url'),
-        '#description' => $this->t('The Community Service Url until the endpoints start. !example', array('!example' => '<em>https://dbcdk-community.dk/api/</em>')),
+        '#description' => $this->t('The Community Service Url until the endpoints start. Example: %example', array('%example' => 'https://dbcdk-community.dk/api/')),
       ),
     );
 
