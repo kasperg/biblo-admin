@@ -21,6 +21,11 @@
         "drupal/console": "~0.10",
         "drupal/adminimal_theme": "^8.1"
     },
+    "require-dev": {
+        "behat/behat": "^3.0",
+        "drupal/drupal-extension": "^3.0",
+        "lakion/mink-debug-extension": "^1.0"
+    },
     "conflict": {
         "drupal/drupal": "*"
     },
@@ -28,7 +33,9 @@
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": "sh ./scripts/composer/post-install.sh",
-        "docker-swagger-generate": "docker-compose run swagger generate -i http://service:3000/explorer/swagger.json -l php -o /var/usr/client -c /var/usr/swagger/config.json"
+        "docker-swagger-generate": "docker-compose run swagger generate -i http://service:3000/explorer/swagger.json -l php -o /var/usr/client -c /var/usr/swagger/config.json",
+        "behat": "vendor/bin/behat -c tests/behat.yml",
+        "docker-behat": "docker-compose run web ../vendor/bin/behat -c ../tests/behat.yml --profile docker"
     },
     "extra": {
         "installer-paths": {
