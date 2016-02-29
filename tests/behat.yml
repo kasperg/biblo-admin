@@ -24,5 +24,5 @@ docker:
       browser_name: 'firefox'
       base_url: http://web
     Lakion\Behat\MinkDebugExtension:
-      directory: tests/logs
+      directory: %paths.base%/logs
       screenshot: true
