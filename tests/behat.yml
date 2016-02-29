@@ -11,6 +11,9 @@ default:
       base_url: ~
     Drupal\DrupalExtension:
       blackbox: ~
+    jarnaiz\JUnitFormatter\JUnitFormatterExtension:
+      filename: behat.xml
+      outputDir: %paths.base%/reports
 
 docker:
   extensions:
