@@ -25,7 +25,9 @@
         "behat/behat": "^3.0",
         "drupal/drupal-extension": "^3.0",
         "lakion/mink-debug-extension": "^1.0",
-        "jakub-onderka/php-parallel-lint": "^0.9.2"
+        "jakub-onderka/php-parallel-lint": "^0.9.2",
+        "mikey179/vfsStream": "~1.2",
+        "phpunit/phpunit": "~4.8"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -36,6 +38,7 @@
         "post-install-cmd": "sh ./scripts/composer/post-install.sh",
         "docker-swagger-generate": "docker-compose run swagger generate -i http://service:3000/explorer/swagger.json -l php -o /var/usr/client -c /var/usr/swagger/config.json",
         "lint": "vendor/bin/parallel-lint . --exclude vendor --exclude web/core --exclude web/sites/*/files",
+        "phpunit": "vendor/bin/phpunit -c web/core/phpunit.xml.dist --testsuite unit --exclude-group Composer --log-junit tests/reports/phpunit.xml",
         "behat": "vendor/bin/behat -c tests/behat.yml",
         "docker-behat": "docker-compose run web ../vendor/bin/behat -c ../tests/behat.yml --profile docker"
     },

@@ -28,3 +28,6 @@
 
 # Ignore Docker Compose override file to provide secret keys.
 docker-compose.override.yml
+
+# Ignore test objects
+tests/reports/*
