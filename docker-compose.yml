@@ -45,9 +45,11 @@ service:
     AMAZON_S3_KEYID: AmazonS3KeyId
     AMAZON_S3_KEY: AmazonS3Key
     UNILOGINSECRET: UniLoginSecret
-    DISABLE_IMAGE_SCALING_QUEUE: 1
+    COMMUNITY_SERVICE_REDIS_HOST: service_redis
+    COMMUNITY_SERVICE_REDIS_PORT: 6379
   links:
     - service_db
+    - service_redis
 service_db:
   image: postgres
   ports:
@@ -56,6 +58,10 @@ service_db:
     POSTGRES_DB: db
     POSTGRES_USER: db
     POSTGRES_PASSWORD: qiBme2Zjsp1fEwwD
+service_redis:
+  image: redis
+  ports:
+    - '6379/tcp'
 swagger:
   image: reload/swagger-codegen:v2.1.5
   volumes:
