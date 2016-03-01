@@ -8,5 +8,5 @@ RUN apt-get install mysql-client -y
 # docroot. Symlink web to html to make it work for both parties.
 RUN rm -rf /var/www/html
 RUN ln -s /var/www/web /var/www/html
-# Make drush command universally available.
-RUN ln -s /var/www/vendor/bin/drush /usr/local/bin/drush
+# Make Composer commands universally available
+ENV PATH "/var/www/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
