@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse2004
+ * FlagGroup
  *
  * PHP version 5
  *
@@ -35,23 +35,25 @@ namespace DBCDK\CommunityServices\Model;
 
 use \ArrayAccess;
 /**
- * InlineResponse2004 Class Doc Comment
+ * FlagGroup Class Doc Comment
  *
  * @category    Class
- * @description The response body contains the accesstoken for the API.
+ * @description 
  * @package     DBCDK\CommunityServices
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse2004 implements ArrayAccess
+class FlagGroup implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        
+        'id' => 'double',
+        'flagId' => 'double',
+        'groupId' => 'double'
     );
   
     /** 
@@ -59,7 +61,9 @@ class InlineResponse2004 implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        
+        'id' => 'id',
+        'flagId' => 'flagId',
+        'groupId' => 'groupId'
     );
   
     /**
@@ -67,7 +71,9 @@ class InlineResponse2004 implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        
+        'id' => 'setId',
+        'flagId' => 'setFlagId',
+        'groupId' => 'setGroupId'
     );
   
     /**
@@ -75,9 +81,29 @@ class InlineResponse2004 implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        
+        'id' => 'getId',
+        'flagId' => 'getFlagId',
+        'groupId' => 'getGroupId'
     );
   
+    
+    /**
+      * $id 
+      * @var double
+      */
+    protected $id;
+    
+    /**
+      * $flagId 
+      * @var double
+      */
+    protected $flagId;
+    
+    /**
+      * $groupId 
+      * @var double
+      */
+    protected $groupId;
     
 
     /**
@@ -87,8 +113,73 @@ class InlineResponse2004 implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            
+            $this->id = $data["id"];
+            $this->flagId = $data["flagId"];
+            $this->groupId = $data["groupId"];
         }
+    }
+    
+    /**
+     * Gets id
+     * @return double
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+  
+    /**
+     * Sets id
+     * @param double $id 
+     * @return $this
+     */
+    public function setId($id)
+    {
+        
+        $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Gets flagId
+     * @return double
+     */
+    public function getFlagId()
+    {
+        return $this->flagId;
+    }
+  
+    /**
+     * Sets flagId
+     * @param double $flagId 
+     * @return $this
+     */
+    public function setFlagId($flagId)
+    {
+        
+        $this->flagId = $flagId;
+        return $this;
+    }
+    
+    /**
+     * Gets groupId
+     * @return double
+     */
+    public function getGroupId()
+    {
+        return $this->groupId;
+    }
+  
+    /**
+     * Sets groupId
+     * @param double $groupId 
+     * @return $this
+     */
+    public function setGroupId($groupId)
+    {
+        
+        $this->groupId = $groupId;
+        return $this;
     }
     
     /**

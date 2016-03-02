@@ -54,7 +54,9 @@ class Quarantine implements ArrayAccess
         'reason' => 'string',
         'end' => '\DateTime',
         'start' => '\DateTime',
-        'id' => 'double'
+        'id' => 'double',
+        'quarantinedId' => 'double',
+        'creatorId' => 'double'
     );
   
     /** 
@@ -65,7 +67,9 @@ class Quarantine implements ArrayAccess
         'reason' => 'reason',
         'end' => 'end',
         'start' => 'start',
-        'id' => 'id'
+        'id' => 'id',
+        'quarantinedId' => 'quarantinedId',
+        'creatorId' => 'creatorId'
     );
   
     /**
@@ -76,7 +80,9 @@ class Quarantine implements ArrayAccess
         'reason' => 'setReason',
         'end' => 'setEnd',
         'start' => 'setStart',
-        'id' => 'setId'
+        'id' => 'setId',
+        'quarantinedId' => 'setQuarantinedId',
+        'creatorId' => 'setCreatorId'
     );
   
     /**
@@ -87,7 +93,9 @@ class Quarantine implements ArrayAccess
         'reason' => 'getReason',
         'end' => 'getEnd',
         'start' => 'getStart',
-        'id' => 'getId'
+        'id' => 'getId',
+        'quarantinedId' => 'getQuarantinedId',
+        'creatorId' => 'getCreatorId'
     );
   
     
@@ -115,6 +123,18 @@ class Quarantine implements ArrayAccess
       */
     protected $id;
     
+    /**
+      * $quarantinedId 
+      * @var double
+      */
+    protected $quarantinedId;
+    
+    /**
+      * $creatorId 
+      * @var double
+      */
+    protected $creatorId;
+    
 
     /**
      * Constructor
@@ -127,6 +147,8 @@ class Quarantine implements ArrayAccess
             $this->end = $data["end"];
             $this->start = $data["start"];
             $this->id = $data["id"];
+            $this->quarantinedId = $data["quarantinedId"];
+            $this->creatorId = $data["creatorId"];
         }
     }
     
@@ -211,6 +233,48 @@ class Quarantine implements ArrayAccess
     {
         
         $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Gets quarantinedId
+     * @return double
+     */
+    public function getQuarantinedId()
+    {
+        return $this->quarantinedId;
+    }
+  
+    /**
+     * Sets quarantinedId
+     * @param double $quarantinedId 
+     * @return $this
+     */
+    public function setQuarantinedId($quarantinedId)
+    {
+        
+        $this->quarantinedId = $quarantinedId;
+        return $this;
+    }
+    
+    /**
+     * Gets creatorId
+     * @return double
+     */
+    public function getCreatorId()
+    {
+        return $this->creatorId;
+    }
+  
+    /**
+     * Sets creatorId
+     * @param double $creatorId 
+     * @return $this
+     */
+    public function setCreatorId($creatorId)
+    {
+        
+        $this->creatorId = $creatorId;
         return $this;
     }
     

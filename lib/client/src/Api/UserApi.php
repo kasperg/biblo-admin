@@ -800,7 +800,7 @@ class UserApi
      *
      * @param \DBCDK\CommunityServices\Model\Credentials $credentials  (required)
      * @param string $include Related objects to include in the response. See the description of return value for more details. (optional)
-     * @return \DBCDK\CommunityServices\Model\InlineResponse2004
+     * @return \DBCDK\CommunityServices\Model\InlineResponse2005
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userLogin($credentials, $include = null)
@@ -817,7 +817,7 @@ class UserApi
      *
      * @param \DBCDK\CommunityServices\Model\Credentials $credentials  (required)
      * @param string $include Related objects to include in the response. See the description of return value for more details. (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2004, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2005, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
     public function userLoginWithHttpInfo($credentials, $include = null)
@@ -868,19 +868,19 @@ class UserApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse2004'
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse2005'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2004', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse2005', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse2004', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse2005', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

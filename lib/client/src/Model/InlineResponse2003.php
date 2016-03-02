@@ -38,7 +38,7 @@ use \ArrayAccess;
  * InlineResponse2003 Class Doc Comment
  *
  * @category    Class
- * @description The response body contains the accesstoken for the API.
+ * @description The response body tells whether a user exists
  * @package     DBCDK\CommunityServices
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2

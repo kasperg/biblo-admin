@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse2004
+ * Resolution
  *
  * PHP version 5
  *
@@ -35,23 +35,25 @@ namespace DBCDK\CommunityServices\Model;
 
 use \ArrayAccess;
 /**
- * InlineResponse2004 Class Doc Comment
+ * Resolution Class Doc Comment
  *
  * @category    Class
- * @description The response body contains the accesstoken for the API.
+ * @description 
  * @package     DBCDK\CommunityServices
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse2004 implements ArrayAccess
+class Resolution implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        
+        'size' => 'string',
+        'id' => 'double',
+        'imageCollectionResolutionId' => 'double'
     );
   
     /** 
@@ -59,7 +61,9 @@ class InlineResponse2004 implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        
+        'size' => 'size',
+        'id' => 'id',
+        'imageCollectionResolutionId' => 'imageCollectionResolutionId'
     );
   
     /**
@@ -67,7 +71,9 @@ class InlineResponse2004 implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        
+        'size' => 'setSize',
+        'id' => 'setId',
+        'imageCollectionResolutionId' => 'setImageCollectionResolutionId'
     );
   
     /**
@@ -75,9 +81,29 @@ class InlineResponse2004 implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        
+        'size' => 'getSize',
+        'id' => 'getId',
+        'imageCollectionResolutionId' => 'getImageCollectionResolutionId'
     );
   
+    
+    /**
+      * $size 
+      * @var string
+      */
+    protected $size;
+    
+    /**
+      * $id 
+      * @var double
+      */
+    protected $id;
+    
+    /**
+      * $imageCollectionResolutionId 
+      * @var double
+      */
+    protected $imageCollectionResolutionId;
     
 
     /**
@@ -87,8 +113,73 @@ class InlineResponse2004 implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            
+            $this->size = $data["size"];
+            $this->id = $data["id"];
+            $this->imageCollectionResolutionId = $data["imageCollectionResolutionId"];
         }
+    }
+    
+    /**
+     * Gets size
+     * @return string
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+  
+    /**
+     * Sets size
+     * @param string $size 
+     * @return $this
+     */
+    public function setSize($size)
+    {
+        
+        $this->size = $size;
+        return $this;
+    }
+    
+    /**
+     * Gets id
+     * @return double
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+  
+    /**
+     * Sets id
+     * @param double $id 
+     * @return $this
+     */
+    public function setId($id)
+    {
+        
+        $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Gets imageCollectionResolutionId
+     * @return double
+     */
+    public function getImageCollectionResolutionId()
+    {
+        return $this->imageCollectionResolutionId;
+    }
+  
+    /**
+     * Sets imageCollectionResolutionId
+     * @param double $imageCollectionResolutionId 
+     * @return $this
+     */
+    public function setImageCollectionResolutionId($imageCollectionResolutionId)
+    {
+        
+        $this->imageCollectionResolutionId = $imageCollectionResolutionId;
+        return $this;
     }
     
     /**

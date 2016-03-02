@@ -60,6 +60,8 @@ class Profile implements ArrayAccess
         'created' => '\DateTime',
         'lastUpdated' => '\DateTime',
         'hasFilledInProfile' => 'bool',
+        'birthday' => '\DateTime',
+        'fullName' => 'string',
         'id' => 'double'
     );
   
@@ -77,6 +79,8 @@ class Profile implements ArrayAccess
         'created' => 'created',
         'lastUpdated' => 'lastUpdated',
         'hasFilledInProfile' => 'hasFilledInProfile',
+        'birthday' => 'birthday',
+        'fullName' => 'fullName',
         'id' => 'id'
     );
   
@@ -94,6 +98,8 @@ class Profile implements ArrayAccess
         'created' => 'setCreated',
         'lastUpdated' => 'setLastUpdated',
         'hasFilledInProfile' => 'setHasFilledInProfile',
+        'birthday' => 'setBirthday',
+        'fullName' => 'setFullName',
         'id' => 'setId'
     );
   
@@ -111,6 +117,8 @@ class Profile implements ArrayAccess
         'created' => 'getCreated',
         'lastUpdated' => 'getLastUpdated',
         'hasFilledInProfile' => 'getHasFilledInProfile',
+        'birthday' => 'getBirthday',
+        'fullName' => 'getFullName',
         'id' => 'getId'
     );
   
@@ -170,6 +178,18 @@ class Profile implements ArrayAccess
     protected $hasFilledInProfile;
     
     /**
+      * $birthday 
+      * @var \DateTime
+      */
+    protected $birthday;
+    
+    /**
+      * $fullName 
+      * @var string
+      */
+    protected $fullName;
+    
+    /**
       * $id 
       * @var double
       */
@@ -192,6 +212,8 @@ class Profile implements ArrayAccess
             $this->created = $data["created"];
             $this->lastUpdated = $data["lastUpdated"];
             $this->hasFilledInProfile = $data["hasFilledInProfile"];
+            $this->birthday = $data["birthday"];
+            $this->fullName = $data["fullName"];
             $this->id = $data["id"];
         }
     }
@@ -382,6 +404,48 @@ class Profile implements ArrayAccess
     {
         
         $this->hasFilledInProfile = $hasFilledInProfile;
+        return $this;
+    }
+    
+    /**
+     * Gets birthday
+     * @return \DateTime
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+  
+    /**
+     * Sets birthday
+     * @param \DateTime $birthday 
+     * @return $this
+     */
+    public function setBirthday($birthday)
+    {
+        
+        $this->birthday = $birthday;
+        return $this;
+    }
+    
+    /**
+     * Gets fullName
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+  
+    /**
+     * Sets fullName
+     * @param string $fullName 
+     * @return $this
+     */
+    public function setFullName($fullName)
+    {
+        
+        $this->fullName = $fullName;
         return $this;
     }
     
