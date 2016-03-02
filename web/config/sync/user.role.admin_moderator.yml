@@ -1,0 +1,9 @@
+uuid: 5a932941-21be-472b-a100-f7a00150a3a0
+langcode: en
+status: true
+dependencies: {  }
+id: admin_moderator
+label: Moderator
+weight: 3
+is_admin: null
+permissions: {  }

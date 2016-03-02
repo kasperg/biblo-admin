@@ -1,8 +1,8 @@
-uuid: a2071952-404a-45b1-8a1d-29e13ba32ba1
+uuid: ce3d556b-06ae-4217-9400-b096b7e2f3a6
 langcode: en
 status: true
 dependencies: {  }
-id: administrator
+id: admin_administrator
 label: Administrator
 weight: 2
 is_admin: true
