@@ -10,12 +10,14 @@ web:
     # the container. composer generates a symlink from /vendor/name/package to
     # the local path. This makes this symlink work on the container as well.
     - './lib:/var/www/lib'
+    - './tests:/var/www/tests'
     - './docker/docker.settings.php:/var/www/html/sites/default/settings.php:ro'
     - './docker/docker.services.yml:/var/www/html/sites/default/services.yml:ro'
   working_dir: '/var/www/web'
   links:
     - db
     - service
+    - hub
 db:
   image: mariadb
   ports:
@@ -70,3 +72,12 @@ swagger:
     - './lib/client:/var/usr/client'
   links:
     - service
+hub:
+  image: selenium/hub
+  ports:
+    - "4444"
+firefox:
+  image: selenium/node-firefox
+  links:
+    - hub
+    - web

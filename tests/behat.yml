@@ -1,0 +1,28 @@
+default:
+  suites:
+    default:
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+  extensions:
+    Behat\MinkExtension:
+      selenium2: ~
+      browser_name: 'firefox'
+      base_url: ~
+    Drupal\DrupalExtension:
+      blackbox: ~
+    jarnaiz\JUnitFormatter\JUnitFormatterExtension:
+      filename: behat.xml
+      outputDir: %paths.base%/reports
+
+docker:
+  extensions:
+    Behat\MinkExtension:
+      selenium2:
+        wd_host: 'hub:4444/wd/hub'
+        browser: 'firefox'
+      browser_name: 'firefox'
+      base_url: http://web
+    Lakion\Behat\MinkDebugExtension:
+      directory: %paths.base%/logs
+      screenshot: true
