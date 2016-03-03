@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse2004
+ * InlineResponse2005
  *
  * PHP version 5
  *
@@ -35,16 +35,16 @@ namespace DBCDK\CommunityServices\Model;
 
 use \ArrayAccess;
 /**
- * InlineResponse2004 Class Doc Comment
+ * InlineResponse2005 Class Doc Comment
  *
  * @category    Class
- * @description The response body contains the accesstoken for the API.
+ * @description The response body contains properties of the AccessToken created on login.\nDepending on the value of `include` parameter, the body may contain additional properties:\n\n  - `user` - `{User}` - Data of the currently logged in user. (`include=user`)
  * @package     DBCDK\CommunityServices
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse2004 implements ArrayAccess
+class InlineResponse2005 implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 

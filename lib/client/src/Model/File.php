@@ -56,12 +56,9 @@ class File implements ArrayAccess
         'type' => 'string',
         'url' => 'string',
         'id' => 'double',
-        'imageFile' => 'double',
-        'groupCoverImageId' => 'double',
-        'postImageFile' => 'double',
-        'commentImageFile' => 'double',
         'originalvideoid' => 'double',
-        'videoCollectionId' => 'double'
+        'videoCollectionId' => 'double',
+        'resolutionImageFileId' => 'double'
     );
   
     /** 
@@ -74,12 +71,9 @@ class File implements ArrayAccess
         'type' => 'type',
         'url' => 'url',
         'id' => 'id',
-        'imageFile' => 'imageFile',
-        'groupCoverImageId' => 'groupCoverImageId',
-        'postImageFile' => 'postImageFile',
-        'commentImageFile' => 'commentImageFile',
         'originalvideoid' => 'originalvideoid',
-        'videoCollectionId' => 'videoCollectionId'
+        'videoCollectionId' => 'videoCollectionId',
+        'resolutionImageFileId' => 'resolutionImageFileId'
     );
   
     /**
@@ -92,12 +86,9 @@ class File implements ArrayAccess
         'type' => 'setType',
         'url' => 'setUrl',
         'id' => 'setId',
-        'imageFile' => 'setImageFile',
-        'groupCoverImageId' => 'setGroupCoverImageId',
-        'postImageFile' => 'setPostImageFile',
-        'commentImageFile' => 'setCommentImageFile',
         'originalvideoid' => 'setOriginalvideoid',
-        'videoCollectionId' => 'setVideoCollectionId'
+        'videoCollectionId' => 'setVideoCollectionId',
+        'resolutionImageFileId' => 'setResolutionImageFileId'
     );
   
     /**
@@ -110,12 +101,9 @@ class File implements ArrayAccess
         'type' => 'getType',
         'url' => 'getUrl',
         'id' => 'getId',
-        'imageFile' => 'getImageFile',
-        'groupCoverImageId' => 'getGroupCoverImageId',
-        'postImageFile' => 'getPostImageFile',
-        'commentImageFile' => 'getCommentImageFile',
         'originalvideoid' => 'getOriginalvideoid',
-        'videoCollectionId' => 'getVideoCollectionId'
+        'videoCollectionId' => 'getVideoCollectionId',
+        'resolutionImageFileId' => 'getResolutionImageFileId'
     );
   
     
@@ -150,30 +138,6 @@ class File implements ArrayAccess
     protected $id;
     
     /**
-      * $imageFile 
-      * @var double
-      */
-    protected $imageFile;
-    
-    /**
-      * $groupCoverImageId 
-      * @var double
-      */
-    protected $groupCoverImageId;
-    
-    /**
-      * $postImageFile 
-      * @var double
-      */
-    protected $postImageFile;
-    
-    /**
-      * $commentImageFile 
-      * @var double
-      */
-    protected $commentImageFile;
-    
-    /**
       * $originalvideoid 
       * @var double
       */
@@ -184,6 +148,12 @@ class File implements ArrayAccess
       * @var double
       */
     protected $videoCollectionId;
+    
+    /**
+      * $resolutionImageFileId 
+      * @var double
+      */
+    protected $resolutionImageFileId;
     
 
     /**
@@ -198,12 +168,9 @@ class File implements ArrayAccess
             $this->type = $data["type"];
             $this->url = $data["url"];
             $this->id = $data["id"];
-            $this->imageFile = $data["imageFile"];
-            $this->groupCoverImageId = $data["groupCoverImageId"];
-            $this->postImageFile = $data["postImageFile"];
-            $this->commentImageFile = $data["commentImageFile"];
             $this->originalvideoid = $data["originalvideoid"];
             $this->videoCollectionId = $data["videoCollectionId"];
+            $this->resolutionImageFileId = $data["resolutionImageFileId"];
         }
     }
     
@@ -313,90 +280,6 @@ class File implements ArrayAccess
     }
     
     /**
-     * Gets imageFile
-     * @return double
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-  
-    /**
-     * Sets imageFile
-     * @param double $imageFile 
-     * @return $this
-     */
-    public function setImageFile($imageFile)
-    {
-        
-        $this->imageFile = $imageFile;
-        return $this;
-    }
-    
-    /**
-     * Gets groupCoverImageId
-     * @return double
-     */
-    public function getGroupCoverImageId()
-    {
-        return $this->groupCoverImageId;
-    }
-  
-    /**
-     * Sets groupCoverImageId
-     * @param double $groupCoverImageId 
-     * @return $this
-     */
-    public function setGroupCoverImageId($groupCoverImageId)
-    {
-        
-        $this->groupCoverImageId = $groupCoverImageId;
-        return $this;
-    }
-    
-    /**
-     * Gets postImageFile
-     * @return double
-     */
-    public function getPostImageFile()
-    {
-        return $this->postImageFile;
-    }
-  
-    /**
-     * Sets postImageFile
-     * @param double $postImageFile 
-     * @return $this
-     */
-    public function setPostImageFile($postImageFile)
-    {
-        
-        $this->postImageFile = $postImageFile;
-        return $this;
-    }
-    
-    /**
-     * Gets commentImageFile
-     * @return double
-     */
-    public function getCommentImageFile()
-    {
-        return $this->commentImageFile;
-    }
-  
-    /**
-     * Sets commentImageFile
-     * @param double $commentImageFile 
-     * @return $this
-     */
-    public function setCommentImageFile($commentImageFile)
-    {
-        
-        $this->commentImageFile = $commentImageFile;
-        return $this;
-    }
-    
-    /**
      * Gets originalvideoid
      * @return double
      */
@@ -435,6 +318,27 @@ class File implements ArrayAccess
     {
         
         $this->videoCollectionId = $videoCollectionId;
+        return $this;
+    }
+    
+    /**
+     * Gets resolutionImageFileId
+     * @return double
+     */
+    public function getResolutionImageFileId()
+    {
+        return $this->resolutionImageFileId;
+    }
+  
+    /**
+     * Sets resolutionImageFileId
+     * @param double $resolutionImageFileId 
+     * @return $this
+     */
+    public function setResolutionImageFileId($resolutionImageFileId)
+    {
+        
+        $this->resolutionImageFileId = $resolutionImageFileId;
         return $this;
     }
     

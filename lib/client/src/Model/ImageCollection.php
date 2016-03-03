@@ -1,6 +1,6 @@
 <?php
 /**
- * Flag
+ * ImageCollection
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace DBCDK\CommunityServices\Model;
 
 use \ArrayAccess;
 /**
- * Flag Class Doc Comment
+ * ImageCollection Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,18 +44,18 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Flag implements ArrayAccess
+class ImageCollection implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'timeFlagged' => '\DateTime',
-        'description' => 'string',
-        'markedAsRead' => 'bool',
         'id' => 'double',
-        'ownerId' => 'double'
+        'profileImageCollection' => 'double',
+        'groupCoverImageCollectionId' => 'double',
+        'postImageCollection' => 'double',
+        'commentImageCollection' => 'double'
     );
   
     /** 
@@ -63,11 +63,11 @@ class Flag implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'timeFlagged' => 'timeFlagged',
-        'description' => 'description',
-        'markedAsRead' => 'markedAsRead',
         'id' => 'id',
-        'ownerId' => 'ownerId'
+        'profileImageCollection' => 'profileImageCollection',
+        'groupCoverImageCollectionId' => 'groupCoverImageCollectionId',
+        'postImageCollection' => 'postImageCollection',
+        'commentImageCollection' => 'commentImageCollection'
     );
   
     /**
@@ -75,11 +75,11 @@ class Flag implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'timeFlagged' => 'setTimeFlagged',
-        'description' => 'setDescription',
-        'markedAsRead' => 'setMarkedAsRead',
         'id' => 'setId',
-        'ownerId' => 'setOwnerId'
+        'profileImageCollection' => 'setProfileImageCollection',
+        'groupCoverImageCollectionId' => 'setGroupCoverImageCollectionId',
+        'postImageCollection' => 'setPostImageCollection',
+        'commentImageCollection' => 'setCommentImageCollection'
     );
   
     /**
@@ -87,31 +87,13 @@ class Flag implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'timeFlagged' => 'getTimeFlagged',
-        'description' => 'getDescription',
-        'markedAsRead' => 'getMarkedAsRead',
         'id' => 'getId',
-        'ownerId' => 'getOwnerId'
+        'profileImageCollection' => 'getProfileImageCollection',
+        'groupCoverImageCollectionId' => 'getGroupCoverImageCollectionId',
+        'postImageCollection' => 'getPostImageCollection',
+        'commentImageCollection' => 'getCommentImageCollection'
     );
   
-    
-    /**
-      * $timeFlagged 
-      * @var \DateTime
-      */
-    protected $timeFlagged;
-    
-    /**
-      * $description 
-      * @var string
-      */
-    protected $description;
-    
-    /**
-      * $markedAsRead 
-      * @var bool
-      */
-    protected $markedAsRead;
     
     /**
       * $id 
@@ -120,10 +102,28 @@ class Flag implements ArrayAccess
     protected $id;
     
     /**
-      * $ownerId 
+      * $profileImageCollection 
       * @var double
       */
-    protected $ownerId;
+    protected $profileImageCollection;
+    
+    /**
+      * $groupCoverImageCollectionId 
+      * @var double
+      */
+    protected $groupCoverImageCollectionId;
+    
+    /**
+      * $postImageCollection 
+      * @var double
+      */
+    protected $postImageCollection;
+    
+    /**
+      * $commentImageCollection 
+      * @var double
+      */
+    protected $commentImageCollection;
     
 
     /**
@@ -133,75 +133,12 @@ class Flag implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->timeFlagged = $data["timeFlagged"];
-            $this->description = $data["description"];
-            $this->markedAsRead = $data["markedAsRead"];
             $this->id = $data["id"];
-            $this->ownerId = $data["ownerId"];
+            $this->profileImageCollection = $data["profileImageCollection"];
+            $this->groupCoverImageCollectionId = $data["groupCoverImageCollectionId"];
+            $this->postImageCollection = $data["postImageCollection"];
+            $this->commentImageCollection = $data["commentImageCollection"];
         }
-    }
-    
-    /**
-     * Gets timeFlagged
-     * @return \DateTime
-     */
-    public function getTimeFlagged()
-    {
-        return $this->timeFlagged;
-    }
-  
-    /**
-     * Sets timeFlagged
-     * @param \DateTime $timeFlagged 
-     * @return $this
-     */
-    public function setTimeFlagged($timeFlagged)
-    {
-        
-        $this->timeFlagged = $timeFlagged;
-        return $this;
-    }
-    
-    /**
-     * Gets description
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-  
-    /**
-     * Sets description
-     * @param string $description 
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        
-        $this->description = $description;
-        return $this;
-    }
-    
-    /**
-     * Gets markedAsRead
-     * @return bool
-     */
-    public function getMarkedAsRead()
-    {
-        return $this->markedAsRead;
-    }
-  
-    /**
-     * Sets markedAsRead
-     * @param bool $markedAsRead 
-     * @return $this
-     */
-    public function setMarkedAsRead($markedAsRead)
-    {
-        
-        $this->markedAsRead = $markedAsRead;
-        return $this;
     }
     
     /**
@@ -226,23 +163,86 @@ class Flag implements ArrayAccess
     }
     
     /**
-     * Gets ownerId
+     * Gets profileImageCollection
      * @return double
      */
-    public function getOwnerId()
+    public function getProfileImageCollection()
     {
-        return $this->ownerId;
+        return $this->profileImageCollection;
     }
   
     /**
-     * Sets ownerId
-     * @param double $ownerId 
+     * Sets profileImageCollection
+     * @param double $profileImageCollection 
      * @return $this
      */
-    public function setOwnerId($ownerId)
+    public function setProfileImageCollection($profileImageCollection)
     {
         
-        $this->ownerId = $ownerId;
+        $this->profileImageCollection = $profileImageCollection;
+        return $this;
+    }
+    
+    /**
+     * Gets groupCoverImageCollectionId
+     * @return double
+     */
+    public function getGroupCoverImageCollectionId()
+    {
+        return $this->groupCoverImageCollectionId;
+    }
+  
+    /**
+     * Sets groupCoverImageCollectionId
+     * @param double $groupCoverImageCollectionId 
+     * @return $this
+     */
+    public function setGroupCoverImageCollectionId($groupCoverImageCollectionId)
+    {
+        
+        $this->groupCoverImageCollectionId = $groupCoverImageCollectionId;
+        return $this;
+    }
+    
+    /**
+     * Gets postImageCollection
+     * @return double
+     */
+    public function getPostImageCollection()
+    {
+        return $this->postImageCollection;
+    }
+  
+    /**
+     * Sets postImageCollection
+     * @param double $postImageCollection 
+     * @return $this
+     */
+    public function setPostImageCollection($postImageCollection)
+    {
+        
+        $this->postImageCollection = $postImageCollection;
+        return $this;
+    }
+    
+    /**
+     * Gets commentImageCollection
+     * @return double
+     */
+    public function getCommentImageCollection()
+    {
+        return $this->commentImageCollection;
+    }
+  
+    /**
+     * Sets commentImageCollection
+     * @param double $commentImageCollection 
+     * @return $this
+     */
+    public function setCommentImageCollection($commentImageCollection)
+    {
+        
+        $this->commentImageCollection = $commentImageCollection;
         return $this;
     }
     

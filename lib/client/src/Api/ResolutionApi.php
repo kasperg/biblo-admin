@@ -1,6 +1,6 @@
 <?php
 /**
- * FileApi
+ * ResolutionApi
  * PHP version 5
  *
  * @category Class
@@ -39,7 +39,7 @@ use \DBCDK\CommunityServices\ApiException;
 use \DBCDK\CommunityServices\ObjectSerializer;
 
 /**
- * FileApi Class Doc Comment
+ * ResolutionApi Class Doc Comment
  *
  * @category Class
  * @package  DBCDK\CommunityServices
@@ -47,7 +47,7 @@ use \DBCDK\CommunityServices\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class FileApi
+class ResolutionApi
 {
 
     /**
@@ -82,7 +82,7 @@ class FileApi
     /**
      * Set the API client
      * @param \DBCDK\CommunityServices\ApiClient $apiClient set the API client
-     * @return FileApi
+     * @return ResolutionApi
      */
     public function setApiClient(ApiClient $apiClient)
     {
@@ -92,36 +92,36 @@ class FileApi
   
     
     /**
-     * fileFind
+     * resolutionFind
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject[]
+     * @return \DBCDK\CommunityServices\Model\Resolution[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileFind($filter = null)
+    public function resolutionFind($filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileFindWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->resolutionFindWithHttpInfo ($filter);
         return $response; 
     }
 
 
     /**
-     * fileFindWithHttpInfo
+     * resolutionFindWithHttpInfo
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Resolution[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileFindWithHttpInfo($filter = null)
+    public function resolutionFindWithHttpInfo($filter = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/files";
+        $resourcePath = "/resolutions";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -156,19 +156,19 @@ class FileApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject[]'
+                $headerParams, '\DBCDK\CommunityServices\Model\Resolution[]'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution[]', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject[]', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -178,36 +178,36 @@ class FileApi
     }
     
     /**
-     * fileUpsert
+     * resolutionUpsert
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \SplFileObject $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
+     * @param \DBCDK\CommunityServices\Model\Resolution $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Resolution
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileUpsert($data = null)
+    public function resolutionUpsert($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileUpsertWithHttpInfo ($data);
+        list($response, $statusCode, $httpHeader) = $this->resolutionUpsertWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * fileUpsertWithHttpInfo
+     * resolutionUpsertWithHttpInfo
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \SplFileObject $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Resolution $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Resolution, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileUpsertWithHttpInfo($data = null)
+    public function resolutionUpsertWithHttpInfo($data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/files";
+        $resourcePath = "/resolutions";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "PUT";
         $httpBody = '';
@@ -242,19 +242,19 @@ class FileApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
+                $headerParams, '\DBCDK\CommunityServices\Model\Resolution'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -264,36 +264,36 @@ class FileApi
     }
     
     /**
-     * fileCreate
+     * resolutionCreate
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \SplFileObject $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
+     * @param \DBCDK\CommunityServices\Model\Resolution $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Resolution
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileCreate($data = null)
+    public function resolutionCreate($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileCreateWithHttpInfo ($data);
+        list($response, $statusCode, $httpHeader) = $this->resolutionCreateWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * fileCreateWithHttpInfo
+     * resolutionCreateWithHttpInfo
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \SplFileObject $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Resolution $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Resolution, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileCreateWithHttpInfo($data = null)
+    public function resolutionCreateWithHttpInfo($data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/files";
+        $resourcePath = "/resolutions";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "POST";
         $httpBody = '';
@@ -328,19 +328,19 @@ class FileApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
+                $headerParams, '\DBCDK\CommunityServices\Model\Resolution'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -350,7 +350,7 @@ class FileApi
     }
     
     /**
-     * fileCreateChangeStreamGetFilesChangeStream
+     * resolutionCreateChangeStreamGetResolutionsChangeStream
      *
      * Create a change stream.
      *
@@ -358,15 +358,15 @@ class FileApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileCreateChangeStreamGetFilesChangeStream($options = null)
+    public function resolutionCreateChangeStreamGetResolutionsChangeStream($options = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileCreateChangeStreamGetFilesChangeStreamWithHttpInfo ($options);
+        list($response, $statusCode, $httpHeader) = $this->resolutionCreateChangeStreamGetResolutionsChangeStreamWithHttpInfo ($options);
         return $response; 
     }
 
 
     /**
-     * fileCreateChangeStreamGetFilesChangeStreamWithHttpInfo
+     * resolutionCreateChangeStreamGetResolutionsChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -374,12 +374,12 @@ class FileApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileCreateChangeStreamGetFilesChangeStreamWithHttpInfo($options = null)
+    public function resolutionCreateChangeStreamGetResolutionsChangeStreamWithHttpInfo($options = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/files/change-stream";
+        $resourcePath = "/resolutions/change-stream";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -436,7 +436,7 @@ class FileApi
     }
     
     /**
-     * fileCreateChangeStreamPostFilesChangeStream
+     * resolutionCreateChangeStreamPostResolutionsChangeStream
      *
      * Create a change stream.
      *
@@ -444,15 +444,15 @@ class FileApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileCreateChangeStreamPostFilesChangeStream($options = null)
+    public function resolutionCreateChangeStreamPostResolutionsChangeStream($options = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileCreateChangeStreamPostFilesChangeStreamWithHttpInfo ($options);
+        list($response, $statusCode, $httpHeader) = $this->resolutionCreateChangeStreamPostResolutionsChangeStreamWithHttpInfo ($options);
         return $response; 
     }
 
 
     /**
-     * fileCreateChangeStreamPostFilesChangeStreamWithHttpInfo
+     * resolutionCreateChangeStreamPostResolutionsChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -460,12 +460,12 @@ class FileApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileCreateChangeStreamPostFilesChangeStreamWithHttpInfo($options = null)
+    public function resolutionCreateChangeStreamPostResolutionsChangeStreamWithHttpInfo($options = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/files/change-stream";
+        $resourcePath = "/resolutions/change-stream";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "POST";
         $httpBody = '';
@@ -524,7 +524,7 @@ class FileApi
     }
     
     /**
-     * fileCount
+     * resolutionCount
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -532,15 +532,15 @@ class FileApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileCount($where = null)
+    public function resolutionCount($where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileCountWithHttpInfo ($where);
+        list($response, $statusCode, $httpHeader) = $this->resolutionCountWithHttpInfo ($where);
         return $response; 
     }
 
 
     /**
-     * fileCountWithHttpInfo
+     * resolutionCountWithHttpInfo
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -548,12 +548,12 @@ class FileApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileCountWithHttpInfo($where = null)
+    public function resolutionCountWithHttpInfo($where = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/files/count";
+        $resourcePath = "/resolutions/count";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -610,36 +610,36 @@ class FileApi
     }
     
     /**
-     * fileFindOne
+     * resolutionFindOne
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
+     * @return \DBCDK\CommunityServices\Model\Resolution
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileFindOne($filter = null)
+    public function resolutionFindOne($filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileFindOneWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->resolutionFindOneWithHttpInfo ($filter);
         return $response; 
     }
 
 
     /**
-     * fileFindOneWithHttpInfo
+     * resolutionFindOneWithHttpInfo
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Resolution, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileFindOneWithHttpInfo($filter = null)
+    public function resolutionFindOneWithHttpInfo($filter = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/files/findOne";
+        $resourcePath = "/resolutions/findOne";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -674,19 +674,19 @@ class FileApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
+                $headerParams, '\DBCDK\CommunityServices\Model\Resolution'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -696,38 +696,38 @@ class FileApi
     }
     
     /**
-     * fileUpdateAll
+     * resolutionUpdateAll
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \SplFileObject $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\Resolution $data An object of model property name/value pairs (optional)
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileUpdateAll($where = null, $data = null)
+    public function resolutionUpdateAll($where = null, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileUpdateAllWithHttpInfo ($where, $data);
+        list($response, $statusCode, $httpHeader) = $this->resolutionUpdateAllWithHttpInfo ($where, $data);
         return $response; 
     }
 
 
     /**
-     * fileUpdateAllWithHttpInfo
+     * resolutionUpdateAllWithHttpInfo
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \SplFileObject $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\Resolution $data An object of model property name/value pairs (optional)
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileUpdateAllWithHttpInfo($where = null, $data = null)
+    public function resolutionUpdateAllWithHttpInfo($where = null, $data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/files/update";
+        $resourcePath = "/resolutions/update";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "POST";
         $httpBody = '';
@@ -788,1116 +788,236 @@ class FileApi
     }
     
     /**
-     * fileUpload
-     *
-     * Uploads a file
-     *
-     * @param string $options  (optional)
-     * @param string $container  (optional)
-     * @return \DBCDK\CommunityServices\Model\InlineResponse200
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileUpload($options = null, $container = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileUploadWithHttpInfo ($options, $container);
-        return $response; 
-    }
-
-
-    /**
-     * fileUploadWithHttpInfo
-     *
-     * Uploads a file
-     *
-     * @param string $options  (optional)
-     * @param string $container  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileUploadWithHttpInfo($options = null, $container = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/files/upload";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "POST";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($options !== null) {
-            $queryParams['options'] = $this->apiClient->getSerializer()->toQueryValue($options);
-        }// query params
-        
-        if ($container !== null) {
-            $queryParams['container'] = $this->apiClient->getSerializer()->toQueryValue($container);
-        }
-        
-        
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileFindById
+     * resolutionFindById
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileFindById($id, $filter = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileFindByIdWithHttpInfo ($id, $filter);
-        return $response; 
-    }
-
-
-    /**
-     * fileFindByIdWithHttpInfo
-     *
-     * Find a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileFindByIdWithHttpInfo($id, $filter = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileFindById');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileExistsHeadFilesid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return \DBCDK\CommunityServices\Model\InlineResponse200
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileExistsHeadFilesid($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileExistsHeadFilesidWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * fileExistsHeadFilesidWithHttpInfo
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileExistsHeadFilesidWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileExistsHeadFilesid');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "HEAD";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * filePrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\\SplFileObject
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeUpdateAttributes($id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeUpdateAttributesWithHttpInfo ($id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * filePrototypeUpdateAttributesWithHttpInfo
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \SplFileObject $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeUpdateAttributes');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "PUT";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileDeleteById
-     *
-     * Delete a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @return \DBCDK\CommunityServices\Model\InlineResponse200
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileDeleteById($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileDeleteByIdWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * fileDeleteByIdWithHttpInfo
-     *
-     * Delete a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileDeleteByIdWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileDeleteById');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "DELETE";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileExistsGetFilesidExists
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return \DBCDK\CommunityServices\Model\InlineResponse200
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileExistsGetFilesidExists($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileExistsGetFilesidExistsWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * fileExistsGetFilesidExistsWithHttpInfo
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileExistsGetFilesidExistsWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileExistsGetFilesidExists');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}/exists";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * filePrototypeGetResolutions
-     *
-     * Queries resolutions of file.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param string $filter  (optional)
-     * @return \DBCDK\CommunityServices\Model\ImageCollection[]
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeGetResolutions($id, $filter = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeGetResolutionsWithHttpInfo ($id, $filter);
-        return $response; 
-    }
-
-
-    /**
-     * filePrototypeGetResolutionsWithHttpInfo
-     *
-     * Queries resolutions of file.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param string $filter  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\ImageCollection[], HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeGetResolutionsWithHttpInfo($id, $filter = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeGetResolutions');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}/resolutions";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\ImageCollection[]'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\ImageCollection[]', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\ImageCollection[]', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * filePrototypeCreateResolutions
-     *
-     * Creates a new instance in resolutions of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\ImageCollection
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeCreateResolutions($id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeCreateResolutionsWithHttpInfo ($id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * filePrototypeCreateResolutionsWithHttpInfo
-     *
-     * Creates a new instance in resolutions of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeCreateResolutionsWithHttpInfo($id, $data = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeCreateResolutions');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}/resolutions";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "POST";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\ImageCollection'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\ImageCollection', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\ImageCollection', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * filePrototypeDeleteResolutions
-     *
-     * Deletes all resolutions of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeDeleteResolutions($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeDeleteResolutionsWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * filePrototypeDeleteResolutionsWithHttpInfo
-     *
-     * Deletes all resolutions of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeDeleteResolutionsWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeDeleteResolutions');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}/resolutions";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "DELETE";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * filePrototypeCountResolutions
-     *
-     * Counts resolutions of file.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param string $where Criteria to match model instances (optional)
-     * @return \DBCDK\CommunityServices\Model\InlineResponse200
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeCountResolutions($id, $where = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeCountResolutionsWithHttpInfo ($id, $where);
-        return $response; 
-    }
-
-
-    /**
-     * filePrototypeCountResolutionsWithHttpInfo
-     *
-     * Counts resolutions of file.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param string $where Criteria to match model instances (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeCountResolutionsWithHttpInfo($id, $where = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeCountResolutions');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}/resolutions/count";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($where !== null) {
-            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * filePrototypeExistsResolutions
-     *
-     * Check the existence of resolutions relation to an item by id.
-     *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @return bool
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeExistsResolutions($fk, $id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeExistsResolutionsWithHttpInfo ($fk, $id);
-        return $response; 
-    }
-
-
-    /**
-     * filePrototypeExistsResolutionsWithHttpInfo
-     *
-     * Check the existence of resolutions relation to an item by id.
-     *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of bool, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function filePrototypeExistsResolutionsWithHttpInfo($fk, $id)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling filePrototypeExistsResolutions');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeExistsResolutions');
-        }
-  
-        // parse inputs
-        $resourcePath = "/files/{id}/resolutions/rel/{fk}";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "HEAD";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, 'bool'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'bool', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * filePrototypeLinkResolutions
-     *
-     * Add a related item by id for resolutions.
-     *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Resolution $data  (optional)
      * @return \DBCDK\CommunityServices\Model\Resolution
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeLinkResolutions($fk, $id, $data = null)
+    public function resolutionFindById($id, $filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeLinkResolutionsWithHttpInfo ($fk, $id, $data);
+        list($response, $statusCode, $httpHeader) = $this->resolutionFindByIdWithHttpInfo ($id, $filter);
         return $response; 
     }
 
 
     /**
-     * filePrototypeLinkResolutionsWithHttpInfo
+     * resolutionFindByIdWithHttpInfo
      *
-     * Add a related item by id for resolutions.
+     * Find a model instance by id from the data source.
      *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Resolution $data  (optional)
+     * @param string $id Model id (required)
+     * @param string $filter Filter defining fields and include (optional)
      * @return Array of \DBCDK\CommunityServices\Model\Resolution, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeLinkResolutionsWithHttpInfo($fk, $id, $data = null)
+    public function resolutionFindByIdWithHttpInfo($id, $filter = null)
     {
         
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling filePrototypeLinkResolutions');
-        }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeLinkResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionFindById');
         }
   
         // parse inputs
-        $resourcePath = "/files/{id}/resolutions/rel/{fk}";
+        $resourcePath = "/resolutions/{id}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Resolution'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Resolution', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Resolution', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * resolutionExistsHeadResolutionsid
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function resolutionExistsHeadResolutionsid($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->resolutionExistsHeadResolutionsidWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * resolutionExistsHeadResolutionsidWithHttpInfo
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function resolutionExistsHeadResolutionsidWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionExistsHeadResolutionsid');
+        }
+  
+        // parse inputs
+        $resourcePath = "/resolutions/{id}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "HEAD";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * resolutionPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Resolution $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\Resolution
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function resolutionPrototypeUpdateAttributes($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->resolutionPrototypeUpdateAttributesWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * resolutionPrototypeUpdateAttributesWithHttpInfo
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Resolution $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Resolution, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function resolutionPrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionPrototypeUpdateAttributes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/resolutions/{id}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "PUT";
         $httpBody = '';
@@ -1913,14 +1033,6 @@ class FileApi
         
         
         // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
         
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -1970,46 +1082,40 @@ class FileApi
     }
     
     /**
-     * filePrototypeUnlinkResolutions
+     * resolutionDeleteById
      *
-     * Remove the resolutions relation to an item by id.
+     * Delete a model instance by id from the data source.
      *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @return void
+     * @param string $id Model id (required)
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeUnlinkResolutions($fk, $id)
+    public function resolutionDeleteById($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeUnlinkResolutionsWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->resolutionDeleteByIdWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * filePrototypeUnlinkResolutionsWithHttpInfo
+     * resolutionDeleteByIdWithHttpInfo
      *
-     * Remove the resolutions relation to an item by id.
+     * Delete a model instance by id from the data source.
      *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @param string $id Model id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeUnlinkResolutionsWithHttpInfo($fk, $id)
+    public function resolutionDeleteByIdWithHttpInfo($id)
     {
         
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling filePrototypeUnlinkResolutions');
-        }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeUnlinkResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionDeleteById');
         }
   
         // parse inputs
-        $resourcePath = "/files/{id}/resolutions/rel/{fk}";
+        $resourcePath = "/resolutions/{id}";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "DELETE";
         $httpBody = '';
@@ -2026,14 +1132,6 @@ class FileApi
         
         // path params
         
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
         if ($id !== null) {
             $resourcePath = str_replace(
                 "{" . "id" . "}",
@@ -2056,13 +1154,21 @@ class FileApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
             );
             
-            return array(null, $statusCode, $httpHeader);
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
             }
   
             throw $e;
@@ -2070,46 +1176,40 @@ class FileApi
     }
     
     /**
-     * filePrototypeFindByIdResolutions
+     * resolutionExistsGetResolutionsidExists
      *
-     * Find a related item by id for resolutions.
+     * Check whether a model instance exists in the data source.
      *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @return \DBCDK\CommunityServices\Model\ImageCollection
+     * @param string $id Model id (required)
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeFindByIdResolutions($fk, $id)
+    public function resolutionExistsGetResolutionsidExists($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeFindByIdResolutionsWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->resolutionExistsGetResolutionsidExistsWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * filePrototypeFindByIdResolutionsWithHttpInfo
+     * resolutionExistsGetResolutionsidExistsWithHttpInfo
      *
-     * Find a related item by id for resolutions.
+     * Check whether a model instance exists in the data source.
      *
-     * @param string $fk Foreign key for resolutions (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
+     * @param string $id Model id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeFindByIdResolutionsWithHttpInfo($fk, $id)
+    public function resolutionExistsGetResolutionsidExistsWithHttpInfo($id)
     {
         
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling filePrototypeFindByIdResolutions');
-        }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeFindByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionExistsGetResolutionsidExists');
         }
   
         // parse inputs
-        $resourcePath = "/files/{id}/resolutions/{fk}";
+        $resourcePath = "/resolutions/{id}/exists";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "GET";
         $httpBody = '';
@@ -2126,13 +1226,105 @@ class FileApi
         
         // path params
         
-        if ($fk !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
-        }// path params
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * resolutionPrototypeGetImage
+     *
+     * Fetches hasOne relation image.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\\SplFileObject
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function resolutionPrototypeGetImage($id, $refresh = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->resolutionPrototypeGetImageWithHttpInfo ($id, $refresh);
+        return $response; 
+    }
+
+
+    /**
+     * resolutionPrototypeGetImageWithHttpInfo
+     *
+     * Fetches hasOne relation image.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function resolutionPrototypeGetImageWithHttpInfo($id, $refresh = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionPrototypeGetImage');
+        }
+  
+        // parse inputs
+        $resourcePath = "/resolutions/{id}/image";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        
+        // path params
         
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -2156,19 +1348,19 @@ class FileApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\ImageCollection'
+                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\ImageCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\ImageCollection', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -2178,48 +1370,42 @@ class FileApi
     }
     
     /**
-     * filePrototypeUpdateByIdResolutions
+     * resolutionPrototypeUpdateImage
      *
-     * Update a related item by id for resolutions.
+     * Update image of this model.
      *
-     * @param string $fk Foreign key for resolutions (required)
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\ImageCollection
+     * @param \SplFileObject $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\\SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeUpdateByIdResolutions($fk, $id, $data = null)
+    public function resolutionPrototypeUpdateImage($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeUpdateByIdResolutionsWithHttpInfo ($fk, $id, $data);
+        list($response, $statusCode, $httpHeader) = $this->resolutionPrototypeUpdateImageWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * filePrototypeUpdateByIdResolutionsWithHttpInfo
+     * resolutionPrototypeUpdateImageWithHttpInfo
      *
-     * Update a related item by id for resolutions.
+     * Update image of this model.
      *
-     * @param string $fk Foreign key for resolutions (required)
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
+     * @param \SplFileObject $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeUpdateByIdResolutionsWithHttpInfo($fk, $id, $data = null)
+    public function resolutionPrototypeUpdateImageWithHttpInfo($id, $data = null)
     {
         
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling filePrototypeUpdateByIdResolutions');
-        }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeUpdateByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionPrototypeUpdateImage');
         }
   
         // parse inputs
-        $resourcePath = "/files/{id}/resolutions/{fk}";
+        $resourcePath = "/resolutions/{id}/image";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "PUT";
         $httpBody = '';
@@ -2235,14 +1421,6 @@ class FileApi
         
         
         // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
         
         if ($id !== null) {
             $resourcePath = str_replace(
@@ -2270,19 +1448,19 @@ class FileApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\ImageCollection'
+                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\ImageCollection', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\ImageCollection', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -2292,46 +1470,140 @@ class FileApi
     }
     
     /**
-     * filePrototypeDestroyByIdResolutions
+     * resolutionPrototypeCreateImage
      *
-     * Delete a related item by id for resolutions.
+     * Creates a new instance in image of this model.
      *
-     * @param string $fk Foreign key for resolutions (required)
      * @param string $id PersistedModel id (required)
-     * @return void
+     * @param \SplFileObject $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\\SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeDestroyByIdResolutions($fk, $id)
+    public function resolutionPrototypeCreateImage($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->filePrototypeDestroyByIdResolutionsWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->resolutionPrototypeCreateImageWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * filePrototypeDestroyByIdResolutionsWithHttpInfo
+     * resolutionPrototypeCreateImageWithHttpInfo
      *
-     * Delete a related item by id for resolutions.
+     * Creates a new instance in image of this model.
      *
-     * @param string $fk Foreign key for resolutions (required)
+     * @param string $id PersistedModel id (required)
+     * @param \SplFileObject $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\\SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function resolutionPrototypeCreateImageWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionPrototypeCreateImage');
+        }
+  
+        // parse inputs
+        $resourcePath = "/resolutions/{id}/image";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\\SplFileObject'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\\SplFileObject', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\\SplFileObject', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * resolutionPrototypeDestroyImage
+     *
+     * Deletes image of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function resolutionPrototypeDestroyImage($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->resolutionPrototypeDestroyImageWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * resolutionPrototypeDestroyImageWithHttpInfo
+     *
+     * Deletes image of this model.
+     *
      * @param string $id PersistedModel id (required)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function filePrototypeDestroyByIdResolutionsWithHttpInfo($fk, $id)
+    public function resolutionPrototypeDestroyImageWithHttpInfo($id)
     {
         
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling filePrototypeDestroyByIdResolutions');
-        }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling filePrototypeDestroyByIdResolutions');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling resolutionPrototypeDestroyImage');
         }
   
         // parse inputs
-        $resourcePath = "/files/{id}/resolutions/{fk}";
+        $resourcePath = "/resolutions/{id}/image";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "DELETE";
         $httpBody = '';
@@ -2347,14 +1619,6 @@ class FileApi
         
         
         // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
         
         if ($id !== null) {
             $resourcePath = str_replace(
