@@ -10,15 +10,17 @@ tools:
       - theme
     config:
       standard: Drupal
-    filter:
-      paths: ['web/modules/custom/*', 'web/profiles/custom/*', 'web/themes/custom/*']
   eslint:
     use_native_config: true
-    filter:
-      paths: ['web/modules/custom/*', 'web/profiles/custom/*', 'web/themes/custom/*']
 build_failure_conditions:
   # No new issues allowed.
   - 'issues.new.exists'
 before_commands:
   # Install an up-to-date eslint.
   - 'npm install -g eslint'
+
+filter:
+    paths:
+      - 'web/modules/custom/*'
+      - 'web/profiles/custom/*'
+      - 'web/themes/custom/*'
