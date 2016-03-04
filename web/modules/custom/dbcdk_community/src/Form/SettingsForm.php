@@ -43,7 +43,6 @@ class SettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('dbcdk_community.settings');
 
-    // Logo settings for theme override.
     $form['community_service_url'] = array(
       'community_service_url' => array(
         '#type' => 'textfield',
