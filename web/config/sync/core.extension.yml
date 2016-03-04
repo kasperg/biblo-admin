@@ -2,6 +2,7 @@ module:
   basic_auth: 0
   block: 0
   breakpoint: 0
+  ctools: 0
   dbcdk_community: 0
   dblog: 0
   dynamic_page_cache: 0
@@ -11,6 +12,8 @@ module:
   link: 0
   node: 0
   page_cache: 0
+  page_manager: 0
+  page_manager_ui: 0
   rest: 0
   serialization: 0
   shortcut: 0
