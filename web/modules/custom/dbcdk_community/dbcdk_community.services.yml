@@ -1,0 +1,27 @@
+services:
+  dbcdk_community.api.configuration:
+    class: Drupal\dbcdk_community\CommunityApiConfiguration
+  dbcdk_community.api.client:
+    class: DBCDK\CommunityServices\ApiClient
+    arguments: ['@dbcdk_community.api.configuration']
+  dbcdk_community.api.comment:
+    class: DBCDK\CommunityServices\Api\CommentApi
+    arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.api.community_roles:
+    class: DBCDK\CommunityServices\Api\CommunityRolesApi
+    arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.api.flag:
+    class: DBCDK\CommunityServices\Api\FlagApi
+    arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.api.group:
+    class: DBCDK\CommunityServices\Api\GroupApi
+    arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.api.post:
+    class: DBCDK\CommunityServices\Api\PostApi
+    arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.api.profile:
+    class: DBCDK\CommunityServices\Api\ProfileApi
+    arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.api.quarantine:
+    class: DBCDK\CommunityServices\Api\QuarantineApi
+    arguments: ['@dbcdk_community.api.client']

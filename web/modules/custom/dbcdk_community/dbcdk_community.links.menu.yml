@@ -1,0 +1,5 @@
+dbcdk_community.settings_form:
+  title: 'DBCDK Community'
+  description: 'Configure the DBCDK Community service connection and administration.'
+  route_name: dbcdk_community.settings_form
+  parent: system.admin_config_services
