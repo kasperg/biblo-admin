@@ -33,11 +33,8 @@ class CommunityApiConfiguration extends Configuration {
     $this->setHost($host);
 
     // Set Debug Mode if it is enabled in the admin form.
-    // The form type "checkbox" return 0 or 1 as its values for true and false
-    // but the API says it requires a boolean, so we cannot simply use the
-    // value and therefor have to define it ourselves.
     if ($config->get('community_service_debug')) {
-      $this->setDebug(TRUE);
+      $this->setDebug((bool) $config->get('community_service_debug'));
     }
   }
 
