@@ -1,3 +1,6 @@
+web:
+  environment:
+    XDEBUG_CONFIG: "idekey=PHPSTORM remote_port=9001"
 service:
   environment:
     AMAZON_S3_KEYID: AmazonS3KeyId
