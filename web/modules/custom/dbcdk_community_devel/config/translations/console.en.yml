@@ -1,0 +1,4 @@
+command:
+    dbcdk_community_devel:
+        generate:
+            description: 'Generate dummy community content'
