@@ -43,12 +43,29 @@ class SettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('dbcdk_community.settings');
 
+    // Community service host url.
     $form['community_service_url'] = array(
       'community_service_url' => array(
         '#type' => 'textfield',
         '#title' => $this->t('Community Service Url'),
         '#default_value' => $config->get('community_service_url'),
         '#description' => $this->t('The Community Service Url until the endpoints start. Example: %example', array('%example' => 'https://dbcdk-community.dk/api/')),
+      ),
+    );
+
+    // Vertical tab for advanced options.
+    $form['advanced_options'] = array(
+      '#type' => 'details',
+      '#title' => $this->t('Advanced options'),
+    );
+
+    // Enable debug information.
+    $form['advanced_options']['community_service_debug'] = array(
+      'community_service_debug' => array(
+        '#type' => 'checkbox',
+        '#title' => $this->t('Community Service Debug-Mode'),
+        '#default_value' => $config->get('community_service_debug'),
+        '#description' => $this->t('Return debug information with each Community Service call.'),
       ),
     );
 
@@ -59,10 +76,18 @@ class SettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this
-      ->config('dbcdk_community.settings')
-      ->set('community_service_url', $form_state->getValue(array('community_service_url')))
-      ->save();
+    $fields = [
+      'community_service_url',
+      'community_service_debug',
+    ];
+
+    foreach ($fields as $field) {
+      $this
+        ->config('dbcdk_community.settings')
+        ->set($field, $form_state->getValue([$field]))
+        ->save();
+    }
+
     parent::submitForm($form, $form_state);
   }
 

@@ -1,0 +1,9 @@
+name: 'DBCDK Community Devel'
+type: module
+description: 'This module enables development modules and settings that are relevant for the DBCDK Community module.'
+package: DBCDK
+version: 8.x-1.0
+core: 8.x
+dependencies:
+  - dbcdk_community
+  - page_manager_ui

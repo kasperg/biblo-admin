@@ -26,10 +26,16 @@ class CommunityApiConfiguration extends Configuration {
     parent::__construct();
 
     $config = \Drupal::config('dbcdk_community.settings');
+
     // The Community Service prefixes each endpoint with a slash,
     // so we make sure the host does not end with one.
     $host = rtrim($config->get('community_service_url'), '/');
     $this->setHost($host);
+
+    // Set Debug Mode if it is enabled in the admin form.
+    if ($config->get('community_service_debug')) {
+      $this->setDebug((bool) $config->get('community_service_debug'));
+    }
   }
 
 }
