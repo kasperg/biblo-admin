@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f5ab473fb2f4e0b45e216fff0c173e93",
-    "content-hash": "6e8f90a9d913f224f510b022de8872c2",
+    "hash": "caac2e08c4a8c97f39dea9f5d1b1238c",
+    "content-hash": "7a45e8469484a7a53f26cf4cae15bf95",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -998,6 +998,11 @@
                 "symfony/css-selector": "2.7.*"
             },
             "type": "drupal-core",
+            "extra": {
+                "patches_applied": {
+                    "Support tests in contrib folder": "https://www.drupal.org/files/issues/2499239_77.patch"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Drupal\\Core\\": "lib/Drupal/Core",
@@ -1091,6 +1096,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",

@@ -56,7 +56,13 @@
         },
         "patches": {
             "drupal/ctools": {
-                "Add permission condition": "https://www.drupal.org/files/issues/2665692-ctools-6.patch"
+                "2665692: Add permission condition": "https://www.drupal.org/files/issues/2665692-ctools-6.patch"
+            },
+            "drupal/core": {
+                "2499239: Support tests in contrib folder": "https://www.drupal.org/files/issues/2499239_77.patch"
+            },
+            "drupal/page_manager": {
+                "2684281: Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
             }
         }
     }
