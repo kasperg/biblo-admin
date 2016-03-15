@@ -16,6 +16,7 @@ build_failure_conditions:
 before_commands:
   # Install an up-to-date eslint.
   - 'npm install -g eslint'
+  - 'composer install'
 
 checks:
   php:
