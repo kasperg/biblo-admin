@@ -1,3 +1,17 @@
+build:
+  environment:
+    php: '5.6.16'
+    node: 'v4.2.2'
+  dependencies:
+    before:
+      - 'composer global require hirak/prestissimo'
+    after:
+      - 'npm install -g eslint'
+      - 'vendor/bin/phpcs --config-delete installed_paths'
+      - 'vendor/bin/phpcs -i'
+      - 'vendor/bin/phpcs --config-set installed_paths /home/scrutinizer/build/vendor/drupal/coder/coder_sniffer'
+      - 'vendor/bin/phpcs -i'
+
 tools:
   php_code_sniffer:
     extensions:
@@ -8,23 +22,22 @@ tools:
       - profile
       - test
       - theme
+    config:
+      standard: "DrupalSecure"
   eslint:
     use_native_config: true
-build_failure_conditions:
-  # No new issues allowed.
-  - 'issues.new.exists'
-before_commands:
-  # Install an up-to-date eslint.
-  - 'npm install -g eslint'
-  - 'composer install'
 
 checks:
   php:
     custom_coding_standard:
-      ruleset_path: 'vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml'
+      ruleset_path: '/home/scrutinizer/build/vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml'
 
 filter:
     paths:
       - 'web/modules/custom/*'
       - 'web/profiles/custom/*'
       - 'web/themes/custom/*'
+
+build_failure_conditions:
+  # No new issues allowed.
+  - 'issues.new.exists'
