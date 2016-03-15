@@ -74,7 +74,7 @@ class FlaggableContentRepository {
     $content = [];
 
     $filter = json_encode(['where' => ['markedAsRead' => FALSE]]);
-    $flags = $this->flagApi->flagFind($filter);
+    $flags = (array) $this->flagApi->flagFind($filter);
 
     // Loop over *all* flags to find which content it is attached to.
     // This is not very efficient but our generated APIs do not offer a
