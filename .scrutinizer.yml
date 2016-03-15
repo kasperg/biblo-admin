@@ -8,8 +8,6 @@ tools:
       - profile
       - test
       - theme
-    config:
-      standard: Drupal
   eslint:
     use_native_config: true
 build_failure_conditions:
@@ -18,6 +16,11 @@ build_failure_conditions:
 before_commands:
   # Install an up-to-date eslint.
   - 'npm install -g eslint'
+
+checks:
+  php:
+    custom_coding_standard:
+      ruleset_path: 'vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml'
 
 filter:
     paths:
