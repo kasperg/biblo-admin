@@ -25,3 +25,6 @@ services:
   dbcdk_community.api.quarantine:
     class: DBCDK\CommunityServices\Api\QuarantineApi
     arguments: ['@dbcdk_community.api.client']
+  dbcdk_community.content.flaggable_content_repository:
+    class: Drupal\dbcdk_community\Content\FlaggableContentRepository
+    arguments: ['@dbcdk_community.api.flag']

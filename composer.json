@@ -42,7 +42,7 @@
         "docker-swagger-generate": "docker-compose run swagger generate -i http://service:3000/explorer/swagger.json -l php -o /var/usr/client -c /var/usr/swagger/config.json",
         "lint": "vendor/bin/parallel-lint . --exclude vendor --exclude web/core --exclude web/sites/*/files",
         "phpunit-drupal": "vendor/bin/phpunit -c web/core/phpunit.xml.dist --testsuite unit --exclude-group Composer --log-junit tests/reports/phpunit-drupal.xml",
-        "phpunit-custom": "vendor/bin/phpunit -c web/core/phpunit.xml.dist --testsuite unit --group user --log-junit tests/reports/phpunit-custom.xml",
+        "phpunit-custom": "vendor/bin/phpunit -c web/core/phpunit.xml.dist --testsuite unit --group dbcdk_community --log-junit tests/reports/phpunit-custom.xml",
         "behat": "vendor/bin/behat -c tests/behat.yml",
         "docker-behat": "docker-compose run web ../vendor/bin/behat -c ../tests/behat.yml --profile docker"
     },
@@ -53,6 +53,17 @@
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "patches": {
+            "drupal/ctools": {
+                "2665692: Add permission condition": "https://www.drupal.org/files/issues/2665692-ctools-6.patch"
+            },
+            "drupal/core": {
+                "2499239: Support tests in contrib folder": "https://www.drupal.org/files/issues/2499239_77.patch"
+            },
+            "drupal/page_manager": {
+                "2684281: Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
+            }
         }
     }
 }
