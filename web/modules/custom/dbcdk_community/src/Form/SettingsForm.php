@@ -50,13 +50,37 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('community_service_url'),
       '#description' => $this->t('The Community Service Url until the endpoints start. Example: %example', array('%example' => 'https://dbcdk-community.dk/api/')),
     ];
-    );
+
+    // Vertical tab for community site settings.
+    $form['community_site'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Community site settings'),
+      '#open' => TRUE,
+    ];
+    $form['community_site']['community_site_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Community site url'),
+      '#default_value' => $config->get('community_site_url'),
+      '#description' => $this->t('Url for community site e.g. http://biblo.dk. This is used as a base when creating links to the site.'),
+    ];
+    $form['community_site']['community_site_post_url_pattern'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Post url pattern'),
+      '#default_value' => $config->get('community_site_post_url_pattern'),
+      '#description' => $this->t('Pattern for urls to posts on the community site.'),
+    ];
+    $form['community_site']['community_site_comment_url_pattern'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Comment url pattern'),
+      '#default_value' => $config->get('community_site_post_url_pattern'),
+      '#description' => $this->t('Pattern for urls to comments on the community site.'),
+    ];
 
     // Vertical tab for advanced options.
-    $form['advanced_options'] = array(
+    $form['advanced_options'] = [
       '#type' => 'details',
       '#title' => $this->t('Advanced options'),
-    );
+    ];
 
     // Enable debug information.
     $form['advanced_options']['community_service_debug'] = [
@@ -75,6 +99,9 @@ class SettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $fields = [
       'community_service_url',
+      'community_site_url',
+      'community_site_post_url_pattern',
+      'community_site_comment_url_pattern',
       'community_service_debug',
     ];
 

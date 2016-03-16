@@ -10,7 +10,12 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\dbcdk_community\Content\FlaggableContentRepository;
+use Drupal\dbcdk_community\Url\ModelUrlGenerator;
+use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
+use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -31,6 +36,20 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
   protected $flaggableContentRepository;
 
   /**
+   * Generator to use when creating urls for community content on frontend site.
+   *
+   * @var UrlGeneratorInterface
+   */
+  protected $urlGenerator;
+
+  /**
+   * The link generator to use.
+   *
+   * @var LinkGeneratorInterface $linkGenerator
+   */
+  protected $linkGenerator;
+
+  /**
    * FlaggedContentList constructor.
    *
    * @param array $configuration
@@ -41,10 +60,16 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
    *   The plugin implementation definition.
    * @param FlaggableContentRepository $repository
    *   The repository to use when retrieving flagged content.
+   * @param UrlGeneratorInterface $url_generator
+   *   The generator to use when creating urls to the frontend site.
+   * @param LinkGeneratorInterface $link_generator
+   *   The generator to use when creating links to the frontend site.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, FlaggableContentRepository $repository) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, FlaggableContentRepository $repository, UrlGeneratorInterface $url_generator, LinkGeneratorInterface $link_generator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->flaggableContentRepository = $repository;
+    $this->urlGenerator = $url_generator;
+    $this->linkGenerator = $link_generator;
   }
 
   /**
@@ -56,11 +81,39 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
 
     // We cannot set the logger instance in the service definition so we set it
     // up here instead.
-    /* @var LoggerChannelFactory $logger_factory */
+    /* @var \Drupal\Core\Logger\LoggerChannelFactory $logger_factory */
     $logger_factory = $container->get('logger.factory');
     $repo->setLogger($logger_factory->get('DBCDK Community Service'));
 
-    return new static($configuration, $plugin_id, $plugin_definition, $repo);
+    // Setup url generation for flaggable content.
+    /* @var \Drupal\Core\Config\Config $config */
+    $config = $container->get('config.factory')->get('dbcdk_community.settings');
+    $base_url = $config->get('community_site_url');
+    $url_generator = new ModelUrlGenerator();
+    $url_generator->registerClassGenerator(
+      'DBCDK\CommunityServices\Model\Post',
+      new PropertyUrlGenerator(
+        $base_url . $config->get('community_site_post_url_pattern')
+      )
+    );
+    $url_generator->registerClassGenerator(
+      'DBCDK\CommunityServices\Model\Comment',
+      new PropertyUrlGenerator(
+        $base_url . $config->get('community_site_comment_url_pattern')
+      )
+    );
+
+    /* @var LinkGeneratorInterface $link_generator */
+    $link_generator = $container->get('link_generator');
+
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $repo,
+      $url_generator,
+      $link_generator
+    );
   }
 
   /**
@@ -92,19 +145,34 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
         $this->t('Active flags'),
         $this->t('Latest flag'),
         $this->t('Flag comment'),
+        $this->t('Link'),
       ],
       '#data' => [],
       '#empty' => $this->t('There is currently no flagged content'),
     ];
 
-    /* @var FlaggableContent[] $page_content_elements */
+    /* @var \Drupal\dbcdk_community\Content\FlaggableContent[] $page_content_elements */
     $page_content_elements = array_slice($all_content_elements, $page, $content_per_page);
     foreach ($page_content_elements as $content_element) {
+
+      try {
+        $community_site_url = Url::fromUri($this->urlGenerator->generate($content_element->getObject()));
+        $link = $this->linkGenerator->generate(
+          $this->t('See on community site'),
+          $community_site_url
+        );
+      }
+      catch (\Exception $e) {
+        // If generating a link fails then do not output anything.
+        $link = '';
+      }
+
       $table['#rows'][] = [
         $content_element->getContent(),
         count($content_element->getFlags()),
         $content_element->getLatestFlag()->getTimeFlagged()->format('Y-m-d H:i'),
         $content_element->getLatestFlag()->getDescription(),
+        $link,
       ];
     }
 
