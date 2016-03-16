@@ -1,3 +1,6 @@
 dbcdk community moderate content:
   title: 'Moderate community content'
   description: 'Show flagged content etc.'
+dbcdk community moderate profiles:
+  title: 'Moderate community profiles'
+  description: 'View and moderate commuity profiles.'

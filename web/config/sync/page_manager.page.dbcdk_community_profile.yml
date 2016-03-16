@@ -1,0 +1,24 @@
+uuid: 8619d8dc-4dd3-47f4-a133-51648578366d
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+id: dbcdk_community_profile
+label: Profile
+use_admin_theme: true
+path: '/admin/content/dbcdk-community/profiles/{username}'
+access_logic: and
+access_conditions:
+  7edd1631-96d5-436e-8100-0b13867d9333:
+    id: ctools_user_permission
+    permission: 'dbcdk community moderate profiles'
+    negate: 0
+    context_mapping:
+      user: current_user
+    uuid: 7edd1631-96d5-436e-8100-0b13867d9333
+parameters:
+  username:
+    machine_name: username
+    type: string
+    label: Username
