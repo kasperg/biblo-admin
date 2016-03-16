@@ -44,13 +44,12 @@ class SettingsForm extends ConfigFormBase {
     $config = $this->config('dbcdk_community.settings');
 
     // Community service host url.
-    $form['community_service_url'] = array(
-      'community_service_url' => array(
-        '#type' => 'textfield',
-        '#title' => $this->t('Community Service Url'),
-        '#default_value' => $config->get('community_service_url'),
-        '#description' => $this->t('The Community Service Url until the endpoints start. Example: %example', array('%example' => 'https://dbcdk-community.dk/api/')),
-      ),
+    $form['community_service_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Community Service Url'),
+      '#default_value' => $config->get('community_service_url'),
+      '#description' => $this->t('The Community Service Url until the endpoints start. Example: %example', array('%example' => 'https://dbcdk-community.dk/api/')),
+    ];
     );
 
     // Vertical tab for advanced options.
@@ -60,14 +59,12 @@ class SettingsForm extends ConfigFormBase {
     );
 
     // Enable debug information.
-    $form['advanced_options']['community_service_debug'] = array(
-      'community_service_debug' => array(
-        '#type' => 'checkbox',
-        '#title' => $this->t('Community Service Debug-Mode'),
-        '#default_value' => $config->get('community_service_debug'),
-        '#description' => $this->t('Return debug information with each Community Service call.'),
-      ),
-    );
+    $form['advanced_options']['community_service_debug'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Community Service Debug-Mode'),
+      '#default_value' => $config->get('community_service_debug'),
+      '#description' => $this->t('Return debug information with each Community Service call.'),
+    ];
 
     return parent::buildForm($form, $form_state);
   }
@@ -84,7 +81,7 @@ class SettingsForm extends ConfigFormBase {
     foreach ($fields as $field) {
       $this
         ->config('dbcdk_community.settings')
-        ->set($field, $form_state->getValue([$field]))
+        ->set($field, $form_state->getValue($field))
         ->save();
     }
 
