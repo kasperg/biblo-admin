@@ -81,14 +81,19 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
     $content_per_page = 10;
     $page = pager_default_initialize(count($all_content_elements), $content_per_page);
 
+    $caption = '';
+    if (count($all_content_elements) > $content_per_page) {
+      $caption = $this->t(
+        'Showing %from-%to of %total pieces of flagged content', [
+        '%from' => ($page * $content_per_page) + 1,
+        '%to' => ($page + 1) * $content_per_page,
+        '%total' => count($all_content_elements),
+      ]);
+    }
+    
     $table = [
       '#theme' => 'table',
-      '#caption' => $this->t(
-        'Showing %from-%to of %total pieces of flagged content', [
-          '%from' => ($page * $content_per_page) + 1,
-          '%to' => ($page + 1) * $content_per_page,
-          '%total' => count($all_content_elements),
-        ]),
+      '#caption' => $caption,
       '#header' => [
         $this->t('Content'),
         $this->t('Active flags'),
