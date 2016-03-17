@@ -13,6 +13,7 @@ use DBCDK\CommunityServices\Model\Profile;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Form\FormBuilder;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 
@@ -29,6 +30,13 @@ use Drupal\Core\Link;
 class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
+   * Drupal Form Builder.
+   *
+   * @var FormBuilder $form_builder
+   */
+  protected $formBuilder;
+
+  /**
    * The DBCDK Community Service Profile API.
    *
    * @var ProfileApi $profileApi
@@ -41,6 +49,13 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    * @var int $pagerLimit
    */
   protected $pagerLimit;
+
+  /**
+   * A search query to filter the profiles table.
+   *
+   * @var string $searchQuery
+   */
+  protected $searchQuery;
 
   /**
    * The current page number of the profiles table.
@@ -58,15 +73,21 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param FormBuilder $form_builder
+   *   Drupal Cores form builder.
    * @param ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
+   * @param string $search_query
+   *   A search query to filter the profiles table.
    * @param int $page_number
    *   The current page number of the profiles table.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profile_api, $page_number) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilder $form_builder, ProfileApi $profile_api, $search_query, $page_number) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->pageNumber = $page_number;
+    $this->formBuilder = $form_builder;
     $this->profileApi = $profile_api;
+    $this->searchQuery = $search_query;
+    $this->pageNumber = $page_number;
     $this->pagerLimit = (!empty($this->configuration['pager_limit']) ? $this->configuration['pager_limit'] : 25);
   }
 
@@ -78,7 +99,9 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $container->get('form_builder'),
       $container->get('dbcdk_community.api.profile'),
+      $container->get('request_stack')->getCurrentRequest()->query->get('search'),
       $container->get('request_stack')->getCurrentRequest()->query->get('page')
     );
   }
@@ -121,7 +144,14 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         'limit' => $this->pagerLimit,
         'offset' => $this->pageNumber * $this->pagerLimit,
       ];
-      $profiles = $this->profileApi->profileFind(json_encode($filter));
+      if (!empty($this->searchQuery)) {
+        $filter['where'] = [
+          'username' => [
+            'like' => '%' . $this->searchQuery . '%',
+          ],
+        ];
+      }
+      $profiles = (array) $this->profileApi->profileFind(json_encode($filter));
 
       // TODO: Fix the failing "profileCount()" method so we don't have to
       // fetch all results to get a total of profiles.
@@ -131,8 +161,11 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       \Drupal::logger('DBCDK Community Service')->error($e);
     }
 
-    // Build a table of profiles.
     $build = [];
+    // Build exposed search form.
+    $build['filter'] = $this->formBuilder->getForm('Drupal\dbcdk_community\Form\ProfilesFilterForm');
+
+    // Build a table of profiles.
     $table_columns = [
       'username' => $this->t('Username'),
       'fullName' => $this->t('Full Name'),
@@ -150,7 +183,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
   /**
    * Build Table of Profiles.
    *
-   * @param array $profiles
+   * @param \DBCDK\CommunityServices\Model\Profile[] $profiles
    *   An array of Profiles objects.
    * @param array $columns
    *   An array of the fields that should be displayed as columns in the table.
