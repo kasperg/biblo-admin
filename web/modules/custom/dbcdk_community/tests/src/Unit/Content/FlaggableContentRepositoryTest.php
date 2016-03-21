@@ -16,7 +16,7 @@ use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Tests flaggable content retrieval
+ * Tests flaggable content retrieval.
  *
  * @group dbcdk_community
  */
@@ -81,21 +81,25 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $post = (new Post())->setId(1);
     $unflagged_post = (new Post())->setId(2);
     $flag_post_map = [
-      0 => [ $unflagged_post ],
-      1 => [ $post ],
-      2 => [ $post ],
+      0 => [$unflagged_post],
+      1 => [$post],
+      2 => [$post],
     ];
 
     // This comment should have a single flag.
     $comment = (new Comment())->setId(1);
     $unflagged_comment = (new Comment())->setId(2);
     $flag_comment_map = [
-      3 => [ $comment ],
-      4 => [ $unflagged_comment ],
+      3 => [$comment],
+      4 => [$unflagged_comment],
     ];
 
     return [
-      [$flags, $flag_post_map, $flag_comment_map]
+      [
+        $flags,
+        $flag_post_map,
+        $flag_comment_map,
+      ],
     ];
   }
 
@@ -117,7 +121,7 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    */
   public function testErrorHandling() {
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
-    $flag_api_stub->method('flagFind')->willReturn([ new Flag() ]);
+    $flag_api_stub->method('flagFind')->willReturn([new Flag()]);
     $flag_api_stub->method('flagPrototypeGetPosts')->willThrowException(new ApiException());
 
     $logger_stub = $this->getMock('Psr\Log\LoggerInterface');

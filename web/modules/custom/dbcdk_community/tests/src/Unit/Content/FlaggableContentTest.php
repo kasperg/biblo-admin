@@ -14,7 +14,7 @@ use Drupal\dbcdk_community\Content\FlaggableContent;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Tests flaggable content
+ * Tests flaggable content.
  *
  * @group dbcdk_community
  */
@@ -27,7 +27,7 @@ class FlaggableContentTest extends UnitTestCase {
     $flaggable = new FlaggableContent(new Comment());
     $flag = (new Flag())->setId(1)->setTimeFlagged(new DateTime('now'));
     $flaggable->addFlag($flag);
-    $this->assertEquals([ $flag ], $flaggable->getFlags());
+    $this->assertEquals([$flag], $flaggable->getFlags());
   }
 
   /**

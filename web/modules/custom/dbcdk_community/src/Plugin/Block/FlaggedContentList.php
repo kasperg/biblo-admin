@@ -9,9 +9,7 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\dbcdk_community\Content\FlaggableContent;
 use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -93,7 +91,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
         $this->t('Content'),
         $this->t('Active flags'),
         $this->t('Latest flag'),
-        $this->t('Flag comment')
+        $this->t('Flag comment'),
       ],
       '#data' => [],
       '#empty' => $this->t('There is currently no flagged content'),
@@ -113,11 +111,11 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
     return [
       'table' => $table,
       'pager' => [
-        '#type' => 'pager'
+        '#type' => 'pager',
       ],
       '#cache' => [
         'max-age' => 0,
-      ]
+      ],
     ];
   }
 
