@@ -72,7 +72,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
     }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
-      drupal_set_message($this->t('An error occurred when retrieving data from the community service. Please try again later or contact an administrator.'));
+      drupal_set_message($this->t('An error occurred when retrieving data from the community service. Please try again later or contact an administrator.'), 'error');
       $all_content_elements = [];
     }
 
