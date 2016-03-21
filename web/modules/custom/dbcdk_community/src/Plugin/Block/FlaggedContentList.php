@@ -16,6 +16,7 @@ use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Drupal\dbcdk_community\Url\ModelUrlGenerator;
 use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
 use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -50,6 +51,13 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
   protected $linkGenerator;
 
   /**
+   * The logger to use.
+   *
+   * @var LoggerInterface $logger
+   */
+  protected $logger;
+
+  /**
    * FlaggedContentList constructor.
    *
    * @param array $configuration
@@ -58,6 +66,8 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
    *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param LoggerInterface $logger
+   *   The logger to use.
    * @param FlaggableContentRepository $repository
    *   The repository to use when retrieving flagged content.
    * @param UrlGeneratorInterface $url_generator
@@ -65,8 +75,9 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
    * @param LinkGeneratorInterface $link_generator
    *   The generator to use when creating links to the frontend site.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, FlaggableContentRepository $repository, UrlGeneratorInterface $url_generator, LinkGeneratorInterface $link_generator) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, FlaggableContentRepository $repository, UrlGeneratorInterface $url_generator, LinkGeneratorInterface $link_generator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->logger = $logger;
     $this->flaggableContentRepository = $repository;
     $this->urlGenerator = $url_generator;
     $this->linkGenerator = $link_generator;
@@ -110,6 +121,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $logger_factory->get('DBCDK Community Service'),
       $repo,
       $url_generator,
       $link_generator
@@ -124,7 +136,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       $all_content_elements = $this->flaggableContentRepository->getContentWithUnreadFlags();
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $this->logger->error($e);
       drupal_set_message($this->t('An error occurred when retrieving data from the community service. Please try again later or contact an administrator.'), 'error');
       $all_content_elements = [];
     }
@@ -164,6 +176,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       }
       catch (\Exception $e) {
         // If generating a link fails then do not output anything.
+        $this->logger->warning($e);
         $link = '';
       }
 
