@@ -21,6 +21,15 @@ use Drupal\Tests\UnitTestCase;
 class FlaggableContentTest extends UnitTestCase {
 
   /**
+   * Test that objects can be wrapped as flaggable and returned.
+   */
+  public function testObject() {
+    $object = new \stdClass();
+    $flaggable = new FlaggableContent($object);
+    $this->assertEquals($object, $flaggable->getObject());
+  }
+
+  /**
    * Test that a single flag can be set and retrieved.
    */
   public function testAddFlag() {
