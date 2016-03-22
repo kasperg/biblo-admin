@@ -16,6 +16,10 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormBuilder;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\dbcdk_community\Url\ModelUrlGenerator;
+use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
+use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
 
 /**
  * Provides a 'ProfilesBlock' block.
@@ -42,6 +46,13 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    * @var ProfileApi $profileApi
    */
   protected $profileApi;
+
+  /**
+   * Generator to use when creating urls for community content on frontend site.
+   *
+   * @var \Drupal\dbcdk_community\Url\UrlGeneratorInterface
+   */
+  protected $urlGenerator;
 
   /**
    * The amount of items to be shown on each page.
@@ -75,17 +86,20 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin implementation definition.
    * @param FormBuilder $form_builder
    *   Drupal Cores form builder.
-   * @param ProfileApi $profile_api
+   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
+   * @param \Drupal\dbcdk_community\Url\UrlGeneratorInterface $url_generator
+   *   The generator to use when creating urls to the frontend site.
    * @param string $search_query
    *   A search query to filter the profiles table.
    * @param int $page_number
    *   The current page number of the profiles table.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilder $form_builder, ProfileApi $profile_api, $search_query, $page_number) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilder $form_builder, ProfileApi $profile_api, UrlGeneratorInterface $url_generator, $search_query, $page_number) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->formBuilder = $form_builder;
     $this->profileApi = $profile_api;
+    $this->urlGenerator = $url_generator;
     $this->searchQuery = $search_query;
     $this->pageNumber = $page_number;
     $this->pagerLimit = (!empty($this->configuration['pager_limit']) ? $this->configuration['pager_limit'] : 25);
@@ -95,12 +109,24 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    // Setup url generation for Profiles.
+    /* @var \Drupal\Core\Config\Config $config */
+    $config = $container->get('config.factory')->get('dbcdk_community.settings');
+    $url_generator = new ModelUrlGenerator();
+    $url_generator->registerClassGenerator(
+      'DBCDK\CommunityServices\Model\Profile',
+      new PropertyUrlGenerator(
+        $config->get('community_site_url') . $config->get('community_site_profile_url_pattern')
+      )
+    );
+
     return new static(
       $configuration,
       $plugin_id,
       $plugin_definition,
       $container->get('form_builder'),
       $container->get('dbcdk_community.api.profile'),
+      $url_generator,
       $container->get('request_stack')->getCurrentRequest()->query->get('search'),
       $container->get('request_stack')->getCurrentRequest()->query->get('page')
     );
@@ -171,6 +197,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       'fullName' => $this->t('Full Name'),
       'displayName' => $this->t('Display name'),
       'edit_link' => $this->t('Edit'),
+      'community_link' => $this->t('Community link'),
     ];
     $build['table'] = $this->buildTable($profiles, $table_columns);
 
@@ -251,6 +278,13 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
           $row[] = Link::createFromRoute($title, 'dbcdk_community.profile.edit', [
             'username' => $username,
           ]);
+          break;
+
+        // Generate community profile link based on a pattern defined on the
+        // settings page.
+        case 'community_link':
+          $community_site_url = Url::fromUri($this->urlGenerator->generate($profile));
+          $row[] = Link::fromTextAndUrl($this->t('View on Biblo.dk'), $community_site_url);
           break;
 
         default:

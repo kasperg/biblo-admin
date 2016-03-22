@@ -63,6 +63,12 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('community_site_url'),
       '#description' => $this->t('Url for community site e.g. http://biblo.dk. This is used as a base when creating links to the site.'),
     ];
+    $form['community_site']['community_site_profile_url_pattern'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Profile url pattern'),
+      '#default_value' => $config->get('community_site_profile_url_pattern'),
+      '#description' => $this->t('Pattern for urls to profiles on the community site.'),
+    ];
     $form['community_site']['community_site_post_url_pattern'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Post url pattern'),
@@ -100,6 +106,7 @@ class SettingsForm extends ConfigFormBase {
     $fields = [
       'community_service_url',
       'community_site_url',
+      'community_site_profile_url_pattern',
       'community_site_post_url_pattern',
       'community_site_comment_url_pattern',
       'community_service_debug',
