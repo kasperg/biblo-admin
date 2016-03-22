@@ -78,12 +78,11 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $username = $this->getContext('username')->getContextData()->getValue();
     try {
       $filter = [
-        'limit' => 1,
         'where' => [
           'username' => $username,
         ],
       ];
-      $profile = $this->profileApi->profileFind(json_encode($filter))[0];
+      $profile = $this->profileApi->profileFindOne(json_encode($filter));
     }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
@@ -101,6 +100,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
         'email' => $this->t('E-mail'),
         'phone' => $this->t('Phone'),
         'birthday' => $this->t('Birthday'),
+        'roles' => $this->t('Roles'),
         'description' => $this->t('Description'),
       ];
       $rows = $this->parseProfile($profile, $fields);
@@ -173,6 +173,22 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           ];
           break;
 
+        // The profile doesn't contain its roles so we cannot get the value as
+        // a regular property so we have to make a separate request for roles.
+        // The display of this field is also different than a single string
+        // value since we would like the roles to be presented as a list to make
+        // it easier overview.
+        case 'roles':
+          $value = [
+            'data' => [
+              '#theme' => 'item_list',
+              '#list_type' => 'ul',
+              '#empty' => $this->t('This user has no roles.'),
+              '#items' => $this->getProfileRoles($profile),
+            ],
+          ];
+          break;
+
         default:
           // Use the machine-name of the field to fetch its value from the
           // Profile object (format: $profile->getFieldName()).
@@ -203,6 +219,36 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
     }
 
     return $rows;
+  }
+
+  /**
+   * Get a Community Profile's Roles.
+   *
+   * @param \DBCDK\CommunityServices\Model\Profile $profile
+   *   The Community Profile.
+   *
+   * @return array
+   *   Return an array of the Profile's Community Roles.
+   */
+  protected function getProfileRoles(Profile $profile) {
+    $list_items = [];
+    $community_roles = [];
+    // The Swagger-compiled Community Profile Model does not support Community
+    // Roles when using "include" to get the profile. The response from the
+    // service includes it but the model does not care about it, so we have to
+    // handle this with a separate call.
+    try {
+      $community_roles = (array) $this->profileApi->profilePrototypeGetCommunityRoles($profile->getId());
+    }
+    catch (ApiException $e) {
+      \Drupal::logger('DBCDK Community Service')->error($e);
+    }
+
+    foreach ($community_roles as $role) {
+      $list_items[] = $role->getName();
+    }
+
+    return $list_items;
   }
 
   /**
