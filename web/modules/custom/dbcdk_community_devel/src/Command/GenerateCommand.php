@@ -7,12 +7,6 @@
 
 namespace Drupal\dbcdk_community_devel\Command;
 
-use DBCDK\CommunityServices\Api\CommentApi;
-use DBCDK\CommunityServices\Api\FlagApi;
-use DBCDK\CommunityServices\Api\PostApi;
-use DBCDK\CommunityServices\Api\ProfileApi;
-use DBCDK\CommunityServices\Api\QuarantineApi;
-use DBCDK\CommunityServices\ApiClient;
 use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
 use DBCDK\CommunityServices\Model\Post;
@@ -34,7 +28,7 @@ use Drupal\Console\Style\DrupalStyle;
 class GenerateCommand extends Command {
 
   /**
-   * The generated profiles
+   * The generated profiles.
    *
    * @var Profile[]
    */
@@ -86,7 +80,7 @@ class GenerateCommand extends Command {
     $faker = \Faker\Factory::create();
 
     // First we create some profiles.
-    /* @var ProfileApi $profile_api */
+    /* @var \DBCDK\CommunityServices\Api\ProfileApi $profile_api */
     $profile_api = \Drupal::service('dbcdk_community.api.profile');
     foreach (range(1, 10) as $i) {
       $profile = new Profile();
@@ -104,7 +98,7 @@ class GenerateCommand extends Command {
     $io->success(sprintf('Created %d profiles', count($this->profiles)));
 
     // Put some users in quarantine.
-    /* @var QuarantineApi $quarantine_api */
+    /* @var \DBCDK\CommunityServices\Api\QuarantineApi $quarantine_api */
     $quarantine_api = \Drupal::service('dbcdk_community.api.quarantine');
     foreach (range(1, 5) as $i) {
       $quarantine = new Quarantine();
@@ -121,7 +115,7 @@ class GenerateCommand extends Command {
     $io->success(sprintf('Created %d quarantines', count($this->quarantines)));
 
     // Then we create some content.
-    /* @var PostApi $post_api */
+    /* @var \DBCDK\CommunityServices\Api\PostApi $post_api */
     $post_api = \Drupal::service('dbcdk_community.api.post');
     foreach (range(1, 10) as $i) {
       $post = new Post();
@@ -137,7 +131,7 @@ class GenerateCommand extends Command {
     }
     $io->success(sprintf('Created %d posts', count($this->posts)));
 
-    /* @var CommentApi $comment_api */
+    /* @var \DBCDK\CommunityServices\Api\CommentApi $comment_api */
     $comment_api = \Drupal::service('dbcdk_community.api.comment');
     foreach (range(1, 50) as $i) {
       $comment = new Comment();
@@ -157,7 +151,7 @@ class GenerateCommand extends Command {
     $io->success(sprintf('Created %d comments', count($this->comments)));
 
     // Flag some content.
-    /* @var FlagApi $flag_api */
+    /* @var \DBCDK\CommunityServices\Api\FlagApi $flag_api */
     $flags_api = \Drupal::service('dbcdk_community.api.flag');
     foreach (range(1, 20) as $i) {
       $flag = new Flag();
