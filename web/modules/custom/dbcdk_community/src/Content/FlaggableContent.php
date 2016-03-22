@@ -43,6 +43,16 @@ class FlaggableContent {
   }
 
   /**
+   * Get the content object that was flagged.
+   *
+   * @return object
+   *   The flagged object.
+   */
+  public function getObject() {
+    return $this->object;
+  }
+
+  /**
    * Function to check equality of two FlaggableContent objects.
    *
    * @param FlaggableContent $other
