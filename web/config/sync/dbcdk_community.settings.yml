@@ -1,1 +1,3 @@
 community_service_url: ''
+community_site_post_url_pattern: '/posts/[id]'
+community_site_comment_url_pattern: '/comments/[id]'
