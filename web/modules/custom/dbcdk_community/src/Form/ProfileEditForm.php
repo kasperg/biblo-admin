@@ -172,10 +172,9 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     ];
 
     $form['description'] = [
-      '#type' => 'text_format',
+      '#type' => 'textarea',
       '#title' => $this->t('Description'),
       '#default_value' => $this->profile->getDescription(),
-      '#format' => 'plain_text',
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -282,15 +281,6 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
           case 'birthday':
             if ($old_value->format(self::DATE_FORMAT) !== $new_value) {
               $new_data[$field] = $new_value;
-            }
-            break;
-
-          // The description is a text_format field that returns an array with a
-          // value key and text_format key so we have to get fetch the value of
-          // it to compare.
-          case 'description':
-            if ($old_value !== $new_value['value']) {
-              $new_data[$field] = $new_value['value'];
             }
             break;
 
