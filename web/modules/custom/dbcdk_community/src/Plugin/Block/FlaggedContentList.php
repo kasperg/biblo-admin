@@ -9,6 +9,7 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\LinkGeneratorInterface;
@@ -44,13 +45,6 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
   protected $urlGenerator;
 
   /**
-   * The link generator to use.
-   *
-   * @var LinkGeneratorInterface $linkGenerator
-   */
-  protected $linkGenerator;
-
-  /**
    * The logger to use.
    *
    * @var LoggerInterface $logger
@@ -72,15 +66,12 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
    *   The repository to use when retrieving flagged content.
    * @param UrlGeneratorInterface $url_generator
    *   The generator to use when creating urls to the frontend site.
-   * @param LinkGeneratorInterface $link_generator
-   *   The generator to use when creating links to the frontend site.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, FlaggableContentRepository $repository, UrlGeneratorInterface $url_generator, LinkGeneratorInterface $link_generator) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, FlaggableContentRepository $repository, UrlGeneratorInterface $url_generator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
     $this->flaggableContentRepository = $repository;
     $this->urlGenerator = $url_generator;
-    $this->linkGenerator = $link_generator;
   }
 
   /**
@@ -114,17 +105,13 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       )
     );
 
-    /* @var LinkGeneratorInterface $link_generator */
-    $link_generator = $container->get('link_generator');
-
     return new static(
       $configuration,
       $plugin_id,
       $plugin_definition,
       $logger_factory->get('DBCDK Community Service'),
       $repo,
-      $url_generator,
-      $link_generator
+      $url_generator
     );
   }
 
@@ -168,16 +155,18 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
     foreach ($page_content_elements as $content_element) {
 
       try {
-        $community_site_url = Url::fromUri($this->urlGenerator->generate($content_element->getObject()));
-        $link = $this->linkGenerator->generate(
-          $this->t('See on community site'),
+        $community_site_url = Url::fromUri(
+          $this->urlGenerator->generate($content_element->getObject())
+        );
+        $community_site_link = Link::fromTextAndUrl(
+          $this->t('View on Biblo.dk'),
           $community_site_url
         );
       }
       catch (\Exception $e) {
         // If generating a link fails then do not output anything.
         $this->logger->warning($e);
-        $link = '';
+        $community_site_link = '';
       }
 
       $table['#rows'][] = [
@@ -185,7 +174,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
         count($content_element->getFlags()),
         $content_element->getLatestFlag()->getTimeFlagged()->format('Y-m-d H:i'),
         $content_element->getLatestFlag()->getDescription(),
-        $link,
+        $community_site_link,
       ];
     }
 
