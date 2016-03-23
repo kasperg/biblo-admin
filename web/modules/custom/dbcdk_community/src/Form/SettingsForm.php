@@ -78,7 +78,7 @@ class SettingsForm extends ConfigFormBase {
     $form['community_site']['community_site_comment_url_pattern'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Comment url pattern'),
-      '#default_value' => $config->get('community_site_post_url_pattern'),
+      '#default_value' => $config->get('community_site_comment_url_pattern'),
       '#description' => $this->t('Pattern for urls to comments on the community site.'),
     ];
 
