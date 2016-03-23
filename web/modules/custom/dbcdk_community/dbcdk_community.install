@@ -1,0 +1,41 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the dbcdk_community module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function dbcdk_community_requirements($phase) {
+  $requirements = [];
+
+  if ($phase === 'runtime') {
+    // Add a requirement regarding access to community service.
+    $config = Drupal::config('dbcdk_community.settings');
+    $url = $config->get('community_service_url');
+
+    $service_requirement = [
+      'title' => 'DBCDK community service',
+      'value' => $url,
+      'severity' => REQUIREMENT_OK,
+    ];
+
+    /* @var \DBCDK\CommunityServices\Api\ProfileApi $profile_api */
+    $profile_api = Drupal::service('dbcdk_community.api.profile');
+    try {
+      // Try to do an arbitrary call the the community service. Getting an
+      // actual result is not important here.
+      $profile_api->profileFindOne();
+    }
+    catch (\DBCDK\CommunityServices\ApiException $e) {
+      // If an exception is thrown then mark the requirement as failed.
+      $service_requirement['severity'] = REQUIREMENT_ERROR;
+      $service_requirement['description'] = $e->getMessage();
+    }
+
+    $requirements[] = $service_requirement;
+  }
+
+  return $requirements;
+}
