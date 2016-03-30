@@ -109,9 +109,7 @@ class FlaggableContentRepository {
         // individual flag so we try to retrieve information for the
         // remaining flags as well.
         $this->logger->warning($e);
-
-        $posts = [];
-        $comments = [];
+        continue;
       }
       $flagged_content = array_map(function($content) use ($flag) {
         return (new FlaggableContent($content))->addFlag($flag);
