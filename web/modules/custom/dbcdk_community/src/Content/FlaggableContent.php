@@ -77,7 +77,15 @@ class FlaggableContent {
   public function addFlag(Flag $flag) {
     $this->flags = array_unique(array_merge($this->flags, [$flag]));
     usort($this->flags, function(Flag $a, Flag $b) {
-      return $a->getTimeFlagged()->getTimestamp() - $b->getTimeFlagged()->getTimestamp();
+      $a_timestamp = NULL;
+      $b_timestamp = NULL;
+      if (!empty($a->getTimeFlagged())) {
+        $a_timestamp = $a->getTimeFlagged()->getTimestamp();
+      }
+      if (!empty($b->getTimeFlagged())) {
+        $b_timestamp = $b->getTimeFlagged()->getTimestamp();
+      }
+      return $a_timestamp - $b_timestamp;
     });
     return $this;
   }
@@ -169,6 +177,18 @@ class FlaggableContent {
   public function getLatestFlag() {
     $flags = array_reverse($this->flags);
     return array_shift($flags);
+  }
+
+  /**
+   * Get all unread flags attached to this piece of content.
+   *
+   * @return Flag[]
+   *   All unread flags.
+   */
+  public function getUnreadFlags() {
+    return array_filter($this->flags, function(Flag $flag) {
+      return !$flag->getMarkedAsRead();
+    });
   }
 
 }

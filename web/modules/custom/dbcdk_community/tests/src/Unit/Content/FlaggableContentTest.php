@@ -65,4 +65,23 @@ class FlaggableContentTest extends UnitTestCase {
     $this->assertEquals($flag_now, $flaggable->getLatestFlag());
   }
 
+  /**
+   * Test that unread flags can be retrieved.
+   */
+  public function testUnreadFlags() {
+    $flaggable = new FlaggableContent(new Comment());
+
+    $flag_unread = (new Flag())
+      ->setId(1)
+      ->setMarkedAsRead(FALSE);
+    $flag_read = (new Flag())
+      ->setId(2)
+      ->setMarkedAsRead(TRUE);
+
+    $flaggable->addFlag($flag_unread)->addFlag($flag_read);
+
+    $this->assertCount(1, $flaggable->getUnreadFlags());
+    $this->assertContains($flag_unread, $flaggable->getUnreadFlags());
+  }
+
 }
