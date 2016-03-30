@@ -75,7 +75,7 @@ class FlaggableContent {
    *   Return the current object.
    */
   public function addFlag(Flag $flag) {
-    $this->flags[] = $flag;
+    $this->flags = array_unique(array_merge($this->flags, [$flag]));
     usort($this->flags, function(Flag $a, Flag $b) {
       return $a->getTimeFlagged()->getTimestamp() - $b->getTimeFlagged()->getTimestamp();
     });

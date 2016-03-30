@@ -51,6 +51,45 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
   }
 
   /**
+   * Test that flaggable content can be retrieved by id.
+   *
+   * @param Flag[] $flags
+   *   The flags to return from the Flag API in the test.
+   * @param Post[] $flag_post_map
+   *   A map of flag ids to posts in the test.
+   * @param Comment[] $flag_comment_map
+   *   A map of flag ids to comments in the test.
+   *
+   * @dataProvider unreadWithFlagsDataProvider
+   */
+  public function testContentWithAllFlagsById(array $flags, array $flag_post_map, array $flag_comment_map) {
+    // Create a stub flag api using the model.
+    $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $flag_api_stub->method('flagFind')->will($this->returnCallback(function($filter) use ($flags) {
+      $filter = json_decode($filter);
+      $id = (!empty($filter->where->id)) ? $filter->where->id : NULL;
+      return array_filter($flags, function(Flag $flag) use ($id) {
+        return (empty($id)) || $flag->getId() === $id;
+      });
+    }));
+    $flag_api_stub->method('flagPrototypeGetPosts')->will($this->returnCallback(function($id) use($flag_post_map) {
+      return (!empty($flag_post_map[$id])) ? [$flag_post_map[$id]] : [];
+    }));
+    $flag_api_stub->method('flagPrototypeGetComments')->will($this->returnCallback(function($id) use ($flag_comment_map) {
+      return (!empty($flag_comment_map[$id])) ? [$flag_comment_map[$id]] : [];
+    }));
+
+    $repo = new FlaggableContentRepository($flag_api_stub);
+    $flaggable_content = $repo->getContentByIdAllFlags(1);
+    $this->assertTrue($flaggable_content->equals(new FlaggableContent($flag_post_map[1])));
+    $expected_flags = array_slice($flags, 0, 2);
+    $this->assertSameSize($expected_flags, $flaggable_content->getFlags());
+    foreach ($expected_flags as $expected_flag) {
+      $this->assertContains($expected_flag, $flaggable_content->getFlags());
+    }
+  }
+
+  /**
    * Test that we can assemble a list of content with flags.
    *
    * @param Flag[] $flags

@@ -161,4 +161,28 @@ class FlaggableContentRepository {
     $content = $this->getContent(['where' => ['id' => $flag_id], 'limit' => 1]);
     return array_shift($content);
   }
+
+  /**
+   * Get a piece of flaggable content and ALL flags attached to a specific flag.
+   *
+   * @param int $flag_id
+   *   The id of the flag for which to retrieve content.
+   *
+   * @return FlaggableContent|NULL
+   *    The content attached to the flag with all other attached flags included
+   *    as well.
+   */
+  public function getContentByIdAllFlags($flag_id) {
+    $flagged_content = $this->getContentById($flag_id);
+    if (!empty($flagged_content)) {
+      $content_all_flags = $this->getContent();
+      foreach ($content_all_flags as $content) {
+        if ($flagged_content->equals($content)) {
+          $flagged_content->addFlags($content->getFlags());
+        }
+      }
+    }
+    return $flagged_content;
+  }
+
 }
