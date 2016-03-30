@@ -124,6 +124,41 @@ class FlaggableContent {
   }
 
   /**
+   * Get the id of the profile that created this piece of content.
+   *
+   * @see DBCDK\CommunityServices\Api\ProfileApi
+   *
+   * @return int
+   *   The creator profile id.
+   */
+  public function getCreatorId() {
+    $creator_id = NULL;
+    // Creator id is stored in different attributes in the different types of
+    // content classes supported. We use reflection to determine which.
+    $creator_getter = [
+      'getCommentownerid',
+      'getPostownerid',
+    ];
+    foreach ($creator_getter as $getter) {
+      if (method_exists($this->object, $getter)) {
+        $creator_id = $this->object->{$getter}();
+        break;
+      }
+    }
+    return $creator_id;
+  }
+
+  /**
+   * Get the time when the piece of content was created.
+   *
+   * @return \DateTime
+   *   The time when the object was created.
+   */
+  public function getTimeCreated() {
+    return $this->object->getTimeCreated();
+  }
+
+  /**
    * Get the most recent flag attached to this piece of content.
    *
    * Most recent is the time where the flag was created.
