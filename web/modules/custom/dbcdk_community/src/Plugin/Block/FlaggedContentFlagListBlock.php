@@ -9,6 +9,7 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Form\FormBuilder;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -52,6 +53,13 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
   protected $formBuilder;
 
   /**
+   * The date formatter to use.
+   *
+   * @var DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * The logger to use.
    *
    * @var LoggerInterface
@@ -75,6 +83,8 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
    *   The profile api to use.
    * @param FormBuilder $form_builder
    *   The form builder to use.
+   * @param DateFormatterInterface $date_formatter
+   *   The date formatter to use.
    */
   public function __construct(
     array $configuration,
@@ -83,13 +93,15 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
     LoggerInterface $logger,
     FlaggableContentRepository $repository,
     ProfileApi $profile_api,
-    FormBuilder $form_builder
+    FormBuilder $form_builder,
+    DateFormatterInterface $date_formatter
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
     $this->flaggableContentRepository = $repository;
     $this->profileApi = $profile_api;
     $this->formBuilder = $form_builder;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -106,7 +118,8 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
       $logger_factory->get('DBCDK Community Service'),
       $container->get('dbcdk_community.content.flaggable_content_repository'),
       $container->get('dbcdk_community.api.profile'),
-      $container->get('form_builder')
+      $container->get('form_builder'),
+      $container->get('date.formatter')
     );
   }
 
@@ -163,7 +176,7 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
       }
 
       $table['#rows'][] = [
-        $flag->getTimeFlagged()->format('Y-m-d H:i'),
+        $this->dateFormatter->format($flag->getTimeFlagged()->getTimestamp(), 'dbcdk_community_service_date_time'),
         $flag->getDescription(),
         $profile_string,
         $flag->getMarkedAsRead() ? $this->t('Yes') : $this->t('No'),

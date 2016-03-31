@@ -9,6 +9,7 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
@@ -44,6 +45,13 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
   protected $urlGenerator;
 
   /**
+   * The date formatter to use.
+   *
+   * @var DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * The logger to use.
    *
    * @var LoggerInterface $logger
@@ -66,11 +74,12 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
    * @param UrlGeneratorInterface $url_generator
    *   The generator to use when creating urls to the frontend site.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, FlaggableContentRepository $repository, UrlGeneratorInterface $url_generator) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, FlaggableContentRepository $repository, UrlGeneratorInterface $url_generator, DateFormatterInterface $date_formatter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
     $this->flaggableContentRepository = $repository;
     $this->urlGenerator = $url_generator;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -110,7 +119,8 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       $plugin_definition,
       $logger_factory->get('DBCDK Community Service'),
       $repo,
-      $url_generator
+      $url_generator,
+      $container->get('date.formatter')
     );
   }
 
@@ -185,7 +195,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       $table['#rows'][] = [
         $content_element->getContent(),
         count($content_element->getFlags()),
-        $content_element->getLatestFlag()->getTimeFlagged()->format('Y-m-d H:i'),
+        $this->dateFormatter->format($content_element->getLatestFlag()->getTimeFlagged()->getTimestamp(), 'dbcdk_community_service_date_time'),
         $content_element->getLatestFlag()->getDescription(),
         $details_link,
         $community_site_link,
