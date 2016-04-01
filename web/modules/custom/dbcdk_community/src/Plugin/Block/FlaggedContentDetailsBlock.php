@@ -10,6 +10,7 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
@@ -55,6 +56,13 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
   protected $urlGenerator;
 
   /**
+   * The date formatter to use.
+   *
+   * @var DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * The logger to use.
    *
    * @var LoggerInterface
@@ -78,6 +86,8 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
    *   The profile api to use when retrieving information about content owners.
    * @param UrlGeneratorInterface $url_generator
    *   The url generator to use when generating links to the biblo.dk site.
+   * @param DateFormatterInterface $date_formatter
+   *   The date formatter to use.
    */
   public function __construct(
         array $configuration,
@@ -86,13 +96,15 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
         LoggerInterface $logger,
         FlaggableContentRepository $repository,
         ProfileApi $profile_api,
-        UrlGeneratorInterface $url_generator
+        UrlGeneratorInterface $url_generator,
+        DateFormatterInterface $date_formatter
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
     $this->flaggableContentRepository = $repository;
     $this->profileApi = $profile_api;
     $this->urlGenerator = $url_generator;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -127,7 +139,8 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
       $logger_factory->get('DBCDK Community Service'),
       $container->get('dbcdk_community.content.flaggable_content_repository'),
       $container->get('dbcdk_community.api.profile'),
-      $url_generator
+      $url_generator,
+      $container->get('date.formatter')
     );
   }
 
@@ -152,7 +165,7 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
 
       $rows = [
         [$this->t('Content'), $content->getContent()],
-        [$this->t('Created on'), $content->getTimeCreated()->format('H:i d-m-Y')],
+        [$this->t('Created on'), $this->dateFormatter->format($content->getTimeCreated()->getTimestamp(), 'dbcdk_community_service_date_time')],
         [$this->t('Author'), $profile_link],
         [$this->t('View on biblo.dk'), $content_link],
       ];
