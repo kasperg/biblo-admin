@@ -158,7 +158,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
         // with a Drupal Date Format instead.
         case 'birthday':
           $date_formatter = \Drupal::service('date.formatter');
-          $value = $date_formatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_birthday');
+          $value = $date_formatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_date');
           break;
 
         // We have to allow HTML in the output of the description field since

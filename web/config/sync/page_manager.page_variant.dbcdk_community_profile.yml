@@ -17,8 +17,18 @@ variant_settings:
       provider: dbcdk_community
       label_display: visible
       region: top
-      weight: 0
+      weight: -10
       uuid: 4a4a416a-f25b-463a-9228-406b075d5a7d
+      context_mapping:
+        username: username
+    206a0096-7fe9-47ff-aa18-24ac36511de7:
+      id: dbcdk_community_profile_quarantines_block
+      label: Quarantines
+      provider: dbcdk_community
+      label_display: visible
+      region: bottom
+      weight: -9
+      uuid: 206a0096-7fe9-47ff-aa18-24ac36511de7
       context_mapping:
         username: username
   id: block_display
