@@ -12,7 +12,6 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
-use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Drupal\dbcdk_community\Url\ModelUrlGenerator;
 use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
@@ -149,6 +148,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
         $this->t('Active flags'),
         $this->t('Latest flag'),
         $this->t('Flag comment'),
+        $this->t('Details'),
         $this->t('Link'),
       ],
       '#data' => [],
@@ -167,10 +167,18 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
           $this->t('View on Biblo.dk'),
           $community_site_url
         );
+
+        $details_link = Link::createFromRoute(
+          $this->t('See details'),
+          'page_manager.page_view_dbcdk_community_flagged_content_details',
+          ['flag_id' => $content_element->getLatestFlag()->getId()]
+        );
       }
       catch (\Exception $e) {
-        // If generating a link fails then do not output anything.
+        // If generating a link fails then do not output any links.
         $this->logger->warning($e);
+
+        $details_link = '';
         $community_site_link = '';
       }
 
@@ -179,6 +187,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
         count($content_element->getFlags()),
         $content_element->getLatestFlag()->getTimeFlagged()->format('Y-m-d H:i'),
         $content_element->getLatestFlag()->getDescription(),
+        $details_link,
         $community_site_link,
       ];
     }

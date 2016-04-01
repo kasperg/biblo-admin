@@ -75,9 +75,17 @@ class FlaggableContent {
    *   Return the current object.
    */
   public function addFlag(Flag $flag) {
-    $this->flags[] = $flag;
+    $this->flags = array_unique(array_merge($this->flags, [$flag]));
     usort($this->flags, function(Flag $a, Flag $b) {
-      return $a->getTimeFlagged()->getTimestamp() - $b->getTimeFlagged()->getTimestamp();
+      $a_timestamp = NULL;
+      $b_timestamp = NULL;
+      if (!empty($a->getTimeFlagged())) {
+        $a_timestamp = $a->getTimeFlagged()->getTimestamp();
+      }
+      if (!empty($b->getTimeFlagged())) {
+        $b_timestamp = $b->getTimeFlagged()->getTimestamp();
+      }
+      return $a_timestamp - $b_timestamp;
     });
     return $this;
   }
@@ -124,6 +132,41 @@ class FlaggableContent {
   }
 
   /**
+   * Get the id of the profile that created this piece of content.
+   *
+   * @see DBCDK\CommunityServices\Api\ProfileApi
+   *
+   * @return int
+   *   The creator profile id.
+   */
+  public function getCreatorId() {
+    $creator_id = NULL;
+    // Creator id is stored in different attributes in the different types of
+    // content classes supported. We use reflection to determine which.
+    $creator_getter = [
+      'getCommentownerid',
+      'getPostownerid',
+    ];
+    foreach ($creator_getter as $getter) {
+      if (method_exists($this->object, $getter)) {
+        $creator_id = $this->object->{$getter}();
+        break;
+      }
+    }
+    return $creator_id;
+  }
+
+  /**
+   * Get the time when the piece of content was created.
+   *
+   * @return \DateTime
+   *   The time when the object was created.
+   */
+  public function getTimeCreated() {
+    return $this->object->getTimeCreated();
+  }
+
+  /**
    * Get the most recent flag attached to this piece of content.
    *
    * Most recent is the time where the flag was created.
@@ -134,6 +177,18 @@ class FlaggableContent {
   public function getLatestFlag() {
     $flags = array_reverse($this->flags);
     return array_shift($flags);
+  }
+
+  /**
+   * Get all unread flags attached to this piece of content.
+   *
+   * @return Flag[]
+   *   All unread flags.
+   */
+  public function getUnreadFlags() {
+    return array_filter($this->flags, function(Flag $flag) {
+      return !$flag->getMarkedAsRead();
+    });
   }
 
 }

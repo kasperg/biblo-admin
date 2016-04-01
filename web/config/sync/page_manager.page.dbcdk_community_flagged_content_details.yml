@@ -1,0 +1,24 @@
+uuid: ea509af8-8f0d-4c3f-8901-1bcc8166db5e
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+id: dbcdk_community_flagged_content_details
+label: 'Flagged content details'
+use_admin_theme: null
+path: '/admin/content/dbcdk_community/flagged_content/{flag_id}'
+access_logic: and
+access_conditions:
+  25197eee-10ab-4364-8706-6e121b796a64:
+    id: ctools_user_permission
+    permission: 'dbcdk community moderate content'
+    negate: 0
+    context_mapping:
+      user: current_user
+    uuid: 25197eee-10ab-4364-8706-6e121b796a64
+parameters:
+  flag_id:
+    machine_name: flag_id
+    type: integer
+    label: Flag_id

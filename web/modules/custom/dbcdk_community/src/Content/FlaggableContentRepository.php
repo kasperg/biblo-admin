@@ -70,11 +70,27 @@ class FlaggableContentRepository {
    *   Thrown if we are not able to retrieve any content from the API.
    */
   public function getContentWithUnreadFlags() {
+    return $this->getContent(['where' => ['markedAsRead' => FALSE]]);
+  }
+
+  /**
+   * Retrieve flaggable content from the repository matching a filter.
+   *
+   * @param array $filter
+   *   An array of filters to use when retrieving the content. If an empty
+   *   filter is used then all flaggable content available will be returned.
+   *
+   * @return \Drupal\dbcdk_community\Content\FlaggableContent[]
+   *   All flaggable content matching the filter.
+   */
+  protected function getContent(array $filter = []) {
     /* @var FlaggableContent[] $content */
     $content = [];
 
-    $filter = json_encode(['where' => ['markedAsRead' => FALSE]]);
-    $flags = (array) $this->flagApi->flagFind($filter);
+    // The API cannot handle an empty array being passed so we convert it to
+    // an empty string.
+    $filter_string = (!empty($filter)) ? json_encode($filter) : NULL;
+    $flags = (array) $this->flagApi->flagFind($filter_string);
 
     // Loop over *all* flags to find which content it is attached to.
     // This is not very efficient but our generated APIs do not offer a
@@ -93,9 +109,7 @@ class FlaggableContentRepository {
         // individual flag so we try to retrieve information for the
         // remaining flags as well.
         $this->logger->warning($e);
-
-        $posts = [];
-        $comments = [];
+        continue;
       }
       $flagged_content = array_map(function($content) use ($flag) {
         return (new FlaggableContent($content))->addFlag($flag);
@@ -127,6 +141,46 @@ class FlaggableContentRepository {
     $grouped_content = array_reverse($grouped_content);
 
     return $grouped_content;
+  }
+
+  /**
+   * Get a piece of flaggable content attached to a specific flag.
+   *
+   * Note that this function will not return a flaggable object with all flags
+   * attached to the content - only the flag with the provided id.
+   *
+   * @param int $flag_id
+   *   The id of the flag for which to retrieve content.
+   *
+   * @return FlaggableContent|NULL
+   *   The content attached to the flag.
+   */
+  public function getContentById($flag_id) {
+    $content = $this->getContent(['where' => ['id' => $flag_id], 'limit' => 1]);
+    return array_shift($content);
+  }
+
+  /**
+   * Get a piece of flaggable content and ALL flags attached to a specific flag.
+   *
+   * @param int $flag_id
+   *   The id of the flag for which to retrieve content.
+   *
+   * @return FlaggableContent|NULL
+   *    The content attached to the flag with all other attached flags included
+   *    as well.
+   */
+  public function getContentByIdAllFlags($flag_id) {
+    $flagged_content = $this->getContentById($flag_id);
+    if (!empty($flagged_content)) {
+      $content_all_flags = $this->getContent();
+      foreach ($content_all_flags as $content) {
+        if ($flagged_content->equals($content)) {
+          $flagged_content->addFlags($content->getFlags());
+        }
+      }
+    }
+    return $flagged_content;
   }
 
 }
