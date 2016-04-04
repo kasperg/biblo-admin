@@ -148,7 +148,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
         '%total' => count($all_content_elements),
       ]);
     }
-    
+
     $table = [
       '#theme' => 'table',
       '#caption' => $caption,
