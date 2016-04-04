@@ -142,8 +142,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
 
     $caption = '';
     if (count($all_content_elements) > $content_per_page) {
-      $caption = $this->t(
-        'Showing %from-%to of %total pieces of flagged content', [
+      $caption = $this->t('Showing %from-%to of %total pieces of flagged content', [
         '%from' => ($page * $content_per_page) + 1,
         '%to' => min((($page + 1) * $content_per_page), count($all_content_elements)),
         '%total' => count($all_content_elements),
