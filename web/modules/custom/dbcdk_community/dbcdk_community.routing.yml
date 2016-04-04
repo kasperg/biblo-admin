@@ -12,7 +12,7 @@ dbcdk_community.profile.edit:
     _title: 'Edit Profile'
     _form: 'Drupal\dbcdk_community\Form\ProfileEditForm'
   requirements:
-   _permission: 'administer site configuration'
+   _permission: 'dbcdk community moderate profiles'
 
 dbcdk_community.profile.quarantine.add:
   path: '/admin/content/dbcdk-community/profiles/{username}/quarantine/add'
@@ -20,7 +20,7 @@ dbcdk_community.profile.quarantine.add:
     _title: 'Create Quarantine'
     _form: 'Drupal\dbcdk_community\Form\QuarantineForm'
   requirements:
-   _permission: 'administer site configuration'
+   _permission: 'dbcdk community moderate profiles'
 
 dbcdk_community.profile.quarantine.edit:
   path: '/admin/content/dbcdk-community/profiles/{username}/quarantine/{quarantine_id}/edit'
@@ -28,4 +28,4 @@ dbcdk_community.profile.quarantine.edit:
     _title: 'Edit Quarantine'
     _form: 'Drupal\dbcdk_community\Form\QuarantineForm'
   requirements:
-   _permission: 'administer site configuration'
+   _permission: 'dbcdk community moderate profiles'
