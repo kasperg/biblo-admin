@@ -8,8 +8,10 @@
 namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\Api\ProfileApi;
+use DBCDK\CommunityServices\Api\QuarantineApi;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
+use DBCDK\CommunityServices\Model\Quarantine;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
@@ -43,9 +45,16 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
   /**
    * The DBCDK Community Service Profile API.
    *
-   * @var ProfileApi $profileApi
+   * @var \DBCDK\CommunityServices\Api\ProfileApi $profileApi
    */
   protected $profileApi;
+
+  /**
+   * The DBCDK Community Service Quarantine API.
+   *
+   * @var \DBCDK\CommunityServices\Api\QuarantineApi $quarantineApi
+   */
+  protected $quarantineApi;
 
   /**
    * Generator to use when creating urls for community content on frontend site.
@@ -76,6 +85,16 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
   protected $pageNumber;
 
   /**
+   * Quarantined filter state.
+   *
+   * Positive if the list of profiles should be filtered by profiles with an
+   * active quarantine.
+   *
+   * @var int $quarantinedFilter
+   */
+  protected $quarantinedFilter;
+
+  /**
    * Creates a Profiles Block instance.
    *
    * @param array $configuration
@@ -88,21 +107,27 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   Drupal Cores form builder.
    * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
+   * @param \DBCDK\CommunityServices\Api\QuarantineApi $quarantine_api
+   *   The DBCDK Community Service Quarantine API.
    * @param \Drupal\dbcdk_community\Url\UrlGeneratorInterface $url_generator
    *   The generator to use when creating urls to the frontend site.
    * @param string $search_query
    *   A search query to filter the profiles table.
    * @param int $page_number
    *   The current page number of the profiles table.
+   * @param int $quarantined_filter
+   *   If the table should be filtered by quarantined profiles.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilder $form_builder, ProfileApi $profile_api, UrlGeneratorInterface $url_generator, $search_query, $page_number) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilder $form_builder, ProfileApi $profile_api, QuarantineApi $quarantine_api, UrlGeneratorInterface $url_generator, $search_query, $page_number, $quarantined_filter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->formBuilder = $form_builder;
     $this->profileApi = $profile_api;
+    $this->quarantineApi = $quarantine_api;
     $this->urlGenerator = $url_generator;
     $this->searchQuery = $search_query;
     $this->pageNumber = $page_number;
     $this->pagerLimit = (!empty($this->configuration['pager_limit']) ? $this->configuration['pager_limit'] : 25);
+    $this->quarantinedFilter = $quarantined_filter;
   }
 
   /**
@@ -126,9 +151,11 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $plugin_definition,
       $container->get('form_builder'),
       $container->get('dbcdk_community.api.profile'),
+      $container->get('dbcdk_community.api.quarantine'),
       $url_generator,
       $container->get('request_stack')->getCurrentRequest()->query->get('search'),
-      $container->get('request_stack')->getCurrentRequest()->query->get('page')
+      $container->get('request_stack')->getCurrentRequest()->query->get('page'),
+      $container->get('request_stack')->getCurrentRequest()->query->get('quarantined')
     );
   }
 
@@ -167,21 +194,37 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $profile_count = 0;
     try {
       $filter = [
+        'order' => 'username ASC',
         'limit' => $this->pagerLimit,
         'offset' => $this->pageNumber * $this->pagerLimit,
       ];
       if (!empty($this->searchQuery)) {
-        $filter['where'] = [
-          'username' => [
-            'like' => '%' . $this->searchQuery . '%',
-          ],
-        ];
+        $filter['where']['username'] = ['like' => '%' . $this->searchQuery . '%'];
       }
-      $profiles = (array) $this->profileApi->profileFind(json_encode($filter));
+      // Fetch a list or profiles with an active quarantine.
+      if ($this->quarantinedFilter) {
+        // The "count" request doesn't work, so we remove the "limit" and
+        // "offset" filter arguments to we can count all the results for the
+        // pager and slice the results ourselves.
+        // @TODO: Remove the "unsets" when we can use the "profileCount()"
+        // method from the swagger generated community service client.
+        unset($filter['limit']);
+        unset($filter['offset']);
+        $profiles = (array) $this->getQuarantinedProfiles($filter);
+        $profile_count = count($profiles);
+        // Slice profiles array to fit the current page number.
+        if ($profile_count > $this->pagerLimit) {
+          $profiles = array_slice($profiles, ($this->pageNumber * $this->pagerLimit), $this->pagerLimit);
+        }
+      }
+      // Fetch a list of profiles.
+      else {
+        $profiles = (array) $this->profileApi->profileFind(json_encode($filter));
 
-      // TODO: Fix the failing "profileCount()" method so we don't have to
-      // fetch all results to get a total of profiles.
-      $profile_count = count($this->profileApi->profileFind());
+        // TODO: Fix the failing "profileCount()" method so we don't have to
+        // fetch all results to get a total of profiles.
+        $profile_count = count($this->profileApi->profileFind());
+      }
     }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
@@ -205,6 +248,51 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $build['pager'] = $this->buildPager($profile_count, $this->pagerLimit, 5);
 
     return $build;
+  }
+
+  /**
+   * Get all quarantined profiles.
+   *
+   * @param array $profiles_filter
+   *   An array containing filter arguments.
+   *
+   * @throws \DBCDK\CommunityServices\ApiException
+   *   Throws API Exception if any of the calls to the services fails.
+   *
+   * @return \DBCDK\CommunityServices\Model\Profile[] $profiles
+   *   An array of Profile objects with an active quarantine.
+   */
+  protected function getQuarantinedProfiles(array $profiles_filter) {
+    // Fetch all quarantines that are active from the moment of the request.
+    $quarantined_filter = [
+      'where' => [
+        'end' => [
+          // The string should be in a format recognized by the Date.parse()
+          // method which is ISO-8601 in our case.
+          // @See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date
+          'gt' => date(\DateTime::ATOM),
+        ],
+      ],
+    ];
+    $quarantines = (array) $this->quarantineApi->quarantineFind(json_encode($quarantined_filter));
+
+    // Reduce all the quarantines to an array of quarantined profile ids.
+    // We do this to make sure a profile id only appears once since we use these
+    // values as "Where" arguments for the next request to the service, and a
+    // profile can have multiple quarantines at the same time.
+    $quarantine_ids = array_reduce($quarantines, function($result, Quarantine $quarantine) {
+      $result[$quarantine->getQuarantinedProfileId()] = ['id' => $quarantine->getQuarantinedProfileId()];
+      return $result;
+    });
+
+    // Reset array keys so json_encode() will handle the ids as an indexed array
+    // and not an associative array.
+    $quarantine_ids = array_values($quarantine_ids);
+
+    // Use the array of quarantined ids as "where" arguments.
+    $profiles_filter['where']['or'] = $quarantine_ids;
+
+    return (array) $this->profileApi->profileFind(json_encode($profiles_filter));
   }
 
   /**
