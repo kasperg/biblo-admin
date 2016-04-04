@@ -51,7 +51,8 @@ class VideoCollection implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'id' => 'double'
+        'id' => 'double',
+        'postVideoCollection' => 'double'
     );
   
     /** 
@@ -59,7 +60,8 @@ class VideoCollection implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'id' => 'id'
+        'id' => 'id',
+        'postVideoCollection' => 'postVideoCollection'
     );
   
     /**
@@ -67,7 +69,8 @@ class VideoCollection implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'id' => 'setId'
+        'id' => 'setId',
+        'postVideoCollection' => 'setPostVideoCollection'
     );
   
     /**
@@ -75,7 +78,8 @@ class VideoCollection implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'id' => 'getId'
+        'id' => 'getId',
+        'postVideoCollection' => 'getPostVideoCollection'
     );
   
     
@@ -84,6 +88,12 @@ class VideoCollection implements ArrayAccess
       * @var double
       */
     protected $id;
+    
+    /**
+      * $postVideoCollection 
+      * @var double
+      */
+    protected $postVideoCollection;
     
 
     /**
@@ -94,6 +104,7 @@ class VideoCollection implements ArrayAccess
     {
         if ($data != null) {
             $this->id = $data["id"];
+            $this->postVideoCollection = $data["postVideoCollection"];
         }
     }
     
@@ -115,6 +126,27 @@ class VideoCollection implements ArrayAccess
     {
         
         $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Gets postVideoCollection
+     * @return double
+     */
+    public function getPostVideoCollection()
+    {
+        return $this->postVideoCollection;
+    }
+  
+    /**
+     * Sets postVideoCollection
+     * @param double $postVideoCollection 
+     * @return $this
+     */
+    public function setPostVideoCollection($postVideoCollection)
+    {
+        
+        $this->postVideoCollection = $postVideoCollection;
         return $this;
     }
     

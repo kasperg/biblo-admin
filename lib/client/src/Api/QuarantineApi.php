@@ -1176,6 +1176,100 @@ class QuarantineApi
     }
     
     /**
+     * quarantineCheckIfProfileIsQuarantined
+     *
+     * Check if a profile is quarantined
+     *
+     * @param double $id  (required)
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineCheckIfProfileIsQuarantined($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantineCheckIfProfileIsQuarantinedWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * quarantineCheckIfProfileIsQuarantinedWithHttpInfo
+     *
+     * Check if a profile is quarantined
+     *
+     * @param double $id  (required)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineCheckIfProfileIsQuarantinedWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineCheckIfProfileIsQuarantined');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}/check-if-profile-is-quarantined";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
      * quarantinePrototypeGetCreator
      *
      * Fetches belongsTo relation creator.

@@ -27,27 +27,20 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    *
    * @param Flag[] $flags
    *   The flags to return from the Flag API in the test.
-   * @param Post[] $flag_post_map
+   * @param Flag[] $post_flags
    *   A map of flag ids to posts in the test.
-   * @param Comment[] $flag_comment_map
+   * @param Flag[] $comment_flags
    *   A map of flag ids to comments in the test.
    *
    * @dataProvider unreadWithFlagsDataProvider
    */
-  public function testContentById(array $flags, array $flag_post_map, array $flag_comment_map) {
+  public function testContentById(array $flags, array $post_flags, array $comment_flags) {
     // Create a stub flag api using the model.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
-    $flag_api_stub->method('flagFind')->willReturn(array_slice($flags, 0, 1));
-    $flag_api_stub->method('flagPrototypeGetPosts')->will($this->returnCallback(function($id) use($flag_post_map) {
-      return (!empty($flag_post_map[$id])) ? [$flag_post_map[$id]] : [];
-    }));
-    $flag_api_stub->method('flagPrototypeGetComments')->will($this->returnCallback(function($id) use ($flag_comment_map) {
-      return (!empty($flag_comment_map[$id])) ? [$flag_comment_map[$id]] : [];
-    }));
-
+    $flag_api_stub->method('flagFind')->will($this->returnValue([$flags[1]]));
     $repo = new FlaggableContentRepository($flag_api_stub);
     $flaggable_content = $repo->getContentById(1);
-    $this->assertTrue($flaggable_content->equals(new FlaggableContent($flag_post_map[1])));
+    $this->assertTrue($flaggable_content->equals(new FlaggableContent($post_flags[1]->getPosts())));
   }
 
   /**
@@ -55,14 +48,14 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    *
    * @param Flag[] $flags
    *   The flags to return from the Flag API in the test.
-   * @param Post[] $flag_post_map
+   * @param Flag[] $post_flags
    *   A map of flag ids to posts in the test.
-   * @param Comment[] $flag_comment_map
+   * @param Flag[] $comment_flags
    *   A map of flag ids to comments in the test.
    *
    * @dataProvider unreadWithFlagsDataProvider
    */
-  public function testContentWithAllFlagsById(array $flags, array $flag_post_map, array $flag_comment_map) {
+  public function testContentWithAllFlagsById(array $flags, array $post_flags, array $comment_flags) {
     // Create a stub flag api using the model.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
     $flag_api_stub->method('flagFind')->will($this->returnCallback(function($filter) use ($flags) {
@@ -72,20 +65,15 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
         return (empty($id)) || $flag->getId() === $id;
       });
     }));
-    $flag_api_stub->method('flagPrototypeGetPosts')->will($this->returnCallback(function($id) use($flag_post_map) {
-      return (!empty($flag_post_map[$id])) ? [$flag_post_map[$id]] : [];
-    }));
-    $flag_api_stub->method('flagPrototypeGetComments')->will($this->returnCallback(function($id) use ($flag_comment_map) {
-      return (!empty($flag_comment_map[$id])) ? [$flag_comment_map[$id]] : [];
-    }));
 
     $repo = new FlaggableContentRepository($flag_api_stub);
+
     $flaggable_content = $repo->getContentByIdAllFlags(1);
-    $this->assertTrue($flaggable_content->equals(new FlaggableContent($flag_post_map[1])));
-    $expected_flags = array_slice($flags, 0, 2);
-    $this->assertSameSize($expected_flags, $flaggable_content->getFlags());
-    foreach ($expected_flags as $expected_flag) {
-      $this->assertContains($expected_flag, $flaggable_content->getFlags());
+    $this->assertTrue($flaggable_content->equals(new FlaggableContent($post_flags[1]->getPosts())));
+
+    $this->assertSameSize($post_flags, $flaggable_content->getFlags());
+    foreach ($post_flags as $post_flag) {
+      $this->assertContains($post_flag, $flaggable_content->getFlags());
     }
   }
 
@@ -94,23 +82,17 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    *
    * @param Flag[] $flags
    *   The flags to return from the Flag API in the test.
-   * @param Post[] $flag_post_map
+   * @param Flag[] $post_flags
    *   A map of flag ids to posts in the test.
-   * @param Comment[] $flag_comment_map
+   * @param Flag[] $comment_flags
    *   A map of flag ids to comments in the test.
    *
    * @dataProvider unreadWithFlagsDataProvider
    */
-  public function testUnreadWithFlags(array $flags, array $flag_post_map, array $flag_comment_map) {
+  public function testUnreadWithFlags(array $flags, array $post_flags, array $comment_flags) {
     // Create a stub flag api using the model.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
     $flag_api_stub->method('flagFind')->willReturn($flags);
-    $flag_api_stub->method('flagPrototypeGetPosts')->will($this->returnCallback(function($id) use($flag_post_map) {
-      return (!empty($flag_post_map[$id])) ? [$flag_post_map[$id]] : [];
-    }));
-    $flag_api_stub->method('flagPrototypeGetComments')->will($this->returnCallback(function($id) use ($flag_comment_map) {
-      return (!empty($flag_comment_map[$id])) ? [$flag_comment_map[$id]] : [];
-    }));
 
     $repo = new FlaggableContentRepository($flag_api_stub);
     $flaggable_content = $repo->getContentWithUnreadFlags();
@@ -121,13 +103,13 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
     $this->assertCount(2, $flaggable_content);
 
     // The first flaggable content should be the post and have two flags.
-    $flaggable_post = new FlaggableContent($flag_post_map[1]);
-    $flaggable_post->addFlags(array_slice($flags, 0, 2));
+    $flaggable_post = new FlaggableContent($post_flags[1]->getPosts());
+    $flaggable_post->addFlags($post_flags);
     $this->assertEquals($flaggable_post, $flaggable_content[0]);
 
     // The second flaggable content should be the comment and have one flag.
-    $flaggable_comment = new FlaggableContent($flag_comment_map[3]);
-    $flaggable_comment->addFlag($flags[2]);
+    $flaggable_comment = new FlaggableContent($comment_flags[3]->getComments());
+    $flaggable_comment->addFlag($comment_flags[3]);
     $this->assertEquals($flaggable_comment, $flaggable_content[1]);
   }
 
@@ -138,34 +120,26 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    *   Arrays of data sets to use with the test.
    */
   public function unreadWithFlagsDataProvider() {
-    $flags = [
-      (new Flag())->setId(1)->setTimeFlagged(new \DateTime('now')),
-      (new Flag())->setId(2)->setTimeFlagged(new \DateTime('-1 days')),
-      (new Flag())->setId(3)->setTimeFlagged(new \DateTime('-2 days')),
-    ];
-
     // This post should have two flags.
     $post = (new Post())->setId(1);
-    $unflagged_post = (new Post())->setId(2);
-    $flag_post_map = [
-      0 => $unflagged_post,
-      1 => $post,
-      2 => $post,
+
+    $post_flags = [
+      1 => (new Flag())->setId(1)->setTimeFlagged(new \DateTime('now'))->setPosts($post),
+      2 => (new Flag())->setId(2)->setTimeFlagged(new \DateTime('-1 days'))->setPosts($post),
     ];
 
     // This comment should have a single flag.
     $comment = (new Comment())->setId(1);
-    $unflagged_comment = (new Comment())->setId(2);
-    $flag_comment_map = [
-      3 => $comment,
-      4 => $unflagged_comment,
+
+    $comment_flags = [
+      3 => (new Flag())->setId(3)->setTimeFlagged(new \DateTime('-2 days'))->setComments($comment),
     ];
 
     return [
       [
-        $flags,
-        $flag_post_map,
-        $flag_comment_map,
+        array_merge($post_flags, $comment_flags),
+        $post_flags,
+        $comment_flags,
       ],
     ];
   }
@@ -181,24 +155,6 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
 
     $this->setExpectedException('DBCDK\CommunityServices\ApiException');
     $repo->getContentWithUnreadFlags();
-  }
-
-  /**
-   * Test handling if content for individual flags fail.
-   */
-  public function testErrorHandling() {
-    $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
-    $flag_api_stub->method('flagFind')->willReturn([new Flag()]);
-    $flag_api_stub->method('flagPrototypeGetPosts')->willThrowException(new ApiException());
-
-    $logger_stub = $this->getMock('Psr\Log\LoggerInterface');
-    $logger_stub->expects($this->once())->method('warning');
-
-    $repo = new FlaggableContentRepository($flag_api_stub);
-    $repo->setLogger($logger_stub);
-
-    $content = $repo->getContentWithUnreadFlags();
-    $this->assertEmpty($content);
   }
 
 }

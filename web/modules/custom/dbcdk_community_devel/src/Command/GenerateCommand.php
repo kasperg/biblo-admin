@@ -104,7 +104,7 @@ class GenerateCommand extends Command {
       $quarantine = new Quarantine();
 
       $quarantined = $this->profiles[rand(0, count($this->profiles) - 1)];
-      $quarantine->setQuarantinedId($quarantined->getId());
+      $quarantine->setQuarantinedProfileId($quarantined->getId());
 
       $quarantine->setStart($faker->dateTimeBetween($quarantined->getCreated()));
       $quarantine->setEnd($faker->dateTimeBetween($quarantine->getStart()));
@@ -152,7 +152,7 @@ class GenerateCommand extends Command {
 
     // Flag some content.
     /* @var \DBCDK\CommunityServices\Api\FlagApi $flag_api */
-    $flags_api = \Drupal::service('dbcdk_community.api.flag');
+    $flag_api = \Drupal::service('dbcdk_community.api.flag');
     foreach (range(1, 20) as $i) {
       $flag = new Flag();
       $flag->setDescription($faker->sentence());
@@ -163,21 +163,25 @@ class GenerateCommand extends Command {
 
       $flag->setTimeFlagged($faker->dateTimeBetween($owner->getCreated()));
 
-      $this->flags[] = $flags_api->flagCreate($flag);
+      $this->flags[] = $flag_api->flagCreate($flag);
     }
     $io->success(sprintf('Created %d flags', count($this->flags)));
 
     // Link flags to posts.
     foreach (array_slice($this->flags, 0, 10) as $flag) {
+      /* @var Flag $flag */
       $post = $this->posts[rand(0, count($this->posts) - 1)];
-      $flags_api->flagPrototypeLinkPosts($post->getId(), $flag->getId());
+      $flag->setPosts($post);
+      $flag_api->flagUpsert($flag);
     }
     $io->success(sprintf('Linked flags to posts'));
 
     // Link flags to comments.
     foreach (array_slice($this->flags, 10) as $flag) {
+      /* @var Flag $flag */
       $comment = $this->comments[rand(0, count($this->comments) - 1)];
-      $flags_api->flagPrototypeLinkComments($comment->getId(), $flag->getId());
+      $flag->setComments($comment);
+      $flag_api->flagUpsert($flag);
     }
     $io->success(sprintf('Linked flags to comments'));
   }

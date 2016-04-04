@@ -172,9 +172,9 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
         // Drupal user instead so we can create a script that will map these
         // IDs, later on.
         // @TODO Use the Profile ID when the system supports UNI Login.
-        $this->quarantine->setCreatorId($this->currentUser()->id());
+        $this->quarantine->setQuarantineCreatorProfileId($this->currentUser()->id());
         // Set the Community Profile ID that should own this quarantine.
-        $this->quarantine->setQuarantinedId($this->profile->getId());
+        $this->quarantine->setQuarantinedProfileId($this->profile->getId());
       }
 
       // Set values for the quarantine.
