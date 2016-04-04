@@ -8,3 +8,13 @@ weight: 3
 is_admin: null
 permissions:
   - 'moderate content'
+  - 'dbcdk community moderate content'
+  - 'dbcdk community moderate profiles'
+  - 'use text format dbcdk_community_basic_markup'
+  - 'access content overview'
+  - 'administer nodes'
+  - 'delete all revisions'
+  - 'revert all revisions'
+  - 'view all revisions'
+  - 'access administration pages'
+  - 'view the administration theme'
