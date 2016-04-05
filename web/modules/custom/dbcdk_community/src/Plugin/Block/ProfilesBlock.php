@@ -281,6 +281,40 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     return (array) $this->profileApi->profileFind(json_encode($profiles_filter));
   }
 
+  protected function getQuarantinedProfilesCount() {
+    // Fetch all quarantines that are active from the moment of the request.
+    $quarantined_filter = [
+      'where' => [
+        'end' => [
+          // The string should be in a format recognized by the Date.parse()
+          // method which is ISO-8601 in our case.
+          // @See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date
+          'gt' => date(\DateTime::ATOM),
+        ],
+      ],
+    ];
+    $quarantines = (array) $this->quarantineApi->quarantineFind(json_encode($quarantined_filter));
+
+    // Reduce all the quarantines to an array of quarantined profile ids.
+    // We do this to make sure a profile id only appears once since we use these
+    // values as "Where" arguments for the next request to the service, and a
+    // profile can have multiple quarantines at the same time.
+    $quarantine_ids = array_reduce($quarantines, function($result, Quarantine $quarantine) {
+      $result[$quarantine->getQuarantinedProfileId()] = ['id' => $quarantine->getQuarantinedProfileId()];
+      return $result;
+    });
+
+    // Reset array keys so json_encode() will handle the ids as an indexed array
+    // and not an associative array.
+    $quarantine_ids = array_values($quarantine_ids);
+
+    // Use the array of quarantined ids as "where" arguments.
+    $profiles_filter['or'] = $quarantine_ids;
+
+    $result = $this->profileApi->profileCount(json_encode($profiles_filter));
+    return $result['count'];
+  }
+
   /**
    * Count all quarantined profiles matching a filter.
    *
