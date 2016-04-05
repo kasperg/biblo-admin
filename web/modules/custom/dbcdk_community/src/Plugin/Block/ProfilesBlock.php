@@ -203,32 +203,18 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
       // Fetch a list or profiles with an active quarantine.
       if ($this->quarantinedFilter) {
-        // The "count" request doesn't work, so we remove the "limit" and
-        // "offset" filter arguments to we can count all the results for the
-        // pager and slice the results ourselves.
-        // @TODO: Remove the "unsets" when we can use the "profileCount()"
-        // method from the swagger generated community service client.
-        unset($filter['limit']);
-        unset($filter['offset']);
         $profiles = (array) $this->getQuarantinedProfiles($filter);
-        $profile_count = count($profiles);
-        // Slice profiles array to fit the current page number.
-        if ($profile_count > $this->pagerLimit) {
-          $profiles = array_slice($profiles, ($this->pageNumber * $this->pagerLimit), $this->pagerLimit);
-        }
+        $profile_count = $this->getQuarantinedProfilesCount($filter);
       }
       // Fetch a list of profiles.
       else {
         $profiles = (array) $this->profileApi->profileFind(json_encode($filter));
-
-        // The "profileCount()" method doesn't work so we remove the "limit" and
-        // "offset" filter arguments to fetch all profiles to make a total-count
-        // by ourselves.
-        // @TODO: Remove the "unsets" when we can use the "profileCount()"
-        // method from the swagger generated community service client.
-        unset($filter['limit']);
-        unset($filter['offset']);
-        $profile_count = count((array) $this->profileApi->profileFind(json_encode($filter)));
+        $result = $this->profileApi->profileCount();
+        $profile_count = (isset($result['count'])) ? $profile_count : NULL;
+      }
+      // Throw an exception if we do not get a count from the API.
+      if ($profile_count === NULL) {
+        throw new ApiException('Unexpected response from Profiles API. No count returned');
       }
     }
     catch (ApiException $e) {
@@ -298,6 +284,52 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $profiles_filter['where']['or'] = $quarantine_ids;
 
     return (array) $this->profileApi->profileFind(json_encode($profiles_filter));
+  }
+
+  /**
+   * Count all quarantined profiles matching a filter.
+   *
+   * @param array $profiles_filter
+   *   An array containing filter arguments.
+   *
+   * @throws \DBCDK\CommunityServices\ApiException
+   *   Throws API Exception if any of the calls to the services fails.
+   *
+   * @return int|NULL
+   *   The number of quarantined profiles matching the filter.
+   */
+  protected function getQuarantinedProfilesCount(array $profiles_filter = []) {
+    // Fetch all quarantines that are active from the moment of the request.
+    $quarantined_filter = [
+      'where' => [
+        'end' => [
+          // The string should be in a format recognized by the Date.parse()
+          // method which is ISO-8601 in our case.
+          // @See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date
+          'gt' => date(\DateTime::ATOM),
+        ],
+      ],
+    ];
+    $quarantines = (array) $this->quarantineApi->quarantineFind(json_encode($quarantined_filter));
+
+    // Reduce all the quarantines to an array of quarantined profile ids.
+    // We do this to make sure a profile id only appears once since we use these
+    // values as "Where" arguments for the next request to the service, and a
+    // profile can have multiple quarantines at the same time.
+    $quarantine_ids = array_reduce($quarantines, function($result, Quarantine $quarantine) {
+      $result[$quarantine->getQuarantinedProfileId()] = ['id' => $quarantine->getQuarantinedProfileId()];
+      return $result;
+    });
+
+    // Reset array keys so json_encode() will handle the ids as an indexed array
+    // and not an associative array.
+    $quarantine_ids = array_values($quarantine_ids);
+
+    // Use the array of quarantined ids as "where" arguments.
+    $profiles_filter['or'] = $quarantine_ids;
+
+    $result = $this->profileApi->profileCount(json_encode($profiles_filter));
+    return (isset($result['count'])) ? $result['count'] : NULL;
   }
 
   /**
