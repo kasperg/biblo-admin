@@ -55,6 +55,7 @@ class Comment implements ArrayAccess
         'timeCreated' => '\DateTime',
         'id' => 'double',
         'commentownerid' => 'double',
+        'commentcontainerpostid' => 'double',
         'postid' => 'double'
     );
   
@@ -67,6 +68,7 @@ class Comment implements ArrayAccess
         'timeCreated' => 'timeCreated',
         'id' => 'id',
         'commentownerid' => 'commentownerid',
+        'commentcontainerpostid' => 'commentcontainerpostid',
         'postid' => 'postid'
     );
   
@@ -79,6 +81,7 @@ class Comment implements ArrayAccess
         'timeCreated' => 'setTimeCreated',
         'id' => 'setId',
         'commentownerid' => 'setCommentownerid',
+        'commentcontainerpostid' => 'setCommentcontainerpostid',
         'postid' => 'setPostid'
     );
   
@@ -91,6 +94,7 @@ class Comment implements ArrayAccess
         'timeCreated' => 'getTimeCreated',
         'id' => 'getId',
         'commentownerid' => 'getCommentownerid',
+        'commentcontainerpostid' => 'getCommentcontainerpostid',
         'postid' => 'getPostid'
     );
   
@@ -120,6 +124,12 @@ class Comment implements ArrayAccess
     protected $commentownerid;
     
     /**
+      * $commentcontainerpostid 
+      * @var double
+      */
+    protected $commentcontainerpostid;
+    
+    /**
       * $postid 
       * @var double
       */
@@ -137,6 +147,7 @@ class Comment implements ArrayAccess
             $this->timeCreated = $data["timeCreated"];
             $this->id = $data["id"];
             $this->commentownerid = $data["commentownerid"];
+            $this->commentcontainerpostid = $data["commentcontainerpostid"];
             $this->postid = $data["postid"];
         }
     }
@@ -222,6 +233,27 @@ class Comment implements ArrayAccess
     {
         
         $this->commentownerid = $commentownerid;
+        return $this;
+    }
+    
+    /**
+     * Gets commentcontainerpostid
+     * @return double
+     */
+    public function getCommentcontainerpostid()
+    {
+        return $this->commentcontainerpostid;
+    }
+  
+    /**
+     * Sets commentcontainerpostid
+     * @param double $commentcontainerpostid 
+     * @return $this
+     */
+    public function setCommentcontainerpostid($commentcontainerpostid)
+    {
+        
+        $this->commentcontainerpostid = $commentcontainerpostid;
         return $this;
     }
     

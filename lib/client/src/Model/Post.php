@@ -54,8 +54,10 @@ class Post implements ArrayAccess
         'title' => 'string',
         'content' => 'string',
         'timeCreated' => '\DateTime',
+        'markedAsDeleted' => 'bool',
         'id' => 'double',
         'postownerid' => 'double',
+        'postcontainergroupid' => 'double',
         'postid' => 'double',
         'groupid' => 'double'
     );
@@ -68,8 +70,10 @@ class Post implements ArrayAccess
         'title' => 'title',
         'content' => 'content',
         'timeCreated' => 'timeCreated',
+        'markedAsDeleted' => 'markedAsDeleted',
         'id' => 'id',
         'postownerid' => 'postownerid',
+        'postcontainergroupid' => 'postcontainergroupid',
         'postid' => 'postid',
         'groupid' => 'groupid'
     );
@@ -82,8 +86,10 @@ class Post implements ArrayAccess
         'title' => 'setTitle',
         'content' => 'setContent',
         'timeCreated' => 'setTimeCreated',
+        'markedAsDeleted' => 'setMarkedAsDeleted',
         'id' => 'setId',
         'postownerid' => 'setPostownerid',
+        'postcontainergroupid' => 'setPostcontainergroupid',
         'postid' => 'setPostid',
         'groupid' => 'setGroupid'
     );
@@ -96,8 +102,10 @@ class Post implements ArrayAccess
         'title' => 'getTitle',
         'content' => 'getContent',
         'timeCreated' => 'getTimeCreated',
+        'markedAsDeleted' => 'getMarkedAsDeleted',
         'id' => 'getId',
         'postownerid' => 'getPostownerid',
+        'postcontainergroupid' => 'getPostcontainergroupid',
         'postid' => 'getPostid',
         'groupid' => 'getGroupid'
     );
@@ -122,6 +130,12 @@ class Post implements ArrayAccess
     protected $timeCreated;
     
     /**
+      * $markedAsDeleted 
+      * @var bool
+      */
+    protected $markedAsDeleted;
+    
+    /**
       * $id 
       * @var double
       */
@@ -132,6 +146,12 @@ class Post implements ArrayAccess
       * @var double
       */
     protected $postownerid;
+    
+    /**
+      * $postcontainergroupid 
+      * @var double
+      */
+    protected $postcontainergroupid;
     
     /**
       * $postid 
@@ -156,8 +176,10 @@ class Post implements ArrayAccess
             $this->title = $data["title"];
             $this->content = $data["content"];
             $this->timeCreated = $data["timeCreated"];
+            $this->markedAsDeleted = $data["markedAsDeleted"];
             $this->id = $data["id"];
             $this->postownerid = $data["postownerid"];
+            $this->postcontainergroupid = $data["postcontainergroupid"];
             $this->postid = $data["postid"];
             $this->groupid = $data["groupid"];
         }
@@ -227,6 +249,27 @@ class Post implements ArrayAccess
     }
     
     /**
+     * Gets markedAsDeleted
+     * @return bool
+     */
+    public function getMarkedAsDeleted()
+    {
+        return $this->markedAsDeleted;
+    }
+  
+    /**
+     * Sets markedAsDeleted
+     * @param bool $markedAsDeleted 
+     * @return $this
+     */
+    public function setMarkedAsDeleted($markedAsDeleted)
+    {
+        
+        $this->markedAsDeleted = $markedAsDeleted;
+        return $this;
+    }
+    
+    /**
      * Gets id
      * @return double
      */
@@ -265,6 +308,27 @@ class Post implements ArrayAccess
     {
         
         $this->postownerid = $postownerid;
+        return $this;
+    }
+    
+    /**
+     * Gets postcontainergroupid
+     * @return double
+     */
+    public function getPostcontainergroupid()
+    {
+        return $this->postcontainergroupid;
+    }
+  
+    /**
+     * Sets postcontainergroupid
+     * @param double $postcontainergroupid 
+     * @return $this
+     */
+    public function setPostcontainergroupid($postcontainergroupid)
+    {
+        
+        $this->postcontainergroupid = $postcontainergroupid;
         return $this;
     }
     

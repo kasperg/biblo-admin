@@ -62,6 +62,7 @@ class Profile implements ArrayAccess
         'hasFilledInProfile' => 'bool',
         'birthday' => '\DateTime',
         'fullName' => 'string',
+        'palleid' => 'double',
         'id' => 'double'
     );
   
@@ -81,6 +82,7 @@ class Profile implements ArrayAccess
         'hasFilledInProfile' => 'hasFilledInProfile',
         'birthday' => 'birthday',
         'fullName' => 'fullName',
+        'palleid' => 'palleid',
         'id' => 'id'
     );
   
@@ -100,6 +102,7 @@ class Profile implements ArrayAccess
         'hasFilledInProfile' => 'setHasFilledInProfile',
         'birthday' => 'setBirthday',
         'fullName' => 'setFullName',
+        'palleid' => 'setPalleid',
         'id' => 'setId'
     );
   
@@ -119,6 +122,7 @@ class Profile implements ArrayAccess
         'hasFilledInProfile' => 'getHasFilledInProfile',
         'birthday' => 'getBirthday',
         'fullName' => 'getFullName',
+        'palleid' => 'getPalleid',
         'id' => 'getId'
     );
   
@@ -190,6 +194,12 @@ class Profile implements ArrayAccess
     protected $fullName;
     
     /**
+      * $palleid 
+      * @var double
+      */
+    protected $palleid;
+    
+    /**
       * $id 
       * @var double
       */
@@ -214,6 +224,7 @@ class Profile implements ArrayAccess
             $this->hasFilledInProfile = $data["hasFilledInProfile"];
             $this->birthday = $data["birthday"];
             $this->fullName = $data["fullName"];
+            $this->palleid = $data["palleid"];
             $this->id = $data["id"];
         }
     }
@@ -446,6 +457,27 @@ class Profile implements ArrayAccess
     {
         
         $this->fullName = $fullName;
+        return $this;
+    }
+    
+    /**
+     * Gets palleid
+     * @return double
+     */
+    public function getPalleid()
+    {
+        return $this->palleid;
+    }
+  
+    /**
+     * Sets palleid
+     * @param double $palleid 
+     * @return $this
+     */
+    public function setPalleid($palleid)
+    {
+        
+        $this->palleid = $palleid;
         return $this;
     }
     

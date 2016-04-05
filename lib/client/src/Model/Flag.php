@@ -55,7 +55,13 @@ class Flag implements ArrayAccess
         'description' => 'string',
         'markedAsRead' => 'bool',
         'id' => 'double',
-        'ownerId' => 'double'
+        'ownerId' => 'double',
+        'comments' => '\DBCDK\CommunityServices\Model\Comment',
+        'posts' => '\DBCDK\CommunityServices\Model\Post',
+        'groups' => '\DBCDK\CommunityServices\Model\Group',
+        'groupFlagsId' => 'double',
+        'postFlagsId' => 'double',
+        'commentFlagsId' => 'double'
     );
   
     /** 
@@ -67,7 +73,13 @@ class Flag implements ArrayAccess
         'description' => 'description',
         'markedAsRead' => 'markedAsRead',
         'id' => 'id',
-        'ownerId' => 'ownerId'
+        'ownerId' => 'ownerId',
+        'comments' => '_comments',
+        'posts' => '_posts',
+        'groups' => '_groups',
+        'groupFlagsId' => 'groupFlagsId',
+        'postFlagsId' => 'postFlagsId',
+        'commentFlagsId' => 'commentFlagsId'
     );
   
     /**
@@ -79,7 +91,13 @@ class Flag implements ArrayAccess
         'description' => 'setDescription',
         'markedAsRead' => 'setMarkedAsRead',
         'id' => 'setId',
-        'ownerId' => 'setOwnerId'
+        'ownerId' => 'setOwnerId',
+        'comments' => 'setComments',
+        'posts' => 'setPosts',
+        'groups' => 'setGroups',
+        'groupFlagsId' => 'setGroupFlagsId',
+        'postFlagsId' => 'setPostFlagsId',
+        'commentFlagsId' => 'setCommentFlagsId'
     );
   
     /**
@@ -91,7 +109,13 @@ class Flag implements ArrayAccess
         'description' => 'getDescription',
         'markedAsRead' => 'getMarkedAsRead',
         'id' => 'getId',
-        'ownerId' => 'getOwnerId'
+        'ownerId' => 'getOwnerId',
+        'comments' => 'getComments',
+        'posts' => 'getPosts',
+        'groups' => 'getGroups',
+        'groupFlagsId' => 'getGroupFlagsId',
+        'postFlagsId' => 'getPostFlagsId',
+        'commentFlagsId' => 'getCommentFlagsId'
     );
   
     
@@ -125,6 +149,42 @@ class Flag implements ArrayAccess
       */
     protected $ownerId;
     
+    /**
+      * $comments 
+      * @var \DBCDK\CommunityServices\Model\Comment
+      */
+    protected $comments;
+    
+    /**
+      * $posts 
+      * @var \DBCDK\CommunityServices\Model\Post
+      */
+    protected $posts;
+    
+    /**
+      * $groups 
+      * @var \DBCDK\CommunityServices\Model\Group
+      */
+    protected $groups;
+    
+    /**
+      * $groupFlagsId 
+      * @var double
+      */
+    protected $groupFlagsId;
+    
+    /**
+      * $postFlagsId 
+      * @var double
+      */
+    protected $postFlagsId;
+    
+    /**
+      * $commentFlagsId 
+      * @var double
+      */
+    protected $commentFlagsId;
+    
 
     /**
      * Constructor
@@ -138,6 +198,12 @@ class Flag implements ArrayAccess
             $this->markedAsRead = $data["markedAsRead"];
             $this->id = $data["id"];
             $this->ownerId = $data["ownerId"];
+            $this->comments = $data["comments"];
+            $this->posts = $data["posts"];
+            $this->groups = $data["groups"];
+            $this->groupFlagsId = $data["groupFlagsId"];
+            $this->postFlagsId = $data["postFlagsId"];
+            $this->commentFlagsId = $data["commentFlagsId"];
         }
     }
     
@@ -243,6 +309,132 @@ class Flag implements ArrayAccess
     {
         
         $this->ownerId = $ownerId;
+        return $this;
+    }
+    
+    /**
+     * Gets comments
+     * @return \DBCDK\CommunityServices\Model\Comment
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+  
+    /**
+     * Sets comments
+     * @param \DBCDK\CommunityServices\Model\Comment $comments 
+     * @return $this
+     */
+    public function setComments($comments)
+    {
+        
+        $this->comments = $comments;
+        return $this;
+    }
+    
+    /**
+     * Gets posts
+     * @return \DBCDK\CommunityServices\Model\Post
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+  
+    /**
+     * Sets posts
+     * @param \DBCDK\CommunityServices\Model\Post $posts 
+     * @return $this
+     */
+    public function setPosts($posts)
+    {
+        
+        $this->posts = $posts;
+        return $this;
+    }
+    
+    /**
+     * Gets groups
+     * @return \DBCDK\CommunityServices\Model\Group
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+  
+    /**
+     * Sets groups
+     * @param \DBCDK\CommunityServices\Model\Group $groups 
+     * @return $this
+     */
+    public function setGroups($groups)
+    {
+        
+        $this->groups = $groups;
+        return $this;
+    }
+    
+    /**
+     * Gets groupFlagsId
+     * @return double
+     */
+    public function getGroupFlagsId()
+    {
+        return $this->groupFlagsId;
+    }
+  
+    /**
+     * Sets groupFlagsId
+     * @param double $groupFlagsId 
+     * @return $this
+     */
+    public function setGroupFlagsId($groupFlagsId)
+    {
+        
+        $this->groupFlagsId = $groupFlagsId;
+        return $this;
+    }
+    
+    /**
+     * Gets postFlagsId
+     * @return double
+     */
+    public function getPostFlagsId()
+    {
+        return $this->postFlagsId;
+    }
+  
+    /**
+     * Sets postFlagsId
+     * @param double $postFlagsId 
+     * @return $this
+     */
+    public function setPostFlagsId($postFlagsId)
+    {
+        
+        $this->postFlagsId = $postFlagsId;
+        return $this;
+    }
+    
+    /**
+     * Gets commentFlagsId
+     * @return double
+     */
+    public function getCommentFlagsId()
+    {
+        return $this->commentFlagsId;
+    }
+  
+    /**
+     * Sets commentFlagsId
+     * @param double $commentFlagsId 
+     * @return $this
+     */
+    public function setCommentFlagsId($commentFlagsId)
+    {
+        
+        $this->commentFlagsId = $commentFlagsId;
         return $this;
     }
     

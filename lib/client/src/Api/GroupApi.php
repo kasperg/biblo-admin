@@ -1656,6 +1656,714 @@ class GroupApi
     }
     
     /**
+     * groupPrototypeGetFlags
+     *
+     * Queries flags of Group.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return \DBCDK\CommunityServices\Model\Flag[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeGetFlags($id, $filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->groupPrototypeGetFlagsWithHttpInfo ($id, $filter);
+        return $response; 
+    }
+
+
+    /**
+     * groupPrototypeGetFlagsWithHttpInfo
+     *
+     * Queries flags of Group.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Flag[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeGetFlagsWithHttpInfo($id, $filter = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeGetFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Groups/{id}/flags";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Flag[]'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Flag[]', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Flag[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * groupPrototypeCreateFlags
+     *
+     * Creates a new instance in flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Flag $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Flag
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeCreateFlags($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCreateFlagsWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * groupPrototypeCreateFlagsWithHttpInfo
+     *
+     * Creates a new instance in flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Flag $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeCreateFlagsWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCreateFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Groups/{id}/flags";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Flag'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Flag', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Flag', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * groupPrototypeDeleteFlags
+     *
+     * Deletes all flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeDeleteFlags($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDeleteFlagsWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * groupPrototypeDeleteFlagsWithHttpInfo
+     *
+     * Deletes all flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeDeleteFlagsWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDeleteFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Groups/{id}/flags";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * groupPrototypeCountFlags
+     *
+     * Counts flags of Group.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeCountFlags($id, $where = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCountFlagsWithHttpInfo ($id, $where);
+        return $response; 
+    }
+
+
+    /**
+     * groupPrototypeCountFlagsWithHttpInfo
+     *
+     * Counts flags of Group.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeCountFlagsWithHttpInfo($id, $where = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCountFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Groups/{id}/flags/count";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * groupPrototypeFindByIdFlags
+     *
+     * Find a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return \DBCDK\CommunityServices\Model\Flag
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeFindByIdFlags($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->groupPrototypeFindByIdFlagsWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * groupPrototypeFindByIdFlagsWithHttpInfo
+     *
+     * Find a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeFindByIdFlagsWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeFindByIdFlags');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeFindByIdFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Groups/{id}/flags/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Flag'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Flag', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Flag', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * groupPrototypeUpdateByIdFlags
+     *
+     * Update a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Flag $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Flag
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeUpdateByIdFlags($fk, $id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->groupPrototypeUpdateByIdFlagsWithHttpInfo ($fk, $id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * groupPrototypeUpdateByIdFlagsWithHttpInfo
+     *
+     * Update a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Flag $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeUpdateByIdFlagsWithHttpInfo($fk, $id, $data = null)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeUpdateByIdFlags');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeUpdateByIdFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Groups/{id}/flags/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "PUT";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Flag'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Flag', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Flag', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * groupPrototypeDestroyByIdFlags
+     *
+     * Delete a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeDestroyByIdFlags($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDestroyByIdFlagsWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * groupPrototypeDestroyByIdFlagsWithHttpInfo
+     *
+     * Delete a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function groupPrototypeDestroyByIdFlagsWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeDestroyByIdFlags');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDestroyByIdFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Groups/{id}/flags/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
      * groupPrototypeGetMembers
      *
      * Queries members of Group.

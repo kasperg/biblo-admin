@@ -90,6 +90,7 @@ class FlaggableContentRepository {
     // The API cannot handle an empty array being passed so we convert it to
     // an empty string.
     $filter_string = (!empty($filter)) ? json_encode($filter) : NULL;
+    /* @var \DBCDK\CommunityServices\Model\Flag[] $flags */
     $flags = (array) $this->flagApi->flagFind($filter_string);
 
     // Loop over *all* flags to find which content it is attached to.
@@ -100,20 +101,13 @@ class FlaggableContentRepository {
       // We do not know which type of content our flag is attached to and
       // in theory it could be attached to multiple. We get all of them and
       // convert them to FlaggableContent instances.
-      try {
-        $posts = (array) $this->flagApi->flagPrototypeGetPosts($flag->getId());
-        $comments = (array) $this->flagApi->flagPrototypeGetComments($flag->getId());
-      }
-      catch (ApiException $e) {
-        // If any errors occur here we just log it. It may be caused by the
-        // individual flag so we try to retrieve information for the
-        // remaining flags as well.
-        $this->logger->warning($e);
-        continue;
-      }
+      $post = $flag->getPosts();
+      $comment = $flag->getComments();
+
       $flagged_content = array_map(function($content) use ($flag) {
         return (new FlaggableContent($content))->addFlag($flag);
-      }, array_merge($posts, $comments));
+      }, array_filter([$post, $comment]));
+
       $content = array_merge($content, $flagged_content);
     }
 

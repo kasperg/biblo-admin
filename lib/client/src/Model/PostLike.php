@@ -1,6 +1,6 @@
 <?php
 /**
- * Quarantine
+ * PostLike
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace DBCDK\CommunityServices\Model;
 
 use \ArrayAccess;
 /**
- * Quarantine Class Doc Comment
+ * PostLike Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,19 +44,16 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Quarantine implements ArrayAccess
+class PostLike implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'reason' => 'string',
-        'end' => '\DateTime',
-        'start' => '\DateTime',
         'id' => 'double',
-        'quarantinedProfileId' => 'double',
-        'quarantineCreatorProfileId' => 'double'
+        'postId' => 'double',
+        'likeId' => 'double'
     );
   
     /** 
@@ -64,12 +61,9 @@ class Quarantine implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'reason' => 'reason',
-        'end' => 'end',
-        'start' => 'start',
         'id' => 'id',
-        'quarantinedProfileId' => 'quarantinedProfileId',
-        'quarantineCreatorProfileId' => 'quarantineCreatorProfileId'
+        'postId' => 'postId',
+        'likeId' => 'likeId'
     );
   
     /**
@@ -77,12 +71,9 @@ class Quarantine implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'reason' => 'setReason',
-        'end' => 'setEnd',
-        'start' => 'setStart',
         'id' => 'setId',
-        'quarantinedProfileId' => 'setQuarantinedProfileId',
-        'quarantineCreatorProfileId' => 'setQuarantineCreatorProfileId'
+        'postId' => 'setPostId',
+        'likeId' => 'setLikeId'
     );
   
     /**
@@ -90,32 +81,11 @@ class Quarantine implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'reason' => 'getReason',
-        'end' => 'getEnd',
-        'start' => 'getStart',
         'id' => 'getId',
-        'quarantinedProfileId' => 'getQuarantinedProfileId',
-        'quarantineCreatorProfileId' => 'getQuarantineCreatorProfileId'
+        'postId' => 'getPostId',
+        'likeId' => 'getLikeId'
     );
   
-    
-    /**
-      * $reason 
-      * @var string
-      */
-    protected $reason;
-    
-    /**
-      * $end 
-      * @var \DateTime
-      */
-    protected $end;
-    
-    /**
-      * $start 
-      * @var \DateTime
-      */
-    protected $start;
     
     /**
       * $id 
@@ -124,16 +94,16 @@ class Quarantine implements ArrayAccess
     protected $id;
     
     /**
-      * $quarantinedProfileId 
+      * $postId 
       * @var double
       */
-    protected $quarantinedProfileId;
+    protected $postId;
     
     /**
-      * $quarantineCreatorProfileId 
+      * $likeId 
       * @var double
       */
-    protected $quarantineCreatorProfileId;
+    protected $likeId;
     
 
     /**
@@ -143,76 +113,10 @@ class Quarantine implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->reason = $data["reason"];
-            $this->end = $data["end"];
-            $this->start = $data["start"];
             $this->id = $data["id"];
-            $this->quarantinedProfileId = $data["quarantinedProfileId"];
-            $this->quarantineCreatorProfileId = $data["quarantineCreatorProfileId"];
+            $this->postId = $data["postId"];
+            $this->likeId = $data["likeId"];
         }
-    }
-    
-    /**
-     * Gets reason
-     * @return string
-     */
-    public function getReason()
-    {
-        return $this->reason;
-    }
-  
-    /**
-     * Sets reason
-     * @param string $reason 
-     * @return $this
-     */
-    public function setReason($reason)
-    {
-        
-        $this->reason = $reason;
-        return $this;
-    }
-    
-    /**
-     * Gets end
-     * @return \DateTime
-     */
-    public function getEnd()
-    {
-        return $this->end;
-    }
-  
-    /**
-     * Sets end
-     * @param \DateTime $end 
-     * @return $this
-     */
-    public function setEnd($end)
-    {
-        
-        $this->end = $end;
-        return $this;
-    }
-    
-    /**
-     * Gets start
-     * @return \DateTime
-     */
-    public function getStart()
-    {
-        return $this->start;
-    }
-  
-    /**
-     * Sets start
-     * @param \DateTime $start 
-     * @return $this
-     */
-    public function setStart($start)
-    {
-        
-        $this->start = $start;
-        return $this;
     }
     
     /**
@@ -237,44 +141,44 @@ class Quarantine implements ArrayAccess
     }
     
     /**
-     * Gets quarantinedProfileId
+     * Gets postId
      * @return double
      */
-    public function getQuarantinedProfileId()
+    public function getPostId()
     {
-        return $this->quarantinedProfileId;
+        return $this->postId;
     }
   
     /**
-     * Sets quarantinedProfileId
-     * @param double $quarantinedProfileId 
+     * Sets postId
+     * @param double $postId 
      * @return $this
      */
-    public function setQuarantinedProfileId($quarantinedProfileId)
+    public function setPostId($postId)
     {
         
-        $this->quarantinedProfileId = $quarantinedProfileId;
+        $this->postId = $postId;
         return $this;
     }
     
     /**
-     * Gets quarantineCreatorProfileId
+     * Gets likeId
      * @return double
      */
-    public function getQuarantineCreatorProfileId()
+    public function getLikeId()
     {
-        return $this->quarantineCreatorProfileId;
+        return $this->likeId;
     }
   
     /**
-     * Sets quarantineCreatorProfileId
-     * @param double $quarantineCreatorProfileId 
+     * Sets likeId
+     * @param double $likeId 
      * @return $this
      */
-    public function setQuarantineCreatorProfileId($quarantineCreatorProfileId)
+    public function setLikeId($likeId)
     {
         
-        $this->quarantineCreatorProfileId = $quarantineCreatorProfileId;
+        $this->likeId = $likeId;
         return $this;
     }
     

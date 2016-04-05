@@ -56,9 +56,8 @@ class File implements ArrayAccess
         'type' => 'string',
         'url' => 'string',
         'id' => 'double',
-        'originalvideoid' => 'double',
-        'videoCollectionId' => 'double',
-        'resolutionImageFileId' => 'double'
+        'resolutionImageFileId' => 'double',
+        'resolutionVideoFileId' => 'double'
     );
   
     /** 
@@ -71,9 +70,8 @@ class File implements ArrayAccess
         'type' => 'type',
         'url' => 'url',
         'id' => 'id',
-        'originalvideoid' => 'originalvideoid',
-        'videoCollectionId' => 'videoCollectionId',
-        'resolutionImageFileId' => 'resolutionImageFileId'
+        'resolutionImageFileId' => 'resolutionImageFileId',
+        'resolutionVideoFileId' => 'resolutionVideoFileId'
     );
   
     /**
@@ -86,9 +84,8 @@ class File implements ArrayAccess
         'type' => 'setType',
         'url' => 'setUrl',
         'id' => 'setId',
-        'originalvideoid' => 'setOriginalvideoid',
-        'videoCollectionId' => 'setVideoCollectionId',
-        'resolutionImageFileId' => 'setResolutionImageFileId'
+        'resolutionImageFileId' => 'setResolutionImageFileId',
+        'resolutionVideoFileId' => 'setResolutionVideoFileId'
     );
   
     /**
@@ -101,9 +98,8 @@ class File implements ArrayAccess
         'type' => 'getType',
         'url' => 'getUrl',
         'id' => 'getId',
-        'originalvideoid' => 'getOriginalvideoid',
-        'videoCollectionId' => 'getVideoCollectionId',
-        'resolutionImageFileId' => 'getResolutionImageFileId'
+        'resolutionImageFileId' => 'getResolutionImageFileId',
+        'resolutionVideoFileId' => 'getResolutionVideoFileId'
     );
   
     
@@ -138,22 +134,16 @@ class File implements ArrayAccess
     protected $id;
     
     /**
-      * $originalvideoid 
-      * @var double
-      */
-    protected $originalvideoid;
-    
-    /**
-      * $videoCollectionId 
-      * @var double
-      */
-    protected $videoCollectionId;
-    
-    /**
       * $resolutionImageFileId 
       * @var double
       */
     protected $resolutionImageFileId;
+    
+    /**
+      * $resolutionVideoFileId 
+      * @var double
+      */
+    protected $resolutionVideoFileId;
     
 
     /**
@@ -168,9 +158,8 @@ class File implements ArrayAccess
             $this->type = $data["type"];
             $this->url = $data["url"];
             $this->id = $data["id"];
-            $this->originalvideoid = $data["originalvideoid"];
-            $this->videoCollectionId = $data["videoCollectionId"];
             $this->resolutionImageFileId = $data["resolutionImageFileId"];
+            $this->resolutionVideoFileId = $data["resolutionVideoFileId"];
         }
     }
     
@@ -280,48 +269,6 @@ class File implements ArrayAccess
     }
     
     /**
-     * Gets originalvideoid
-     * @return double
-     */
-    public function getOriginalvideoid()
-    {
-        return $this->originalvideoid;
-    }
-  
-    /**
-     * Sets originalvideoid
-     * @param double $originalvideoid 
-     * @return $this
-     */
-    public function setOriginalvideoid($originalvideoid)
-    {
-        
-        $this->originalvideoid = $originalvideoid;
-        return $this;
-    }
-    
-    /**
-     * Gets videoCollectionId
-     * @return double
-     */
-    public function getVideoCollectionId()
-    {
-        return $this->videoCollectionId;
-    }
-  
-    /**
-     * Sets videoCollectionId
-     * @param double $videoCollectionId 
-     * @return $this
-     */
-    public function setVideoCollectionId($videoCollectionId)
-    {
-        
-        $this->videoCollectionId = $videoCollectionId;
-        return $this;
-    }
-    
-    /**
      * Gets resolutionImageFileId
      * @return double
      */
@@ -339,6 +286,27 @@ class File implements ArrayAccess
     {
         
         $this->resolutionImageFileId = $resolutionImageFileId;
+        return $this;
+    }
+    
+    /**
+     * Gets resolutionVideoFileId
+     * @return double
+     */
+    public function getResolutionVideoFileId()
+    {
+        return $this->resolutionVideoFileId;
+    }
+  
+    /**
+     * Sets resolutionVideoFileId
+     * @param double $resolutionVideoFileId 
+     * @return $this
+     */
+    public function setResolutionVideoFileId($resolutionVideoFileId)
+    {
+        
+        $this->resolutionVideoFileId = $resolutionVideoFileId;
         return $this;
     }
     

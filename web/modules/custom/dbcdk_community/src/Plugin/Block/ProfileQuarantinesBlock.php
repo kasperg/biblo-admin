@@ -108,14 +108,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       ];
       $profile = $this->profileApi->profileFindOne(json_encode($profile_filter));
 
-      // Fetch quarantines.
-      $quarantine_filter = [
-        'order' => 'end DESC',
-        'where' => [
-          'quarantinedId' => $profile->getId(),
-        ],
-      ];
-      $quarantines = (array) $this->quarantineApi->quarantineFind(json_encode($quarantine_filter));
+      $quarantines = (array) $this->profileApi->profilePrototypeGetQuarantines($profile->getId(), json_encode(['order' => 'end DESC']));
     }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);

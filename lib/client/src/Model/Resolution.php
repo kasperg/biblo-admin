@@ -53,6 +53,7 @@ class Resolution implements ArrayAccess
     static $swaggerTypes = array(
         'size' => 'string',
         'id' => 'double',
+        'videoCollectionResolutionId' => 'double',
         'imageCollectionResolutionId' => 'double'
     );
   
@@ -63,6 +64,7 @@ class Resolution implements ArrayAccess
     static $attributeMap = array(
         'size' => 'size',
         'id' => 'id',
+        'videoCollectionResolutionId' => 'videoCollectionResolutionId',
         'imageCollectionResolutionId' => 'imageCollectionResolutionId'
     );
   
@@ -73,6 +75,7 @@ class Resolution implements ArrayAccess
     static $setters = array(
         'size' => 'setSize',
         'id' => 'setId',
+        'videoCollectionResolutionId' => 'setVideoCollectionResolutionId',
         'imageCollectionResolutionId' => 'setImageCollectionResolutionId'
     );
   
@@ -83,6 +86,7 @@ class Resolution implements ArrayAccess
     static $getters = array(
         'size' => 'getSize',
         'id' => 'getId',
+        'videoCollectionResolutionId' => 'getVideoCollectionResolutionId',
         'imageCollectionResolutionId' => 'getImageCollectionResolutionId'
     );
   
@@ -100,6 +104,12 @@ class Resolution implements ArrayAccess
     protected $id;
     
     /**
+      * $videoCollectionResolutionId 
+      * @var double
+      */
+    protected $videoCollectionResolutionId;
+    
+    /**
       * $imageCollectionResolutionId 
       * @var double
       */
@@ -115,6 +125,7 @@ class Resolution implements ArrayAccess
         if ($data != null) {
             $this->size = $data["size"];
             $this->id = $data["id"];
+            $this->videoCollectionResolutionId = $data["videoCollectionResolutionId"];
             $this->imageCollectionResolutionId = $data["imageCollectionResolutionId"];
         }
     }
@@ -158,6 +169,27 @@ class Resolution implements ArrayAccess
     {
         
         $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Gets videoCollectionResolutionId
+     * @return double
+     */
+    public function getVideoCollectionResolutionId()
+    {
+        return $this->videoCollectionResolutionId;
+    }
+  
+    /**
+     * Sets videoCollectionResolutionId
+     * @param double $videoCollectionResolutionId 
+     * @return $this
+     */
+    public function setVideoCollectionResolutionId($videoCollectionResolutionId)
+    {
+        
+        $this->videoCollectionResolutionId = $videoCollectionResolutionId;
         return $this;
     }
     

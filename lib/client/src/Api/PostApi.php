@@ -1978,6 +1978,814 @@ class PostApi
     }
     
     /**
+     * postPrototypeGetFlags
+     *
+     * Queries flags of Post.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return \DBCDK\CommunityServices\Model\Flag[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeGetFlags($id, $filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeGetFlagsWithHttpInfo ($id, $filter);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeGetFlagsWithHttpInfo
+     *
+     * Queries flags of Post.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Flag[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeGetFlagsWithHttpInfo($id, $filter = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeGetFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/flags";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Flag[]'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Flag[]', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Flag[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeCreateFlags
+     *
+     * Creates a new instance in flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Flag $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Flag
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCreateFlags($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeCreateFlagsWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeCreateFlagsWithHttpInfo
+     *
+     * Creates a new instance in flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Flag $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCreateFlagsWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeCreateFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/flags";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Flag'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Flag', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Flag', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeDeleteFlags
+     *
+     * Deletes all flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDeleteFlags($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeDeleteFlagsWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeDeleteFlagsWithHttpInfo
+     *
+     * Deletes all flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDeleteFlagsWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeDeleteFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/flags";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeCountFlags
+     *
+     * Counts flags of Post.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCountFlags($id, $where = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeCountFlagsWithHttpInfo ($id, $where);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeCountFlagsWithHttpInfo
+     *
+     * Counts flags of Post.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCountFlagsWithHttpInfo($id, $where = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeCountFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/flags/count";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeFindByIdFlags
+     *
+     * Find a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return \DBCDK\CommunityServices\Model\Flag
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeFindByIdFlags($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeFindByIdFlagsWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeFindByIdFlagsWithHttpInfo
+     *
+     * Find a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeFindByIdFlagsWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeFindByIdFlags');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeFindByIdFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/flags/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Flag'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Flag', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Flag', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeUpdateByIdFlags
+     *
+     * Update a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Flag $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Flag
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeUpdateByIdFlags($fk, $id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeUpdateByIdFlagsWithHttpInfo ($fk, $id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeUpdateByIdFlagsWithHttpInfo
+     *
+     * Update a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Flag $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeUpdateByIdFlagsWithHttpInfo($fk, $id, $data = null)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeUpdateByIdFlags');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeUpdateByIdFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/flags/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "PUT";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Flag'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Flag', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Flag', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeDestroyByIdFlags
+     *
+     * Delete a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDestroyByIdFlags($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeDestroyByIdFlagsWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeDestroyByIdFlagsWithHttpInfo
+     *
+     * Delete a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDestroyByIdFlagsWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeDestroyByIdFlags');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeDestroyByIdFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/flags/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeGetGroup
+     *
+     * Fetches belongsTo relation group.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\Group
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeGetGroup($id, $refresh = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeGetGroupWithHttpInfo ($id, $refresh);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeGetGroupWithHttpInfo
+     *
+     * Fetches belongsTo relation group.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeGetGroupWithHttpInfo($id, $refresh = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeGetGroup');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/group";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Group'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
      * postPrototypeGetImage
      *
      * Fetches hasOne relation image.
@@ -2364,6 +3172,1036 @@ class PostApi
     }
     
     /**
+     * postPrototypeGetLikes
+     *
+     * Queries likes of Post.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeGetLikes($id, $filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeGetLikesWithHttpInfo ($id, $filter);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeGetLikesWithHttpInfo
+     *
+     * Queries likes of Post.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeGetLikesWithHttpInfo($id, $filter = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeGetLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like[]'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Like[]', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeCreateLikes
+     *
+     * Creates a new instance in likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCreateLikes($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeCreateLikesWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeCreateLikesWithHttpInfo
+     *
+     * Creates a new instance in likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCreateLikesWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeCreateLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeDeleteLikes
+     *
+     * Deletes all likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDeleteLikes($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeDeleteLikesWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeDeleteLikesWithHttpInfo
+     *
+     * Deletes all likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDeleteLikesWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeDeleteLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeCountLikes
+     *
+     * Counts likes of Post.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @return \DBCDK\CommunityServices\Model\InlineResponse200
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCountLikes($id, $where = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeCountLikesWithHttpInfo ($id, $where);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeCountLikesWithHttpInfo
+     *
+     * Counts likes of Post.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCountLikesWithHttpInfo($id, $where = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeCountLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes/count";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeExistsLikes
+     *
+     * Check the existence of likes relation to an item by id.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return bool
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeExistsLikes($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeExistsLikesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeExistsLikesWithHttpInfo
+     *
+     * Check the existence of likes relation to an item by id.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of bool, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeExistsLikesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeExistsLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeExistsLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes/rel/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "HEAD";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, 'bool'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'bool', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeLinkLikes
+     *
+     * Add a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\PostLike $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\PostLike
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeLinkLikes($fk, $id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeLinkLikesWithHttpInfo ($fk, $id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeLinkLikesWithHttpInfo
+     *
+     * Add a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\PostLike $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\PostLike, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeLinkLikesWithHttpInfo($fk, $id, $data = null)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeLinkLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeLinkLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes/rel/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "PUT";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\PostLike'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\PostLike', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\PostLike', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeUnlinkLikes
+     *
+     * Remove the likes relation to an item by id.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeUnlinkLikes($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeUnlinkLikesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeUnlinkLikesWithHttpInfo
+     *
+     * Remove the likes relation to an item by id.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeUnlinkLikesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeUnlinkLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeUnlinkLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes/rel/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeFindByIdLikes
+     *
+     * Find a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeFindByIdLikes($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeFindByIdLikesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeFindByIdLikesWithHttpInfo
+     *
+     * Find a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeFindByIdLikesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeFindByIdLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeFindByIdLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeUpdateByIdLikes
+     *
+     * Update a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeUpdateByIdLikes($fk, $id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeUpdateByIdLikesWithHttpInfo ($fk, $id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeUpdateByIdLikesWithHttpInfo
+     *
+     * Update a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeUpdateByIdLikesWithHttpInfo($fk, $id, $data = null)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeUpdateByIdLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeUpdateByIdLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "PUT";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeDestroyByIdLikes
+     *
+     * Delete a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDestroyByIdLikes($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeDestroyByIdLikesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeDestroyByIdLikesWithHttpInfo
+     *
+     * Delete a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDestroyByIdLikesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling postPrototypeDestroyByIdLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeDestroyByIdLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/likes/{fk}";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
      * postPrototypeGetOwner
      *
      * Fetches belongsTo relation owner.
@@ -2457,6 +4295,392 @@ class PostApi
                 $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeGetVideo
+     *
+     * Fetches hasOne relation video.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeGetVideo($id, $refresh = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeGetVideoWithHttpInfo ($id, $refresh);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeGetVideoWithHttpInfo
+     *
+     * Fetches hasOne relation video.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeGetVideoWithHttpInfo($id, $refresh = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeGetVideo');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/video";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeUpdateVideo
+     *
+     * Update video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\VideoCollection $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeUpdateVideo($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeUpdateVideoWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeUpdateVideoWithHttpInfo
+     *
+     * Update video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\VideoCollection $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeUpdateVideoWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeUpdateVideo');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/video";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "PUT";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeCreateVideo
+     *
+     * Creates a new instance in video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\VideoCollection $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\VideoCollection
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCreateVideo($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeCreateVideoWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeCreateVideoWithHttpInfo
+     *
+     * Creates a new instance in video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\VideoCollection $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeCreateVideoWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeCreateVideo');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/video";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * postPrototypeDestroyVideo
+     *
+     * Deletes video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDestroyVideo($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->postPrototypeDestroyVideoWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * postPrototypeDestroyVideoWithHttpInfo
+     *
+     * Deletes video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function postPrototypeDestroyVideoWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling postPrototypeDestroyVideo');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Posts/{id}/video";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "DELETE";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
             }
   
             throw $e;

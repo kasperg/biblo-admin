@@ -54,7 +54,8 @@ class Like implements ArrayAccess
         'itemId' => 'string',
         'value' => 'string',
         'id' => 'double',
-        'profileId' => 'double'
+        'profileId' => 'double',
+        'likeid' => 'double'
     );
   
     /** 
@@ -65,7 +66,8 @@ class Like implements ArrayAccess
         'itemId' => 'item_id',
         'value' => 'value',
         'id' => 'id',
-        'profileId' => 'profileId'
+        'profileId' => 'profileId',
+        'likeid' => 'likeid'
     );
   
     /**
@@ -76,7 +78,8 @@ class Like implements ArrayAccess
         'itemId' => 'setItemId',
         'value' => 'setValue',
         'id' => 'setId',
-        'profileId' => 'setProfileId'
+        'profileId' => 'setProfileId',
+        'likeid' => 'setLikeid'
     );
   
     /**
@@ -87,7 +90,8 @@ class Like implements ArrayAccess
         'itemId' => 'getItemId',
         'value' => 'getValue',
         'id' => 'getId',
-        'profileId' => 'getProfileId'
+        'profileId' => 'getProfileId',
+        'likeid' => 'getLikeid'
     );
   
     
@@ -115,6 +119,12 @@ class Like implements ArrayAccess
       */
     protected $profileId;
     
+    /**
+      * $likeid 
+      * @var double
+      */
+    protected $likeid;
+    
 
     /**
      * Constructor
@@ -127,6 +137,7 @@ class Like implements ArrayAccess
             $this->value = $data["value"];
             $this->id = $data["id"];
             $this->profileId = $data["profileId"];
+            $this->likeid = $data["likeid"];
         }
     }
     
@@ -211,6 +222,27 @@ class Like implements ArrayAccess
     {
         
         $this->profileId = $profileId;
+        return $this;
+    }
+    
+    /**
+     * Gets likeid
+     * @return double
+     */
+    public function getLikeid()
+    {
+        return $this->likeid;
+    }
+  
+    /**
+     * Sets likeid
+     * @param double $likeid 
+     * @return $this
+     */
+    public function setLikeid($likeid)
+    {
+        
+        $this->likeid = $likeid;
         return $this;
     }
     
