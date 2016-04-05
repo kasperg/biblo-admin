@@ -91,7 +91,7 @@ class GenerateCommand extends Command {
       $profile->setEmail($faker->email);
       $profile->setPhone($faker->phoneNumber);
       $profile->setBirthday($faker->dateTimeThisDecade);
-      $profile->setCreated($faker->dateTimeThisYear);
+      $profile->setCreated($faker->dateTimeBetween('-1 month'));
 
       $this->profiles[] = $profile_api->profileCreate($profile);
     };
@@ -107,7 +107,10 @@ class GenerateCommand extends Command {
       $quarantine->setQuarantinedProfileId($quarantined->getId());
 
       $quarantine->setStart($faker->dateTimeBetween($quarantined->getCreated()));
-      $quarantine->setEnd($faker->dateTimeBetween($quarantine->getStart()));
+      // We create quarantines to up 1 month ahead. Since we create users up to
+      // 1 month back we should have a good shot at generating both active and
+      // inactive quarantines.
+      $quarantine->setEnd($faker->dateTimeBetween($quarantine->getStart(), '+1 month'));
       $quarantine->setReason($faker->sentence());
 
       $this->quarantines[] = $quarantine_api->quarantineCreate($quarantine);
