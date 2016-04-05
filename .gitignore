@@ -20,6 +20,7 @@
 /web/sites/default/files/
 /web/sites/default/services.yml
 /web/sites/default/settings.php
+/web/sites/default/settings.local.php
 
 # Ignore contrib modules.
 /web/modules/contrib
