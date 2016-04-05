@@ -40,6 +40,12 @@ class ProfilesFilterForm extends FormBase {
       '#default_value' => $search_query,
     ];
 
+    $form['filter']['quarantined'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Only show profiles with an active quarantine.'),
+      '#default_value' => $this->getRequest()->get('quarantined'),
+    ];
+
     $form['filter']['actions']['#type'] = 'actions';
     $form['filter']['actions']['submit'] = [
       '#type' => 'submit',
@@ -53,9 +59,17 @@ class ProfilesFilterForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $form_state->setRedirect('page_manager.page_view_dbcdk_community_profiles', [
-      'search' => $form_state->getValue('search'),
-    ]);
+    $route_parameters = [];
+    $fields = [
+      'search',
+      'quarantined',
+    ];
+    foreach ($fields as $field) {
+      if ($value = $form_state->getValue($field)) {
+        $route_parameters[$field] = $value;
+      }
+    }
+    $form_state->setRedirect('page_manager.page_view_dbcdk_community_profiles', $route_parameters);
   }
 
 }
