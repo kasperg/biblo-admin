@@ -7,9 +7,8 @@
 
 namespace Drupal\dbcdk_community\Plugin\Block;
 
-use DBCDK\CommunityServices\Api\ProfileApi;
-use DBCDK\CommunityServices\Api\QuarantineApi;
 use DBCDK\CommunityServices\ApiException;
+use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Model\Quarantine;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Datetime\DateFormatter;
@@ -19,6 +18,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
+use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -40,16 +40,9 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
   /**
    * The DBCDK Community Service Profile API.
    *
-   * @var ProfileApi $profileApi
+   * @var ProfileRepository $profileRepository
    */
-  protected $profileApi;
-
-  /**
-   * The DBCDK Community Service Quarantine API.
-   *
-   * @var QuarantineApi $quarantineApi
-   */
-  protected $quarantineApi;
+  protected $profileRepository;
 
   /**
    * Drupal's date formatter to format dates to Drupal Date Formats.
@@ -76,11 +69,10 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
    *   Drupal's date formatter to format dates to Drupal Date Formats.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileApi $profile_api, QuarantineApi $quarantine_api, DateFormatter $date_formatter) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileRepository $profile_repository, DateFormatter $date_formatter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
-    $this->profileApi = $profile_api;
-    $this->quarantineApi = $quarantine_api;
+    $this->profileRepository = $profile_repository;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -93,8 +85,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       $plugin_id,
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
-      $container->get('dbcdk_community.api.profile'),
-      $container->get('dbcdk_community.api.quarantine'),
+      $container->get('dbcdk_community.profile.profile_repository'),
       $container->get('date.formatter')
     );
   }
@@ -103,19 +94,8 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function build() {
-    $context_username = $this->getContextValue('username');
-    $quarantines = [];
     try {
-      // Fetch a Community Profile based on the username so we can the
-      // corresponding ID to fetch quarantines.
-      $profile_filter = [
-        'where' => [
-          'username' => $context_username,
-        ],
-      ];
-      $profile = $this->profileApi->profileFindOne(json_encode($profile_filter));
-
-      $quarantines = (array) $this->profileApi->profilePrototypeGetQuarantines($profile->getId(), json_encode(['order' => 'end DESC']));
+      $profile = $this->profileRepository->getProfileByUsername($this->getContextValue('username'));
     }
     catch (ApiException $e) {
       $this->logger->error($e);
@@ -132,8 +112,8 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       'end' => $this->t('End date'),
       'edit_link' => $this->t('Edit'),
     ];
-    foreach ($quarantines as $quarantine) {
-      $rows[] = $this->parseQuarantine($quarantine, $fields, $context_username);
+    foreach ($profile->quarantines as $quarantine) {
+      $rows[] = $this->parseQuarantine($quarantine, $fields, $this->getContextValue('username'));
     }
 
     // Build table of quarantines.
@@ -149,7 +129,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
     ];
 
     // Create quarantine link.
-    if (!empty($profile)) {
+    if (!empty($profile->getUsername())) {
       $build['add_quarantine'] = [
         '#type' => 'link',
         '#title' => $this->t('Create quarantine'),
