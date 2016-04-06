@@ -157,8 +157,15 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
         // The birthday field returns a DateTime object and should be formatted
         // with a Drupal Date Format instead.
         case 'birthday':
-          $date_formatter = \Drupal::service('date.formatter');
-          $value = $date_formatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_date');
+          // Make sure the date is a DateTime object before we try to use it as
+          // one. We do this to avoid fatal errors.
+          if ($profile->getBirthday() instanceof \DateTime) {
+            $date_formatter = \Drupal::service('date.formatter');
+            $value = $date_formatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_date');
+          }
+          else {
+            $value = '';
+          }
           break;
 
         // We have to allow HTML in the output of the description field since

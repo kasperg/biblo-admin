@@ -153,7 +153,9 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       '#type' => 'datetime',
       '#title' => $this->t('Birthday'),
       '#date_time_element' => 'none',
-      '#default_value' => DrupalDateTime::createFromDateTime($this->profile->getBirthday()),
+      // Make sure the date is a DateTime object before we try to use it as one.
+      // We do this to avoid fatal errors.
+      '#default_value' => ($this->profile->getBirthday() instanceof \DateTime) ? DrupalDateTime::createFromDateTime($this->profile->getBirthday()) : NULL,
     ];
 
     $form['roles'] = [
@@ -254,9 +256,13 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
         $value = $form_state->getValue($field);
         switch ($field) {
           case 'birthday':
-            $date = new \DateTime();
-            $date = $date->setTimestamp($value->getTimestamp());
-            $this->profile->{$setter}($date);
+            // Make sure the date is a DrupalDateTime object before we try to
+            // use it as one. We do this to avoid fatal errors.
+            if ($value instanceof DrupalDateTime) {
+              $date = new \DateTime();
+              $date = $date->setTimestamp($value->getTimestamp());
+              $this->profile->{$setter}($date);
+            }
             break;
 
           default:
