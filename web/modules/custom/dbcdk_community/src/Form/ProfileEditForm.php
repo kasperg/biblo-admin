@@ -152,6 +152,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     $form['birthday'] = [
       '#type' => 'datetime',
       '#title' => $this->t('Birthday'),
+      '#description' => $this->t('Day/Month/Year.'),
       '#date_time_element' => 'none',
       '#default_value' => DrupalDateTime::createFromDateTime($this->profile->getBirthday()),
     ];
