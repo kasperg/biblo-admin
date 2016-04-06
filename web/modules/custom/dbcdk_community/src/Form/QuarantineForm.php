@@ -9,13 +9,13 @@ namespace Drupal\dbcdk_community\Form;
 
 use DBCDK\CommunityServices\Api\QuarantineApi;
 use DBCDK\CommunityServices\ApiException;
-use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Model\Quarantine;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\dbcdk_community\Profile\Profile;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -40,7 +40,7 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
   /**
    * Community Service Profile from the context.
    *
-   * @var \DBCDK\CommunityServices\Model\Profile $profile
+   * @var |Drupal\dbcdk_community\Profile\Profile $profile
    */
   protected $profile;
 

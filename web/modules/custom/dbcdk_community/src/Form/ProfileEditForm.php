@@ -9,12 +9,12 @@ namespace Drupal\dbcdk_community\Form;
 
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\CommunityRole;
-use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\dbcdk_community\Profile\Profile;
 use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
 
   /**
-   * The DBCDK Community Service Profile API.
+   * The profile repository to use.
    *
    * @var \DBCDK\CommunityServices\Profile\ProfileRepository $profileRepository
    */
@@ -33,16 +33,16 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * The Community Service Profile object from the username context.
    *
-   * @var \DBCDK\CommunityServices\Model\Profile $profile
+   * @var Profile $profile
    */
   protected $profile;
 
   /**
    * Creates a Profile Edit Form instance.
    *
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
-   *   The DBCDK Community Service Profile API.
-   * @param \DBCDK\CommunityServices\Model\Profile $profile
+   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   *   The profile repository to use.
+   * @param \DBCDK\CommunityServices\Model\Profile|\Drupal\dbcdk_community\Profile\Profile $profile
    *   The DBCDK Community Profile object we wish to edit.
    * @param \DBCDK\CommunityServices\Model\CommunityRole[] $community_roles
    *   Results array with all possible Community Roles.
@@ -62,9 +62,8 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     $community_roles_api = $container->get('dbcdk_community.api.community_roles');
 
     try {
-      /* @var \DBCDK\CommunityServices\Model\Profile $profile */
       $profile = $profile_repository->getProfileByUsername($container->get('request_stack')->getCurrentRequest()->get('username'));
-   }
+    }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
       $profile = NULL;
@@ -132,11 +131,9 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       '#default_value' => DrupalDateTime::createFromDateTime($this->profile->getBirthday()),
     ];
 
-    // The generated Profile model does not have a public roles attribute but
-    // the repository will add it when retrieving the object.
     $profile_role_ids = array_map(function(CommunityRole $role) {
       return $role->getId();
-    }, $this->profile->roles);
+    }, $this->profile->getCommunityRoles());
 
     $all_role_options = array_reduce(
       $this->profileRepository->getCommunityRoles(),

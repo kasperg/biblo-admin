@@ -41,7 +41,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
   protected $formBuilder;
 
   /**
-   * The DBCDK Community Service Profile API.
+   * The profile repository to use.
    *
    * @var ProfileRepository $profileRepository
    */
@@ -96,10 +96,8 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin implementation definition.
    * @param FormBuilder $form_builder
    *   Drupal Cores form builder.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
-   *   The DBCDK Community Service Profile API.
-   * @param \DBCDK\CommunityServices\Api\QuarantineApi $quarantine_api
-   *   The DBCDK Community Service Quarantine API.
+   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   *   The profile repository to use.
    * @param \Drupal\dbcdk_community\Url\UrlGeneratorInterface $url_generator
    *   The generator to use when creating urls to the frontend site.
    * @param string $search_query

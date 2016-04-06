@@ -8,8 +8,8 @@
 namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\Model\CommunityRole;
-use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\ApiException;
+use Drupal\dbcdk_community\Profile\Profile;
 use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -33,7 +33,7 @@ use Drupal\Component\Utility\Xss;
 class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The DBCDK Community Service Profile API.
+   * The profile repository to use.
    *
    * @var ProfileRepository $profileRepository
    */
@@ -48,8 +48,8 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
-   *   The DBCDK Community Service Profile API.
+   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   *   The profile repository to use.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileRepository $profile_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -170,12 +170,10 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           ];
           break;
 
-        // The generated Profile model does not have a public roles attribute
-        // but the repository will add it when retrieving the object.
         case 'roles':
           $role_names = array_map(function(CommunityRole $role) {
             return $role->getName();
-          }, $profile->roles);
+          }, $profile->getCommunityRoles());
           $value = [
             'data' => [
               '#theme' => 'item_list',

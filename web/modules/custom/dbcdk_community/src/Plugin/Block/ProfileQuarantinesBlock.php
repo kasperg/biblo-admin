@@ -8,7 +8,6 @@
 namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
-use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Model\Quarantine;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Datetime\DateFormatter;
@@ -16,6 +15,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
+use Drupal\dbcdk_community\Profile\Profile;
 use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -35,7 +35,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The DBCDK Community Service Profile API.
+   * The profile repository to use.
    *
    * @var ProfileRepository $profileRepository
    */
@@ -57,10 +57,8 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
-   *   The DBCDK Community Service Profile API.
-   * @param \DBCDK\CommunityServices\Api\QuarantineApi $quarantine_api
-   *   The DBCDK Community Service Quarantine API.
+   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   *   The profile repository to use.
    * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
    *   Drupal's date formatter to format dates to Drupal Date Formats.
    */
@@ -95,7 +93,6 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       $profile = new Profile();
       // The generated Profile model does not have a public quarantines
       // attribute but the repository will add it when retrieving the object.
-      $profile->quarantines = [];
     }
 
     // Create an array of the fields we wish to display as columns in our table.
@@ -108,7 +105,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       'end' => $this->t('End date'),
       'edit_link' => $this->t('Edit'),
     ];
-    foreach ($profile->quarantines as $quarantine) {
+    foreach ($profile->getQuarantines() as $quarantine) {
       $rows[] = $this->parseQuarantine($quarantine, $fields, $this->getContextValue('username'));
     }
 
