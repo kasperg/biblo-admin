@@ -8,10 +8,10 @@
 namespace Drupal\dbcdk_community\Plugin\Block;
 
 use DBCDK\CommunityServices\Model\CommunityRole;
-use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\ApiException;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
+use Drupal\dbcdk_community\Profile\Profile;
 use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -36,7 +36,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
   use LoggerAwareTrait;
 
   /**
-   * The DBCDK Community Service Profile API.
+   * The profile repository to use.
    *
    * @var ProfileRepository $profileRepository
    */
@@ -53,8 +53,8 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin implementation definition.
    * @param \Psr\Log\LoggerInterface $logger
    *   The logger to use.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
-   *   The DBCDK Community Service Profile API.
+   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   *   The profile repository to use.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileRepository $profile_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -185,12 +185,10 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           ];
           break;
 
-        // The generated Profile model does not have a public roles attribute
-        // but the repository will add it when retrieving the object.
         case 'roles':
           $role_names = array_map(function(CommunityRole $role) {
             return $role->getName();
-          }, $profile->roles);
+          }, $profile->getCommunityRoles());
           $value = [
             'data' => [
               '#theme' => 'item_list',

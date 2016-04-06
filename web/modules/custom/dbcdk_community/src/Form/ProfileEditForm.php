@@ -9,7 +9,6 @@ namespace Drupal\dbcdk_community\Form;
 
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\CommunityRole;
-use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
@@ -17,6 +16,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
+use Drupal\dbcdk_community\Profile\Profile;
 use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -27,7 +27,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   use LoggerAwareTrait;
 
   /**
-   * The DBCDK Community Service Profile API.
+   * The profile repository to use.
    *
    * @var \Drupal\dbcdk_community\Profile\ProfileRepository $profileRepository
    */
@@ -36,7 +36,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * The Community Service Profile object from the username context.
    *
-   * @var \DBCDK\CommunityServices\Model\Profile $profile
+   * @var \Drupal\dbcdk_community\Profile\Profile $profile
    */
   protected $profile;
 
@@ -66,9 +66,8 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     $logger = $container->get('dbcdk_community.logger');
 
     try {
-      /* @var \DBCDK\CommunityServices\Model\Profile $profile */
       $profile = $profile_repository->getProfileByUsername($container->get('request_stack')->getCurrentRequest()->get('username'));
-   }
+    }
     catch (ApiException $e) {
       $logger->error($e);
       $profile = NULL;
@@ -140,11 +139,9 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       '#default_value' => ($this->profile->getBirthday() instanceof \DateTime) ? DrupalDateTime::createFromDateTime($this->profile->getBirthday()) : NULL,
     ];
 
-    // The generated Profile model does not have a public roles attribute but
-    // the repository will add it when retrieving the object.
     $profile_role_ids = array_map(function(CommunityRole $role) {
       return $role->getId();
-    }, $this->profile->roles);
+    }, $this->profile->getCommunityRoles());
 
     $all_role_options = array_reduce(
       $this->profileRepository->getCommunityRoles(),
