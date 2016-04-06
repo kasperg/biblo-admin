@@ -134,7 +134,7 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
       '#type' => 'datetime',
       '#title' => $this->t('End date'),
       '#date_time_element' => 'none',
-      '#default_value' => empty($this->quarantine) ? new DrupalDateTime() : DrupalDateTime::createFromDateTime($this->quarantine->getEnd()),
+      '#default_value' => empty($this->quarantine) ? new DrupalDateTime('+1 day') : DrupalDateTime::createFromDateTime($this->quarantine->getEnd()),
       '#required' => TRUE,
     ];
 
