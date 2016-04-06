@@ -221,9 +221,14 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       else {
         $profiles = (array) $this->profileApi->profileFind(json_encode($filter));
 
-        // TODO: Fix the failing "profileCount()" method so we don't have to
-        // fetch all results to get a total of profiles.
-        $profile_count = count($this->profileApi->profileFind());
+        // The "profileCount()" method doesn't work so we remove the "limit" and
+        // "offset" filter arguments to fetch all profiles to make a total-count
+        // by ourselves.
+        // @TODO: Remove the "unsets" when we can use the "profileCount()"
+        // method from the swagger generated community service client.
+        unset($filter['limit']);
+        unset($filter['offset']);
+        $profile_count = count((array) $this->profileApi->profileFind(json_encode($filter)));
       }
     }
     catch (ApiException $e) {
