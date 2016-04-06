@@ -7,9 +7,12 @@
 
 namespace Drupal\dbcdk_community\Plugin\Block;
 
+use DBCDK\CommunityServices\Model\CommunityRole;
 use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Api\ProfileApi;
+use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -37,9 +40,9 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
   /**
    * The DBCDK Community Service Profile API.
    *
-   * @var ProfileApi $profileApi
+   * @var ProfileRepository $profileRepository
    */
-  protected $profileApi;
+  protected $profileRepository;
 
   /**
    * Creates a Profiles Block instance.
@@ -52,13 +55,16 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin implementation definition.
    * @param \Psr\Log\LoggerInterface $logger
    *   The logger to use.
-   * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
-   *   The DBCDK Community Service Profile API.
+   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   *   The DBCDK Community Profile Repository.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   Drupal's date-formatter service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileApi $profile_api) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileRepository $profile_repository, DateFormatterInterface $date_formatter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
-    $this->profileApi = $profile_api;
+    $this->profileRepository = $profile_repository;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -70,7 +76,8 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $plugin_id,
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
-      $container->get('dbcdk_community.api.profile')
+      $container->get('dbcdk_community.profile.profile_repository'),
+      $container->get('date.formatter')
     );
   }
 
@@ -82,14 +89,10 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
     // exceptions and log them so the site can continue running and display an
     // empty table instead of a fatal error.
     $profile = NULL;
-    $username = $this->getContext('username')->getContextData()->getValue();
     try {
-      $filter = [
-        'where' => [
-          'username' => $username,
-        ],
-      ];
-      $profile = $this->profileApi->profileFindOne(json_encode($filter));
+      $profile = $this->profileRepository->getProfileByUsername(
+        $this->getContextValue('username')
+      );
     }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
@@ -188,18 +191,18 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           ];
           break;
 
-        // The profile doesn't contain its roles so we cannot get the value as
-        // a regular property so we have to make a separate request for roles.
-        // The display of this field is also different than a single string
-        // value since we would like the roles to be presented as a list to make
-        // it easier overview.
+        // The generated Profile model does not have a public roles attribute
+        // but the repository will add it when retrieving the object.
         case 'roles':
+          $role_names = array_map(function(CommunityRole $role) {
+            return $role->getName();
+          }, $profile->roles);
           $value = [
             'data' => [
               '#theme' => 'item_list',
               '#list_type' => 'ul',
               '#empty' => $this->t('This user has no roles.'),
-              '#items' => $this->getProfileRoles($profile),
+              '#items' => $role_names,
             ],
           ];
           break;
@@ -239,36 +242,6 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
     }
 
     return $rows;
-  }
-
-  /**
-   * Get a Community Profile's Roles.
-   *
-   * @param \DBCDK\CommunityServices\Model\Profile $profile
-   *   The Community Profile.
-   *
-   * @return array
-   *   Return an array of the Profile's Community Roles.
-   */
-  protected function getProfileRoles(Profile $profile) {
-    $list_items = [];
-    $community_roles = [];
-    // The Swagger-compiled Community Profile Model does not support Community
-    // Roles when using "include" to get the profile. The response from the
-    // service includes it but the model does not care about it, so we have to
-    // handle this with a separate call.
-    try {
-      $community_roles = (array) $this->profileApi->profilePrototypeGetCommunityRoles($profile->getId());
-    }
-    catch (ApiException $e) {
-      $this->logger->error($e);
-    }
-
-    foreach ($community_roles as $role) {
-      $list_items[] = $role->getName();
-    }
-
-    return $list_items;
   }
 
   /**
