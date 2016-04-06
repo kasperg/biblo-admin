@@ -11,7 +11,7 @@ use DBCDK\CommunityServices\Api\CommunityRoleApi;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\Api\QuarantineApi;
 use DBCDK\CommunityServices\Model\CommunityRole;
-use DBCDK\CommunityServices\Model\Profile;
+use DBCDK\CommunityServices\Model\Profile as ModelProfile;
 use DBCDK\CommunityServices\Model\Quarantine;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
@@ -83,7 +83,7 @@ class ProfileRepository {
    * @param int $id
    *   The profile id to retrieve.
    *
-   * @return \DBCDK\CommunityServices\Model\Profile|
+   * @return Profile|NULL
    *   The profile corresponding to the id. NULL if no profile is found.
    *
    * @throws \DBCDK\CommunityServices\ApiException
@@ -102,7 +102,7 @@ class ProfileRepository {
    * @param string $username
    *   The username for the profile to retrieve.
    *
-   * @return \DBCDK\CommunityServices\Model\Profile|NULL
+   * @return Profile|NULL
    *   The profile corresponding to the username. NULL if no profile is found.
    *
    * @throws \DBCDK\CommunityServices\ApiException
@@ -121,7 +121,7 @@ class ProfileRepository {
    * @param array $filter
    *   The filter to use for retrieving the profile.
    *
-   * @return \DBCDK\CommunityServices\Model\Profile|NULL
+   * @return Profile|NULL
    *   The profile corresponding to the filter. NULL if no profiles match.
    *
    * @throws \DBCDK\CommunityServices\ApiException
@@ -130,8 +130,7 @@ class ProfileRepository {
   protected function findProfile(array $filter) {
     $profile = $this->profileApi->profileFindOne($this->processFilter($filter));
     if (!empty($profile)) {
-      $profile->roles = (array) $this->profileApi->profilePrototypeGetCommunityRoles($profile->getId());
-      $profile->quarantines = (array) $this->profileApi->profilePrototypeGetQuarantines($profile->getId());
+      $profile = $this->enrichProfile($profile);
     }
     return $profile;
   }
@@ -142,7 +141,7 @@ class ProfileRepository {
    * @param array $filter
    *   The filter to use.
    *
-   * @return Profile[]
+   * @return \DBCDK\CommunityServices\Model\Profile[]
    *   The matching profiles.
    *
    * @throws \DBCDK\CommunityServices\ApiException
@@ -167,6 +166,24 @@ class ProfileRepository {
   }
 
   /**
+   * Enrich a "flat" profile object.
+   *
+   * This adds details about community roles and quarantines.
+   *
+   * @param ModelProfile $profile
+   *   The original profile object.
+   *
+   * @return Profile
+   *   The profile object enriched with details about it.
+   */
+  public function enrichProfile(ModelProfile $profile) {
+    $profile = new Profile($profile);
+    $profile->setCommunityRoles((array) $this->profileApi->profilePrototypeGetCommunityRoles($profile->getId()));
+    $profile->setQuarantines((array) $this->profileApi->profilePrototypeGetQuarantines($profile->getId()));
+    return $profile;
+  }
+
+  /**
    * Get all quarantined profiles.
    *
    * @param array $profiles_filter
@@ -182,9 +199,7 @@ class ProfileRepository {
     $quarantines = $this->getActiveQuarantines();
 
     // Use the array of quarantined ids as "where" arguments.
-    $profiles_filter['where']['or'] = array_map(function(Quarantine $quarantine) {
-      return ['id' => $quarantine->getQuarantinedProfileId()];
-    }, $quarantines);
+    $profiles_filter['where']['or'] = $this->getQuarantinedProfilesFilter($quarantines);
 
     return (array) $this->profileApi->profileFind($this->processFilter($profiles_filter));
   }
@@ -206,9 +221,7 @@ class ProfileRepository {
     $quarantines = $this->getActiveQuarantines();
 
     // Use the array of quarantined ids as "where" arguments.
-    $profiles_filter['or'] = array_map(function(Quarantine $quarantine) {
-      return ['id' => $quarantine->getQuarantinedProfileId()];
-    }, $quarantines);
+    $profiles_filter['or'] = $this->getQuarantinedProfilesFilter($quarantines);
 
     $result = $this->profileApi->profileCount($this->processFilter($profiles_filter));
     return (isset($result['count'])) ? $result['count'] : NULL;
@@ -241,18 +254,33 @@ class ProfileRepository {
         ],
       ],
     ];
-    $quarantines = (array) $this->quarantineApi->quarantineFind(
+    return (array) $this->quarantineApi->quarantineFind(
       $this->processFilter($quarantined_filter)
     );
+  }
 
-    // Reduce all the quarantines to an array of quarantined profile ids.
-    // We do this to make sure a profile id only appears once since we use these
-    // values as "Where" arguments for the next request to the service, and a
-    // profile can have multiple quarantines at the same time.
-    $quarantined_profile_ids = array_map(function(Quarantine $quarantine) {
-      return $quarantine->getQuarantinedProfileId();
+  /**
+   * Build an array of quarantined profile ids suitable for API filtering.
+   *
+   * @param Quarantine[] $quarantines
+   *   The quarantines to get profiles from.
+   *
+   * @return array
+   *   A filter array.
+   */
+  protected function getQuarantinedProfilesFilter(array $quarantines) {
+    $filter = array_map(function (Quarantine $quarantine) {
+        return ['id' => $quarantine->getQuarantinedProfileId()];
     }, $quarantines);
-    return array_unique($quarantined_profile_ids);
+
+    // Multiple quarantines can belong to the same profile resulting in the same
+    // id occurring multiple times. That is unnecessary so remove this.
+    // Use SORT_REGULAR to support array comparison.
+    $filter = array_unique($filter, SORT_REGULAR);
+    // array_unique preserves keys for entries. This results in the filter
+    // behaving like a map instead of an array. This may later on cause problems
+    // when filters are converted to JSON. Reset keys to avoid this.
+    return array_values($filter);
   }
 
   /**
@@ -296,14 +324,14 @@ class ProfileRepository {
    * @throws \DBCDK\CommunityServices\ApiException
    *   Throws API Exception if the roles could not be added/removed.
    */
-  public function updateProfileRoles(Profile $profile, $new_role_ids) {
+  public function updateProfileRoles(Profile $profile, array $new_role_ids) {
     // Format an array of the profiles role ids before any update has happened.
     // The generated Profile model does not have a public roles attribute but
     // the repository will add it when retrieving the object.
     // @see ProfileRepository::findProfile.
     $old_role_ids = array_map(function(CommunityRole $role) {
       return $role->getId();
-    }, $profile->roles);
+    }, $profile->getCommunityRoles());
 
     // We find the difference from the new roles and the old once to see if any
     // roles have to be added to the community profile.
