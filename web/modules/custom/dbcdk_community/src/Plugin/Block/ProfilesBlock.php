@@ -7,11 +7,9 @@
 
 namespace Drupal\dbcdk_community\Plugin\Block;
 
-use DBCDK\CommunityServices\Api\ProfileApi;
-use DBCDK\CommunityServices\Api\QuarantineApi;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
-use DBCDK\CommunityServices\Model\Quarantine;
+use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
@@ -45,16 +43,9 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
   /**
    * The DBCDK Community Service Profile API.
    *
-   * @var \DBCDK\CommunityServices\Api\ProfileApi $profileApi
+   * @var ProfileRepository $profileRepository
    */
-  protected $profileApi;
-
-  /**
-   * The DBCDK Community Service Quarantine API.
-   *
-   * @var \DBCDK\CommunityServices\Api\QuarantineApi $quarantineApi
-   */
-  protected $quarantineApi;
+  protected $profileRepository;
 
   /**
    * Generator to use when creating urls for community content on frontend site.
@@ -118,11 +109,10 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    * @param int $quarantined_filter
    *   If the table should be filtered by quarantined profiles.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilder $form_builder, ProfileApi $profile_api, QuarantineApi $quarantine_api, UrlGeneratorInterface $url_generator, $search_query, $page_number, $quarantined_filter) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilder $form_builder, ProfileRepository $profile_repository, UrlGeneratorInterface $url_generator, $search_query, $page_number, $quarantined_filter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->formBuilder = $form_builder;
-    $this->profileApi = $profile_api;
-    $this->quarantineApi = $quarantine_api;
+    $this->profileRepository = $profile_repository;
     $this->urlGenerator = $url_generator;
     $this->searchQuery = $search_query;
     $this->pageNumber = $page_number;
@@ -150,8 +140,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $plugin_id,
       $plugin_definition,
       $container->get('form_builder'),
-      $container->get('dbcdk_community.api.profile'),
-      $container->get('dbcdk_community.api.quarantine'),
+      $container->get('dbcdk_community.profile.profile_repository'),
       $url_generator,
       $container->get('request_stack')->getCurrentRequest()->query->get('search'),
       $container->get('request_stack')->getCurrentRequest()->query->get('page'),
@@ -193,23 +182,27 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $profiles = [];
     $profile_count = 0;
     try {
-      $filter = [
+      $filter = [];
+      if (!empty($this->searchQuery)) {
+        $filter['where']['username'] = ['like' => '%' . $this->searchQuery . '%'];
+      }
+      $page_filter = array_merge($filter, [
         'order' => 'username ASC',
         'limit' => $this->pagerLimit,
         'offset' => $this->pageNumber * $this->pagerLimit,
-      ];
+      ]);
       if (!empty($this->searchQuery)) {
         $filter['where']['username'] = ['like' => '%' . $this->searchQuery . '%'];
       }
       // Fetch a list or profiles with an active quarantine.
       if ($this->quarantinedFilter) {
-        $profiles = (array) $this->getQuarantinedProfiles($filter);
-        $profile_count = $this->getQuarantinedProfilesCount($filter);
+        $profiles = $this->profileRepository->getQuarantinedProfiles($page_filter);
+        $profile_count = $this->profileRepository->countQuarantinedProfiles($filter);
       }
       // Fetch a list of profiles.
       else {
-        $profiles = (array) $this->profileApi->profileFind(json_encode($filter));
-        $profile_count = $this->profileApi->profileCount()['count'];
+        $profiles = $this->profileRepository->getProfiles($page_filter);
+        $profile_count = $this->profileRepository->countProfiles($filter);
       }
     }
     catch (ApiException $e) {
@@ -234,85 +227,6 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $build['pager'] = $this->buildPager($profile_count, $this->pagerLimit, 5);
 
     return $build;
-  }
-
-  /**
-   * Get all quarantined profiles.
-   *
-   * @param array $profiles_filter
-   *   An array containing filter arguments.
-   *
-   * @throws \DBCDK\CommunityServices\ApiException
-   *   Throws API Exception if any of the calls to the services fails.
-   *
-   * @return \DBCDK\CommunityServices\Model\Profile[] $profiles
-   *   An array of Profile objects with an active quarantine.
-   */
-  protected function getQuarantinedProfiles(array $profiles_filter) {
-    // Fetch all quarantines that are active from the moment of the request.
-    $quarantined_filter = [
-      'where' => [
-        'end' => [
-          // The string should be in a format recognized by the Date.parse()
-          // method which is ISO-8601 in our case.
-          // @See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date
-          'gt' => date(\DateTime::ATOM),
-        ],
-      ],
-    ];
-    $quarantines = (array) $this->quarantineApi->quarantineFind(json_encode($quarantined_filter));
-
-    // Reduce all the quarantines to an array of quarantined profile ids.
-    // We do this to make sure a profile id only appears once since we use these
-    // values as "Where" arguments for the next request to the service, and a
-    // profile can have multiple quarantines at the same time.
-    $quarantine_ids = array_reduce($quarantines, function($result, Quarantine $quarantine) {
-      $result[$quarantine->getQuarantinedProfileId()] = ['id' => $quarantine->getQuarantinedProfileId()];
-      return $result;
-    });
-
-    // Reset array keys so json_encode() will handle the ids as an indexed array
-    // and not an associative array.
-    $quarantine_ids = array_values($quarantine_ids);
-
-    // Use the array of quarantined ids as "where" arguments.
-    $profiles_filter['where']['or'] = $quarantine_ids;
-
-    return (array) $this->profileApi->profileFind(json_encode($profiles_filter));
-  }
-
-  protected function getQuarantinedProfilesCount() {
-    // Fetch all quarantines that are active from the moment of the request.
-    $quarantined_filter = [
-      'where' => [
-        'end' => [
-          // The string should be in a format recognized by the Date.parse()
-          // method which is ISO-8601 in our case.
-          // @See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date
-          'gt' => date(\DateTime::ATOM),
-        ],
-      ],
-    ];
-    $quarantines = (array) $this->quarantineApi->quarantineFind(json_encode($quarantined_filter));
-
-    // Reduce all the quarantines to an array of quarantined profile ids.
-    // We do this to make sure a profile id only appears once since we use these
-    // values as "Where" arguments for the next request to the service, and a
-    // profile can have multiple quarantines at the same time.
-    $quarantine_ids = array_reduce($quarantines, function($result, Quarantine $quarantine) {
-      $result[$quarantine->getQuarantinedProfileId()] = ['id' => $quarantine->getQuarantinedProfileId()];
-      return $result;
-    });
-
-    // Reset array keys so json_encode() will handle the ids as an indexed array
-    // and not an associative array.
-    $quarantine_ids = array_values($quarantine_ids);
-
-    // Use the array of quarantined ids as "where" arguments.
-    $profiles_filter['or'] = $quarantine_ids;
-
-    $result = $this->profileApi->profileCount(json_encode($profiles_filter));
-    return $result['count'];
   }
 
   /**

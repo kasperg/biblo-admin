@@ -8,7 +8,6 @@
 namespace Drupal\dbcdk_community\Form;
 
 use DBCDK\CommunityServices\ApiException;
-use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\Model\CommunityRole;
 use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -16,6 +15,7 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -26,9 +26,9 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * The DBCDK Community Service Profile API.
    *
-   * @var \DBCDK\CommunityServices\Api\ProfileApi $profileApi
+   * @var \DBCDK\CommunityServices\Profile\ProfileRepository $profileRepository
    */
-  protected $profileApi;
+  protected $profileRepository;
 
   /**
    * The Community Service Profile object from the username context.
@@ -36,13 +36,6 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * @var \DBCDK\CommunityServices\Model\Profile $profile
    */
   protected $profile;
-
-  /**
-   * Array of all defined community roles.
-   *
-   * @var \DBCDK\CommunityServices\Model\CommunityRole[] $communityRoles
-   */
-  protected $communityRoles;
 
   /**
    * Creates a Profile Edit Form instance.
@@ -54,9 +47,8 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * @param \DBCDK\CommunityServices\Model\CommunityRole[] $community_roles
    *   Results array with all possible Community Roles.
    */
-  public function __construct(ProfileApi $profile_api, Profile $profile = NULL, array $community_roles = []) {
-    $this->profileApi = $profile_api;
-    $this->communityRoles = $community_roles;
+  public function __construct(ProfileRepository $profile_repository, Profile $profile = NULL, array $community_roles = []) {
+    $this->profileRepository = $profile_repository;
     $this->profile = $profile;
   }
 
@@ -64,39 +56,23 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    $profile_api = $container->get('dbcdk_community.api.profile');
+    /* @var ProfileRepository $profile_repository */
+    $profile_repository = $container->get('dbcdk_community.profile.profile_repository');
+    /* @var CommunityRoleApi $community_roles_api */
     $community_roles_api = $container->get('dbcdk_community.api.community_roles');
 
     try {
-      // Get the profile we wish to alter with the form.
-      $filter = [
-        'where' => [
-          'username' => $container->get('request_stack')->getCurrentRequest()->get('username'),
-        ],
-      ];
       /* @var \DBCDK\CommunityServices\Model\Profile $profile */
-      $profile = $profile_api->profileFindOne(json_encode($filter));
-      // The Swagger-compiled Community Profile Model does not support Community
-      // Roles when using "include" to get the profile. The response from the
-      // service includes it but the model does not care about it, so we have to
-      // handle this with a separate call.
-      $profile->communityRoles = (array) $profile_api->profilePrototypeGetCommunityRoles($profile->getId());
-
-      // Get all possible Community Roles. This will be used to give a moderator
-      // the possibility to grant roles the profile does not yet have.
-      /* @var \DBCDK\CommunityServices\Model\CommunityRole[] $community_roles */
-      $community_roles = (array) $community_roles_api->communityRoleFind();
-    }
+      $profile = $profile_repository->getProfileByUsername($container->get('request_stack')->getCurrentRequest()->get('username'));
+   }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
       $profile = NULL;
-      $community_roles = [];
     }
 
     return new static(
-      $profile_api,
-      $profile,
-      $community_roles
+      $profile_repository,
+      $profile
     );
   }
 
@@ -156,16 +132,24 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       '#default_value' => DrupalDateTime::createFromDateTime($this->profile->getBirthday()),
     ];
 
+    // The generated Profile model does not have a public roles attribute but
+    // the repository will add it when retrieving the object.
+    $profile_role_ids = array_map(function(CommunityRole $role) {
+      return $role->getId();
+    }, $this->profile->roles);
+
+    $all_role_options = array_reduce(
+      $this->profileRepository->getCommunityRoles(),
+      function ($result, CommunityRole $role) {
+        $result[$role->getId()] = $role->getName();
+        return $result;
+      }
+    );
     $form['roles'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Roles'),
-      '#default_value' => array_map(function($role) {
-        return $role->getId();
-      }, $this->profile->communityRoles),
-      '#options' => array_reduce($this->communityRoles, function($result, $role) {
-        $result[$role->getId()] = $role->getName();
-        return $result;
-      }),
+      '#default_value' => $profile_role_ids,
+      '#options' => $all_role_options,
     ];
 
     $form['description'] = [
@@ -214,7 +198,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       // unselected elements so we have to filter away any elements that are
       // considered false.
       $role_ids = array_filter($form_state->getValue('roles'));
-      $this->updateProfileRoles($role_ids);
+      $this->profileRepository->updateProfileRoles($this->profile, $role_ids);
     }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
@@ -266,42 +250,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       }
     }
 
-    return $this->profileApi->profileUpsert($this->profile);
-  }
-
-  /**
-   * Update a Community Profile's roles.
-   *
-   * Find out if we have to remove or add any roles from a Community Profile
-   * based on values from $form_state and the current Community Profile's roles.
-   *
-   * @param array $new_role_ids
-   *   An array of new role ids.
-   *
-   * @throws \DBCDK\CommunityServices\ApiException
-   *   Throws API Exception if the roles could not be added/removed.
-   */
-  protected function updateProfileRoles(array $new_role_ids) {
-    // Format an array of the profile's role ids before any update has happened.
-    $old_role_ids = array_map(function(CommunityRole $role) {
-      return $role->getId();
-    }, $this->profile->communityRoles);
-
-    // We find the difference from the new roles and the old once to see if any
-    // roles have to be added to the community profile.
-    if ($add_roles = array_diff($new_role_ids, $old_role_ids)) {
-      foreach ($add_roles as $role) {
-        $this->profileApi->profilePrototypeLinkCommunityRoles($role, $this->profile->getId());
-      }
-    };
-
-    // We find the difference from the old roles and the new once to see if any
-    // roles have to be removed from the community profile.
-    if ($remove_roles = array_diff($old_role_ids, $new_role_ids)) {
-      foreach ($remove_roles as $role) {
-        $this->profileApi->profilePrototypeUnlinkCommunityRoles($role, $this->profile->getId());
-      }
-    };
+    return $this->profileRepository->saveProfile($this->profile);
   }
 
 }

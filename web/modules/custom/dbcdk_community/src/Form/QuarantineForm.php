@@ -75,13 +75,9 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
         $quarantine = NULL;
       }
 
-      $profile_filter = [
-        'where' => [
-          'username' => $container->get('request_stack')->getCurrentRequest()->get('username'),
-        ],
-      ];
-      $profile_api = $container->get('dbcdk_community.api.profile');
-      $profile = $profile_api->profileFindOne(json_encode($profile_filter));
+      /* @var \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository */
+      $profile_repository = $container->get('dbcdk_community.profile.profile_repository');
+      $profile = $profile_repository->getProfileByUsername($container->get('request_stack')->getCurrentRequest()->get('username'));
     }
     catch (ApiException $e) {
       \Drupal::logger('DBCDK Community Service')->error($e);
