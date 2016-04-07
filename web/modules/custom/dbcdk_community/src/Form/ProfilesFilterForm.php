@@ -27,11 +27,12 @@ class ProfilesFilterForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $search_query = $this->getRequest()->get('search');
+    $quarantined = $this->getRequest()->get('quarantined');
 
     $form['filter'] = [
       '#type' => 'details',
       '#title' => $this->t('Filter list'),
-      '#open' => empty($search_query) ? FALSE : TRUE,
+      '#open' => (bool) $search_query || $quarantined,
     ];
 
     $form['filter']['search'] = [
@@ -43,7 +44,7 @@ class ProfilesFilterForm extends FormBase {
     $form['filter']['quarantined'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Only show profiles with an active quarantine.'),
-      '#default_value' => $this->getRequest()->get('quarantined'),
+      '#default_value' => $quarantined,
     ];
 
     $form['filter']['actions']['#type'] = 'actions';
