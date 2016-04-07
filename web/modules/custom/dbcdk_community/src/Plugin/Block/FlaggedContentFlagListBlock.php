@@ -13,6 +13,7 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Form\FormBuilder;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\dbcdk_community\Content\FlaggableContentRepository;
@@ -30,6 +31,7 @@ use DBCDK\CommunityServices\Api\ProfileApi;
  * )
  */
 class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryPluginInterface {
+  use LoggerAwareTrait;
 
   /**
    * The repository to use for retrieving flaggable content to show in the list.
@@ -58,13 +60,6 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
    * @var DateFormatterInterface
    */
   protected $dateFormatter;
-
-  /**
-   * The logger to use.
-   *
-   * @var LoggerInterface
-   */
-  protected $logger;
 
   /**
    * Construct.
@@ -108,14 +103,11 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    /* @var \Drupal\Core\Logger\LoggerChannelFactory $logger_factory */
-    $logger_factory = $container->get('logger.factory');
-
     return new static(
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $logger_factory->get('DBCDK Community Service'),
+      $container->get('dbcdk_community.logger'),
       $container->get('dbcdk_community.content.flaggable_content_repository'),
       $container->get('dbcdk_community.api.profile'),
       $container->get('form_builder'),

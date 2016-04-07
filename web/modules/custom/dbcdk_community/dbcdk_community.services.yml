@@ -1,4 +1,9 @@
 services:
+  dbcdk_community.logger:
+    class: Psr\Log\LoggerInterface
+    factory: ['@logger.factory', get]
+    arguments:
+      - 'DBCDK Community Service'
   dbcdk_community.api.configuration:
     class: Drupal\dbcdk_community\CommunityApiConfiguration
   dbcdk_community.api.client:

@@ -10,6 +10,7 @@ use DBCDK\CommunityServices\Api\FlagApi;
 use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -17,6 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Form for marking a list of flags.
  */
 class FlagsMarkReadForm extends FormBase {
+  use LoggerAwareTrait;
 
   /**
    * The flag API to use when marking flags as read.
@@ -24,13 +26,6 @@ class FlagsMarkReadForm extends FormBase {
    * @var \DBCDK\CommunityServices\Api\FlagApi
    */
   protected $flagApi;
-
-  /**
-   * The logger to use.
-   *
-   * @var LoggerInterface
-   */
-  protected $logger;
 
   /**
    * FlagsMarkReadForm constructor.
@@ -49,11 +44,8 @@ class FlagsMarkReadForm extends FormBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    /* @var \Drupal\Core\Logger\LoggerChannelFactory $logger_factory */
-    $logger_factory = $container->get('logger.factory');
-
     return new static(
-      $logger_factory->get('DBCDK Community Service'),
+      $container->get('dbcdk_community.logger'),
       $container->get('dbcdk_community.api.flag')
     );
   }

@@ -17,6 +17,7 @@ use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Drupal\dbcdk_community\Url\ModelUrlGenerator;
 use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
 use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -29,6 +30,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInterface {
+  use LoggerAwareTrait;
 
   /**
    * The repository to use when retrieving flagged content.
@@ -50,13 +52,6 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
    * @var DateFormatterInterface
    */
   protected $dateFormatter;
-
-  /**
-   * The logger to use.
-   *
-   * @var LoggerInterface $logger
-   */
-  protected $logger;
 
   /**
    * FlaggedContentList constructor.

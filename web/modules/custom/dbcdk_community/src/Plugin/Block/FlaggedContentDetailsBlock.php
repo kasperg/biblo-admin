@@ -17,6 +17,7 @@ use Drupal\Core\Url;
 use Drupal\dbcdk_community\Url\ModelUrlGenerator;
 use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
 use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\dbcdk_community\Content\FlaggableContentRepository;
@@ -33,6 +34,7 @@ use Drupal\dbcdk_community\Content\FlaggableContentRepository;
  * )
  */
 class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPluginInterface {
+  use LoggerAwareTrait;
 
   /**
    * The repository to use when retrieving flaggable content.
@@ -61,13 +63,6 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
    * @var DateFormatterInterface
    */
   protected $dateFormatter;
-
-  /**
-   * The logger to use.
-   *
-   * @var LoggerInterface
-   */
-  protected $logger;
 
   /**
    * Construct.
@@ -111,9 +106,6 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    /* @var \Drupal\Core\Logger\LoggerChannelFactory $logger_factory */
-    $logger_factory = $container->get('logger.factory');
-
     // Setup url generation for flaggable content.
     /* @var \Drupal\Core\Config\Config $config */
     $config = $container->get('config.factory')->get('dbcdk_community.settings');
@@ -136,7 +128,7 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $logger_factory->get('DBCDK Community Service'),
+      $container->get('dbcdk_community.logger'),
       $container->get('dbcdk_community.content.flaggable_content_repository'),
       $container->get('dbcdk_community.api.profile'),
       $url_generator,

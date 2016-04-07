@@ -12,6 +12,8 @@ use DBCDK\CommunityServices\Api\QuarantineApi;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Model\Quarantine;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
@@ -34,6 +36,7 @@ use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
  * )
  */
 class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface {
+  use LoggerAwareTrait;
 
   /**
    * Drupal Form Builder.
@@ -118,8 +121,9 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    * @param int $quarantined_filter
    *   If the table should be filtered by quarantined profiles.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilder $form_builder, ProfileApi $profile_api, QuarantineApi $quarantine_api, UrlGeneratorInterface $url_generator, $search_query, $page_number, $quarantined_filter) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, FormBuilder $form_builder, ProfileApi $profile_api, QuarantineApi $quarantine_api, UrlGeneratorInterface $url_generator, $search_query, $page_number, $quarantined_filter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->logger = $logger;
     $this->formBuilder = $form_builder;
     $this->profileApi = $profile_api;
     $this->quarantineApi = $quarantine_api;
@@ -149,6 +153,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $container->get('dbcdk_community.logger'),
       $container->get('form_builder'),
       $container->get('dbcdk_community.api.profile'),
       $container->get('dbcdk_community.api.quarantine'),
@@ -218,7 +223,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $this->logger->error($e);
     }
 
     $build = [];

@@ -16,12 +16,15 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Create or edit a Community Quarantine.
  */
 class QuarantineForm extends FormBase implements ContainerInjectionInterface {
+  use LoggerAwareTrait;
 
   /**
    * Community Service Quarantine API.
@@ -47,6 +50,8 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
   /**
    * QuarantineForm constructor.
    *
+   * @param \Psr\Log\LoggerInterface $logger
+   *   The Logger to use.
    * @param \DBCDK\CommunityServices\Api\QuarantineApi $quarantine_api
    *   The Community Service Quarantine API.
    * @param \DBCDK\CommunityServices\Model\Quarantine $quarantine
@@ -54,7 +59,8 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
    * @param \DBCDK\CommunityServices\Model\Profile $profile
    *   The Community Profile we wish to alter a quarantine on.
    */
-  public function __construct(QuarantineApi $quarantine_api, Quarantine $quarantine = NULL, Profile $profile = NULL) {
+  public function __construct(LoggerInterface $logger, QuarantineApi $quarantine_api, Quarantine $quarantine = NULL, Profile $profile = NULL) {
+    $this->logger = $logger;
     $this->quarantineApi = $quarantine_api;
     $this->quarantine = $quarantine;
     $this->profile = $profile;
@@ -64,9 +70,12 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    try {
-      $quarantine_api = $container->get('dbcdk_community.api.quarantine');
+    /* @var LoggerInterface $logger */
+    $logger = $container->get('dbcdk_community.logger');
+    /* @var QuarantineApi $quarantine_api */
+    $quarantine_api = $container->get('dbcdk_community.api.quarantine');
 
+    try {
       // Set the $this->quarantine if the request contains a quarantine id.
       if ($quarantine_id = $container->get('request_stack')->getCurrentRequest()->get('quarantine_id')) {
         $quarantine = $quarantine_api->quarantineFindById($quarantine_id);
@@ -84,12 +93,13 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
       $profile = $profile_api->profileFindOne(json_encode($profile_filter));
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $logger->error($e);
       $profile = NULL;
       $quarantine = NULL;
     }
 
     return new static(
+      $logger,
       $quarantine_api,
       $quarantine,
       $profile

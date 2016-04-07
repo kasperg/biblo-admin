@@ -10,6 +10,8 @@ namespace Drupal\dbcdk_community\Plugin\Block;
 use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Api\ProfileApi;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
@@ -30,6 +32,7 @@ use Drupal\Component\Utility\Xss;
  * )
  */
 class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface {
+  use LoggerAwareTrait;
 
   /**
    * The DBCDK Community Service Profile API.
@@ -47,11 +50,14 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   The logger to use.
    * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profile_api) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileApi $profile_api) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->logger = $logger;
     $this->profileApi = $profile_api;
   }
 
@@ -63,6 +69,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $container->get('dbcdk_community.logger'),
       $container->get('dbcdk_community.api.profile')
     );
   }
@@ -220,7 +227,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
               '%type' => is_object($value) ? get_class($value) : 'Array',
               '%username' => $profile->getUsername(),
             ]);
-            \Drupal::logger('DBCDK Community Service')->notice($message);
+            $this->logger->notice($message);
           }
           break;
       }
@@ -254,7 +261,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $community_roles = (array) $this->profileApi->profilePrototypeGetCommunityRoles($profile->getId());
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $this->logger->error($e);
     }
 
     foreach ($community_roles as $role) {

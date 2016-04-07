@@ -17,6 +17,8 @@ use Drupal\Core\Url;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -33,6 +35,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPluginInterface {
+  use LoggerAwareTrait;
 
   /**
    * The DBCDK Community Service Profile API.
@@ -64,6 +67,8 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   The logger to use.
    * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    * @param \DBCDK\CommunityServices\Api\QuarantineApi $quarantine_api
@@ -71,8 +76,9 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
    *   Drupal's date formatter to format dates to Drupal Date Formats.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ProfileApi $profile_api, QuarantineApi $quarantine_api, DateFormatter $date_formatter) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, ProfileApi $profile_api, QuarantineApi $quarantine_api, DateFormatter $date_formatter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->logger = $logger;
     $this->profileApi = $profile_api;
     $this->quarantineApi = $quarantine_api;
     $this->dateFormatter = $date_formatter;
@@ -86,6 +92,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $container->get('dbcdk_community.logger'),
       $container->get('dbcdk_community.api.profile'),
       $container->get('dbcdk_community.api.quarantine'),
       $container->get('date.formatter')
@@ -111,7 +118,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       $quarantines = (array) $this->profileApi->profilePrototypeGetQuarantines($profile->getId(), json_encode(['order' => 'end DESC']));
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $this->logger->error($e);
       $profile = NULL;
     }
 
