@@ -152,6 +152,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     $form['birthday'] = [
       '#type' => 'datetime',
       '#title' => $this->t('Birthday'),
+      '#description' => $this->t('Day/Month/Year.'),
       '#date_time_element' => 'none',
       // Make sure the date is a DateTime object before we try to use it as one.
       // We do this to avoid fatal errors.
