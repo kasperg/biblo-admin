@@ -180,9 +180,13 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
       // Set values for the quarantine.
       $this->quarantine->setReason($form_state->getValue('reason')['value']);
       $start_date = new \DateTime();
-      $this->quarantine->setStart($start_date->setTimestamp($form_state->getValue('start')->getTimestamp()));
+      $start_date->setTimestamp($form_state->getValue('start')->getTimestamp());
+      $start_date->setTime(0, 0, 0);
+      $this->quarantine->setStart($start_date);
       $end_date = new \DateTime();
-      $this->quarantine->setEnd($end_date->setTimestamp($form_state->getValue('end')->getTimestamp()));
+      $end_date->setTimestamp($form_state->getValue('end')->getTimestamp());
+      $end_date->setTime(23, 59, 59);
+      $this->quarantine->setEnd($end_date);
 
       // Determine if we should POST or PUT a request based on the existence of
       // a Quarantine ID. The ID will only exist if we have fetched the
