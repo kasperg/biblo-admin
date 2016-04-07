@@ -1,6 +1,6 @@
 uuid: baedff3c-3e27-419c-bc52-82ae679cb470
 name: 'Biblo Admin'
-mail: info+biblo@reload.dk
+mail: admin@biblo.dk
 slogan: 'Administration interface for Biblo.dk'
 page:
   403: ''
