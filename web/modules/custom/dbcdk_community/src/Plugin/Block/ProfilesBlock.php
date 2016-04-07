@@ -7,6 +7,7 @@
 
 namespace Drupal\dbcdk_community\Plugin\Block;
 
+use DateTime;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
 use Drupal\dbcdk_community\Profile\ProfileRepository;
@@ -194,8 +195,9 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
       // Fetch a list or profiles with an active quarantine.
       if ($this->quarantinedFilter) {
-        $profiles = $this->profileRepository->getQuarantinedProfiles($page_filter);
-        $profile_count = $this->profileRepository->countQuarantinedProfiles($filter);
+        $now = new DateTime(REQUEST_TIME);
+        $profiles = $this->profileRepository->getQuarantinedProfiles($now, $page_filter);
+        $profile_count = $this->profileRepository->countQuarantinedProfiles($now, $filter);
       }
       // Fetch a list of profiles.
       else {
