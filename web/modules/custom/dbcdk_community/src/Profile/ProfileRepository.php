@@ -6,7 +6,7 @@
 
 namespace Drupal\dbcdk_community\Profile;
 
-
+use DateTime;
 use DBCDK\CommunityServices\Api\CommunityRoleApi;
 use DBCDK\CommunityServices\Api\ProfileApi;
 use DBCDK\CommunityServices\Api\QuarantineApi;
@@ -184,8 +184,10 @@ class ProfileRepository {
   }
 
   /**
-   * Get all quarantined profiles.
+   * Get profiles with an active quarantine at a specific time.
    *
+   * @param DateTime $time
+   *   The time to check quarantine date ranges against.
    * @param array $profiles_filter
    *   An array containing filter arguments.
    *
@@ -195,8 +197,8 @@ class ProfileRepository {
    * @throws \DBCDK\CommunityServices\ApiException
    *   Throws API Exception if any of the calls to the services fails.
    */
-  public function getQuarantinedProfiles(array $profiles_filter = []) {
-    $quarantines = $this->getActiveQuarantines();
+  public function getQuarantinedProfiles(DateTime $time, array $profiles_filter = []) {
+    $quarantines = $this->getActiveQuarantines($time);
 
     // Use the array of quarantined ids as "where" arguments.
     $profiles_filter['where']['or'] = $this->getQuarantinedProfilesFilter($quarantines);
@@ -207,6 +209,8 @@ class ProfileRepository {
   /**
    * Count the number of quarantined profiles matching a filter.
    *
+   * @param DateTime $time
+   *   The time to check quarantine date ranges against.
    * @param array $profiles_filter
    *   The filter to match profiles against.
    *
@@ -216,9 +220,9 @@ class ProfileRepository {
    * @throws \DBCDK\CommunityServices\ApiException
    *   Throws API Exception if any of the calls to the services fails.
    */
-  public function countQuarantinedProfiles(array $profiles_filter = []) {
+  public function countQuarantinedProfiles(DateTime $time, array $profiles_filter = []) {
     // Fetch all quarantines that are active from the moment of the request.
-    $quarantines = $this->getActiveQuarantines();
+    $quarantines = $this->getActiveQuarantines($time);
 
     // Use the array of quarantined ids as "where" arguments.
     $profiles_filter['or'] = $this->getQuarantinedProfilesFilter($quarantines);
@@ -233,13 +237,16 @@ class ProfileRepository {
    * An active quarantine is a quarantine where the end date has not
    * yet passed.
    *
+   * @param DateTime $time
+   *   The time to check against.
+   *
    * @return Quarantine[]
    *   Active quarantines.
    *
    * @throws \DBCDK\CommunityServices\ApiException
    *   Throws API Exception if any of the calls to the services fails.
    */
-  protected function getActiveQuarantines() {
+  protected function getActiveQuarantines(DateTime $time) {
     // Fetch all quarantines that are active from the moment of the request.
     $quarantined_filter = [
       'where' => [
@@ -247,10 +254,10 @@ class ProfileRepository {
           // The string should be in a format recognized by the Date.parse()
           // method which is ISO-8601 in our case.
           // @See https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date
-          'lt' => date(\DateTime::ATOM),
+          'lt' => $time->format(\DateTime::ATOM),
         ],
         'end' => [
-          'gt' => date(\DateTime::ATOM),
+          'gt' => $time->format(\DateTime::ATOM),
         ],
       ],
     ];
