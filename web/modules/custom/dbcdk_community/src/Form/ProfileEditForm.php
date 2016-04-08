@@ -171,6 +171,14 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       }),
     ];
 
+    $library = $this->profile->getFavoriteLibrary();
+    $form['favoriteLibrary'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Library'),
+      '#default_value' => ((!empty($library->libraryId)) ? $library->libraryId : ''),
+      '#description' => $this->t('The library id for users favorite library'),
+    ];
+
     $form['description'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Description'),
@@ -208,6 +216,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
         'email',
         'phone',
         'birthday',
+        'favoriteLibrary',
         'description',
       ];
       $this->updateProfileFields($fields, $form_state);
@@ -263,6 +272,20 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
               $date = new \DateTime();
               $date = $date->setTimestamp($value->getTimestamp());
               $this->profile->{$setter}($date);
+            }
+            break;
+
+          case 'favoriteLibrary':
+            if (!empty($value)) {
+              // Library is specificed as an object but no corresponding class
+              // is defined. Instead we use a map which will be converted to an
+              // non-classed object down the line.
+              $library = ['libraryId' => $value];
+              $this->profile->setFavoriteLibrary($library);
+            }
+            else {
+              // To properly unset the favorite library we use an empty map.
+              $this->profile->setFavoriteLibrary([]);
             }
             break;
 

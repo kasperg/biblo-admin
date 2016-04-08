@@ -92,7 +92,7 @@ class GenerateCommand extends Command {
       $profile->setPhone($faker->phoneNumber);
       $profile->setBirthday($faker->dateTimeThisDecade);
       $profile->setCreated($faker->dateTimeBetween('-1 month'));
-
+      $profile->setFavoriteLibrary(['libraryId' => $faker->randomNumber(6, TRUE)]);
       $this->profiles[] = $profile_api->profileCreate($profile);
     };
     $io->success(sprintf('Created %d profiles', count($this->profiles)));
