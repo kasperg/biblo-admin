@@ -101,6 +101,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
         'phone' => $this->t('Phone'),
         'birthday' => $this->t('Birthday'),
         'roles' => $this->t('Roles'),
+        'library' => $this->t('Library'),
         'description' => $this->t('Description'),
       ];
       $rows = $this->parseProfile($profile, $fields);
@@ -187,6 +188,11 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
               '#items' => $this->getProfileRoles($profile),
             ],
           ];
+          break;
+
+        case 'library':
+          $library = $profile->getFavoriteLibrary();
+          $value = (!empty($library->libraryId)) ? $library->libraryId : '';
           break;
 
         default:
