@@ -125,7 +125,9 @@ class FlaggableContent {
   public function getContent() {
     $content = '';
     if (method_exists($this->object, 'getTitle')) {
-      $content .= $this->object->getTitle() . ': ';
+      // Make sure that the title isn't empty so even though the method exists,
+      // we don't prefix content with a colon without title.
+      $content .= (!empty($title = $this->object->getTitle()) ? $title . ': ' : '');
     }
     $content .= $this->object->getContent();
     return $content;
