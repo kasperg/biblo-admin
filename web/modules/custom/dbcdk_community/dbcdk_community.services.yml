@@ -33,4 +33,4 @@ services:
     arguments: ['@dbcdk_community.api.client']
   dbcdk_community.content.flaggable_content_repository:
     class: Drupal\dbcdk_community\Content\FlaggableContentRepository
-    arguments: ['@dbcdk_community.api.flag']
+    arguments: ['@dbcdk_community.api.flag', '@dbcdk_community.api.post', '@dbcdk_community.api.comment']

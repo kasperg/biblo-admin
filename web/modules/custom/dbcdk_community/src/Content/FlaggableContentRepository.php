@@ -7,7 +7,10 @@
 
 namespace Drupal\dbcdk_community\Content;
 
+use DBCDK\CommunityServices\Api\CommentApi;
 use DBCDK\CommunityServices\Api\FlagApi;
+use DBCDK\CommunityServices\Api\PostApi;
+use DBCDK\CommunityServices\ApiException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -28,6 +31,20 @@ class FlaggableContentRepository {
   protected $flagApi;
 
   /**
+   * The API to use when handling Post objects.
+   *
+   * @var PostApi $postApi
+   */
+  protected $postApi = [];
+
+  /**
+   * The API to use when handling Comment objects.
+   *
+   * @var CommentApi $commentApi
+   */
+  protected $commentApi = [];
+
+  /**
    * The logger to use.
    *
    * @var LoggerInterface
@@ -39,9 +56,15 @@ class FlaggableContentRepository {
    *
    * @param FlagApi $flag_api
    *   The FlagApi class to use when retrieving content.
+   * @param PostApi $post_api
+   *   The PostApi class to use when handling Post objects.
+   * @param CommentApi $comment_api
+   *   The CommentApi class to use when handling Comment objects.
    */
-  public function __construct(FlagApi $flag_api) {
+  public function __construct(FlagApi $flag_api, PostApi $post_api, CommentApi $comment_api) {
     $this->flagApi = $flag_api;
+    $this->postApi = $post_api;
+    $this->commentApi = $comment_api;
     $this->logger = new NullLogger();
   }
 
@@ -180,6 +203,86 @@ class FlaggableContentRepository {
       }
     }
     return $flagged_content;
+  }
+
+  /**
+   * Get collections for a FlaggableContent object.
+   *
+   * This method provides a simple way to fetch collections for a
+   * FlaggableContent object.
+   *
+   * @param \Drupal\dbcdk_community\Content\FlaggableContent $content
+   *   The FlaggableContent object we wish to fetch collections from.
+   * @param string $type
+   *   The type of collection we wish to fetch.
+   *
+   * @return array
+   *   An array of collections for the provided FlaggableContent object.
+   *
+   * @throws \DBCDK\CommunityServices\ApiException
+   *   Throw an exception if the service failed to fetch collections.
+   */
+  protected function getCollections(FlaggableContent $content, $type = 'image') {
+    $object = $content->getObject();
+    // Instantiate a reflection of the class to find out what type of object
+    // we're fetching collections for.
+    $object_reflection = new \ReflectionClass($object);
+    $object_name = $object_reflection->getShortName();
+
+    // Get the API corresponding to the type of content (ex: $this->postApi).
+    $api = $this->{lcfirst($object_name) . 'Api'};
+    // Format the method we wish to use when fetching collections from the API
+    // defined above (ex: PostApi::postPrototypeGetImage()).
+    $collection_method = lcfirst($object_name) . 'PrototypeGet' . ucfirst(strtolower($type));
+    if (method_exists($api, $collection_method)) {
+      try {
+        return $api->{$collection_method}($object->getId());
+      }
+      catch (ApiException $e) {
+        // If there's no collections for the ID, then the service will return a
+        // 404. We don't want to log the exception because this happens for
+        // every post, comment etc. without images or videos.
+        if ($e->getCode() !== 404) {
+          throw $e;
+        }
+        return [];
+      }
+    }
+    else {
+      return [];
+    }
+  }
+
+  /**
+   * Get ImageCollection's for a FlaggableContent object.
+   *
+   * This method wraps the getCollection() method to provide a simple way to
+   * fetch image collections for a FlaggableContent object.
+   *
+   * @param \Drupal\dbcdk_community\Content\FlaggableContent $content
+   *   The FlaggableContent object we wish to fetch collections from.
+   *
+   * @return \DBCDK\CommunityServices\Model\ImageCollection[]
+   *   On array of image collections for the provided FlaggableContent object.
+   */
+  public function getImageCollections(FlaggableContent $content) {
+    return $this->getCollections($content, 'image');
+  }
+
+  /**
+   * Get VideoCollection's for a FlaggableContent object.
+   *
+   * This method wraps the getCollection() method to provide a simple way to
+   * fetch video collections for a FlaggableContent object.
+   *
+   * @param \Drupal\dbcdk_community\Content\FlaggableContent $content
+   *   The FlaggableContent object we wish to fetch collections from.
+   *
+   * @return \DBCDK\CommunityServices\Model\VideoCollection[]
+   *   On array of video collections for the provided FlaggableContent object.
+   */
+  public function getVideoCollections(FlaggableContent $content) {
+    return $this->getCollections($content, 'video');
   }
 
 }
