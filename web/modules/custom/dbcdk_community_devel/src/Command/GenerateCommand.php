@@ -9,9 +9,11 @@ namespace Drupal\dbcdk_community_devel\Command;
 
 use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
+use DBCDK\CommunityServices\Model\ImageCollection;
 use DBCDK\CommunityServices\Model\Post;
 use DBCDK\CommunityServices\Model\Profile;
 use DBCDK\CommunityServices\Model\Quarantine;
+use DBCDK\CommunityServices\Model\VideoCollection;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Drupal\Console\Command\Command;
@@ -54,6 +56,20 @@ class GenerateCommand extends Command {
    * @var Comment[]
    */
   protected $comments = [];
+
+  /**
+   * The generated image collections.
+   *
+   * @var ImageCollection[]
+   */
+  protected $imageCollections = [];
+
+  /**
+   * The generated video collections.
+   *
+   * @var VideoCollection[]
+   */
+  protected $videoCollections = [];
 
   /**
    * The generated flags.
@@ -152,6 +168,34 @@ class GenerateCommand extends Command {
       $this->comments[] = $comment_api->commentCreate($comment);
     }
     $io->success(sprintf('Created %d comments', count($this->comments)));
+
+    // Add some image collections to some content.
+    /* @var \DBCDK\CommunityServices\Api\ImageCollectionApi */
+    $image_collection_api = \Drupal::service('dbcdk_community.api.image_collection');
+    foreach (range(1, 5) as $i) {
+      $image_collection = new ImageCollection();
+      $post = $this->posts[rand(0, count($this->posts) - 1)];
+      $image_collection->setPostImageCollection($post->getId());
+      $this->imageCollections[] = $image_collection_api->imageCollectionCreate($image_collection);
+    }
+    foreach (range(1, 20) as $i) {
+      $image_collection = new ImageCollection();
+      $comment = $this->comments[rand(0, count($this->comments) - 1)];
+      $image_collection->setCommentImageCollection($comment->getId());
+      $this->imageCollections[] = $image_collection_api->imageCollectionCreate($image_collection);
+    }
+    $io->success(sprintf('Created %d image collections', count($this->imageCollections)));
+
+    // Add some video collections to posts (doesn't exist in comments).
+    /* @var \DBCDK\CommunityServices\Api\VideoCollectionApi */
+    $video_collection_api = \Drupal::service('dbcdk_community.api.video_collection');
+    foreach (range(1, 5) as $i) {
+      $video_collection = new VideoCollection();
+      $post = $this->posts[rand(0, count($this->posts) - 1)];
+      $video_collection->setPostVideoCollection($post->getId());
+      $this->videoCollections[] = $video_collection_api->videoCollectionCreate($video_collection);
+    }
+    $io->success(sprintf('Created %d video collections', count($this->videoCollections)));
 
     // Flag some content.
     /* @var \DBCDK\CommunityServices\Api\FlagApi $flag_api */

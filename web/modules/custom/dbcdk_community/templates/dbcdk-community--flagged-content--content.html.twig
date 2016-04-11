@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme to present DBCDK Community FlaggableContent content.
+ *
+ * Available variables:
+ * - content: A string containing a flagged contents content.
+ * - image_collection_count: an int containing the count of images on content.
+ * - video_collection_count: an int containing the count of videos on content.
+ */
+#}
+
+{# Output the FlaggableContent content. #}
+{{ content }}
+
+{# Output count of ImageCollection array. #}
+{% if image_collection_count > 0 %}
+  {% trans %}
+    ({{ image_collection_count }} image)
+  {% plural image_collection_count %}
+    ({{ image_collection_count }} images)
+  {% endtrans %}
+{% endif %}
+
+{# Output count of VideoCollection array. #}
+{% if video_collection_count > 0 %}
+  {% trans %}
+    ({{ video_collection_count }} video)
+  {% plural video_collection_count %}
+    ({{ video_collection_count }} videos)
+  {% endtrans %}
+{% endif %}

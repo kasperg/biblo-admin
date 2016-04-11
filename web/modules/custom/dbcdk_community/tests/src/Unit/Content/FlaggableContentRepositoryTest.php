@@ -10,7 +10,9 @@ namespace Drupal\dbcdk_community\Test\Content;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
+use DBCDK\CommunityServices\Model\ImageCollection;
 use DBCDK\CommunityServices\Model\Post;
+use DBCDK\CommunityServices\Model\VideoCollection;
 use Drupal\dbcdk_community\Content\FlaggableContent;
 use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Drupal\Tests\UnitTestCase;
@@ -35,10 +37,12 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    * @dataProvider unreadWithFlagsDataProvider
    */
   public function testContentById(array $flags, array $post_flags, array $comment_flags) {
-    // Create a stub flag api using the model.
+    // Create stubs.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
+    $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
     $flag_api_stub->method('flagFind')->will($this->returnValue([$flags[1]]));
-    $repo = new FlaggableContentRepository($flag_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
     $flaggable_content = $repo->getContentById(1);
     $this->assertTrue($flaggable_content->equals(new FlaggableContent($post_flags[1]->getPosts())));
   }
@@ -56,8 +60,10 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    * @dataProvider unreadWithFlagsDataProvider
    */
   public function testContentWithAllFlagsById(array $flags, array $post_flags, array $comment_flags) {
-    // Create a stub flag api using the model.
+    // Create stubs.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
+    $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
     $flag_api_stub->method('flagFind')->will($this->returnCallback(function($filter) use ($flags) {
       $filter = json_decode($filter);
       $id = (!empty($filter->where->id)) ? $filter->where->id : NULL;
@@ -66,7 +72,7 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
       });
     }));
 
-    $repo = new FlaggableContentRepository($flag_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
 
     $flaggable_content = $repo->getContentByIdAllFlags(1);
     $this->assertTrue($flaggable_content->equals(new FlaggableContent($post_flags[1]->getPosts())));
@@ -90,11 +96,13 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
    * @dataProvider unreadWithFlagsDataProvider
    */
   public function testUnreadWithFlags(array $flags, array $post_flags, array $comment_flags) {
-    // Create a stub flag api using the model.
+    // Create stubs.
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
+    $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
     $flag_api_stub->method('flagFind')->willReturn($flags);
 
-    $repo = new FlaggableContentRepository($flag_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
     $flaggable_content = $repo->getContentWithUnreadFlags();
 
     // @TODO These assertions currently are thightly coupled with the data
@@ -145,13 +153,77 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
   }
 
   /**
+   * Test that ImageCollection's can be fetched by the repository.
+   */
+  public function testContentWithImageCollections() {
+    // Data.
+    $post = new Post();
+    $post->setId(1);
+    $collections = [];
+    $collections[] = (new ImageCollection())
+      ->setId(1)
+      ->setPostImageCollection($post->getId());
+    $collections[] = (new ImageCollection())
+      ->setId(2)
+      ->setPostImageCollection($post->getId());
+
+    // Stubs.
+    $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
+    $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $post_api_stub->method('postPrototypeGetImage')->willReturn($collections);
+
+    // Get a FlaggableContentRepository with a Post object.
+    $flaggable_content = new FlaggableContent($post);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+
+    // Assume that the collections defined above is the same once returned by
+    // the FlaggableContentRepository::getCollections method.
+    $images = $repo->getImageCollections($flaggable_content);
+    $this->assertEquals($images, $collections);
+  }
+
+  /**
+   * Test that VideoCollection's can be fetched by the repository.
+   */
+  public function testContentWithVideoCollections() {
+    // Data.
+    $post = new Post();
+    $post->setId(1);
+    $collections = [];
+    $collections[] = (new VideoCollection())
+      ->setId(1)
+      ->setPostVideoCollection($post->getId());
+    $collections[] = (new VideoCollection())
+      ->setId(2)
+      ->setPostVideoCollection($post->getId());
+
+    // Stubs.
+    $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
+    $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $post_api_stub->method('postPrototypeGetVideo')->willReturn($collections);
+
+    // Get a FlaggableContentRepository with a Post object.
+    $flaggable_content = new FlaggableContent($post);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+
+    // Assume that the collections defined above is the same once returned by
+    // the FlaggableContentRepository::getCollections method.
+    $videos = $repo->getVideoCollections($flaggable_content);
+    $this->assertEquals($videos, $collections);
+  }
+
+  /**
    * Test that exceptions are if flag retrieval fails.
    */
   public function testExceptionThrowing() {
     $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
+    $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
     $flag_api_stub->method('flagFind')->willThrowException(new ApiException());
 
-    $repo = new FlaggableContentRepository($flag_api_stub);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
 
     $this->setExpectedException('DBCDK\CommunityServices\ApiException');
     $repo->getContentWithUnreadFlags();

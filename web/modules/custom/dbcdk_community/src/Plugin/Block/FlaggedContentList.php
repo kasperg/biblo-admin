@@ -192,7 +192,14 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       }
 
       $table['#rows'][] = [
-        $content_element->getContent(),
+        [
+          'data' => [
+            '#theme' => 'dbcdk_community__flagged_content__content',
+            '#content' => $content_element->getContent(),
+            '#image_collection_count' => count($this->flaggableContentRepository->getImageCollections($content_element)),
+            '#video_collection_count' => count($this->flaggableContentRepository->getVideoCollections($content_element)),
+          ],
+        ],
         count($content_element->getFlags()),
         $this->dateFormatter->format($content_element->getLatestFlag()->getTimeFlagged()->getTimestamp(), 'dbcdk_community_service_date_time'),
         $content_element->getLatestFlag()->getDescription(),
