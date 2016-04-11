@@ -66,22 +66,12 @@ class FileApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for fileFind
+     * Test case for fileCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_fileFind() {
-
-    }
-    
-    /**
-     * Test case for fileUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_fileUpsert() {
+    public function test_fileCount() {
 
     }
     
@@ -116,76 +106,6 @@ class FileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for fileCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_fileCount() {
-
-    }
-    
-    /**
-     * Test case for fileFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_fileFindOne() {
-
-    }
-    
-    /**
-     * Test case for fileUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_fileUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for fileUpload
-     *
-     * Uploads a file
-     *
-     */
-    public function test_fileUpload() {
-
-    }
-    
-    /**
-     * Test case for fileFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_fileFindById() {
-
-    }
-    
-    /**
-     * Test case for fileExistsHeadFilesid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_fileExistsHeadFilesid() {
-
-    }
-    
-    /**
-     * Test case for filePrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_filePrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for fileDeleteById
      *
      * Delete a model instance by id from the data source.
@@ -206,12 +126,52 @@ class FileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for filePrototypeGetResolutions
+     * Test case for fileExistsHeadFilesid
      *
-     * Queries resolutions of file.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_filePrototypeGetResolutions() {
+    public function test_fileExistsHeadFilesid() {
+
+    }
+    
+    /**
+     * Test case for fileFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_fileFind() {
+
+    }
+    
+    /**
+     * Test case for fileFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_fileFindById() {
+
+    }
+    
+    /**
+     * Test case for fileFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_fileFindOne() {
+
+    }
+    
+    /**
+     * Test case for filePrototypeCountResolutions
+     *
+     * Counts resolutions of file.
+     *
+     */
+    public function test_filePrototypeCountResolutions() {
 
     }
     
@@ -236,12 +196,12 @@ class FileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for filePrototypeCountResolutions
+     * Test case for filePrototypeDestroyByIdResolutions
      *
-     * Counts resolutions of file.
+     * Delete a related item by id for resolutions.
      *
      */
-    public function test_filePrototypeCountResolutions() {
+    public function test_filePrototypeDestroyByIdResolutions() {
 
     }
     
@@ -252,6 +212,26 @@ class FileApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function test_filePrototypeExistsResolutions() {
+
+    }
+    
+    /**
+     * Test case for filePrototypeFindByIdResolutions
+     *
+     * Find a related item by id for resolutions.
+     *
+     */
+    public function test_filePrototypeFindByIdResolutions() {
+
+    }
+    
+    /**
+     * Test case for filePrototypeGetResolutions
+     *
+     * Queries resolutions of file.
+     *
+     */
+    public function test_filePrototypeGetResolutions() {
 
     }
     
@@ -276,12 +256,12 @@ class FileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for filePrototypeFindByIdResolutions
+     * Test case for filePrototypeUpdateAttributes
      *
-     * Find a related item by id for resolutions.
+     * Update attributes for a model instance and persist it into the data source.
      *
      */
-    public function test_filePrototypeFindByIdResolutions() {
+    public function test_filePrototypeUpdateAttributes() {
 
     }
     
@@ -296,12 +276,32 @@ class FileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for filePrototypeDestroyByIdResolutions
+     * Test case for fileUpdateAll
      *
-     * Delete a related item by id for resolutions.
+     * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_filePrototypeDestroyByIdResolutions() {
+    public function test_fileUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for fileUpload
+     *
+     * Uploads a file
+     *
+     */
+    public function test_fileUpload() {
+
+    }
+    
+    /**
+     * Test case for fileUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_fileUpsert() {
 
     }
     

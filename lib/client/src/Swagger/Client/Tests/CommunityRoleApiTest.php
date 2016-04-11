@@ -66,22 +66,12 @@ class CommunityRoleApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for communityRoleFind
+     * Test case for communityRoleCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_communityRoleFind() {
-
-    }
-    
-    /**
-     * Test case for communityRoleUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_communityRoleUpsert() {
+    public function test_communityRoleCount() {
 
     }
     
@@ -116,66 +106,6 @@ class CommunityRoleApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for communityRoleCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_communityRoleCount() {
-
-    }
-    
-    /**
-     * Test case for communityRoleFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_communityRoleFindOne() {
-
-    }
-    
-    /**
-     * Test case for communityRoleUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_communityRoleUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for communityRoleFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_communityRoleFindById() {
-
-    }
-    
-    /**
-     * Test case for communityRoleExistsHeadCommunityRolesid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_communityRoleExistsHeadCommunityRolesid() {
-
-    }
-    
-    /**
-     * Test case for communityRolePrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_communityRolePrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for communityRoleDeleteById
      *
      * Delete a model instance by id from the data source.
@@ -192,6 +122,76 @@ class CommunityRoleApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function test_communityRoleExistsGetCommunityRolesidExists() {
+
+    }
+    
+    /**
+     * Test case for communityRoleExistsHeadCommunityRolesid
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     */
+    public function test_communityRoleExistsHeadCommunityRolesid() {
+
+    }
+    
+    /**
+     * Test case for communityRoleFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_communityRoleFind() {
+
+    }
+    
+    /**
+     * Test case for communityRoleFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_communityRoleFindById() {
+
+    }
+    
+    /**
+     * Test case for communityRoleFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_communityRoleFindOne() {
+
+    }
+    
+    /**
+     * Test case for communityRolePrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_communityRolePrototypeUpdateAttributes() {
+
+    }
+    
+    /**
+     * Test case for communityRoleUpdateAll
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     */
+    public function test_communityRoleUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for communityRoleUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_communityRoleUpsert() {
 
     }
     

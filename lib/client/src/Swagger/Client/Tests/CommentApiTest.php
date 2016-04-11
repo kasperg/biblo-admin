@@ -66,22 +66,12 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for commentFind
+     * Test case for commentCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_commentFind() {
-
-    }
-    
-    /**
-     * Test case for commentUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_commentUpsert() {
+    public function test_commentCount() {
 
     }
     
@@ -116,66 +106,6 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for commentCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_commentCount() {
-
-    }
-    
-    /**
-     * Test case for commentFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_commentFindOne() {
-
-    }
-    
-    /**
-     * Test case for commentUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_commentUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for commentFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_commentFindById() {
-
-    }
-    
-    /**
-     * Test case for commentExistsHeadCommentsid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_commentExistsHeadCommentsid() {
-
-    }
-    
-    /**
-     * Test case for commentPrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_commentPrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for commentDeleteById
      *
      * Delete a model instance by id from the data source.
@@ -196,32 +126,42 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for commentPrototypeGetFlags
+     * Test case for commentExistsHeadCommentsid
      *
-     * Queries flags of Comment.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_commentPrototypeGetFlags() {
+    public function test_commentExistsHeadCommentsid() {
 
     }
     
     /**
-     * Test case for commentPrototypeCreateFlags
+     * Test case for commentFind
      *
-     * Creates a new instance in flags of this model.
+     * Find all instances of the model matched by filter from the data source.
      *
      */
-    public function test_commentPrototypeCreateFlags() {
+    public function test_commentFind() {
 
     }
     
     /**
-     * Test case for commentPrototypeDeleteFlags
+     * Test case for commentFindById
      *
-     * Deletes all flags of this model.
+     * Find a model instance by id from the data source.
      *
      */
-    public function test_commentPrototypeDeleteFlags() {
+    public function test_commentFindById() {
+
+    }
+    
+    /**
+     * Test case for commentFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_commentFindOne() {
 
     }
     
@@ -236,52 +176,12 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for commentPrototypeFindByIdFlags
+     * Test case for commentPrototypeCreateFlags
      *
-     * Find a related item by id for flags.
-     *
-     */
-    public function test_commentPrototypeFindByIdFlags() {
-
-    }
-    
-    /**
-     * Test case for commentPrototypeUpdateByIdFlags
-     *
-     * Update a related item by id for flags.
+     * Creates a new instance in flags of this model.
      *
      */
-    public function test_commentPrototypeUpdateByIdFlags() {
-
-    }
-    
-    /**
-     * Test case for commentPrototypeDestroyByIdFlags
-     *
-     * Delete a related item by id for flags.
-     *
-     */
-    public function test_commentPrototypeDestroyByIdFlags() {
-
-    }
-    
-    /**
-     * Test case for commentPrototypeGetImage
-     *
-     * Fetches hasOne relation image.
-     *
-     */
-    public function test_commentPrototypeGetImage() {
-
-    }
-    
-    /**
-     * Test case for commentPrototypeUpdateImage
-     *
-     * Update image of this model.
-     *
-     */
-    public function test_commentPrototypeUpdateImage() {
+    public function test_commentPrototypeCreateFlags() {
 
     }
     
@@ -296,12 +196,62 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for commentPrototypeDeleteFlags
+     *
+     * Deletes all flags of this model.
+     *
+     */
+    public function test_commentPrototypeDeleteFlags() {
+
+    }
+    
+    /**
+     * Test case for commentPrototypeDestroyByIdFlags
+     *
+     * Delete a related item by id for flags.
+     *
+     */
+    public function test_commentPrototypeDestroyByIdFlags() {
+
+    }
+    
+    /**
      * Test case for commentPrototypeDestroyImage
      *
      * Deletes image of this model.
      *
      */
     public function test_commentPrototypeDestroyImage() {
+
+    }
+    
+    /**
+     * Test case for commentPrototypeFindByIdFlags
+     *
+     * Find a related item by id for flags.
+     *
+     */
+    public function test_commentPrototypeFindByIdFlags() {
+
+    }
+    
+    /**
+     * Test case for commentPrototypeGetFlags
+     *
+     * Queries flags of Comment.
+     *
+     */
+    public function test_commentPrototypeGetFlags() {
+
+    }
+    
+    /**
+     * Test case for commentPrototypeGetImage
+     *
+     * Fetches hasOne relation image.
+     *
+     */
+    public function test_commentPrototypeGetImage() {
 
     }
     
@@ -322,6 +272,56 @@ class CommentApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function test_commentPrototypeGetPost() {
+
+    }
+    
+    /**
+     * Test case for commentPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_commentPrototypeUpdateAttributes() {
+
+    }
+    
+    /**
+     * Test case for commentPrototypeUpdateByIdFlags
+     *
+     * Update a related item by id for flags.
+     *
+     */
+    public function test_commentPrototypeUpdateByIdFlags() {
+
+    }
+    
+    /**
+     * Test case for commentPrototypeUpdateImage
+     *
+     * Update image of this model.
+     *
+     */
+    public function test_commentPrototypeUpdateImage() {
+
+    }
+    
+    /**
+     * Test case for commentUpdateAll
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     */
+    public function test_commentUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for commentUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_commentUpsert() {
 
     }
     

@@ -64,6 +64,10 @@ class Flag implements ArrayAccess
         'commentFlagsId' => 'double'
     );
   
+    static function swaggerTypes() {
+        return self::$swaggerTypes;
+    }
+
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
       * @var string[] 
@@ -82,6 +86,10 @@ class Flag implements ArrayAccess
         'commentFlagsId' => 'commentFlagsId'
     );
   
+    static function attributeMap() {
+        return self::$attributeMap;
+    }
+
     /**
       * Array of attributes to setter functions (for deserialization of responses)
       * @var string[]
@@ -100,6 +108,10 @@ class Flag implements ArrayAccess
         'commentFlagsId' => 'setCommentFlagsId'
     );
   
+    static function setters() {
+        return self::$setters;
+    }
+
     /**
       * Array of attributes to getter functions (for serialization of requests)
       * @var string[]
@@ -118,6 +130,10 @@ class Flag implements ArrayAccess
         'commentFlagsId' => 'getCommentFlagsId'
     );
   
+    static function getters() {
+        return self::$getters;
+    }
+
     
     /**
       * $timeFlagged 
@@ -192,6 +208,7 @@ class Flag implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        
         if ($data != null) {
             $this->timeFlagged = $data["timeFlagged"];
             $this->description = $data["description"];

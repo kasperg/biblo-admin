@@ -66,22 +66,32 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for profileFind
+     * Test case for profileCheckIfDisplayNameIsTaken
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Check if displayname exists
      *
      */
-    public function test_profileFind() {
+    public function test_profileCheckIfDisplayNameIsTaken() {
 
     }
     
     /**
-     * Test case for profileUpsert
+     * Test case for profileCheckIfUserExists
      *
-     * Update an existing model instance or insert a new one into the data source.
+     * Check if a user exists.
      *
      */
-    public function test_profileUpsert() {
+    public function test_profileCheckIfUserExists() {
+
+    }
+    
+    /**
+     * Test case for profileCount
+     *
+     * Count instances of the model matched by where from the data source.
+     *
+     */
+    public function test_profileCount() {
 
     }
     
@@ -116,32 +126,52 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for profileCheckIfDisplayNameIsTaken
+     * Test case for profileDeleteById
      *
-     * Check if displayname exists
+     * Delete a model instance by id from the data source.
      *
      */
-    public function test_profileCheckIfDisplayNameIsTaken() {
+    public function test_profileDeleteById() {
 
     }
     
     /**
-     * Test case for profileCheckIfUserExists
+     * Test case for profileExistsGetProfilesidExists
      *
-     * Check if a user exists.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_profileCheckIfUserExists() {
+    public function test_profileExistsGetProfilesidExists() {
 
     }
     
     /**
-     * Test case for profileCount
+     * Test case for profileExistsHeadProfilesid
      *
-     * Count instances of the model matched by where from the data source.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_profileCount() {
+    public function test_profileExistsHeadProfilesid() {
+
+    }
+    
+    /**
+     * Test case for profileFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_profileFind() {
+
+    }
+    
+    /**
+     * Test case for profileFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_profileFindById() {
 
     }
     
@@ -166,6 +196,736 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for profilePrototypeCountAccessTokens
+     *
+     * Counts accessTokens of Profile.
+     *
+     */
+    public function test_profilePrototypeCountAccessTokens() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCountComments
+     *
+     * Counts comments of Profile.
+     *
+     */
+    public function test_profilePrototypeCountComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCountCommunityRoles
+     *
+     * Counts communityRoles of Profile.
+     *
+     */
+    public function test_profilePrototypeCountCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCountGroups
+     *
+     * Counts groups of Profile.
+     *
+     */
+    public function test_profilePrototypeCountGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCountLikes
+     *
+     * Counts likes of Profile.
+     *
+     */
+    public function test_profilePrototypeCountLikes() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCountOwnedGroups
+     *
+     * Counts ownedGroups of Profile.
+     *
+     */
+    public function test_profilePrototypeCountOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCountPosts
+     *
+     * Counts posts of Profile.
+     *
+     */
+    public function test_profilePrototypeCountPosts() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCountQuarantines
+     *
+     * Counts quarantines of Profile.
+     *
+     */
+    public function test_profilePrototypeCountQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateAccessTokens
+     *
+     * Creates a new instance in accessTokens of this model.
+     *
+     */
+    public function test_profilePrototypeCreateAccessTokens() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateComments
+     *
+     * Creates a new instance in comments of this model.
+     *
+     */
+    public function test_profilePrototypeCreateComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateCommunityRoles
+     *
+     * Creates a new instance in communityRoles of this model.
+     *
+     */
+    public function test_profilePrototypeCreateCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateGroups
+     *
+     * Creates a new instance in groups of this model.
+     *
+     */
+    public function test_profilePrototypeCreateGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateImage
+     *
+     * Creates a new instance in image of this model.
+     *
+     */
+    public function test_profilePrototypeCreateImage() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateLikes
+     *
+     * Creates a new instance in likes of this model.
+     *
+     */
+    public function test_profilePrototypeCreateLikes() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateOwnedGroups
+     *
+     * Creates a new instance in ownedGroups of this model.
+     *
+     */
+    public function test_profilePrototypeCreateOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreatePosts
+     *
+     * Creates a new instance in posts of this model.
+     *
+     */
+    public function test_profilePrototypeCreatePosts() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeCreateQuarantines
+     *
+     * Creates a new instance in quarantines of this model.
+     *
+     */
+    public function test_profilePrototypeCreateQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeleteAccessTokens
+     *
+     * Deletes all accessTokens of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteAccessTokens() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeleteComments
+     *
+     * Deletes all comments of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeleteCommunityRoles
+     *
+     * Deletes all communityRoles of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeleteGroups
+     *
+     * Deletes all groups of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeleteLikes
+     *
+     * Deletes all likes of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteLikes() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeleteOwnedGroups
+     *
+     * Deletes all ownedGroups of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeletePosts
+     *
+     * Deletes all posts of this model.
+     *
+     */
+    public function test_profilePrototypeDeletePosts() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDeleteQuarantines
+     *
+     * Deletes all quarantines of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdAccessTokens
+     *
+     * Delete a related item by id for accessTokens.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdAccessTokens() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdComments
+     *
+     * Delete a related item by id for comments.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdCommunityRoles
+     *
+     * Delete a related item by id for communityRoles.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdGroups
+     *
+     * Delete a related item by id for groups.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdLikes
+     *
+     * Delete a related item by id for likes.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdOwnedGroups
+     *
+     * Delete a related item by id for ownedGroups.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdPosts
+     *
+     * Delete a related item by id for posts.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdPosts() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdQuarantines
+     *
+     * Delete a related item by id for quarantines.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyImage
+     *
+     * Deletes image of this model.
+     *
+     */
+    public function test_profilePrototypeDestroyImage() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeExistsComments
+     *
+     * Check the existence of comments relation to an item by id.
+     *
+     */
+    public function test_profilePrototypeExistsComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeExistsCommunityRoles
+     *
+     * Check the existence of communityRoles relation to an item by id.
+     *
+     */
+    public function test_profilePrototypeExistsCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeExistsGroups
+     *
+     * Check the existence of groups relation to an item by id.
+     *
+     */
+    public function test_profilePrototypeExistsGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeExistsOwnedGroups
+     *
+     * Check the existence of ownedGroups relation to an item by id.
+     *
+     */
+    public function test_profilePrototypeExistsOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdAccessTokens
+     *
+     * Find a related item by id for accessTokens.
+     *
+     */
+    public function test_profilePrototypeFindByIdAccessTokens() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdComments
+     *
+     * Find a related item by id for comments.
+     *
+     */
+    public function test_profilePrototypeFindByIdComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdCommunityRoles
+     *
+     * Find a related item by id for communityRoles.
+     *
+     */
+    public function test_profilePrototypeFindByIdCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdGroups
+     *
+     * Find a related item by id for groups.
+     *
+     */
+    public function test_profilePrototypeFindByIdGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdLikes
+     *
+     * Find a related item by id for likes.
+     *
+     */
+    public function test_profilePrototypeFindByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdOwnedGroups
+     *
+     * Find a related item by id for ownedGroups.
+     *
+     */
+    public function test_profilePrototypeFindByIdOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdPosts
+     *
+     * Find a related item by id for posts.
+     *
+     */
+    public function test_profilePrototypeFindByIdPosts() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeFindByIdQuarantines
+     *
+     * Find a related item by id for quarantines.
+     *
+     */
+    public function test_profilePrototypeFindByIdQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetAccessTokens
+     *
+     * Queries accessTokens of Profile.
+     *
+     */
+    public function test_profilePrototypeGetAccessTokens() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetComments
+     *
+     * Queries comments of Profile.
+     *
+     */
+    public function test_profilePrototypeGetComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetCommunityRoles
+     *
+     * Queries communityRoles of Profile.
+     *
+     */
+    public function test_profilePrototypeGetCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetGroups
+     *
+     * Queries groups of Profile.
+     *
+     */
+    public function test_profilePrototypeGetGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetImage
+     *
+     * Fetches hasOne relation image.
+     *
+     */
+    public function test_profilePrototypeGetImage() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetLikes
+     *
+     * Queries likes of Profile.
+     *
+     */
+    public function test_profilePrototypeGetLikes() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetOwnedGroups
+     *
+     * Queries ownedGroups of Profile.
+     *
+     */
+    public function test_profilePrototypeGetOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetPosts
+     *
+     * Queries posts of Profile.
+     *
+     */
+    public function test_profilePrototypeGetPosts() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetQuarantines
+     *
+     * Queries quarantines of Profile.
+     *
+     */
+    public function test_profilePrototypeGetQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeLinkComments
+     *
+     * Add a related item by id for comments.
+     *
+     */
+    public function test_profilePrototypeLinkComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeLinkCommunityRoles
+     *
+     * Add a related item by id for communityRoles.
+     *
+     */
+    public function test_profilePrototypeLinkCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeLinkGroups
+     *
+     * Add a related item by id for groups.
+     *
+     */
+    public function test_profilePrototypeLinkGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeLinkOwnedGroups
+     *
+     * Add a related item by id for ownedGroups.
+     *
+     */
+    public function test_profilePrototypeLinkOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUnlinkComments
+     *
+     * Remove the comments relation to an item by id.
+     *
+     */
+    public function test_profilePrototypeUnlinkComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUnlinkCommunityRoles
+     *
+     * Remove the communityRoles relation to an item by id.
+     *
+     */
+    public function test_profilePrototypeUnlinkCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUnlinkGroups
+     *
+     * Remove the groups relation to an item by id.
+     *
+     */
+    public function test_profilePrototypeUnlinkGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUnlinkOwnedGroups
+     *
+     * Remove the ownedGroups relation to an item by id.
+     *
+     */
+    public function test_profilePrototypeUnlinkOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_profilePrototypeUpdateAttributes() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdAccessTokens
+     *
+     * Update a related item by id for accessTokens.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdAccessTokens() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdComments
+     *
+     * Update a related item by id for comments.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdComments() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdCommunityRoles
+     *
+     * Update a related item by id for communityRoles.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdCommunityRoles() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdGroups
+     *
+     * Update a related item by id for groups.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdLikes
+     *
+     * Update a related item by id for likes.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdOwnedGroups
+     *
+     * Update a related item by id for ownedGroups.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdOwnedGroups() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdPosts
+     *
+     * Update a related item by id for posts.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdPosts() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdQuarantines
+     *
+     * Update a related item by id for quarantines.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateImage
+     *
+     * Update image of this model.
+     *
+     */
+    public function test_profilePrototypeUpdateImage() {
+
+    }
+    
+    /**
      * Test case for profileUnilogin
      *
      * Login a user with unilogin.
@@ -186,772 +946,12 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for profileFindById
+     * Test case for profileUpsert
      *
-     * Find a model instance by id from the data source.
+     * Update an existing model instance or insert a new one into the data source.
      *
      */
-    public function test_profileFindById() {
-
-    }
-    
-    /**
-     * Test case for profileExistsHeadProfilesid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_profileExistsHeadProfilesid() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_profilePrototypeUpdateAttributes() {
-
-    }
-    
-    /**
-     * Test case for profileDeleteById
-     *
-     * Delete a model instance by id from the data source.
-     *
-     */
-    public function test_profileDeleteById() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetAccessTokens
-     *
-     * Queries accessTokens of Profile.
-     *
-     */
-    public function test_profilePrototypeGetAccessTokens() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreateAccessTokens
-     *
-     * Creates a new instance in accessTokens of this model.
-     *
-     */
-    public function test_profilePrototypeCreateAccessTokens() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDeleteAccessTokens
-     *
-     * Deletes all accessTokens of this model.
-     *
-     */
-    public function test_profilePrototypeDeleteAccessTokens() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCountAccessTokens
-     *
-     * Counts accessTokens of Profile.
-     *
-     */
-    public function test_profilePrototypeCountAccessTokens() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeFindByIdAccessTokens
-     *
-     * Find a related item by id for accessTokens.
-     *
-     */
-    public function test_profilePrototypeFindByIdAccessTokens() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateByIdAccessTokens
-     *
-     * Update a related item by id for accessTokens.
-     *
-     */
-    public function test_profilePrototypeUpdateByIdAccessTokens() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyByIdAccessTokens
-     *
-     * Delete a related item by id for accessTokens.
-     *
-     */
-    public function test_profilePrototypeDestroyByIdAccessTokens() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetComments
-     *
-     * Queries comments of Profile.
-     *
-     */
-    public function test_profilePrototypeGetComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreateComments
-     *
-     * Creates a new instance in comments of this model.
-     *
-     */
-    public function test_profilePrototypeCreateComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDeleteComments
-     *
-     * Deletes all comments of this model.
-     *
-     */
-    public function test_profilePrototypeDeleteComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCountComments
-     *
-     * Counts comments of Profile.
-     *
-     */
-    public function test_profilePrototypeCountComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeExistsComments
-     *
-     * Check the existence of comments relation to an item by id.
-     *
-     */
-    public function test_profilePrototypeExistsComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeLinkComments
-     *
-     * Add a related item by id for comments.
-     *
-     */
-    public function test_profilePrototypeLinkComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUnlinkComments
-     *
-     * Remove the comments relation to an item by id.
-     *
-     */
-    public function test_profilePrototypeUnlinkComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeFindByIdComments
-     *
-     * Find a related item by id for comments.
-     *
-     */
-    public function test_profilePrototypeFindByIdComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateByIdComments
-     *
-     * Update a related item by id for comments.
-     *
-     */
-    public function test_profilePrototypeUpdateByIdComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyByIdComments
-     *
-     * Delete a related item by id for comments.
-     *
-     */
-    public function test_profilePrototypeDestroyByIdComments() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetCommunityRoles
-     *
-     * Queries communityRoles of Profile.
-     *
-     */
-    public function test_profilePrototypeGetCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreateCommunityRoles
-     *
-     * Creates a new instance in communityRoles of this model.
-     *
-     */
-    public function test_profilePrototypeCreateCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDeleteCommunityRoles
-     *
-     * Deletes all communityRoles of this model.
-     *
-     */
-    public function test_profilePrototypeDeleteCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCountCommunityRoles
-     *
-     * Counts communityRoles of Profile.
-     *
-     */
-    public function test_profilePrototypeCountCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeExistsCommunityRoles
-     *
-     * Check the existence of communityRoles relation to an item by id.
-     *
-     */
-    public function test_profilePrototypeExistsCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeLinkCommunityRoles
-     *
-     * Add a related item by id for communityRoles.
-     *
-     */
-    public function test_profilePrototypeLinkCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUnlinkCommunityRoles
-     *
-     * Remove the communityRoles relation to an item by id.
-     *
-     */
-    public function test_profilePrototypeUnlinkCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeFindByIdCommunityRoles
-     *
-     * Find a related item by id for communityRoles.
-     *
-     */
-    public function test_profilePrototypeFindByIdCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateByIdCommunityRoles
-     *
-     * Update a related item by id for communityRoles.
-     *
-     */
-    public function test_profilePrototypeUpdateByIdCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyByIdCommunityRoles
-     *
-     * Delete a related item by id for communityRoles.
-     *
-     */
-    public function test_profilePrototypeDestroyByIdCommunityRoles() {
-
-    }
-    
-    /**
-     * Test case for profileExistsGetProfilesidExists
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_profileExistsGetProfilesidExists() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetGroups
-     *
-     * Queries groups of Profile.
-     *
-     */
-    public function test_profilePrototypeGetGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreateGroups
-     *
-     * Creates a new instance in groups of this model.
-     *
-     */
-    public function test_profilePrototypeCreateGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDeleteGroups
-     *
-     * Deletes all groups of this model.
-     *
-     */
-    public function test_profilePrototypeDeleteGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCountGroups
-     *
-     * Counts groups of Profile.
-     *
-     */
-    public function test_profilePrototypeCountGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeExistsGroups
-     *
-     * Check the existence of groups relation to an item by id.
-     *
-     */
-    public function test_profilePrototypeExistsGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeLinkGroups
-     *
-     * Add a related item by id for groups.
-     *
-     */
-    public function test_profilePrototypeLinkGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUnlinkGroups
-     *
-     * Remove the groups relation to an item by id.
-     *
-     */
-    public function test_profilePrototypeUnlinkGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeFindByIdGroups
-     *
-     * Find a related item by id for groups.
-     *
-     */
-    public function test_profilePrototypeFindByIdGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateByIdGroups
-     *
-     * Update a related item by id for groups.
-     *
-     */
-    public function test_profilePrototypeUpdateByIdGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyByIdGroups
-     *
-     * Delete a related item by id for groups.
-     *
-     */
-    public function test_profilePrototypeDestroyByIdGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetImage
-     *
-     * Fetches hasOne relation image.
-     *
-     */
-    public function test_profilePrototypeGetImage() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateImage
-     *
-     * Update image of this model.
-     *
-     */
-    public function test_profilePrototypeUpdateImage() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreateImage
-     *
-     * Creates a new instance in image of this model.
-     *
-     */
-    public function test_profilePrototypeCreateImage() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyImage
-     *
-     * Deletes image of this model.
-     *
-     */
-    public function test_profilePrototypeDestroyImage() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetLikes
-     *
-     * Queries likes of Profile.
-     *
-     */
-    public function test_profilePrototypeGetLikes() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreateLikes
-     *
-     * Creates a new instance in likes of this model.
-     *
-     */
-    public function test_profilePrototypeCreateLikes() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDeleteLikes
-     *
-     * Deletes all likes of this model.
-     *
-     */
-    public function test_profilePrototypeDeleteLikes() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCountLikes
-     *
-     * Counts likes of Profile.
-     *
-     */
-    public function test_profilePrototypeCountLikes() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeFindByIdLikes
-     *
-     * Find a related item by id for likes.
-     *
-     */
-    public function test_profilePrototypeFindByIdLikes() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateByIdLikes
-     *
-     * Update a related item by id for likes.
-     *
-     */
-    public function test_profilePrototypeUpdateByIdLikes() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyByIdLikes
-     *
-     * Delete a related item by id for likes.
-     *
-     */
-    public function test_profilePrototypeDestroyByIdLikes() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetOwnedGroups
-     *
-     * Queries ownedGroups of Profile.
-     *
-     */
-    public function test_profilePrototypeGetOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreateOwnedGroups
-     *
-     * Creates a new instance in ownedGroups of this model.
-     *
-     */
-    public function test_profilePrototypeCreateOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDeleteOwnedGroups
-     *
-     * Deletes all ownedGroups of this model.
-     *
-     */
-    public function test_profilePrototypeDeleteOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCountOwnedGroups
-     *
-     * Counts ownedGroups of Profile.
-     *
-     */
-    public function test_profilePrototypeCountOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeExistsOwnedGroups
-     *
-     * Check the existence of ownedGroups relation to an item by id.
-     *
-     */
-    public function test_profilePrototypeExistsOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeLinkOwnedGroups
-     *
-     * Add a related item by id for ownedGroups.
-     *
-     */
-    public function test_profilePrototypeLinkOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUnlinkOwnedGroups
-     *
-     * Remove the ownedGroups relation to an item by id.
-     *
-     */
-    public function test_profilePrototypeUnlinkOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeFindByIdOwnedGroups
-     *
-     * Find a related item by id for ownedGroups.
-     *
-     */
-    public function test_profilePrototypeFindByIdOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateByIdOwnedGroups
-     *
-     * Update a related item by id for ownedGroups.
-     *
-     */
-    public function test_profilePrototypeUpdateByIdOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyByIdOwnedGroups
-     *
-     * Delete a related item by id for ownedGroups.
-     *
-     */
-    public function test_profilePrototypeDestroyByIdOwnedGroups() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetPosts
-     *
-     * Queries posts of Profile.
-     *
-     */
-    public function test_profilePrototypeGetPosts() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreatePosts
-     *
-     * Creates a new instance in posts of this model.
-     *
-     */
-    public function test_profilePrototypeCreatePosts() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDeletePosts
-     *
-     * Deletes all posts of this model.
-     *
-     */
-    public function test_profilePrototypeDeletePosts() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCountPosts
-     *
-     * Counts posts of Profile.
-     *
-     */
-    public function test_profilePrototypeCountPosts() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeFindByIdPosts
-     *
-     * Find a related item by id for posts.
-     *
-     */
-    public function test_profilePrototypeFindByIdPosts() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateByIdPosts
-     *
-     * Update a related item by id for posts.
-     *
-     */
-    public function test_profilePrototypeUpdateByIdPosts() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyByIdPosts
-     *
-     * Delete a related item by id for posts.
-     *
-     */
-    public function test_profilePrototypeDestroyByIdPosts() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeGetQuarantines
-     *
-     * Queries quarantines of Profile.
-     *
-     */
-    public function test_profilePrototypeGetQuarantines() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCreateQuarantines
-     *
-     * Creates a new instance in quarantines of this model.
-     *
-     */
-    public function test_profilePrototypeCreateQuarantines() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDeleteQuarantines
-     *
-     * Deletes all quarantines of this model.
-     *
-     */
-    public function test_profilePrototypeDeleteQuarantines() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeCountQuarantines
-     *
-     * Counts quarantines of Profile.
-     *
-     */
-    public function test_profilePrototypeCountQuarantines() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeFindByIdQuarantines
-     *
-     * Find a related item by id for quarantines.
-     *
-     */
-    public function test_profilePrototypeFindByIdQuarantines() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeUpdateByIdQuarantines
-     *
-     * Update a related item by id for quarantines.
-     *
-     */
-    public function test_profilePrototypeUpdateByIdQuarantines() {
-
-    }
-    
-    /**
-     * Test case for profilePrototypeDestroyByIdQuarantines
-     *
-     * Delete a related item by id for quarantines.
-     *
-     */
-    public function test_profilePrototypeDestroyByIdQuarantines() {
+    public function test_profileUpsert() {
 
     }
     

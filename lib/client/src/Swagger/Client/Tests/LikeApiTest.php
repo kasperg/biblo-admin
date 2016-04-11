@@ -66,22 +66,12 @@ class LikeApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for likeFind
+     * Test case for likeCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_likeFind() {
-
-    }
-    
-    /**
-     * Test case for likeUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_likeUpsert() {
+    public function test_likeCount() {
 
     }
     
@@ -116,66 +106,6 @@ class LikeApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for likeCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_likeCount() {
-
-    }
-    
-    /**
-     * Test case for likeFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_likeFindOne() {
-
-    }
-    
-    /**
-     * Test case for likeUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_likeUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for likeFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_likeFindById() {
-
-    }
-    
-    /**
-     * Test case for likeExistsHeadLikesid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_likeExistsHeadLikesid() {
-
-    }
-    
-    /**
-     * Test case for likePrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_likePrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for likeDeleteById
      *
      * Delete a model instance by id from the data source.
@@ -196,12 +126,82 @@ class LikeApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for likeExistsHeadLikesid
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     */
+    public function test_likeExistsHeadLikesid() {
+
+    }
+    
+    /**
+     * Test case for likeFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_likeFind() {
+
+    }
+    
+    /**
+     * Test case for likeFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_likeFindById() {
+
+    }
+    
+    /**
+     * Test case for likeFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_likeFindOne() {
+
+    }
+    
+    /**
      * Test case for likePrototypeGetPost
      *
      * Fetches belongsTo relation post.
      *
      */
     public function test_likePrototypeGetPost() {
+
+    }
+    
+    /**
+     * Test case for likePrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_likePrototypeUpdateAttributes() {
+
+    }
+    
+    /**
+     * Test case for likeUpdateAll
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     */
+    public function test_likeUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for likeUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_likeUpsert() {
 
     }
     

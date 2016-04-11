@@ -62,6 +62,10 @@ class Post implements ArrayAccess
         'groupid' => 'double'
     );
   
+    static function swaggerTypes() {
+        return self::$swaggerTypes;
+    }
+
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
       * @var string[] 
@@ -78,6 +82,10 @@ class Post implements ArrayAccess
         'groupid' => 'groupid'
     );
   
+    static function attributeMap() {
+        return self::$attributeMap;
+    }
+
     /**
       * Array of attributes to setter functions (for deserialization of responses)
       * @var string[]
@@ -94,6 +102,10 @@ class Post implements ArrayAccess
         'groupid' => 'setGroupid'
     );
   
+    static function setters() {
+        return self::$setters;
+    }
+
     /**
       * Array of attributes to getter functions (for serialization of requests)
       * @var string[]
@@ -110,6 +122,10 @@ class Post implements ArrayAccess
         'groupid' => 'getGroupid'
     );
   
+    static function getters() {
+        return self::$getters;
+    }
+
     
     /**
       * $title 
@@ -172,6 +188,7 @@ class Post implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        
         if ($data != null) {
             $this->title = $data["title"];
             $this->content = $data["content"];

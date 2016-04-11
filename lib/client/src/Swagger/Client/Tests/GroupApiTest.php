@@ -66,22 +66,12 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for groupFind
+     * Test case for groupCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_groupFind() {
-
-    }
-    
-    /**
-     * Test case for groupUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_groupUpsert() {
+    public function test_groupCount() {
 
     }
     
@@ -116,112 +106,12 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for groupCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_groupCount() {
-
-    }
-    
-    /**
-     * Test case for groupFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_groupFindOne() {
-
-    }
-    
-    /**
-     * Test case for groupUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_groupUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for groupFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_groupFindById() {
-
-    }
-    
-    /**
-     * Test case for groupExistsHeadGroupsid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_groupExistsHeadGroupsid() {
-
-    }
-    
-    /**
-     * Test case for groupPrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_groupPrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for groupDeleteById
      *
      * Delete a model instance by id from the data source.
      *
      */
     public function test_groupDeleteById() {
-
-    }
-    
-    /**
-     * Test case for groupPrototypeGetCoverImage
-     *
-     * Fetches hasOne relation coverImage.
-     *
-     */
-    public function test_groupPrototypeGetCoverImage() {
-
-    }
-    
-    /**
-     * Test case for groupPrototypeUpdateCoverImage
-     *
-     * Update coverImage of this model.
-     *
-     */
-    public function test_groupPrototypeUpdateCoverImage() {
-
-    }
-    
-    /**
-     * Test case for groupPrototypeCreateCoverImage
-     *
-     * Creates a new instance in coverImage of this model.
-     *
-     */
-    public function test_groupPrototypeCreateCoverImage() {
-
-    }
-    
-    /**
-     * Test case for groupPrototypeDestroyCoverImage
-     *
-     * Deletes coverImage of this model.
-     *
-     */
-    public function test_groupPrototypeDestroyCoverImage() {
 
     }
     
@@ -236,32 +126,42 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for groupPrototypeGetFlags
+     * Test case for groupExistsHeadGroupsid
      *
-     * Queries flags of Group.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_groupPrototypeGetFlags() {
+    public function test_groupExistsHeadGroupsid() {
 
     }
     
     /**
-     * Test case for groupPrototypeCreateFlags
+     * Test case for groupFind
      *
-     * Creates a new instance in flags of this model.
+     * Find all instances of the model matched by filter from the data source.
      *
      */
-    public function test_groupPrototypeCreateFlags() {
+    public function test_groupFind() {
 
     }
     
     /**
-     * Test case for groupPrototypeDeleteFlags
+     * Test case for groupFindById
      *
-     * Deletes all flags of this model.
+     * Find a model instance by id from the data source.
      *
      */
-    public function test_groupPrototypeDeleteFlags() {
+    public function test_groupFindById() {
+
+    }
+    
+    /**
+     * Test case for groupFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_groupFindOne() {
 
     }
     
@@ -276,42 +176,42 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for groupPrototypeFindByIdFlags
+     * Test case for groupPrototypeCountMembers
      *
-     * Find a related item by id for flags.
+     * Counts members of Group.
      *
      */
-    public function test_groupPrototypeFindByIdFlags() {
+    public function test_groupPrototypeCountMembers() {
 
     }
     
     /**
-     * Test case for groupPrototypeUpdateByIdFlags
+     * Test case for groupPrototypeCountPosts
      *
-     * Update a related item by id for flags.
+     * Counts posts of Group.
      *
      */
-    public function test_groupPrototypeUpdateByIdFlags() {
+    public function test_groupPrototypeCountPosts() {
 
     }
     
     /**
-     * Test case for groupPrototypeDestroyByIdFlags
+     * Test case for groupPrototypeCreateCoverImage
      *
-     * Delete a related item by id for flags.
+     * Creates a new instance in coverImage of this model.
      *
      */
-    public function test_groupPrototypeDestroyByIdFlags() {
+    public function test_groupPrototypeCreateCoverImage() {
 
     }
     
     /**
-     * Test case for groupPrototypeGetMembers
+     * Test case for groupPrototypeCreateFlags
      *
-     * Queries members of Group.
+     * Creates a new instance in flags of this model.
      *
      */
-    public function test_groupPrototypeGetMembers() {
+    public function test_groupPrototypeCreateFlags() {
 
     }
     
@@ -326,6 +226,26 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for groupPrototypeCreatePosts
+     *
+     * Creates a new instance in posts of this model.
+     *
+     */
+    public function test_groupPrototypeCreatePosts() {
+
+    }
+    
+    /**
+     * Test case for groupPrototypeDeleteFlags
+     *
+     * Deletes all flags of this model.
+     *
+     */
+    public function test_groupPrototypeDeleteFlags() {
+
+    }
+    
+    /**
      * Test case for groupPrototypeDeleteMembers
      *
      * Deletes all members of this model.
@@ -336,12 +256,52 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for groupPrototypeCountMembers
+     * Test case for groupPrototypeDeletePosts
      *
-     * Counts members of Group.
+     * Deletes all posts of this model.
      *
      */
-    public function test_groupPrototypeCountMembers() {
+    public function test_groupPrototypeDeletePosts() {
+
+    }
+    
+    /**
+     * Test case for groupPrototypeDestroyByIdFlags
+     *
+     * Delete a related item by id for flags.
+     *
+     */
+    public function test_groupPrototypeDestroyByIdFlags() {
+
+    }
+    
+    /**
+     * Test case for groupPrototypeDestroyByIdMembers
+     *
+     * Delete a related item by id for members.
+     *
+     */
+    public function test_groupPrototypeDestroyByIdMembers() {
+
+    }
+    
+    /**
+     * Test case for groupPrototypeDestroyByIdPosts
+     *
+     * Delete a related item by id for posts.
+     *
+     */
+    public function test_groupPrototypeDestroyByIdPosts() {
+
+    }
+    
+    /**
+     * Test case for groupPrototypeDestroyCoverImage
+     *
+     * Deletes coverImage of this model.
+     *
+     */
+    public function test_groupPrototypeDestroyCoverImage() {
 
     }
     
@@ -356,22 +316,12 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for groupPrototypeLinkMembers
+     * Test case for groupPrototypeFindByIdFlags
      *
-     * Add a related item by id for members.
-     *
-     */
-    public function test_groupPrototypeLinkMembers() {
-
-    }
-    
-    /**
-     * Test case for groupPrototypeUnlinkMembers
-     *
-     * Remove the members relation to an item by id.
+     * Find a related item by id for flags.
      *
      */
-    public function test_groupPrototypeUnlinkMembers() {
+    public function test_groupPrototypeFindByIdFlags() {
 
     }
     
@@ -386,22 +336,42 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for groupPrototypeUpdateByIdMembers
+     * Test case for groupPrototypeFindByIdPosts
      *
-     * Update a related item by id for members.
+     * Find a related item by id for posts.
      *
      */
-    public function test_groupPrototypeUpdateByIdMembers() {
+    public function test_groupPrototypeFindByIdPosts() {
 
     }
     
     /**
-     * Test case for groupPrototypeDestroyByIdMembers
+     * Test case for groupPrototypeGetCoverImage
      *
-     * Delete a related item by id for members.
+     * Fetches hasOne relation coverImage.
      *
      */
-    public function test_groupPrototypeDestroyByIdMembers() {
+    public function test_groupPrototypeGetCoverImage() {
+
+    }
+    
+    /**
+     * Test case for groupPrototypeGetFlags
+     *
+     * Queries flags of Group.
+     *
+     */
+    public function test_groupPrototypeGetFlags() {
+
+    }
+    
+    /**
+     * Test case for groupPrototypeGetMembers
+     *
+     * Queries members of Group.
+     *
+     */
+    public function test_groupPrototypeGetMembers() {
 
     }
     
@@ -426,42 +396,52 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for groupPrototypeCreatePosts
+     * Test case for groupPrototypeLinkMembers
      *
-     * Creates a new instance in posts of this model.
+     * Add a related item by id for members.
      *
      */
-    public function test_groupPrototypeCreatePosts() {
+    public function test_groupPrototypeLinkMembers() {
 
     }
     
     /**
-     * Test case for groupPrototypeDeletePosts
+     * Test case for groupPrototypeUnlinkMembers
      *
-     * Deletes all posts of this model.
+     * Remove the members relation to an item by id.
      *
      */
-    public function test_groupPrototypeDeletePosts() {
+    public function test_groupPrototypeUnlinkMembers() {
 
     }
     
     /**
-     * Test case for groupPrototypeCountPosts
+     * Test case for groupPrototypeUpdateAttributes
      *
-     * Counts posts of Group.
+     * Update attributes for a model instance and persist it into the data source.
      *
      */
-    public function test_groupPrototypeCountPosts() {
+    public function test_groupPrototypeUpdateAttributes() {
 
     }
     
     /**
-     * Test case for groupPrototypeFindByIdPosts
+     * Test case for groupPrototypeUpdateByIdFlags
      *
-     * Find a related item by id for posts.
+     * Update a related item by id for flags.
      *
      */
-    public function test_groupPrototypeFindByIdPosts() {
+    public function test_groupPrototypeUpdateByIdFlags() {
+
+    }
+    
+    /**
+     * Test case for groupPrototypeUpdateByIdMembers
+     *
+     * Update a related item by id for members.
+     *
+     */
+    public function test_groupPrototypeUpdateByIdMembers() {
 
     }
     
@@ -476,12 +456,32 @@ class GroupApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for groupPrototypeDestroyByIdPosts
+     * Test case for groupPrototypeUpdateCoverImage
      *
-     * Delete a related item by id for posts.
+     * Update coverImage of this model.
      *
      */
-    public function test_groupPrototypeDestroyByIdPosts() {
+    public function test_groupPrototypeUpdateCoverImage() {
+
+    }
+    
+    /**
+     * Test case for groupUpdateAll
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     */
+    public function test_groupUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for groupUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_groupUpsert() {
 
     }
     

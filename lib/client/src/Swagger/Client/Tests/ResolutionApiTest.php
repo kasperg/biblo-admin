@@ -66,22 +66,12 @@ class ResolutionApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for resolutionFind
+     * Test case for resolutionCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_resolutionFind() {
-
-    }
-    
-    /**
-     * Test case for resolutionUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_resolutionUpsert() {
+    public function test_resolutionCount() {
 
     }
     
@@ -116,66 +106,6 @@ class ResolutionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for resolutionCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_resolutionCount() {
-
-    }
-    
-    /**
-     * Test case for resolutionFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_resolutionFindOne() {
-
-    }
-    
-    /**
-     * Test case for resolutionUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_resolutionUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for resolutionFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_resolutionFindById() {
-
-    }
-    
-    /**
-     * Test case for resolutionExistsHeadResolutionsid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_resolutionExistsHeadResolutionsid() {
-
-    }
-    
-    /**
-     * Test case for resolutionPrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_resolutionPrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for resolutionDeleteById
      *
      * Delete a model instance by id from the data source.
@@ -196,22 +126,42 @@ class ResolutionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for resolutionPrototypeGetImage
+     * Test case for resolutionExistsHeadResolutionsid
      *
-     * Fetches hasOne relation image.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_resolutionPrototypeGetImage() {
+    public function test_resolutionExistsHeadResolutionsid() {
 
     }
     
     /**
-     * Test case for resolutionPrototypeUpdateImage
+     * Test case for resolutionFind
      *
-     * Update image of this model.
+     * Find all instances of the model matched by filter from the data source.
      *
      */
-    public function test_resolutionPrototypeUpdateImage() {
+    public function test_resolutionFind() {
+
+    }
+    
+    /**
+     * Test case for resolutionFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_resolutionFindById() {
+
+    }
+    
+    /**
+     * Test case for resolutionFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_resolutionFindOne() {
 
     }
     
@@ -226,12 +176,42 @@ class ResolutionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for resolutionPrototypeCreateVideo
+     *
+     * Creates a new instance in video of this model.
+     *
+     */
+    public function test_resolutionPrototypeCreateVideo() {
+
+    }
+    
+    /**
      * Test case for resolutionPrototypeDestroyImage
      *
      * Deletes image of this model.
      *
      */
     public function test_resolutionPrototypeDestroyImage() {
+
+    }
+    
+    /**
+     * Test case for resolutionPrototypeDestroyVideo
+     *
+     * Deletes video of this model.
+     *
+     */
+    public function test_resolutionPrototypeDestroyVideo() {
+
+    }
+    
+    /**
+     * Test case for resolutionPrototypeGetImage
+     *
+     * Fetches hasOne relation image.
+     *
+     */
+    public function test_resolutionPrototypeGetImage() {
 
     }
     
@@ -246,6 +226,26 @@ class ResolutionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for resolutionPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_resolutionPrototypeUpdateAttributes() {
+
+    }
+    
+    /**
+     * Test case for resolutionPrototypeUpdateImage
+     *
+     * Update image of this model.
+     *
+     */
+    public function test_resolutionPrototypeUpdateImage() {
+
+    }
+    
+    /**
      * Test case for resolutionPrototypeUpdateVideo
      *
      * Update video of this model.
@@ -256,22 +256,22 @@ class ResolutionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for resolutionPrototypeCreateVideo
+     * Test case for resolutionUpdateAll
      *
-     * Creates a new instance in video of this model.
+     * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_resolutionPrototypeCreateVideo() {
+    public function test_resolutionUpdateAll() {
 
     }
     
     /**
-     * Test case for resolutionPrototypeDestroyVideo
+     * Test case for resolutionUpsert
      *
-     * Deletes video of this model.
+     * Update an existing model instance or insert a new one into the data source.
      *
      */
-    public function test_resolutionPrototypeDestroyVideo() {
+    public function test_resolutionUpsert() {
 
     }
     

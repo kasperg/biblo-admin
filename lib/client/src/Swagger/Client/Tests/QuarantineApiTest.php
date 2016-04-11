@@ -66,22 +66,22 @@ class QuarantineApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for quarantineFind
+     * Test case for quarantineCheckIfProfileIsQuarantined
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Check if a profile is quarantined
      *
      */
-    public function test_quarantineFind() {
+    public function test_quarantineCheckIfProfileIsQuarantined() {
 
     }
     
     /**
-     * Test case for quarantineUpsert
+     * Test case for quarantineCount
      *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_quarantineUpsert() {
+    public function test_quarantineCount() {
 
     }
     
@@ -116,92 +116,12 @@ class QuarantineApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for quarantineCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_quarantineCount() {
-
-    }
-    
-    /**
-     * Test case for quarantineFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_quarantineFindOne() {
-
-    }
-    
-    /**
-     * Test case for quarantineUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_quarantineUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for quarantineFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_quarantineFindById() {
-
-    }
-    
-    /**
-     * Test case for quarantineExistsHeadQuarantinesid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_quarantineExistsHeadQuarantinesid() {
-
-    }
-    
-    /**
-     * Test case for quarantinePrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_quarantinePrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for quarantineDeleteById
      *
      * Delete a model instance by id from the data source.
      *
      */
     public function test_quarantineDeleteById() {
-
-    }
-    
-    /**
-     * Test case for quarantineCheckIfProfileIsQuarantined
-     *
-     * Check if a profile is quarantined
-     *
-     */
-    public function test_quarantineCheckIfProfileIsQuarantined() {
-
-    }
-    
-    /**
-     * Test case for quarantinePrototypeGetCreator
-     *
-     * Fetches belongsTo relation creator.
-     *
-     */
-    public function test_quarantinePrototypeGetCreator() {
 
     }
     
@@ -216,12 +136,92 @@ class QuarantineApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for quarantineExistsHeadQuarantinesid
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     */
+    public function test_quarantineExistsHeadQuarantinesid() {
+
+    }
+    
+    /**
+     * Test case for quarantineFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_quarantineFind() {
+
+    }
+    
+    /**
+     * Test case for quarantineFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_quarantineFindById() {
+
+    }
+    
+    /**
+     * Test case for quarantineFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_quarantineFindOne() {
+
+    }
+    
+    /**
+     * Test case for quarantinePrototypeGetCreator
+     *
+     * Fetches belongsTo relation creator.
+     *
+     */
+    public function test_quarantinePrototypeGetCreator() {
+
+    }
+    
+    /**
      * Test case for quarantinePrototypeGetQuarantined
      *
      * Fetches belongsTo relation quarantined.
      *
      */
     public function test_quarantinePrototypeGetQuarantined() {
+
+    }
+    
+    /**
+     * Test case for quarantinePrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_quarantinePrototypeUpdateAttributes() {
+
+    }
+    
+    /**
+     * Test case for quarantineUpdateAll
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     */
+    public function test_quarantineUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for quarantineUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_quarantineUpsert() {
 
     }
     
