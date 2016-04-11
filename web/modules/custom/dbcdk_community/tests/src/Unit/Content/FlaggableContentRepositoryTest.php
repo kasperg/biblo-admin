@@ -10,7 +10,9 @@ namespace Drupal\dbcdk_community\Test\Content;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
+use DBCDK\CommunityServices\Model\ImageCollection;
 use DBCDK\CommunityServices\Model\Post;
+use DBCDK\CommunityServices\Model\VideoCollection;
 use Drupal\dbcdk_community\Content\FlaggableContent;
 use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Drupal\Tests\UnitTestCase;
@@ -148,6 +150,68 @@ class FlaggableContentRepositoryTest extends UnitTestCase {
         $comment_flags,
       ],
     ];
+  }
+
+  /**
+   * Test that ImageCollection's can be fetched by the repository.
+   */
+  public function testContentWithImageCollections() {
+    // Data.
+    $post = new Post();
+    $post->setId(1);
+    $collections = [];
+    $collections[] = (new ImageCollection())
+      ->setId(1)
+      ->setPostImageCollection($post->getId());
+    $collections[] = (new ImageCollection())
+      ->setId(2)
+      ->setPostImageCollection($post->getId());
+
+    // Stubs.
+    $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
+    $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $post_api_stub->method('postPrototypeGetImage')->willReturn($collections);
+
+    // Get a FlaggableContentRepository with a Post object.
+    $flaggable_content = new FlaggableContent($post);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+
+    // Assume that the collections defined above is the same once returned by
+    // the FlaggableContentRepository::getCollections method.
+    $images = $repo->getImageCollections($flaggable_content);
+    $this->assertEquals($images, $collections);
+  }
+
+  /**
+   * Test that VideoCollection's can be fetched by the repository.
+   */
+  public function testContentWithVideoCollections() {
+    // Data.
+    $post = new Post();
+    $post->setId(1);
+    $collections = [];
+    $collections[] = (new VideoCollection())
+      ->setId(1)
+      ->setPostVideoCollection($post->getId());
+    $collections[] = (new VideoCollection())
+      ->setId(2)
+      ->setPostVideoCollection($post->getId());
+
+    // Stubs.
+    $flag_api_stub = $this->getMock('DBCDK\CommunityServices\Api\FlagApi');
+    $post_api_stub = $this->getMock('DBCDK\CommunityServices\Api\PostApi');
+    $comment_api_stub = $this->getMock('DBCDK\CommunityServices\Api\CommentApi');
+    $post_api_stub->method('postPrototypeGetVideo')->willReturn($collections);
+
+    // Get a FlaggableContentRepository with a Post object.
+    $flaggable_content = new FlaggableContent($post);
+    $repo = new FlaggableContentRepository($flag_api_stub, $post_api_stub, $comment_api_stub);
+
+    // Assume that the collections defined above is the same once returned by
+    // the FlaggableContentRepository::getCollections method.
+    $videos = $repo->getVideoCollections($flaggable_content);
+    $this->assertEquals($videos, $collections);
   }
 
   /**
