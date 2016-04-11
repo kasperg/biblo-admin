@@ -66,22 +66,12 @@ class FlagApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for flagFind
+     * Test case for flagCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_flagFind() {
-
-    }
-    
-    /**
-     * Test case for flagUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_flagUpsert() {
+    public function test_flagCount() {
 
     }
     
@@ -116,112 +106,12 @@ class FlagApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for flagCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_flagCount() {
-
-    }
-    
-    /**
-     * Test case for flagFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_flagFindOne() {
-
-    }
-    
-    /**
-     * Test case for flagUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_flagUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for flagFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_flagFindById() {
-
-    }
-    
-    /**
-     * Test case for flagExistsHeadFlagsid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_flagExistsHeadFlagsid() {
-
-    }
-    
-    /**
-     * Test case for flagPrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_flagPrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for flagDeleteById
      *
      * Delete a model instance by id from the data source.
      *
      */
     public function test_flagDeleteById() {
-
-    }
-    
-    /**
-     * Test case for flagPrototypeGetComments
-     *
-     * Fetches hasOne relation comments.
-     *
-     */
-    public function test_flagPrototypeGetComments() {
-
-    }
-    
-    /**
-     * Test case for flagPrototypeUpdateComments
-     *
-     * Update comments of this model.
-     *
-     */
-    public function test_flagPrototypeUpdateComments() {
-
-    }
-    
-    /**
-     * Test case for flagPrototypeCreateComments
-     *
-     * Creates a new instance in comments of this model.
-     *
-     */
-    public function test_flagPrototypeCreateComments() {
-
-    }
-    
-    /**
-     * Test case for flagPrototypeDestroyComments
-     *
-     * Deletes comments of this model.
-     *
-     */
-    public function test_flagPrototypeDestroyComments() {
 
     }
     
@@ -236,22 +126,52 @@ class FlagApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for flagPrototypeGetGroups
+     * Test case for flagExistsHeadFlagsid
      *
-     * Fetches hasOne relation groups.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_flagPrototypeGetGroups() {
+    public function test_flagExistsHeadFlagsid() {
 
     }
     
     /**
-     * Test case for flagPrototypeUpdateGroups
+     * Test case for flagFind
      *
-     * Update groups of this model.
+     * Find all instances of the model matched by filter from the data source.
      *
      */
-    public function test_flagPrototypeUpdateGroups() {
+    public function test_flagFind() {
+
+    }
+    
+    /**
+     * Test case for flagFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_flagFindById() {
+
+    }
+    
+    /**
+     * Test case for flagFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_flagFindOne() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeCreateComments
+     *
+     * Creates a new instance in comments of this model.
+     *
+     */
+    public function test_flagPrototypeCreateComments() {
 
     }
     
@@ -266,12 +186,62 @@ class FlagApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for flagPrototypeCreatePosts
+     *
+     * Creates a new instance in posts of this model.
+     *
+     */
+    public function test_flagPrototypeCreatePosts() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeDestroyComments
+     *
+     * Deletes comments of this model.
+     *
+     */
+    public function test_flagPrototypeDestroyComments() {
+
+    }
+    
+    /**
      * Test case for flagPrototypeDestroyGroups
      *
      * Deletes groups of this model.
      *
      */
     public function test_flagPrototypeDestroyGroups() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeDestroyPosts
+     *
+     * Deletes posts of this model.
+     *
+     */
+    public function test_flagPrototypeDestroyPosts() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeGetComments
+     *
+     * Fetches hasOne relation comments.
+     *
+     */
+    public function test_flagPrototypeGetComments() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeGetGroups
+     *
+     * Fetches hasOne relation groups.
+     *
+     */
+    public function test_flagPrototypeGetGroups() {
 
     }
     
@@ -296,6 +266,36 @@ class FlagApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for flagPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_flagPrototypeUpdateAttributes() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeUpdateComments
+     *
+     * Update comments of this model.
+     *
+     */
+    public function test_flagPrototypeUpdateComments() {
+
+    }
+    
+    /**
+     * Test case for flagPrototypeUpdateGroups
+     *
+     * Update groups of this model.
+     *
+     */
+    public function test_flagPrototypeUpdateGroups() {
+
+    }
+    
+    /**
      * Test case for flagPrototypeUpdatePosts
      *
      * Update posts of this model.
@@ -306,22 +306,22 @@ class FlagApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for flagPrototypeCreatePosts
+     * Test case for flagUpdateAll
      *
-     * Creates a new instance in posts of this model.
+     * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_flagPrototypeCreatePosts() {
+    public function test_flagUpdateAll() {
 
     }
     
     /**
-     * Test case for flagPrototypeDestroyPosts
+     * Test case for flagUpsert
      *
-     * Deletes posts of this model.
+     * Update an existing model instance or insert a new one into the data source.
      *
      */
-    public function test_flagPrototypeDestroyPosts() {
+    public function test_flagUpsert() {
 
     }
     

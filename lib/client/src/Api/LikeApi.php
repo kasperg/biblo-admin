@@ -92,36 +92,36 @@ class LikeApi
   
     
     /**
-     * likeFind
+     * likeCount
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Count instances of the model matched by where from the data source.
      *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\Like[]
+     * @param string $where Criteria to match model instances (optional)
+     * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function likeFind($filter = null)
+    public function likeCount($where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->likeFindWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->likeCountWithHttpInfo ($where);
         return $response; 
     }
 
 
     /**
-     * likeFindWithHttpInfo
+     * likeCountWithHttpInfo
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Count instances of the model matched by where from the data source.
      *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Like[], HTTP status code, HTTP response headers (array of strings)
+     * @param string $where Criteria to match model instances (optional)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function likeFindWithHttpInfo($filter = null)
+    public function likeCountWithHttpInfo($where = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Likes";
+        $resourcePath = "/Likes/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -134,8 +134,8 @@ class LikeApi
   
         // query params
         
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
         }
         
         
@@ -157,106 +157,19 @@ class LikeApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Like[]'
+                $headerParams, 'object'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like[]', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like[]', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * likeUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
-     *
-     * @param \DBCDK\CommunityServices\Model\Like $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\Like
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeUpsert($data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->likeUpsertWithHttpInfo ($data);
-        return $response; 
-    }
-
-
-    /**
-     * likeUpsertWithHttpInfo
-     *
-     * Update an existing model instance or insert a new one into the data source.
-     *
-     * @param \DBCDK\CommunityServices\Model\Like $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeUpsertWithHttpInfo($data = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/Likes";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'PUT',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Like'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -529,570 +442,6 @@ class LikeApi
     }
     
     /**
-     * likeCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     * @param string $where Criteria to match model instances (optional)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeCount($where = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->likeCountWithHttpInfo ($where);
-        return $response; 
-    }
-
-
-    /**
-     * likeCountWithHttpInfo
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     * @param string $where Criteria to match model instances (optional)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeCountWithHttpInfo($where = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/Likes/count";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($where !== null) {
-            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
-        }
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * likeFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\Like
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeFindOne($filter = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->likeFindOneWithHttpInfo ($filter);
-        return $response; 
-    }
-
-
-    /**
-     * likeFindOneWithHttpInfo
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeFindOneWithHttpInfo($filter = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/Likes/findOne";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
-        }
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Like'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * likeUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\Like $data An object of model property name/value pairs (optional)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeUpdateAll($where = null, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->likeUpdateAllWithHttpInfo ($where, $data);
-        return $response; 
-    }
-
-
-    /**
-     * likeUpdateAllWithHttpInfo
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\Like $data An object of model property name/value pairs (optional)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeUpdateAllWithHttpInfo($where = null, $data = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/Likes/update";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($where !== null) {
-            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
-        }
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'POST',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * likeFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\Like
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeFindById($id, $filter = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->likeFindByIdWithHttpInfo ($id, $filter);
-        return $response; 
-    }
-
-
-    /**
-     * likeFindByIdWithHttpInfo
-     *
-     * Find a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeFindByIdWithHttpInfo($id, $filter = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling likeFindById');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Likes/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Like'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * likeExistsHeadLikesid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeExistsHeadLikesid($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->likeExistsHeadLikesidWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * likeExistsHeadLikesidWithHttpInfo
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likeExistsHeadLikesidWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling likeExistsHeadLikesid');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Likes/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'HEAD',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * likePrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Like $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\Like
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likePrototypeUpdateAttributes($id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->likePrototypeUpdateAttributesWithHttpInfo ($id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * likePrototypeUpdateAttributesWithHttpInfo
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Like $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function likePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling likePrototypeUpdateAttributes');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Likes/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'PUT',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Like'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
      * likeDeleteById
      *
      * Delete a model instance by id from the data source.
@@ -1283,6 +632,376 @@ class LikeApi
     }
     
     /**
+     * likeExistsHeadLikesid
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeExistsHeadLikesid($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->likeExistsHeadLikesidWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * likeExistsHeadLikesidWithHttpInfo
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeExistsHeadLikesidWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling likeExistsHeadLikesid');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Likes/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'HEAD',
+                $queryParams, $httpBody,
+                $headerParams, 'object'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * likeFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return \DBCDK\CommunityServices\Model\Like[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeFind($filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->likeFindWithHttpInfo ($filter);
+        return $response; 
+    }
+
+
+    /**
+     * likeFindWithHttpInfo
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeFindWithHttpInfo($filter = null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/Likes";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like[]'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like[]', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * likeFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     * @param string $id Model id (required)
+     * @param string $filter Filter defining fields and include (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeFindById($id, $filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->likeFindByIdWithHttpInfo ($id, $filter);
+        return $response; 
+    }
+
+
+    /**
+     * likeFindByIdWithHttpInfo
+     *
+     * Find a model instance by id from the data source.
+     *
+     * @param string $id Model id (required)
+     * @param string $filter Filter defining fields and include (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeFindByIdWithHttpInfo($id, $filter = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling likeFindById');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Likes/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * likeFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeFindOne($filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->likeFindOneWithHttpInfo ($filter);
+        return $response; 
+    }
+
+
+    /**
+     * likeFindOneWithHttpInfo
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeFindOneWithHttpInfo($filter = null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/Likes/findOne";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
      * likePrototypeGetPost
      *
      * Fetches belongsTo relation post.
@@ -1375,6 +1094,287 @@ class LikeApi
             switch ($e->getCode()) { 
             case 200:
                 $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Post', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * likePrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likePrototypeUpdateAttributes($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->likePrototypeUpdateAttributesWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * likePrototypeUpdateAttributesWithHttpInfo
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Like $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling likePrototypeUpdateAttributes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Likes/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'PUT',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * likeUpdateAll
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     * @param string $where Criteria to match model instances (optional)
+     * @param \DBCDK\CommunityServices\Model\Like $data An object of model property name/value pairs (optional)
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeUpdateAll($where = null, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->likeUpdateAllWithHttpInfo ($where, $data);
+        return $response; 
+    }
+
+
+    /**
+     * likeUpdateAllWithHttpInfo
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     * @param string $where Criteria to match model instances (optional)
+     * @param \DBCDK\CommunityServices\Model\Like $data An object of model property name/value pairs (optional)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeUpdateAllWithHttpInfo($where = null, $data = null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/Likes/update";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
+        }
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'POST',
+                $queryParams, $httpBody,
+                $headerParams, 'object'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * likeUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     * @param \DBCDK\CommunityServices\Model\Like $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeUpsert($data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->likeUpsertWithHttpInfo ($data);
+        return $response; 
+    }
+
+
+    /**
+     * likeUpsertWithHttpInfo
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     * @param \DBCDK\CommunityServices\Model\Like $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function likeUpsertWithHttpInfo($data = null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/Likes";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'PUT',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

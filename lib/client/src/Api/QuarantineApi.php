@@ -92,36 +92,131 @@ class QuarantineApi
   
     
     /**
-     * quarantineFind
+     * quarantineCheckIfProfileIsQuarantined
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Check if a profile is quarantined
      *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\Quarantine[]
+     * @param double $id  (required)
+     * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function quarantineFind($filter = null)
+    public function quarantineCheckIfProfileIsQuarantined($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->quarantineFindWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->quarantineCheckIfProfileIsQuarantinedWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * quarantineFindWithHttpInfo
+     * quarantineCheckIfProfileIsQuarantinedWithHttpInfo
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Check if a profile is quarantined
      *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Quarantine[], HTTP status code, HTTP response headers (array of strings)
+     * @param double $id  (required)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function quarantineFindWithHttpInfo($filter = null)
+    public function quarantineCheckIfProfileIsQuarantinedWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineCheckIfProfileIsQuarantined');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}/check-if-profile-is-quarantined";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, 'object'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantineCount
+     *
+     * Count instances of the model matched by where from the data source.
+     *
+     * @param string $where Criteria to match model instances (optional)
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineCount($where = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantineCountWithHttpInfo ($where);
+        return $response; 
+    }
+
+
+    /**
+     * quarantineCountWithHttpInfo
+     *
+     * Count instances of the model matched by where from the data source.
+     *
+     * @param string $where Criteria to match model instances (optional)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineCountWithHttpInfo($where = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Quarantines";
+        $resourcePath = "/Quarantines/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -134,8 +229,8 @@ class QuarantineApi
   
         // query params
         
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
         }
         
         
@@ -157,106 +252,19 @@ class QuarantineApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine[]'
+                $headerParams, 'object'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine[]', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine[]', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * quarantineUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
-     *
-     * @param \DBCDK\CommunityServices\Model\Quarantine $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\Quarantine
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineUpsert($data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->quarantineUpsertWithHttpInfo ($data);
-        return $response; 
-    }
-
-
-    /**
-     * quarantineUpsertWithHttpInfo
-     *
-     * Update an existing model instance or insert a new one into the data source.
-     *
-     * @param \DBCDK\CommunityServices\Model\Quarantine $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineUpsertWithHttpInfo($data = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/Quarantines";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'PUT',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -529,36 +537,40 @@ class QuarantineApi
     }
     
     /**
-     * quarantineCount
+     * quarantineDeleteById
      *
-     * Count instances of the model matched by where from the data source.
+     * Delete a model instance by id from the data source.
      *
-     * @param string $where Criteria to match model instances (optional)
+     * @param string $id Model id (required)
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function quarantineCount($where = null)
+    public function quarantineDeleteById($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->quarantineCountWithHttpInfo ($where);
+        list($response, $statusCode, $httpHeader) = $this->quarantineDeleteByIdWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * quarantineCountWithHttpInfo
+     * quarantineDeleteByIdWithHttpInfo
      *
-     * Count instances of the model matched by where from the data source.
+     * Delete a model instance by id from the data source.
      *
-     * @param string $where Criteria to match model instances (optional)
+     * @param string $id Model id (required)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function quarantineCountWithHttpInfo($where = null)
+    public function quarantineDeleteByIdWithHttpInfo($id)
     {
         
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineDeleteById');
+        }
   
         // parse inputs
-        $resourcePath = "/Quarantines/count";
+        $resourcePath = "/Quarantines/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -569,13 +581,112 @@ class QuarantineApi
         }
         $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
   
-        // query params
         
-        if ($where !== null) {
-            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
         }
         
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams, 'object'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantineExistsGetQuarantinesidExists
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineExistsGetQuarantinesidExists($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantineExistsGetQuarantinesidExistsWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * quarantineExistsGetQuarantinesidExistsWithHttpInfo
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineExistsGetQuarantinesidExistsWithHttpInfo($id)
+    {
         
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineExistsGetQuarantinesidExists');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}/exists";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -607,6 +718,289 @@ class QuarantineApi
             switch ($e->getCode()) { 
             case 200:
                 $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantineExistsHeadQuarantinesid
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineExistsHeadQuarantinesid($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantineExistsHeadQuarantinesidWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * quarantineExistsHeadQuarantinesidWithHttpInfo
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineExistsHeadQuarantinesidWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineExistsHeadQuarantinesid');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'HEAD',
+                $queryParams, $httpBody,
+                $headerParams, 'object'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantineFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return \DBCDK\CommunityServices\Model\Quarantine[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineFind($filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantineFindWithHttpInfo ($filter);
+        return $response; 
+    }
+
+
+    /**
+     * quarantineFindWithHttpInfo
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineFindWithHttpInfo($filter = null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/Quarantines";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine[]'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine[]', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantineFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     * @param string $id Model id (required)
+     * @param string $filter Filter defining fields and include (optional)
+     * @return \DBCDK\CommunityServices\Model\Quarantine
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineFindById($id, $filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantineFindByIdWithHttpInfo ($id, $filter);
+        return $response; 
+    }
+
+
+    /**
+     * quarantineFindByIdWithHttpInfo
+     *
+     * Find a model instance by id from the data source.
+     *
+     * @param string $id Model id (required)
+     * @param string $filter Filter defining fields and include (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantineFindByIdWithHttpInfo($id, $filter = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineFindById');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -680,6 +1074,309 @@ class QuarantineApi
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantinePrototypeGetCreator
+     *
+     * Fetches belongsTo relation creator.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\Profile
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeGetCreator($id, $refresh = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeGetCreatorWithHttpInfo ($id, $refresh);
+        return $response; 
+    }
+
+
+    /**
+     * quarantinePrototypeGetCreatorWithHttpInfo
+     *
+     * Fetches belongsTo relation creator.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeGetCreatorWithHttpInfo($id, $refresh = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeGetCreator');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}/creator";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantinePrototypeGetQuarantined
+     *
+     * Fetches belongsTo relation quarantined.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\Profile
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeGetQuarantined($id, $refresh = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeGetQuarantinedWithHttpInfo ($id, $refresh);
+        return $response; 
+    }
+
+
+    /**
+     * quarantinePrototypeGetQuarantinedWithHttpInfo
+     *
+     * Fetches belongsTo relation quarantined.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeGetQuarantinedWithHttpInfo($id, $refresh = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeGetQuarantined');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}/quarantined";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * quarantinePrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\Quarantine
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeUpdateAttributes($id, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeUpdateAttributesWithHttpInfo ($id, $data);
+        return $response; 
+    }
+
+
+    /**
+     * quarantinePrototypeUpdateAttributesWithHttpInfo
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function quarantinePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeUpdateAttributes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/Quarantines/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'PUT',
                 $queryParams, $httpBody,
                 $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
             );
@@ -796,141 +1493,36 @@ class QuarantineApi
     }
     
     /**
-     * quarantineFindById
+     * quarantineUpsert
      *
-     * Find a model instance by id from the data source.
+     * Update an existing model instance or insert a new one into the data source.
      *
-     * @param string $id Model id (required)
-     * @param string $filter Filter defining fields and include (optional)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data Model instance data (optional)
      * @return \DBCDK\CommunityServices\Model\Quarantine
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function quarantineFindById($id, $filter = null)
+    public function quarantineUpsert($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->quarantineFindByIdWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->quarantineUpsertWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * quarantineFindByIdWithHttpInfo
+     * quarantineUpsertWithHttpInfo
      *
-     * Find a model instance by id from the data source.
+     * Update an existing model instance or insert a new one into the data source.
      *
-     * @param string $id Model id (required)
-     * @param string $filter Filter defining fields and include (optional)
+     * @param \DBCDK\CommunityServices\Model\Quarantine $data Model instance data (optional)
      * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function quarantineFindByIdWithHttpInfo($id, $filter = null)
+    public function quarantineUpsertWithHttpInfo($data = null)
     {
         
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineFindById');
-        }
   
         // parse inputs
-        $resourcePath = "/Quarantines/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Quarantine'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Quarantine', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * quarantineExistsHeadQuarantinesid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineExistsHeadQuarantinesid($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->quarantineExistsHeadQuarantinesidWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * quarantineExistsHeadQuarantinesidWithHttpInfo
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineExistsHeadQuarantinesidWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineExistsHeadQuarantinesid');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Quarantines/{id}";
+        $resourcePath = "/Quarantines";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -943,112 +1535,7 @@ class QuarantineApi
   
         
         
-        // path params
         
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'HEAD',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * quarantinePrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Quarantine $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\Quarantine
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantinePrototypeUpdateAttributes($id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeUpdateAttributesWithHttpInfo ($id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * quarantinePrototypeUpdateAttributesWithHttpInfo
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Quarantine $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Quarantine, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantinePrototypeUpdateAttributesWithHttpInfo($id, $data = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeUpdateAttributes');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Quarantines/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -1084,493 +1571,6 @@ class QuarantineApi
             switch ($e->getCode()) { 
             case 200:
                 $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Quarantine', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * quarantineDeleteById
-     *
-     * Delete a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineDeleteById($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->quarantineDeleteByIdWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * quarantineDeleteByIdWithHttpInfo
-     *
-     * Delete a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineDeleteByIdWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineDeleteById');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Quarantines/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * quarantineCheckIfProfileIsQuarantined
-     *
-     * Check if a profile is quarantined
-     *
-     * @param double $id  (required)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineCheckIfProfileIsQuarantined($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->quarantineCheckIfProfileIsQuarantinedWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * quarantineCheckIfProfileIsQuarantinedWithHttpInfo
-     *
-     * Check if a profile is quarantined
-     *
-     * @param double $id  (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineCheckIfProfileIsQuarantinedWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineCheckIfProfileIsQuarantined');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Quarantines/{id}/check-if-profile-is-quarantined";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * quarantinePrototypeGetCreator
-     *
-     * Fetches belongsTo relation creator.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return \DBCDK\CommunityServices\Model\Profile
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantinePrototypeGetCreator($id, $refresh = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeGetCreatorWithHttpInfo ($id, $refresh);
-        return $response; 
-    }
-
-
-    /**
-     * quarantinePrototypeGetCreatorWithHttpInfo
-     *
-     * Fetches belongsTo relation creator.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantinePrototypeGetCreatorWithHttpInfo($id, $refresh = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeGetCreator');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Quarantines/{id}/creator";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($refresh !== null) {
-            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * quarantineExistsGetQuarantinesidExists
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineExistsGetQuarantinesidExists($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->quarantineExistsGetQuarantinesidExistsWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * quarantineExistsGetQuarantinesidExistsWithHttpInfo
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantineExistsGetQuarantinesidExistsWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantineExistsGetQuarantinesidExists');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Quarantines/{id}/exists";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * quarantinePrototypeGetQuarantined
-     *
-     * Fetches belongsTo relation quarantined.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return \DBCDK\CommunityServices\Model\Profile
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantinePrototypeGetQuarantined($id, $refresh = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->quarantinePrototypeGetQuarantinedWithHttpInfo ($id, $refresh);
-        return $response; 
-    }
-
-
-    /**
-     * quarantinePrototypeGetQuarantinedWithHttpInfo
-     *
-     * Fetches belongsTo relation quarantined.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function quarantinePrototypeGetQuarantinedWithHttpInfo($id, $refresh = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling quarantinePrototypeGetQuarantined');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Quarantines/{id}/quarantined";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($refresh !== null) {
-            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

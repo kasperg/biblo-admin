@@ -66,22 +66,12 @@ class FileContainerApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for fileContainerFind
+     * Test case for fileContainerCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_fileContainerFind() {
-
-    }
-    
-    /**
-     * Test case for fileContainerUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_fileContainerUpsert() {
+    public function test_fileContainerCount() {
 
     }
     
@@ -116,42 +106,12 @@ class FileContainerApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for fileContainerCount
+     * Test case for fileContainerDeleteById
      *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_fileContainerCount() {
-
-    }
-    
-    /**
-     * Test case for fileContainerFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
+     * Delete a model instance by id from the data source.
      *
      */
-    public function test_fileContainerFindOne() {
-
-    }
-    
-    /**
-     * Test case for fileContainerUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_fileContainerUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for fileContainerGetContainer
-     *
-     * 
-     *
-     */
-    public function test_fileContainerGetContainer() {
+    public function test_fileContainerDeleteById() {
 
     }
     
@@ -176,52 +136,12 @@ class FileContainerApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for fileContainerGetFiles
+     * Test case for fileContainerExistsGetFileContainersidExists
      *
-     * 
-     *
-     */
-    public function test_fileContainerGetFiles() {
-
-    }
-    
-    /**
-     * Test case for fileContainerGetFile
-     *
-     * 
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_fileContainerGetFile() {
-
-    }
-    
-    /**
-     * Test case for fileContainerRemoveFile
-     *
-     * 
-     *
-     */
-    public function test_fileContainerRemoveFile() {
-
-    }
-    
-    /**
-     * Test case for fileContainerUpload
-     *
-     * 
-     *
-     */
-    public function test_fileContainerUpload() {
-
-    }
-    
-    /**
-     * Test case for fileContainerFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_fileContainerFindById() {
+    public function test_fileContainerExistsGetFileContainersidExists() {
 
     }
     
@@ -236,6 +156,66 @@ class FileContainerApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for fileContainerFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_fileContainerFind() {
+
+    }
+    
+    /**
+     * Test case for fileContainerFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_fileContainerFindById() {
+
+    }
+    
+    /**
+     * Test case for fileContainerFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_fileContainerFindOne() {
+
+    }
+    
+    /**
+     * Test case for fileContainerGetContainer
+     *
+     * 
+     *
+     */
+    public function test_fileContainerGetContainer() {
+
+    }
+    
+    /**
+     * Test case for fileContainerGetFile
+     *
+     * 
+     *
+     */
+    public function test_fileContainerGetFile() {
+
+    }
+    
+    /**
+     * Test case for fileContainerGetFiles
+     *
+     * 
+     *
+     */
+    public function test_fileContainerGetFiles() {
+
+    }
+    
+    /**
      * Test case for fileContainerPrototypeUpdateAttributes
      *
      * Update attributes for a model instance and persist it into the data source.
@@ -246,22 +226,42 @@ class FileContainerApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for fileContainerDeleteById
+     * Test case for fileContainerRemoveFile
      *
-     * Delete a model instance by id from the data source.
+     * 
      *
      */
-    public function test_fileContainerDeleteById() {
+    public function test_fileContainerRemoveFile() {
 
     }
     
     /**
-     * Test case for fileContainerExistsGetFileContainersidExists
+     * Test case for fileContainerUpdateAll
      *
-     * Check whether a model instance exists in the data source.
+     * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_fileContainerExistsGetFileContainersidExists() {
+    public function test_fileContainerUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for fileContainerUpload
+     *
+     * 
+     *
+     */
+    public function test_fileContainerUpload() {
+
+    }
+    
+    /**
+     * Test case for fileContainerUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_fileContainerUpsert() {
 
     }
     

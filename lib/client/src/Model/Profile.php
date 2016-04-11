@@ -66,6 +66,10 @@ class Profile implements ArrayAccess
         'id' => 'double'
     );
   
+    static function swaggerTypes() {
+        return self::$swaggerTypes;
+    }
+
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
       * @var string[] 
@@ -86,6 +90,10 @@ class Profile implements ArrayAccess
         'id' => 'id'
     );
   
+    static function attributeMap() {
+        return self::$attributeMap;
+    }
+
     /**
       * Array of attributes to setter functions (for deserialization of responses)
       * @var string[]
@@ -106,6 +114,10 @@ class Profile implements ArrayAccess
         'id' => 'setId'
     );
   
+    static function setters() {
+        return self::$setters;
+    }
+
     /**
       * Array of attributes to getter functions (for serialization of requests)
       * @var string[]
@@ -126,6 +138,10 @@ class Profile implements ArrayAccess
         'id' => 'getId'
     );
   
+    static function getters() {
+        return self::$getters;
+    }
+
     
     /**
       * $username 
@@ -212,6 +228,7 @@ class Profile implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        
         if ($data != null) {
             $this->username = $data["username"];
             $this->displayName = $data["displayName"];

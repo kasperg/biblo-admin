@@ -66,22 +66,12 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for postFind
+     * Test case for postCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_postFind() {
-
-    }
-    
-    /**
-     * Test case for postUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_postUpsert() {
+    public function test_postCount() {
 
     }
     
@@ -116,142 +106,12 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for postCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_postCount() {
-
-    }
-    
-    /**
-     * Test case for postFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_postFindOne() {
-
-    }
-    
-    /**
-     * Test case for postUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_postUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for postFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_postFindById() {
-
-    }
-    
-    /**
-     * Test case for postExistsHeadPostsid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_postExistsHeadPostsid() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_postPrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for postDeleteById
      *
      * Delete a model instance by id from the data source.
      *
      */
     public function test_postDeleteById() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeGetComments
-     *
-     * Queries comments of Post.
-     *
-     */
-    public function test_postPrototypeGetComments() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeCreateComments
-     *
-     * Creates a new instance in comments of this model.
-     *
-     */
-    public function test_postPrototypeCreateComments() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeDeleteComments
-     *
-     * Deletes all comments of this model.
-     *
-     */
-    public function test_postPrototypeDeleteComments() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeCountComments
-     *
-     * Counts comments of Post.
-     *
-     */
-    public function test_postPrototypeCountComments() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeFindByIdComments
-     *
-     * Find a related item by id for comments.
-     *
-     */
-    public function test_postPrototypeFindByIdComments() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeUpdateByIdComments
-     *
-     * Update a related item by id for comments.
-     *
-     */
-    public function test_postPrototypeUpdateByIdComments() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeDestroyByIdComments
-     *
-     * Delete a related item by id for comments.
-     *
-     */
-    public function test_postPrototypeDestroyByIdComments() {
 
     }
     
@@ -266,32 +126,52 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for postPrototypeGetFlags
+     * Test case for postExistsHeadPostsid
      *
-     * Queries flags of Post.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_postPrototypeGetFlags() {
+    public function test_postExistsHeadPostsid() {
 
     }
     
     /**
-     * Test case for postPrototypeCreateFlags
+     * Test case for postFind
      *
-     * Creates a new instance in flags of this model.
+     * Find all instances of the model matched by filter from the data source.
      *
      */
-    public function test_postPrototypeCreateFlags() {
+    public function test_postFind() {
 
     }
     
     /**
-     * Test case for postPrototypeDeleteFlags
+     * Test case for postFindById
      *
-     * Deletes all flags of this model.
+     * Find a model instance by id from the data source.
      *
      */
-    public function test_postPrototypeDeleteFlags() {
+    public function test_postFindById() {
+
+    }
+    
+    /**
+     * Test case for postFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_postFindOne() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeCountComments
+     *
+     * Counts comments of Post.
+     *
+     */
+    public function test_postPrototypeCountComments() {
 
     }
     
@@ -306,22 +186,102 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for postPrototypeFindByIdFlags
+     * Test case for postPrototypeCountLikes
      *
-     * Find a related item by id for flags.
+     * Counts likes of Post.
      *
      */
-    public function test_postPrototypeFindByIdFlags() {
+    public function test_postPrototypeCountLikes() {
 
     }
     
     /**
-     * Test case for postPrototypeUpdateByIdFlags
+     * Test case for postPrototypeCreateComments
      *
-     * Update a related item by id for flags.
+     * Creates a new instance in comments of this model.
      *
      */
-    public function test_postPrototypeUpdateByIdFlags() {
+    public function test_postPrototypeCreateComments() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeCreateFlags
+     *
+     * Creates a new instance in flags of this model.
+     *
+     */
+    public function test_postPrototypeCreateFlags() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeCreateImage
+     *
+     * Creates a new instance in image of this model.
+     *
+     */
+    public function test_postPrototypeCreateImage() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeCreateLikes
+     *
+     * Creates a new instance in likes of this model.
+     *
+     */
+    public function test_postPrototypeCreateLikes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeCreateVideo
+     *
+     * Creates a new instance in video of this model.
+     *
+     */
+    public function test_postPrototypeCreateVideo() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeDeleteComments
+     *
+     * Deletes all comments of this model.
+     *
+     */
+    public function test_postPrototypeDeleteComments() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeDeleteFlags
+     *
+     * Deletes all flags of this model.
+     *
+     */
+    public function test_postPrototypeDeleteFlags() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeDeleteLikes
+     *
+     * Deletes all likes of this model.
+     *
+     */
+    public function test_postPrototypeDeleteLikes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeDestroyByIdComments
+     *
+     * Delete a related item by id for comments.
+     *
+     */
+    public function test_postPrototypeDestroyByIdComments() {
 
     }
     
@@ -332,6 +292,96 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function test_postPrototypeDestroyByIdFlags() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeDestroyByIdLikes
+     *
+     * Delete a related item by id for likes.
+     *
+     */
+    public function test_postPrototypeDestroyByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeDestroyImage
+     *
+     * Deletes image of this model.
+     *
+     */
+    public function test_postPrototypeDestroyImage() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeDestroyVideo
+     *
+     * Deletes video of this model.
+     *
+     */
+    public function test_postPrototypeDestroyVideo() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeExistsLikes
+     *
+     * Check the existence of likes relation to an item by id.
+     *
+     */
+    public function test_postPrototypeExistsLikes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeFindByIdComments
+     *
+     * Find a related item by id for comments.
+     *
+     */
+    public function test_postPrototypeFindByIdComments() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeFindByIdFlags
+     *
+     * Find a related item by id for flags.
+     *
+     */
+    public function test_postPrototypeFindByIdFlags() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeFindByIdLikes
+     *
+     * Find a related item by id for likes.
+     *
+     */
+    public function test_postPrototypeFindByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeGetComments
+     *
+     * Queries comments of Post.
+     *
+     */
+    public function test_postPrototypeGetComments() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeGetFlags
+     *
+     * Queries flags of Post.
+     *
+     */
+    public function test_postPrototypeGetFlags() {
 
     }
     
@@ -356,132 +406,12 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for postPrototypeUpdateImage
-     *
-     * Update image of this model.
-     *
-     */
-    public function test_postPrototypeUpdateImage() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeCreateImage
-     *
-     * Creates a new instance in image of this model.
-     *
-     */
-    public function test_postPrototypeCreateImage() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeDestroyImage
-     *
-     * Deletes image of this model.
-     *
-     */
-    public function test_postPrototypeDestroyImage() {
-
-    }
-    
-    /**
      * Test case for postPrototypeGetLikes
      *
      * Queries likes of Post.
      *
      */
     public function test_postPrototypeGetLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeCreateLikes
-     *
-     * Creates a new instance in likes of this model.
-     *
-     */
-    public function test_postPrototypeCreateLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeDeleteLikes
-     *
-     * Deletes all likes of this model.
-     *
-     */
-    public function test_postPrototypeDeleteLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeCountLikes
-     *
-     * Counts likes of Post.
-     *
-     */
-    public function test_postPrototypeCountLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeExistsLikes
-     *
-     * Check the existence of likes relation to an item by id.
-     *
-     */
-    public function test_postPrototypeExistsLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeLinkLikes
-     *
-     * Add a related item by id for likes.
-     *
-     */
-    public function test_postPrototypeLinkLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeUnlinkLikes
-     *
-     * Remove the likes relation to an item by id.
-     *
-     */
-    public function test_postPrototypeUnlinkLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeFindByIdLikes
-     *
-     * Find a related item by id for likes.
-     *
-     */
-    public function test_postPrototypeFindByIdLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeUpdateByIdLikes
-     *
-     * Update a related item by id for likes.
-     *
-     */
-    public function test_postPrototypeUpdateByIdLikes() {
-
-    }
-    
-    /**
-     * Test case for postPrototypeDestroyByIdLikes
-     *
-     * Delete a related item by id for likes.
-     *
-     */
-    public function test_postPrototypeDestroyByIdLikes() {
 
     }
     
@@ -506,6 +436,76 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for postPrototypeLinkLikes
+     *
+     * Add a related item by id for likes.
+     *
+     */
+    public function test_postPrototypeLinkLikes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeUnlinkLikes
+     *
+     * Remove the likes relation to an item by id.
+     *
+     */
+    public function test_postPrototypeUnlinkLikes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_postPrototypeUpdateAttributes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeUpdateByIdComments
+     *
+     * Update a related item by id for comments.
+     *
+     */
+    public function test_postPrototypeUpdateByIdComments() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeUpdateByIdFlags
+     *
+     * Update a related item by id for flags.
+     *
+     */
+    public function test_postPrototypeUpdateByIdFlags() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeUpdateByIdLikes
+     *
+     * Update a related item by id for likes.
+     *
+     */
+    public function test_postPrototypeUpdateByIdLikes() {
+
+    }
+    
+    /**
+     * Test case for postPrototypeUpdateImage
+     *
+     * Update image of this model.
+     *
+     */
+    public function test_postPrototypeUpdateImage() {
+
+    }
+    
+    /**
      * Test case for postPrototypeUpdateVideo
      *
      * Update video of this model.
@@ -516,22 +516,22 @@ class PostApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for postPrototypeCreateVideo
+     * Test case for postUpdateAll
      *
-     * Creates a new instance in video of this model.
+     * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_postPrototypeCreateVideo() {
+    public function test_postUpdateAll() {
 
     }
     
     /**
-     * Test case for postPrototypeDestroyVideo
+     * Test case for postUpsert
      *
-     * Deletes video of this model.
+     * Update an existing model instance or insert a new one into the data source.
      *
      */
-    public function test_postPrototypeDestroyVideo() {
+    public function test_postUpsert() {
 
     }
     

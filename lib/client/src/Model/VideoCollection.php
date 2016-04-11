@@ -55,6 +55,10 @@ class VideoCollection implements ArrayAccess
         'postVideoCollection' => 'double'
     );
   
+    static function swaggerTypes() {
+        return self::$swaggerTypes;
+    }
+
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
       * @var string[] 
@@ -64,6 +68,10 @@ class VideoCollection implements ArrayAccess
         'postVideoCollection' => 'postVideoCollection'
     );
   
+    static function attributeMap() {
+        return self::$attributeMap;
+    }
+
     /**
       * Array of attributes to setter functions (for deserialization of responses)
       * @var string[]
@@ -73,6 +81,10 @@ class VideoCollection implements ArrayAccess
         'postVideoCollection' => 'setPostVideoCollection'
     );
   
+    static function setters() {
+        return self::$setters;
+    }
+
     /**
       * Array of attributes to getter functions (for serialization of requests)
       * @var string[]
@@ -82,6 +94,10 @@ class VideoCollection implements ArrayAccess
         'postVideoCollection' => 'getPostVideoCollection'
     );
   
+    static function getters() {
+        return self::$getters;
+    }
+
     
     /**
       * $id 
@@ -102,6 +118,7 @@ class VideoCollection implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        
         if ($data != null) {
             $this->id = $data["id"];
             $this->postVideoCollection = $data["postVideoCollection"];

@@ -66,22 +66,22 @@ class UserApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for userFind
+     * Test case for userConfirm
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Confirm a user registration with email verification token.
      *
      */
-    public function test_userFind() {
+    public function test_userConfirm() {
 
     }
     
     /**
-     * Test case for userUpsert
+     * Test case for userCount
      *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_userUpsert() {
+    public function test_userCount() {
 
     }
     
@@ -116,22 +116,52 @@ class UserApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for userConfirm
+     * Test case for userDeleteById
      *
-     * Confirm a user registration with email verification token.
+     * Delete a model instance by id from the data source.
      *
      */
-    public function test_userConfirm() {
+    public function test_userDeleteById() {
 
     }
     
     /**
-     * Test case for userCount
+     * Test case for userExistsGetUsersidExists
      *
-     * Count instances of the model matched by where from the data source.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_userCount() {
+    public function test_userExistsGetUsersidExists() {
+
+    }
+    
+    /**
+     * Test case for userExistsHeadUsersid
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     */
+    public function test_userExistsHeadUsersid() {
+
+    }
+    
+    /**
+     * Test case for userFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_userFind() {
+
+    }
+    
+    /**
+     * Test case for userFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_userFindById() {
 
     }
     
@@ -166,72 +196,12 @@ class UserApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for userResetPassword
+     * Test case for userPrototypeCountAccessTokens
      *
-     * Reset password for a user with email.
-     *
-     */
-    public function test_userResetPassword() {
-
-    }
-    
-    /**
-     * Test case for userUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
+     * Counts accessTokens of User.
      *
      */
-    public function test_userUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for userFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_userFindById() {
-
-    }
-    
-    /**
-     * Test case for userExistsHeadUsersid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_userExistsHeadUsersid() {
-
-    }
-    
-    /**
-     * Test case for userPrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_userPrototypeUpdateAttributes() {
-
-    }
-    
-    /**
-     * Test case for userDeleteById
-     *
-     * Delete a model instance by id from the data source.
-     *
-     */
-    public function test_userDeleteById() {
-
-    }
-    
-    /**
-     * Test case for userPrototypeGetAccessTokens
-     *
-     * Queries accessTokens of User.
-     *
-     */
-    public function test_userPrototypeGetAccessTokens() {
+    public function test_userPrototypeCountAccessTokens() {
 
     }
     
@@ -256,12 +226,12 @@ class UserApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for userPrototypeCountAccessTokens
+     * Test case for userPrototypeDestroyByIdAccessTokens
      *
-     * Counts accessTokens of User.
+     * Delete a related item by id for accessTokens.
      *
      */
-    public function test_userPrototypeCountAccessTokens() {
+    public function test_userPrototypeDestroyByIdAccessTokens() {
 
     }
     
@@ -276,6 +246,26 @@ class UserApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for userPrototypeGetAccessTokens
+     *
+     * Queries accessTokens of User.
+     *
+     */
+    public function test_userPrototypeGetAccessTokens() {
+
+    }
+    
+    /**
+     * Test case for userPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_userPrototypeUpdateAttributes() {
+
+    }
+    
+    /**
      * Test case for userPrototypeUpdateByIdAccessTokens
      *
      * Update a related item by id for accessTokens.
@@ -286,22 +276,32 @@ class UserApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for userPrototypeDestroyByIdAccessTokens
+     * Test case for userResetPassword
      *
-     * Delete a related item by id for accessTokens.
+     * Reset password for a user with email.
      *
      */
-    public function test_userPrototypeDestroyByIdAccessTokens() {
+    public function test_userResetPassword() {
 
     }
     
     /**
-     * Test case for userExistsGetUsersidExists
+     * Test case for userUpdateAll
      *
-     * Check whether a model instance exists in the data source.
+     * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_userExistsGetUsersidExists() {
+    public function test_userUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for userUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_userUpsert() {
 
     }
     

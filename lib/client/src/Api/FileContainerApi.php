@@ -92,36 +92,36 @@ class FileContainerApi
   
     
     /**
-     * fileContainerFind
+     * fileContainerCount
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Count instances of the model matched by where from the data source.
      *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\FileContainer[]
+     * @param string $where Criteria to match model instances (optional)
+     * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerFind($filter = null)
+    public function fileContainerCount($where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerFindWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->fileContainerCountWithHttpInfo ($where);
         return $response; 
     }
 
 
     /**
-     * fileContainerFindWithHttpInfo
+     * fileContainerCountWithHttpInfo
      *
-     * Find all instances of the model matched by filter from the data source.
+     * Count instances of the model matched by where from the data source.
      *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\FileContainer[], HTTP status code, HTTP response headers (array of strings)
+     * @param string $where Criteria to match model instances (optional)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerFindWithHttpInfo($filter = null)
+    public function fileContainerCountWithHttpInfo($where = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/fileContainers";
+        $resourcePath = "/fileContainers/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -134,8 +134,8 @@ class FileContainerApi
   
         // query params
         
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
         }
         
         
@@ -157,106 +157,19 @@ class FileContainerApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\FileContainer[]'
+                $headerParams, 'object'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\FileContainer[]', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\FileContainer[]', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileContainerUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
-     *
-     * @param \DBCDK\CommunityServices\Model\FileContainer $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\FileContainer
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerUpsert($data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerUpsertWithHttpInfo ($data);
-        return $response; 
-    }
-
-
-    /**
-     * fileContainerUpsertWithHttpInfo
-     *
-     * Update an existing model instance or insert a new one into the data source.
-     *
-     * @param \DBCDK\CommunityServices\Model\FileContainer $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\FileContainer, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerUpsertWithHttpInfo($data = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/fileContainers";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'PUT',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\FileContainer'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\FileContainer', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\FileContainer', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -529,307 +442,40 @@ class FileContainerApi
     }
     
     /**
-     * fileContainerCount
+     * fileContainerDeleteById
      *
-     * Count instances of the model matched by where from the data source.
+     * Delete a model instance by id from the data source.
      *
-     * @param string $where Criteria to match model instances (optional)
+     * @param string $id Model id (required)
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerCount($where = null)
+    public function fileContainerDeleteById($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerCountWithHttpInfo ($where);
+        list($response, $statusCode, $httpHeader) = $this->fileContainerDeleteByIdWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * fileContainerCountWithHttpInfo
+     * fileContainerDeleteByIdWithHttpInfo
      *
-     * Count instances of the model matched by where from the data source.
+     * Delete a model instance by id from the data source.
      *
-     * @param string $where Criteria to match model instances (optional)
+     * @param string $id Model id (required)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerCountWithHttpInfo($where = null)
+    public function fileContainerDeleteByIdWithHttpInfo($id)
     {
         
-  
-        // parse inputs
-        $resourcePath = "/fileContainers/count";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($where !== null) {
-            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
-        }
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileContainerFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\FileContainer
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerFindOne($filter = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerFindOneWithHttpInfo ($filter);
-        return $response; 
-    }
-
-
-    /**
-     * fileContainerFindOneWithHttpInfo
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\FileContainer, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerFindOneWithHttpInfo($filter = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/fileContainers/findOne";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
-        }
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\FileContainer'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\FileContainer', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\FileContainer', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileContainerUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\FileContainer $data An object of model property name/value pairs (optional)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerUpdateAll($where = null, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerUpdateAllWithHttpInfo ($where, $data);
-        return $response; 
-    }
-
-
-    /**
-     * fileContainerUpdateAllWithHttpInfo
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\FileContainer $data An object of model property name/value pairs (optional)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerUpdateAllWithHttpInfo($where = null, $data = null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/fileContainers/update";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($where !== null) {
-            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
-        }
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'POST',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileContainerGetContainer
-     *
-     * 
-     *
-     * @param string $container  (required)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerGetContainer($container)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerGetContainerWithHttpInfo ($container);
-        return $response; 
-    }
-
-
-    /**
-     * fileContainerGetContainerWithHttpInfo
-     *
-     * 
-     *
-     * @param string $container  (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerGetContainerWithHttpInfo($container)
-    {
-        
-        // verify the required parameter 'container' is set
-        if ($container === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $container when calling fileContainerGetContainer');
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileContainerDeleteById');
         }
   
         // parse inputs
-        $resourcePath = "/fileContainers/{container}";
+        $resourcePath = "/fileContainers/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -844,10 +490,10 @@ class FileContainerApi
         
         // path params
         
-        if ($container !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                "{" . "container" . "}",
-                $this->apiClient->getSerializer()->toPathValue($container),
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
         }
@@ -867,7 +513,7 @@ class FileContainerApi
         // make the API Call
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
+                $resourcePath, 'DELETE',
                 $queryParams, $httpBody,
                 $headerParams, 'object'
             );
@@ -1087,40 +733,505 @@ class FileContainerApi
     }
     
     /**
-     * fileContainerGetFiles
+     * fileContainerExistsGetFileContainersidExists
      *
-     * 
+     * Check whether a model instance exists in the data source.
      *
-     * @param string $container  (required)
-     * @return \DBCDK\CommunityServices\Model\XAny[]
+     * @param string $id Model id (required)
+     * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerGetFiles($container)
+    public function fileContainerExistsGetFileContainersidExists($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerGetFilesWithHttpInfo ($container);
+        list($response, $statusCode, $httpHeader) = $this->fileContainerExistsGetFileContainersidExistsWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * fileContainerGetFilesWithHttpInfo
+     * fileContainerExistsGetFileContainersidExistsWithHttpInfo
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerExistsGetFileContainersidExistsWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileContainerExistsGetFileContainersidExists');
+        }
+  
+        // parse inputs
+        $resourcePath = "/fileContainers/{id}/exists";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, 'object'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * fileContainerExistsHeadFileContainersid
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerExistsHeadFileContainersid($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->fileContainerExistsHeadFileContainersidWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * fileContainerExistsHeadFileContainersidWithHttpInfo
+     *
+     * Check whether a model instance exists in the data source.
+     *
+     * @param string $id Model id (required)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerExistsHeadFileContainersidWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileContainerExistsHeadFileContainersid');
+        }
+  
+        // parse inputs
+        $resourcePath = "/fileContainers/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'HEAD',
+                $queryParams, $httpBody,
+                $headerParams, 'object'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * fileContainerFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return \DBCDK\CommunityServices\Model\FileContainer[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerFind($filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->fileContainerFindWithHttpInfo ($filter);
+        return $response; 
+    }
+
+
+    /**
+     * fileContainerFindWithHttpInfo
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\FileContainer[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerFindWithHttpInfo($filter = null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/fileContainers";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\FileContainer[]'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\FileContainer[]', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\FileContainer[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * fileContainerFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     * @param string $id Model id (required)
+     * @param string $filter Filter defining fields and include (optional)
+     * @return \DBCDK\CommunityServices\Model\FileContainer
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerFindById($id, $filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->fileContainerFindByIdWithHttpInfo ($id, $filter);
+        return $response; 
+    }
+
+
+    /**
+     * fileContainerFindByIdWithHttpInfo
+     *
+     * Find a model instance by id from the data source.
+     *
+     * @param string $id Model id (required)
+     * @param string $filter Filter defining fields and include (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\FileContainer, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerFindByIdWithHttpInfo($id, $filter = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileContainerFindById');
+        }
+  
+        // parse inputs
+        $resourcePath = "/fileContainers/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\FileContainer'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\FileContainer', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\FileContainer', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * fileContainerFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return \DBCDK\CommunityServices\Model\FileContainer
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerFindOne($filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->fileContainerFindOneWithHttpInfo ($filter);
+        return $response; 
+    }
+
+
+    /**
+     * fileContainerFindOneWithHttpInfo
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\FileContainer, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerFindOneWithHttpInfo($filter = null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/fileContainers/findOne";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($filter !== null) {
+            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        }
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\FileContainer'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\FileContainer', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\FileContainer', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * fileContainerGetContainer
      *
      * 
      *
      * @param string $container  (required)
-     * @return Array of \DBCDK\CommunityServices\Model\XAny[], HTTP status code, HTTP response headers (array of strings)
+     * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerGetFilesWithHttpInfo($container)
+    public function fileContainerGetContainer($container)
+    {
+        list($response, $statusCode, $httpHeader) = $this->fileContainerGetContainerWithHttpInfo ($container);
+        return $response; 
+    }
+
+
+    /**
+     * fileContainerGetContainerWithHttpInfo
+     *
+     * 
+     *
+     * @param string $container  (required)
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerGetContainerWithHttpInfo($container)
     {
         
         // verify the required parameter 'container' is set
         if ($container === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $container when calling fileContainerGetFiles');
+            throw new \InvalidArgumentException('Missing the required parameter $container when calling fileContainerGetContainer');
         }
   
         // parse inputs
-        $resourcePath = "/fileContainers/{container}/files";
+        $resourcePath = "/fileContainers/{container}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1160,19 +1271,19 @@ class FileContainerApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\XAny[]'
+                $headerParams, 'object'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\XAny[]', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\XAny[]', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1291,46 +1402,40 @@ class FileContainerApi
     }
     
     /**
-     * fileContainerRemoveFile
+     * fileContainerGetFiles
      *
      * 
      *
      * @param string $container  (required)
-     * @param string $file  (required)
-     * @return object
+     * @return \DBCDK\CommunityServices\Model\XAny[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerRemoveFile($container, $file)
+    public function fileContainerGetFiles($container)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerRemoveFileWithHttpInfo ($container, $file);
+        list($response, $statusCode, $httpHeader) = $this->fileContainerGetFilesWithHttpInfo ($container);
         return $response; 
     }
 
 
     /**
-     * fileContainerRemoveFileWithHttpInfo
+     * fileContainerGetFilesWithHttpInfo
      *
      * 
      *
      * @param string $container  (required)
-     * @param string $file  (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\XAny[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerRemoveFileWithHttpInfo($container, $file)
+    public function fileContainerGetFilesWithHttpInfo($container)
     {
         
         // verify the required parameter 'container' is set
         if ($container === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $container when calling fileContainerRemoveFile');
-        }
-        // verify the required parameter 'file' is set
-        if ($file === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $file when calling fileContainerRemoveFile');
+            throw new \InvalidArgumentException('Missing the required parameter $container when calling fileContainerGetFiles');
         }
   
         // parse inputs
-        $resourcePath = "/fileContainers/{container}/files/{file}";
+        $resourcePath = "/fileContainers/{container}/files";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1349,196 +1454,6 @@ class FileContainerApi
             $resourcePath = str_replace(
                 "{" . "container" . "}",
                 $this->apiClient->getSerializer()->toPathValue($container),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($file !== null) {
-            $resourcePath = str_replace(
-                "{" . "file" . "}",
-                $this->apiClient->getSerializer()->toPathValue($file),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileContainerUpload
-     *
-     * 
-     *
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerUpload()
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerUploadWithHttpInfo ();
-        return $response; 
-    }
-
-
-    /**
-     * fileContainerUploadWithHttpInfo
-     *
-     * 
-     *
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerUploadWithHttpInfo()
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/fileContainers/{container}/upload";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'POST',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileContainerFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\FileContainer
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerFindById($id, $filter = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerFindByIdWithHttpInfo ($id, $filter);
-        return $response; 
-    }
-
-
-    /**
-     * fileContainerFindByIdWithHttpInfo
-     *
-     * Find a model instance by id from the data source.
-     *
-     * @param string $id Model id (required)
-     * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\FileContainer, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerFindByIdWithHttpInfo($id, $filter = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileContainerFindById');
-        }
-  
-        // parse inputs
-        $resourcePath = "/fileContainers/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
         }
@@ -1560,114 +1475,19 @@ class FileContainerApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\FileContainer'
+                $headerParams, '\DBCDK\CommunityServices\Model\XAny[]'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\FileContainer', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\XAny[]', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\FileContainer', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * fileContainerExistsHeadFileContainersid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return object
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerExistsHeadFileContainersid($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerExistsHeadFileContainersidWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * fileContainerExistsHeadFileContainersidWithHttpInfo
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     * @param string $id Model id (required)
-     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function fileContainerExistsHeadFileContainersidWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileContainerExistsHeadFileContainersid');
-        }
-  
-        // parse inputs
-        $resourcePath = "/fileContainers/{id}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'HEAD',
-                $queryParams, $httpBody,
-                $headerParams, 'object'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\XAny[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1778,40 +1598,46 @@ class FileContainerApi
     }
     
     /**
-     * fileContainerDeleteById
+     * fileContainerRemoveFile
      *
-     * Delete a model instance by id from the data source.
+     * 
      *
-     * @param string $id Model id (required)
+     * @param string $container  (required)
+     * @param string $file  (required)
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerDeleteById($id)
+    public function fileContainerRemoveFile($container, $file)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerDeleteByIdWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->fileContainerRemoveFileWithHttpInfo ($container, $file);
         return $response; 
     }
 
 
     /**
-     * fileContainerDeleteByIdWithHttpInfo
+     * fileContainerRemoveFileWithHttpInfo
      *
-     * Delete a model instance by id from the data source.
+     * 
      *
-     * @param string $id Model id (required)
+     * @param string $container  (required)
+     * @param string $file  (required)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerDeleteByIdWithHttpInfo($id)
+    public function fileContainerRemoveFileWithHttpInfo($container, $file)
     {
         
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileContainerDeleteById');
+        // verify the required parameter 'container' is set
+        if ($container === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $container when calling fileContainerRemoveFile');
+        }
+        // verify the required parameter 'file' is set
+        if ($file === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $file when calling fileContainerRemoveFile');
         }
   
         // parse inputs
-        $resourcePath = "/fileContainers/{id}";
+        $resourcePath = "/fileContainers/{container}/files/{file}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1826,10 +1652,18 @@ class FileContainerApi
         
         // path params
         
-        if ($id !== null) {
+        if ($container !== null) {
             $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
+                "{" . "container" . "}",
+                $this->apiClient->getSerializer()->toPathValue($container),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($file !== null) {
+            $resourcePath = str_replace(
+                "{" . "file" . "}",
+                $this->apiClient->getSerializer()->toPathValue($file),
                 $resourcePath
             );
         }
@@ -1873,40 +1707,127 @@ class FileContainerApi
     }
     
     /**
-     * fileContainerExistsGetFileContainersidExists
+     * fileContainerUpdateAll
      *
-     * Check whether a model instance exists in the data source.
+     * Update instances of the model matched by where from the data source.
      *
-     * @param string $id Model id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @param \DBCDK\CommunityServices\Model\FileContainer $data An object of model property name/value pairs (optional)
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerExistsGetFileContainersidExists($id)
+    public function fileContainerUpdateAll($where = null, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->fileContainerExistsGetFileContainersidExistsWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->fileContainerUpdateAllWithHttpInfo ($where, $data);
         return $response; 
     }
 
 
     /**
-     * fileContainerExistsGetFileContainersidExistsWithHttpInfo
+     * fileContainerUpdateAllWithHttpInfo
      *
-     * Check whether a model instance exists in the data source.
+     * Update instances of the model matched by where from the data source.
      *
-     * @param string $id Model id (required)
+     * @param string $where Criteria to match model instances (optional)
+     * @param \DBCDK\CommunityServices\Model\FileContainer $data An object of model property name/value pairs (optional)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function fileContainerExistsGetFileContainersidExistsWithHttpInfo($id)
+    public function fileContainerUpdateAllWithHttpInfo($where = null, $data = null)
     {
         
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling fileContainerExistsGetFileContainersidExists');
-        }
   
         // parse inputs
-        $resourcePath = "/fileContainers/{id}/exists";
+        $resourcePath = "/fileContainers/update";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($where !== null) {
+            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
+        }
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'POST',
+                $queryParams, $httpBody,
+                $headerParams, 'object'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'object', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * fileContainerUpload
+     *
+     * 
+     *
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerUpload()
+    {
+        list($response, $statusCode, $httpHeader) = $this->fileContainerUploadWithHttpInfo ();
+        return $response; 
+    }
+
+
+    /**
+     * fileContainerUploadWithHttpInfo
+     *
+     * 
+     *
+     * @return Array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerUploadWithHttpInfo()
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/fileContainers/{container}/upload";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1919,15 +1840,7 @@ class FileContainerApi
   
         
         
-        // path params
         
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -1944,7 +1857,7 @@ class FileContainerApi
         // make the API Call
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
+                $resourcePath, 'POST',
                 $queryParams, $httpBody,
                 $headerParams, 'object'
             );
@@ -1959,6 +1872,93 @@ class FileContainerApi
             switch ($e->getCode()) { 
             case 200:
                 $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'object', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * fileContainerUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     * @param \DBCDK\CommunityServices\Model\FileContainer $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\FileContainer
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerUpsert($data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->fileContainerUpsertWithHttpInfo ($data);
+        return $response; 
+    }
+
+
+    /**
+     * fileContainerUpsertWithHttpInfo
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     * @param \DBCDK\CommunityServices\Model\FileContainer $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\FileContainer, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function fileContainerUpsertWithHttpInfo($data = null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/fileContainers";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'PUT',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\FileContainer'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\FileContainer', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\FileContainer', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

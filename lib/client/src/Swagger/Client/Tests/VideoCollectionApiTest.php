@@ -66,22 +66,12 @@ class VideoCollectionApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for videoCollectionFind
+     * Test case for videoCollectionCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_videoCollectionFind() {
-
-    }
-    
-    /**
-     * Test case for videoCollectionUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_videoCollectionUpsert() {
+    public function test_videoCollectionCount() {
 
     }
     
@@ -116,66 +106,6 @@ class VideoCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for videoCollectionCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_videoCollectionCount() {
-
-    }
-    
-    /**
-     * Test case for videoCollectionFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_videoCollectionFindOne() {
-
-    }
-    
-    /**
-     * Test case for videoCollectionUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_videoCollectionUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for videoCollectionFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_videoCollectionFindById() {
-
-    }
-    
-    /**
-     * Test case for videoCollectionExistsHeadVideoCollectionsid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_videoCollectionExistsHeadVideoCollectionsid() {
-
-    }
-    
-    /**
-     * Test case for videoCollectionPrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_videoCollectionPrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for videoCollectionDeleteById
      *
      * Delete a model instance by id from the data source.
@@ -196,12 +126,52 @@ class VideoCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for videoCollectionPrototypeGetResolutions
+     * Test case for videoCollectionExistsHeadVideoCollectionsid
      *
-     * Queries resolutions of videoCollection.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_videoCollectionPrototypeGetResolutions() {
+    public function test_videoCollectionExistsHeadVideoCollectionsid() {
+
+    }
+    
+    /**
+     * Test case for videoCollectionFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_videoCollectionFind() {
+
+    }
+    
+    /**
+     * Test case for videoCollectionFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_videoCollectionFindById() {
+
+    }
+    
+    /**
+     * Test case for videoCollectionFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_videoCollectionFindOne() {
+
+    }
+    
+    /**
+     * Test case for videoCollectionPrototypeCountResolutions
+     *
+     * Counts resolutions of videoCollection.
+     *
+     */
+    public function test_videoCollectionPrototypeCountResolutions() {
 
     }
     
@@ -226,12 +196,12 @@ class VideoCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for videoCollectionPrototypeCountResolutions
+     * Test case for videoCollectionPrototypeDestroyByIdResolutions
      *
-     * Counts resolutions of videoCollection.
+     * Delete a related item by id for resolutions.
      *
      */
-    public function test_videoCollectionPrototypeCountResolutions() {
+    public function test_videoCollectionPrototypeDestroyByIdResolutions() {
 
     }
     
@@ -246,6 +216,26 @@ class VideoCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for videoCollectionPrototypeGetResolutions
+     *
+     * Queries resolutions of videoCollection.
+     *
+     */
+    public function test_videoCollectionPrototypeGetResolutions() {
+
+    }
+    
+    /**
+     * Test case for videoCollectionPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_videoCollectionPrototypeUpdateAttributes() {
+
+    }
+    
+    /**
      * Test case for videoCollectionPrototypeUpdateByIdResolutions
      *
      * Update a related item by id for resolutions.
@@ -256,12 +246,22 @@ class VideoCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for videoCollectionPrototypeDestroyByIdResolutions
+     * Test case for videoCollectionUpdateAll
      *
-     * Delete a related item by id for resolutions.
+     * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_videoCollectionPrototypeDestroyByIdResolutions() {
+    public function test_videoCollectionUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for videoCollectionUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_videoCollectionUpsert() {
 
     }
     

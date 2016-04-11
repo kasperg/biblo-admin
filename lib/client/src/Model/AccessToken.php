@@ -58,6 +58,10 @@ class AccessToken implements ArrayAccess
         'profileId' => 'double'
     );
   
+    static function swaggerTypes() {
+        return self::$swaggerTypes;
+    }
+
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
       * @var string[] 
@@ -70,6 +74,10 @@ class AccessToken implements ArrayAccess
         'profileId' => 'profileId'
     );
   
+    static function attributeMap() {
+        return self::$attributeMap;
+    }
+
     /**
       * Array of attributes to setter functions (for deserialization of responses)
       * @var string[]
@@ -82,6 +90,10 @@ class AccessToken implements ArrayAccess
         'profileId' => 'setProfileId'
     );
   
+    static function setters() {
+        return self::$setters;
+    }
+
     /**
       * Array of attributes to getter functions (for serialization of requests)
       * @var string[]
@@ -94,6 +106,10 @@ class AccessToken implements ArrayAccess
         'profileId' => 'getProfileId'
     );
   
+    static function getters() {
+        return self::$getters;
+    }
+
     
     /**
       * $id 
@@ -132,6 +148,7 @@ class AccessToken implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        
         if ($data != null) {
             $this->id = $data["id"];
             $this->ttl = $data["ttl"];

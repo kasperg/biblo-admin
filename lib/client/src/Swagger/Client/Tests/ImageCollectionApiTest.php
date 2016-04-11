@@ -66,22 +66,12 @@ class ImageCollectionApiTest extends \PHPUnit_Framework_TestCase
 
     
     /**
-     * Test case for imageCollectionFind
+     * Test case for imageCollectionCount
      *
-     * Find all instances of the model matched by filter from the data source.
-     *
-     */
-    public function test_imageCollectionFind() {
-
-    }
-    
-    /**
-     * Test case for imageCollectionUpsert
-     *
-     * Update an existing model instance or insert a new one into the data source.
+     * Count instances of the model matched by where from the data source.
      *
      */
-    public function test_imageCollectionUpsert() {
+    public function test_imageCollectionCount() {
 
     }
     
@@ -116,76 +106,6 @@ class ImageCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for imageCollectionCount
-     *
-     * Count instances of the model matched by where from the data source.
-     *
-     */
-    public function test_imageCollectionCount() {
-
-    }
-    
-    /**
-     * Test case for imageCollectionFindOne
-     *
-     * Find first instance of the model matched by filter from the data source.
-     *
-     */
-    public function test_imageCollectionFindOne() {
-
-    }
-    
-    /**
-     * Test case for imageCollectionUpdateAll
-     *
-     * Update instances of the model matched by where from the data source.
-     *
-     */
-    public function test_imageCollectionUpdateAll() {
-
-    }
-    
-    /**
-     * Test case for imageCollectionUpload
-     *
-     * Uploads an image.
-     *
-     */
-    public function test_imageCollectionUpload() {
-
-    }
-    
-    /**
-     * Test case for imageCollectionFindById
-     *
-     * Find a model instance by id from the data source.
-     *
-     */
-    public function test_imageCollectionFindById() {
-
-    }
-    
-    /**
-     * Test case for imageCollectionExistsHeadImageCollectionsid
-     *
-     * Check whether a model instance exists in the data source.
-     *
-     */
-    public function test_imageCollectionExistsHeadImageCollectionsid() {
-
-    }
-    
-    /**
-     * Test case for imageCollectionPrototypeUpdateAttributes
-     *
-     * Update attributes for a model instance and persist it into the data source.
-     *
-     */
-    public function test_imageCollectionPrototypeUpdateAttributes() {
-
-    }
-    
-    /**
      * Test case for imageCollectionDeleteById
      *
      * Delete a model instance by id from the data source.
@@ -216,12 +136,52 @@ class ImageCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for imageCollectionPrototypeGetResolutions
+     * Test case for imageCollectionExistsHeadImageCollectionsid
      *
-     * Queries resolutions of imageCollection.
+     * Check whether a model instance exists in the data source.
      *
      */
-    public function test_imageCollectionPrototypeGetResolutions() {
+    public function test_imageCollectionExistsHeadImageCollectionsid() {
+
+    }
+    
+    /**
+     * Test case for imageCollectionFind
+     *
+     * Find all instances of the model matched by filter from the data source.
+     *
+     */
+    public function test_imageCollectionFind() {
+
+    }
+    
+    /**
+     * Test case for imageCollectionFindById
+     *
+     * Find a model instance by id from the data source.
+     *
+     */
+    public function test_imageCollectionFindById() {
+
+    }
+    
+    /**
+     * Test case for imageCollectionFindOne
+     *
+     * Find first instance of the model matched by filter from the data source.
+     *
+     */
+    public function test_imageCollectionFindOne() {
+
+    }
+    
+    /**
+     * Test case for imageCollectionPrototypeCountResolutions
+     *
+     * Counts resolutions of imageCollection.
+     *
+     */
+    public function test_imageCollectionPrototypeCountResolutions() {
 
     }
     
@@ -246,12 +206,12 @@ class ImageCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for imageCollectionPrototypeCountResolutions
+     * Test case for imageCollectionPrototypeDestroyByIdResolutions
      *
-     * Counts resolutions of imageCollection.
+     * Delete a related item by id for resolutions.
      *
      */
-    public function test_imageCollectionPrototypeCountResolutions() {
+    public function test_imageCollectionPrototypeDestroyByIdResolutions() {
 
     }
     
@@ -266,6 +226,26 @@ class ImageCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for imageCollectionPrototypeGetResolutions
+     *
+     * Queries resolutions of imageCollection.
+     *
+     */
+    public function test_imageCollectionPrototypeGetResolutions() {
+
+    }
+    
+    /**
+     * Test case for imageCollectionPrototypeUpdateAttributes
+     *
+     * Update attributes for a model instance and persist it into the data source.
+     *
+     */
+    public function test_imageCollectionPrototypeUpdateAttributes() {
+
+    }
+    
+    /**
      * Test case for imageCollectionPrototypeUpdateByIdResolutions
      *
      * Update a related item by id for resolutions.
@@ -276,12 +256,32 @@ class ImageCollectionApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test case for imageCollectionPrototypeDestroyByIdResolutions
+     * Test case for imageCollectionUpdateAll
      *
-     * Delete a related item by id for resolutions.
+     * Update instances of the model matched by where from the data source.
      *
      */
-    public function test_imageCollectionPrototypeDestroyByIdResolutions() {
+    public function test_imageCollectionUpdateAll() {
+
+    }
+    
+    /**
+     * Test case for imageCollectionUpload
+     *
+     * Uploads an image.
+     *
+     */
+    public function test_imageCollectionUpload() {
+
+    }
+    
+    /**
+     * Test case for imageCollectionUpsert
+     *
+     * Update an existing model instance or insert a new one into the data source.
+     *
+     */
+    public function test_imageCollectionUpsert() {
 
     }
     

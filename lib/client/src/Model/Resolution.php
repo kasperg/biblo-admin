@@ -57,6 +57,10 @@ class Resolution implements ArrayAccess
         'imageCollectionResolutionId' => 'double'
     );
   
+    static function swaggerTypes() {
+        return self::$swaggerTypes;
+    }
+
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
       * @var string[] 
@@ -68,6 +72,10 @@ class Resolution implements ArrayAccess
         'imageCollectionResolutionId' => 'imageCollectionResolutionId'
     );
   
+    static function attributeMap() {
+        return self::$attributeMap;
+    }
+
     /**
       * Array of attributes to setter functions (for deserialization of responses)
       * @var string[]
@@ -79,6 +87,10 @@ class Resolution implements ArrayAccess
         'imageCollectionResolutionId' => 'setImageCollectionResolutionId'
     );
   
+    static function setters() {
+        return self::$setters;
+    }
+
     /**
       * Array of attributes to getter functions (for serialization of requests)
       * @var string[]
@@ -90,6 +102,10 @@ class Resolution implements ArrayAccess
         'imageCollectionResolutionId' => 'getImageCollectionResolutionId'
     );
   
+    static function getters() {
+        return self::$getters;
+    }
+
     
     /**
       * $size 
@@ -122,6 +138,7 @@ class Resolution implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        
         if ($data != null) {
             $this->size = $data["size"];
             $this->id = $data["id"];
