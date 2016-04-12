@@ -1,4 +1,9 @@
 services:
+  dbcdk_community.logger:
+    class: Psr\Log\LoggerInterface
+    factory: ['@logger.factory', get]
+    arguments:
+      - 'DBCDK Community Service'
   dbcdk_community.api.configuration:
     class: Drupal\dbcdk_community\CommunityApiConfiguration
   dbcdk_community.api.client:
@@ -34,3 +39,5 @@ services:
   dbcdk_community.content.flaggable_content_repository:
     class: Drupal\dbcdk_community\Content\FlaggableContentRepository
     arguments: ['@dbcdk_community.api.flag', '@dbcdk_community.api.post', '@dbcdk_community.api.comment']
+    calls:
+      - [setLogger, ['@dbcdk_community.logger']]

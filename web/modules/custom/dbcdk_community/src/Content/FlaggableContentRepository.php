@@ -11,7 +11,7 @@ use DBCDK\CommunityServices\Api\CommentApi;
 use DBCDK\CommunityServices\Api\FlagApi;
 use DBCDK\CommunityServices\Api\PostApi;
 use DBCDK\CommunityServices\ApiException;
-use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 
 /**
@@ -22,6 +22,7 @@ use Psr\Log\NullLogger;
  * one class per type.
  */
 class FlaggableContentRepository {
+  use LoggerAwareTrait;
 
   /**
    * The API to use when retrieving flagged content.
@@ -45,13 +46,6 @@ class FlaggableContentRepository {
   protected $commentApi = [];
 
   /**
-   * The logger to use.
-   *
-   * @var LoggerInterface
-   */
-  protected $logger;
-
-  /**
    * FlaggableContentRepository constructor.
    *
    * @param FlagApi $flag_api
@@ -66,16 +60,6 @@ class FlaggableContentRepository {
     $this->postApi = $post_api;
     $this->commentApi = $comment_api;
     $this->logger = new NullLogger();
-  }
-
-  /**
-   * Set the logger to use.
-   *
-   * @param LoggerInterface $logger
-   *   The logger.
-   */
-  public function setLogger(LoggerInterface $logger) {
-    $this->logger = $logger;
   }
 
   /**

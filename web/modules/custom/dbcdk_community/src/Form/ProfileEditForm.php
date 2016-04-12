@@ -16,12 +16,15 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Edit a Community Service Profile.
  */
 class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
+  use LoggerAwareTrait;
 
   /**
    * The DBCDK Community Service Profile API.
@@ -47,6 +50,8 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * Creates a Profile Edit Form instance.
    *
+   * @param \Psr\Log\LoggerInterface $logger
+   *   The logger to use.
    * @param \DBCDK\CommunityServices\Api\ProfileApi $profile_api
    *   The DBCDK Community Service Profile API.
    * @param \DBCDK\CommunityServices\Model\Profile $profile
@@ -54,7 +59,8 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * @param \DBCDK\CommunityServices\Model\CommunityRole[] $community_roles
    *   Results array with all possible Community Roles.
    */
-  public function __construct(ProfileApi $profile_api, Profile $profile = NULL, array $community_roles = []) {
+  public function __construct(LoggerInterface $logger, ProfileApi $profile_api, Profile $profile = NULL, array $community_roles = []) {
+    $this->logger = $logger;
     $this->profileApi = $profile_api;
     $this->communityRoles = $community_roles;
     $this->profile = $profile;
@@ -64,8 +70,11 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
+    /* @var ProfileApi $profile_api */
     $profile_api = $container->get('dbcdk_community.api.profile');
     $community_roles_api = $container->get('dbcdk_community.api.community_roles');
+    /* @var LoggerInterface $logger */
+    $logger = $container->get('dbcdk_community.logger');
 
     try {
       // Get the profile we wish to alter with the form.
@@ -88,12 +97,13 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       $community_roles = (array) $community_roles_api->communityRoleFind();
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $logger->error($e);
       $profile = NULL;
       $community_roles = [];
     }
 
     return new static(
+      $logger,
       $profile_api,
       $profile,
       $community_roles
@@ -229,7 +239,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
       $this->updateProfileRoles($role_ids);
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $this->logger->error($e);
       drupal_set_message($this->t('The profile could not be updated at this time. Please try again later or contact an administrator.'), 'error');
       return FALSE;
     }

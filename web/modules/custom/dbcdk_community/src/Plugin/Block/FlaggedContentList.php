@@ -17,6 +17,7 @@ use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Drupal\dbcdk_community\Url\ModelUrlGenerator;
 use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
 use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -29,6 +30,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInterface {
+  use LoggerAwareTrait;
 
   /**
    * The repository to use when retrieving flagged content.
@@ -50,13 +52,6 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
    * @var DateFormatterInterface
    */
   protected $dateFormatter;
-
-  /**
-   * The logger to use.
-   *
-   * @var LoggerInterface $logger
-   */
-  protected $logger;
 
   /**
    * FlaggedContentList constructor.
@@ -86,15 +81,6 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    /* @var FlaggableContentRepository $repo */
-    $repo = $container->get('dbcdk_community.content.flaggable_content_repository');
-
-    // We cannot set the logger instance in the service definition so we set it
-    // up here instead.
-    /* @var \Drupal\Core\Logger\LoggerChannelFactory $logger_factory */
-    $logger_factory = $container->get('logger.factory');
-    $repo->setLogger($logger_factory->get('DBCDK Community Service'));
-
     // Setup url generation for flaggable content.
     /* @var \Drupal\Core\Config\Config $config */
     $config = $container->get('config.factory')->get('dbcdk_community.settings');
@@ -117,8 +103,8 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $logger_factory->get('DBCDK Community Service'),
-      $repo,
+      $container->get('dbcdk_community.logger'),
+      $container->get('dbcdk_community.content.flaggable_content_repository'),
       $url_generator,
       $container->get('date.formatter')
     );
