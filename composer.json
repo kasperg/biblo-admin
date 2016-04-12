@@ -39,7 +39,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "post-install-cmd": "sh ./scripts/composer/post-install.sh && vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer/",
+        "post-install-cmd": "sh ./scripts/composer/post-install.sh",
         "docker-swagger-generate": "docker-compose run swagger generate -i http://service:3000/explorer/swagger.json -l php -o /var/usr/client -c /var/usr/swagger/config.json",
         "lint": "vendor/bin/parallel-lint . --exclude vendor --exclude web/core --exclude web/sites/*/files",
         "phpcs": "vendor/bin/phpcs --standard=Drupal --extensions='php,module,inc,install,test,profile,theme,js,css,info,txt' web/modules/custom",
