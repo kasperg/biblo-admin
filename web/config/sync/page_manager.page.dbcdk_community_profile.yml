@@ -7,7 +7,7 @@ dependencies:
 id: dbcdk_community_profile
 label: Profile
 use_admin_theme: true
-path: '/admin/content/dbcdk-community/profiles/{username}'
+path: '/admin/dbcdk-community/profiles/{username}'
 access_logic: and
 access_conditions:
   7edd1631-96d5-436e-8100-0b13867d9333:
