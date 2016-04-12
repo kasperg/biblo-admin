@@ -24,7 +24,7 @@ tools:
 checks:
   php:
     custom_coding_standard:
-      ruleset_path: 'vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml'
+      ruleset_path: '../vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml'
 
 filter:
     paths:
