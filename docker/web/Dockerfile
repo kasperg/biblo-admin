@@ -1,17 +1,5 @@
 FROM reload/drupal-apache-ssl
 
-# Install xdebug.
-RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive \
-  apt-get install --no-install-recommends -y -q php5-xdebug && \
-  echo "xdebug.remote_enable = 1" >> /etc/php5/mods-available/xdebug-config.ini && \
-  echo "xdebug.remote_connect_back = 1" >> /etc/php5/mods-available/xdebug-config.ini && \
-  echo "xdebug.max_nesting_level = 256" >> /etc/php5/mods-available/xdebug-config.ini && \
-  php5enmod xdebug && \
-  php5enmod xdebug-config && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # Install mysql-client to support mysql commands from Drush.
 # For some reason this package is not available without updating.
 RUN apt-get update && \
