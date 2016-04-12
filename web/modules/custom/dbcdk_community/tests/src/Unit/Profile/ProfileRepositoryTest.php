@@ -164,10 +164,7 @@ class ProfileRepositoryTest extends PHPUnit_Framework_TestCase {
       'Enriched profile does not have expected roles'
     );
 
-    $expected_profile = new Profile($profile);
-    $expected_profile->setQuarantines($quarantines);
-    $expected_profile->setCommunityRoles($roles);;
-
+    $expected_profile = new Profile($profile, $roles, $quarantines);
     $this->assertEquals(
       $expected_profile,
       $enriched_profile,

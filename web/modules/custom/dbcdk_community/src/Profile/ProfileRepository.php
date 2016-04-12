@@ -68,17 +68,22 @@ class ProfileRepository {
    * @param array $filter
    *   The filter. This can contain entries such as where, limit, offset.
    *
-   * @return string
-   *   A JSON encoded version of the filter.
+   * @return string|NULL
+   *   A JSON encoded version of the filter. NULL if there are no entries.
    *
    * @see https://docs.strongloop.com/display/public/LB/Querying+data
    */
   protected function processFilter(array $filter) {
+    // The API fails if we provide a JSON-encoded empty array as a filter so we
+    // must use NULL instead.
     return (!empty($filter)) ? json_encode($filter) : NULL;
   }
 
   /**
-   * Retrieve a profile wih community roles and quarantines by id.
+   * Retrieve a profile by id.
+   *
+   * The profile will be enriched with related objects e.g. community roles and
+   * quarantines.
    *
    * @param int $id
    *   The profile id to retrieve.
@@ -97,7 +102,10 @@ class ProfileRepository {
   }
 
   /**
-   * Retrieve a profile with community roles and quarantines by username.
+   * Retrieve a profile by username.
+   *
+   * The profile will be enriched with related objects e.g. community roles and
+   * quarantines.
    *
    * @param string $username
    *   The username for the profile to retrieve.
@@ -116,7 +124,10 @@ class ProfileRepository {
   }
 
   /**
-   * Retrieve a profile matching a filter with community roles and quarantines.
+   * Retrieve a profile matching a filter.
+   *
+   * The profile will be enriched with related objects e.g. community roles and
+   * quarantines.
    *
    * @param array $filter
    *   The filter to use for retrieving the profile.
@@ -138,6 +149,9 @@ class ProfileRepository {
   /**
    * Get all profiles matching a filter.
    *
+   * For performance reasons these profiles will not include related objects.
+   * This should be retrieved subsequently.
+   *
    * @param array $filter
    *   The filter to use.
    *
@@ -146,6 +160,8 @@ class ProfileRepository {
    *
    * @throws \DBCDK\CommunityServices\ApiException
    *   Throws API Exception if any of the calls to the services fails.
+   *
+   * @see ProfileRepository::enrichProfile
    */
   public function getProfiles(array $filter = []) {
     return (array) $this->profileApi->profileFind($this->processFilter($filter));
@@ -177,14 +193,20 @@ class ProfileRepository {
    *   The profile object enriched with details about it.
    */
   public function enrichProfile(ModelProfile $profile) {
-    $profile = new Profile($profile);
-    $profile->setCommunityRoles((array) $this->profileApi->profilePrototypeGetCommunityRoles($profile->getId()));
-    $profile->setQuarantines((array) $this->profileApi->profilePrototypeGetQuarantines($profile->getId()));
-    return $profile;
+    $community_roles = (array) $this->profileApi->profilePrototypeGetCommunityRoles(
+      $profile->getId()
+    );
+    $quarantines = (array) $this->profileApi->profilePrototypeGetQuarantines(
+      $profile->getId()
+    );
+    return new Profile($profile, $community_roles, $quarantines);
   }
 
   /**
    * Get profiles with an active quarantine at a specific time.
+   *
+   * For performance reasons these profiles will not include related objects.
+   * This should be retrieved this subsequently.
    *
    * @param DateTime $time
    *   The time to check quarantine date ranges against.
@@ -196,6 +218,8 @@ class ProfileRepository {
    *
    * @throws \DBCDK\CommunityServices\ApiException
    *   Throws API Exception if any of the calls to the services fails.
+   *
+   * @see ProfileRepository::enrichProfile
    */
   public function getQuarantinedProfiles(DateTime $time, array $profiles_filter = []) {
     $quarantines = $this->getActiveQuarantines($time);
@@ -214,7 +238,7 @@ class ProfileRepository {
    * @param array $profiles_filter
    *   The filter to match profiles against.
    *
-   * @return int
+   * @return int|NULL
    *   The number of quarantined profiles. NULL if no count is returned.
    *
    * @throws \DBCDK\CommunityServices\ApiException
@@ -325,6 +349,8 @@ class ProfileRepository {
    * Find out if we have to remove or add any roles from a Community Profile
    * based on values from $form_state and the current Community Profile's roles.
    *
+   * @param \Drupal\dbcdk_community\Profile\Profile $profile
+   *   The profile to update.
    * @param array $new_role_ids
    *   An array of new role ids.
    *
