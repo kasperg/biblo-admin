@@ -215,7 +215,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       else {
         $profiles = (array) $this->profileApi->profileFind(json_encode($filter));
         $result = $this->profileApi->profileCount();
-        $profile_count = (isset($result['count'])) ? $profile_count : NULL;
+        $profile_count = (isset($result['count'])) ? $result['count'] : NULL;
       }
       // Throw an exception if we do not get a count from the API.
       if ($profile_count === NULL) {
