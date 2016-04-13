@@ -6,8 +6,8 @@ dependencies:
     - ctools
 id: dbcdk_community_flagged_content_details
 label: 'Flagged content details'
-use_admin_theme: null
-path: '/admin/content/dbcdk_community/flagged_content/{flag_id}'
+use_admin_theme: true
+path: '/admin/dbcdk-community/flagged-content/{flag_id}'
 access_logic: and
 access_conditions:
   25197eee-10ab-4364-8706-6e121b796a64:

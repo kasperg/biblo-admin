@@ -1,0 +1,6 @@
+/**
+ * Provide an icon for the Moderation link in the toolbar.
+ */
+.toolbar-icon-dbcdk-community-moderation:before {
+  background-image: url(/core/misc/icons/787878/people.svg);
+}

@@ -11,5 +11,4 @@ permissions:
   1: 'dbcdk community moderate content'
   2: 'dbcdk community moderate profiles'
   3: 'use text format dbcdk_community_basic_markup'
-  4: 'access content overview'
   10: 'view the administration theme'

@@ -1,9 +1,9 @@
 dbcdk_community.flagged_content:
-  title: Flagged content
-  base_route: system.admin_content
+  title: 'Flagged content'
+  base_route: dbcdk_community.moderation
   route_name: page_manager.page_view_dbcdk_community_flagged_content
 dbcdk_community.profiles:
   title: 'Profiles'
-  base_route: system.admin_content
+  base_route: dbcdk_community.moderation
   # The route is dynamically created by the Page Manager module.
   route_name: page_manager.page_view_dbcdk_community_profiles

@@ -30,3 +30,26 @@ function dbcdk_community_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ * Implements hook_element_info_alter().
+ *
+ * Add our own library to the toolbar so we can define icons for custom links.
+ */
+function dbcdk_community_element_info_alter(array &$types) {
+  if (isset($types['toolbar'])) {
+    $types['toolbar']['#attached']['library'][] = 'dbcdk_community/toolbar';
+  }
+}
+
+/**
+ * Implements hook_toolbar_alter().
+ *
+ * Remove the "home" item since we don't have any front-end to direct the user
+ * back to.
+ */
+function dbcdk_community_toolbar_alter(&$items) {
+  if (isset($items['home'])) {
+    unset($items['home']);
+  }
+}

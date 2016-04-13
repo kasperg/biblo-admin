@@ -7,7 +7,7 @@ dependencies:
 id: dbcdk_community_flagged_content
 label: 'Flagged content'
 use_admin_theme: true
-path: /admin/content/dbcdk_community/flagged_content
+path: /admin/dbcdk-community/flagged-content
 access_logic: and
 access_conditions:
   cbd7870f-27d1-4461-8b00-f1125b1c4d18:
