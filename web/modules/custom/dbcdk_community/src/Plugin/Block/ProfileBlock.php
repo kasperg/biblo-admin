@@ -206,7 +206,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
 
         case 'library':
           $library = $profile->getFavoriteLibrary();
-          $value = (!empty($library->libraryId)) ? $library->libraryId : '';
+          $value = (!empty($library['libraryId'])) ? $library['libraryId'] : '';
           break;
 
         default:
