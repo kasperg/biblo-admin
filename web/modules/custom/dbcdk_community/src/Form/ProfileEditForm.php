@@ -185,7 +185,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
     $form['favoriteLibrary'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Library'),
-      '#default_value' => ((!empty($library->libraryId)) ? $library->libraryId : ''),
+      '#default_value' => ((!empty($library['libraryId'])) ? $library['libraryId'] : ''),
       '#description' => $this->t('The library id for users favorite library'),
     ];
 
