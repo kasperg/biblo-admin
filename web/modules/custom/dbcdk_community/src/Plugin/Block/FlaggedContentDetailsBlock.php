@@ -71,7 +71,7 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
    *   The plugin_id for the plugin instance.
-   * @param string $plugin_definition
+   * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param LoggerInterface $logger
    *   The logger to use.
@@ -156,10 +156,10 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
       $content_link = Link::fromTextAndUrl($url, Url::fromUri($url));
 
       $rows = [
-        [$this->t('Content'), $content->getContent()],
-        [$this->t('Created on'), $this->dateFormatter->format($content->getTimeCreated()->getTimestamp(), 'dbcdk_community_service_date_time')],
-        [$this->t('Author'), $profile_link],
-        [$this->t('View on biblo.dk'), $content_link],
+        'content' => [$this->t('Content'), $content->getContent()],
+        'date' => [$this->t('Created on'), $this->dateFormatter->format($content->getTimeCreated()->getTimestamp(), 'dbcdk_community_service_date_time')],
+        'profile' => [$this->t('Author'), $profile_link],
+        'link' => [$this->t('View on biblo.dk'), $content_link],
       ];
     }
     catch (ApiException $e) {
