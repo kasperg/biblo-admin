@@ -121,4 +121,22 @@ class FlaggedContentDetailsBlockTest extends BlockTestBase {
     $this->assertNoDetails($result['table']);
   }
 
+  /**
+   * Test handling when trying to retrieve flagged content with an invalid id.
+   */
+  public function testInvalidId() {
+    // Let the repository stub return NULL when trying to retrieve content by id
+    // to signal that there is no content for that id.
+    $this->flaggableContentRepository->method('getContentById')->willReturn(NULL);
+    // When this occours the logger should be hit.
+    $this->logger->expects($this->once())->method('notice');
+
+    $flagged_content_details = $this->newFlaggedContentDetailsBlock();
+
+    $result = $flagged_content_details->build();
+
+    // When unable to retrieve content there should be no details.
+    $this->assertNoDetails($result['table']);
+  }
+
 }

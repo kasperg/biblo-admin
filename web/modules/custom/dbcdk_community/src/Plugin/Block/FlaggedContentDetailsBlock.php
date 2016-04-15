@@ -141,9 +141,13 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
    */
   public function build() {
     $flag_id = $this->getContextValue('flag_id');
+    $rows = [];
 
     try {
       $content = $this->flaggableContentRepository->getContentById($flag_id);
+      if (empty($content)) {
+        throw new \InvalidArgumentException('Unable to retrieve flaggable content by id');
+      }
       $profile = $this->profileApi->profileFindById($content->getCreatorId());
 
       $profile_link = Link::createFromRoute(
@@ -165,7 +169,9 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
     catch (ApiException $e) {
       // If an error occours then log it and display an empty table.
       $this->logger->error($e);
-      $rows = [];
+    }
+    catch (\InvalidArgumentException $e) {
+      $this->logger->notice($e);
     }
 
     $table = [
