@@ -71,7 +71,7 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
    *   The plugin_id for the plugin instance.
-   * @param string $plugin_definition
+   * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param LoggerInterface $logger
    *   The logger to use.
@@ -141,9 +141,13 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
    */
   public function build() {
     $flag_id = $this->getContextValue('flag_id');
+    $rows = [];
 
     try {
       $content = $this->flaggableContentRepository->getContentById($flag_id);
+      if (empty($content)) {
+        throw new \InvalidArgumentException('Unable to retrieve flaggable content by id');
+      }
       $profile = $this->profileApi->profileFindById($content->getCreatorId());
 
       $profile_link = Link::createFromRoute(
@@ -156,16 +160,18 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
       $content_link = Link::fromTextAndUrl($url, Url::fromUri($url));
 
       $rows = [
-        [$this->t('Content'), $content->getContent()],
-        [$this->t('Created on'), $this->dateFormatter->format($content->getTimeCreated()->getTimestamp(), 'dbcdk_community_service_date_time')],
-        [$this->t('Author'), $profile_link],
-        [$this->t('View on biblo.dk'), $content_link],
+        'content' => [$this->t('Content'), $content->getContent()],
+        'date' => [$this->t('Created on'), $this->dateFormatter->format($content->getTimeCreated()->getTimestamp(), 'dbcdk_community_service_date_time')],
+        'profile' => [$this->t('Author'), $profile_link],
+        'link' => [$this->t('View on biblo.dk'), $content_link],
       ];
     }
     catch (ApiException $e) {
       // If an error occours then log it and display an empty table.
       $this->logger->error($e);
-      $rows = [];
+    }
+    catch (\InvalidArgumentException $e) {
+      $this->logger->notice($e);
     }
 
     $table = [
