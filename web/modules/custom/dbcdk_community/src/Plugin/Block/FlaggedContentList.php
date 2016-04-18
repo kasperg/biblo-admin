@@ -146,12 +146,12 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
         $this->t('Details'),
         $this->t('Link'),
       ],
-      '#data' => [],
+      '#rows' => [],
       '#empty' => $this->t('There is currently no flagged content'),
     ];
 
     /* @var \Drupal\dbcdk_community\Content\FlaggableContent[] $page_content_elements */
-    $page_content_elements = array_slice($all_content_elements, $page, $content_per_page);
+    $page_content_elements = array_slice($all_content_elements, $page * $content_per_page, $content_per_page);
     foreach ($page_content_elements as $content_element) {
 
       try {
@@ -178,7 +178,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       }
 
       $table['#rows'][] = [
-        [
+        'content' => [
           'data' => [
             '#theme' => 'dbcdk_community__flagged_content__content',
             '#content' => $content_element->getContent(),
@@ -186,11 +186,11 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
             '#video_collection_count' => count($this->flaggableContentRepository->getVideoCollections($content_element)),
           ],
         ],
-        count($content_element->getFlags()),
-        $this->dateFormatter->format($content_element->getLatestFlag()->getTimeFlagged()->getTimestamp(), 'dbcdk_community_service_date_time'),
-        $content_element->getLatestFlag()->getDescription(),
-        $details_link,
-        $community_site_link,
+        'num_flags' => count($content_element->getFlags()),
+        'flag_time' => $this->dateFormatter->format($content_element->getLatestFlag()->getTimeFlagged()->getTimestamp(), 'dbcdk_community_service_date_time'),
+        'flag_text' => $content_element->getLatestFlag()->getDescription(),
+        'details' => $details_link,
+        'link' => $community_site_link,
       ];
     }
 

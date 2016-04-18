@@ -6,12 +6,15 @@
 
 namespace Drupal\Tests\dbcdk_community\Unit\Plugin\Block;
 
+use Drupal\Core\Link;
 use Drupal\Tests\UnitTestCase;
+use phpmock\phpunit\PHPMock;
 
 /**
  * Base class for tests dealing with community service blocks.
  */
 class BlockTestBase extends UnitTestCase {
+  use PHPMock;
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $urlGenerator;
@@ -31,6 +34,12 @@ class BlockTestBase extends UnitTestCase {
 
   /* @var \PHPUnit_Framework_MockObject_MockObject */
   protected $flaggableContentRepository;
+
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
+  protected $pager;
+
+  /* @var \PHPUnit_Framework_MockObject_MockObject */
+  protected $message;
 
   /**
    * {@inheritdoc}
@@ -59,6 +68,11 @@ class BlockTestBase extends UnitTestCase {
     $this->dateFormatter = $this->getMockBuilder(
       'Drupal\Core\Datetime\DateFormatter'
     )->disableOriginalConstructor()->getMock();
+
+    $namespace = '\Drupal\dbcdk_community\Plugin\Block';
+    $this->pager = $this->getFunctionMock($namespace, 'pager_default_initialize');
+
+    $this->message = $this->getFunctionMock($namespace, 'drupal_set_message');
   }
 
   /**
@@ -111,7 +125,7 @@ class BlockTestBase extends UnitTestCase {
     $this->assertInstanceOf('\Drupal\Core\Link', $table['#rows'][$row_id][1]);
     /* @var \Drupal\Core\Link $actual_link */
     $actual_link = $table['#rows'][$row_id][1];
-    $this->assertEquals($expected_url, $actual_link->getUrl()->getUri(), $message);
+    $this->assertLinkUrl($expected_url, $actual_link, $message);
   }
 
   /**
@@ -143,6 +157,20 @@ class BlockTestBase extends UnitTestCase {
    */
   protected function assertNoDetails(array $table, $message = NULL) {
     $this->assertEmpty($table['#rows'], $message);
+  }
+
+  /**
+   * Assert that a link points to a specific url.
+   *
+   * @param string $expected_url
+   *   The expected url for the link.
+   * @param Link $link
+   *   The actual link.
+   * @param string $message
+   *   The message to display if the assertion fails.
+   */
+  protected function assertLinkUrl($expected_url, Link $link, $message = NULL) {
+    $this->assertEquals($expected_url, $link->getUrl()->getUri(), $message);
   }
 
 }
