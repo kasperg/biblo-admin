@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1dff259f09dbd3e9c21941a1884ef945",
-    "content-hash": "6a7b28c2751e3a3b999e2a39dd4a008d",
+    "hash": "e1af3e1748f1b5decf4d091a8dc7910a",
+    "content-hash": "ead0cc79d555f653c6be5d2e11a2523b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1000,7 +1000,8 @@
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
-                    "Support tests in contrib folder": "https://www.drupal.org/files/issues/2499239_77.patch"
+                    "2499239: Support tests in contrib folder": "https://www.drupal.org/files/issues/2499239_77.patch",
+                    "2408549: Notify about overridden configuration": "https://www.drupal.org/files/issues/config-override-warning-2408549-29.patch"
                 }
             },
             "autoload": {
@@ -1060,12 +1061,16 @@
                     "dev-8.x-3.x": "8.3.x-dev"
                 },
                 "patches_applied": {
-                    "Add permission condition": "https://www.drupal.org/files/issues/2665692-ctools-6.patch"
+                    "2665692: Add permission condition": "https://www.drupal.org/files/issues/2665692-ctools-6.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
             "description": "Provides a number of utility and helper APIs for Drupal developers and site builders.",
-            "homepage": "https://www.drupal.org/project/ctools"
+            "homepage": "https://www.drupal.org/project/ctools",
+            "time": "2016-02-05 19:52:56"
         },
         {
             "name": "drupal/page_manager",
@@ -1098,7 +1103,7 @@
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "patches_applied": {
-                    "Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
+                    "2684281: Fix warning when running tests": "https://www.drupal.org/files/issues/page_managar-pagetesthelpertrait-2684281-2.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -4979,6 +4984,172 @@
             "description": "Virtual file system to mock the real file system in unit tests.",
             "homepage": "http://vfs.bovigo.org/",
             "time": "2016-01-13 09:41:49"
+        },
+        {
+            "name": "php-mock/php-mock",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-mock/php-mock.git",
+                "reference": "bfa2d17d64dbf129073a7ba2051a96ce52749570"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-mock/php-mock/zipball/bfa2d17d64dbf129073a7ba2051a96ce52749570",
+                "reference": "bfa2d17d64dbf129073a7ba2051a96ce52749570",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "phpunit/php-text-template": "^1"
+            },
+            "replace": {
+                "malkusch/php-mock": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4|^5"
+            },
+            "suggest": {
+                "php-mock/php-mock-mockery": "Allows using PHPMockery for Mockery integration",
+                "php-mock/php-mock-phpunit": "Allows integration into PHPUnit testcase with the trait PHPMock."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "phpmock\\": [
+                        "classes/",
+                        "tests/unit/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "authors": [
+                {
+                    "name": "Markus Malkusch",
+                    "email": "markus@malkusch.de",
+                    "homepage": "http://markus.malkusch.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP-Mock can mock built-in PHP functions (e.g. time()). PHP-Mock relies on PHP's namespace fallback policy. No further extension is needed.",
+            "homepage": "https://github.com/php-mock/php-mock",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "function",
+                "mock",
+                "stub",
+                "test",
+                "test double"
+            ],
+            "time": "2015-11-11 22:37:09"
+        },
+        {
+            "name": "php-mock/php-mock-integration",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-mock/php-mock-integration.git",
+                "reference": "e83fb65dd20cd3cf250d554cbd4682b96b684f4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-mock/php-mock-integration/zipball/e83fb65dd20cd3cf250d554cbd4682b96b684f4b",
+                "reference": "e83fb65dd20cd3cf250d554cbd4682b96b684f4b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "php-mock/php-mock": "^1",
+                "phpunit/php-text-template": "^1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4|^5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "phpmock\\integration\\": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "authors": [
+                {
+                    "name": "Markus Malkusch",
+                    "email": "markus@malkusch.de",
+                    "homepage": "http://markus.malkusch.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Integration package for PHP-Mock",
+            "homepage": "https://github.com/php-mock/php-mock-integration",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "function",
+                "mock",
+                "stub",
+                "test",
+                "test double"
+            ],
+            "time": "2015-10-26 21:21:42"
+        },
+        {
+            "name": "php-mock/php-mock-phpunit",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-mock/php-mock-phpunit.git",
+                "reference": "d2edb32ec05584bb6bd8f1b7e94284022fb12d75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-mock/php-mock-phpunit/zipball/d2edb32ec05584bb6bd8f1b7e94284022fb12d75",
+                "reference": "d2edb32ec05584bb6bd8f1b7e94284022fb12d75",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "php-mock/php-mock-integration": "^1",
+                "phpunit/phpunit": "^4.0.0 || ^5.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "phpmock\\phpunit\\": "classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "authors": [
+                {
+                    "name": "Markus Malkusch",
+                    "email": "markus@malkusch.de",
+                    "homepage": "http://markus.malkusch.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mock built-in PHP functions (e.g. time()) with PHPUnit. This package relies on PHP's namespace fallback policy. No further extension is needed.",
+            "homepage": "https://github.com/php-mock/php-mock-phpunit",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "function",
+                "mock",
+                "phpunit",
+                "stub",
+                "test",
+                "test double"
+            ],
+            "time": "2015-11-04 23:39:54"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
