@@ -151,7 +151,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
     ];
 
     /* @var \Drupal\dbcdk_community\Content\FlaggableContent[] $page_content_elements */
-    $page_content_elements = array_slice($all_content_elements, $page, $content_per_page);
+    $page_content_elements = array_slice($all_content_elements, $page * $content_per_page, $content_per_page);
     foreach ($page_content_elements as $content_element) {
 
       try {
