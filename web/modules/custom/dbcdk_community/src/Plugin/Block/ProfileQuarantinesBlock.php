@@ -17,7 +17,6 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
-use Drupal\dbcdk_community\Profile\Profile;
 use Drupal\dbcdk_community\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -43,13 +42,6 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    * @var ProfileRepository $profileRepository
    */
   protected $profileRepository;
-
-  /**
-   * The DBCDK Community Service Quarantine API.
-   *
-   * @var QuarantineApi $quarantineApi
-   */
-  protected $quarantineApi;
 
   /**
    * Drupal's date formatter to format dates to Drupal Date Formats.
@@ -99,6 +91,9 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function build() {
+    // Tries to fetch quarantines from the Community Service or catches any
+    // exceptions and log them so the site can continue running and display an
+    // empty table instead of a fatal error.
     $profile = NULL;
     try {
       $profile = $this->profileRepository->getProfileByUsername($this->getContextValue('username'));
@@ -120,8 +115,10 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       'end' => $this->t('End date'),
       'edit_link' => $this->t('Edit'),
     ];
-    foreach ($profile->getQuarantines() as $quarantine) {
-      $rows[] = $this->parseQuarantine($quarantine, $fields, $this->getContextValue('username'));
+    if (!empty($profile)) {
+      foreach ($profile->getQuarantines() as $quarantine) {
+        $rows[] = $this->parseQuarantine($quarantine, $fields, $profile->getUsername());
+      }
     }
 
     // Build table of quarantines.
@@ -137,7 +134,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
     ];
 
     // Create quarantine link.
-    if (!empty($profile->getUsername())) {
+    if (!empty($profile)) {
       $build['add_quarantine'] = [
         '#type' => 'link',
         '#title' => $this->t('Create quarantine'),
@@ -183,7 +180,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
         case 'end':
           $method = 'get' . ucfirst($field);
           if (method_exists($quarantine, $method)) {
-            $row[] = $this->dateFormatter->format($quarantine->{$method}()->getTimestamp(), 'dbcdk_community_service_date');
+            $row[$field] = $this->dateFormatter->format($quarantine->{$method}()->getTimestamp(), 'dbcdk_community_service_date');
           }
           break;
 
@@ -191,7 +188,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
         // Twig automatically escapes string variables because markup is meant
         // to be handled in templates.
         case 'reason':
-          $row[] = [
+          $row[$field] = [
             'data' => [
               '#markup' => $quarantine->getReason(),
               '#allowed_tags' => Xss::getAdminTagList(),
@@ -202,7 +199,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
         // The edit_link field is not a field provided by the Community Service
         // but a column we wish to display with a link to edit a quarantine.
         case 'edit_link':
-          $row[] = Link::createFromRoute($title, 'dbcdk_community.profile.quarantine.edit', [
+          $row[$field] = Link::createFromRoute($title, 'dbcdk_community.profile.quarantine.edit', [
             'username' => $username,
             'quarantine_id' => $quarantine->getId(),
           ]);
