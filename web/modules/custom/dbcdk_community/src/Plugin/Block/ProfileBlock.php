@@ -44,6 +44,13 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
   protected $profileRepository;
 
   /**
+   * The date formatter to use.
+   *
+   * @var DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * Creates a Profiles Block instance.
    *
    * @param array $configuration
@@ -94,7 +101,10 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       );
     }
     catch (ApiException $e) {
-      \Drupal::logger('DBCDK Community Service')->error($e);
+      $this->logger->error($e);
+    }
+    catch (\InvalidArgumentException $e) {
+      $this->logger->notice($e);
     }
 
     $rows = [];
@@ -170,8 +180,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           // Make sure the date is a DateTime object before we try to use it as
           // one. We do this to avoid fatal errors.
           if ($profile->getBirthday() instanceof \DateTime) {
-            $date_formatter = \Drupal::service('date.formatter');
-            $value = $date_formatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_date');
+            $value = $this->dateFormatter->format($profile->getBirthday()->getTimestamp(), 'dbcdk_community_service_date');
           }
           else {
             $value = '';
@@ -232,7 +241,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
           break;
       }
 
-      $rows[] = [
+      $rows[$field] = [
         $title,
         $value,
       ];
