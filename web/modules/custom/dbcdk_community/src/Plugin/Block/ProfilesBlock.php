@@ -67,35 +67,18 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
   protected $urlGenerator;
 
   /**
+   * Array of filter conditions from the query string for the profiles list.
+   *
+   * @var array $filterQuery
+   */
+  protected $filterQuery;
+
+  /**
    * The amount of items to be shown on each page.
    *
    * @var int $pagerLimit
    */
   protected $pagerLimit;
-
-  /**
-   * A search query to filter the profiles table.
-   *
-   * @var string $searchQuery
-   */
-  protected $searchQuery;
-
-  /**
-   * The current page number of the profiles table.
-   *
-   * @var int $pageNumber
-   */
-  protected $pageNumber;
-
-  /**
-   * Quarantined filter state.
-   *
-   * Positive if the list of profiles should be filtered by profiles with an
-   * active quarantine.
-   *
-   * @var int $quarantinedFilter
-   */
-  protected $quarantinedFilter;
 
   /**
    * Creates a Profiles Block instance.
@@ -114,24 +97,18 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The DBCDK Community Service Quarantine API.
    * @param \Drupal\dbcdk_community\Url\UrlGeneratorInterface $url_generator
    *   The generator to use when creating urls to the frontend site.
-   * @param string $search_query
-   *   A search query to filter the profiles table.
-   * @param int $page_number
-   *   The current page number of the profiles table.
-   * @param int $quarantined_filter
-   *   If the table should be filtered by quarantined profiles.
+   * @param array $filter_query
+   *   Array of filter conditions from the query string for the profiles list.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, FormBuilder $form_builder, ProfileApi $profile_api, QuarantineApi $quarantine_api, UrlGeneratorInterface $url_generator, $search_query, $page_number, $quarantined_filter) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, LoggerInterface $logger, FormBuilder $form_builder, ProfileApi $profile_api, QuarantineApi $quarantine_api, UrlGeneratorInterface $url_generator, array $filter_query) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->logger = $logger;
     $this->formBuilder = $form_builder;
     $this->profileApi = $profile_api;
     $this->quarantineApi = $quarantine_api;
     $this->urlGenerator = $url_generator;
-    $this->searchQuery = $search_query;
-    $this->pageNumber = $page_number;
+    $this->filterQuery = $filter_query;
     $this->pagerLimit = (!empty($this->configuration['pager_limit']) ? $this->configuration['pager_limit'] : 25);
-    $this->quarantinedFilter = $quarantined_filter;
   }
 
   /**
@@ -149,6 +126,9 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       )
     );
 
+    /* @var \Symfony\Component\HttpFoundation\RequestStack $request_stack */
+    $request_stack = $container->get('request_stack');
+
     return new static(
       $configuration,
       $plugin_id,
@@ -158,9 +138,14 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $container->get('dbcdk_community.api.profile'),
       $container->get('dbcdk_community.api.quarantine'),
       $url_generator,
-      $container->get('request_stack')->getCurrentRequest()->query->get('search'),
-      $container->get('request_stack')->getCurrentRequest()->query->get('page'),
-      $container->get('request_stack')->getCurrentRequest()->query->get('quarantined')
+      [
+        'page_number' => $request_stack->getCurrentRequest()->query->get('page'),
+        'username' => $request_stack->getCurrentRequest()->query->get('username'),
+        'fullName' => $request_stack->getCurrentRequest()->query->get('fullName'),
+        'displayName' => $request_stack->getCurrentRequest()->query->get('displayName'),
+        'email' => $request_stack->getCurrentRequest()->query->get('email'),
+        'quarantined' => $request_stack->getCurrentRequest()->query->get('quarantined'),
+      ]
     );
   }
 
@@ -201,14 +186,22 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $filter = [
         'order' => 'username ASC',
         'limit' => $this->pagerLimit,
-        'offset' => $this->pageNumber * $this->pagerLimit,
+        'offset' => $this->filterQuery['page_number'] * $this->pagerLimit,
       ];
-      if (!empty($this->searchQuery)) {
-        $filter['where']['username'] = ['like' => '%' . $this->searchQuery . '%'];
+      $filter_fields = [
+        'username',
+        'fullName',
+        'displayName',
+        'email',
+      ];
+      foreach ($filter_fields as $filter_field) {
+        if (!empty($this->filterQuery[$filter_field])) {
+          $filter['where'][$filter_field] = ['like' => '%' . $this->filterQuery[$filter_field] . '%'];
+        }
       }
       // Fetch a list or profiles with an active quarantine.
-      if ($this->quarantinedFilter) {
-        $profiles = (array) $this->getQuarantinedProfiles($filter);
+      if ($this->filterQuery['quarantined']) {
+        $profiles = $this->getQuarantinedProfiles($filter);
         $profile_count = $this->getQuarantinedProfilesCount($filter);
       }
       // Fetch a list of profiles.
@@ -227,7 +220,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     }
 
     $build = [];
-    // Build exposed search form.
+    // Build exposed filter form.
     $build['filter'] = $this->formBuilder->getForm('Drupal\dbcdk_community\Form\ProfilesFilterForm');
 
     // Build a table of profiles.

@@ -26,25 +26,41 @@ class ProfilesFilterForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $search_query = $this->getRequest()->get('search');
-    $quarantined = $this->getRequest()->get('quarantined');
-
     $form['filter'] = [
       '#type' => 'details',
       '#title' => $this->t('Filter list'),
-      '#open' => (bool) $search_query || $quarantined,
+      // Open the filter box on page load if the URL contains a query string.
+      '#open' => (empty($this->getRequest()->getQueryString())) ? FALSE : TRUE,
     ];
 
-    $form['filter']['search'] = [
+    $form['filter']['username'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Username'),
-      '#default_value' => $search_query,
+      '#default_value' => $this->getRequest()->get('username'),
+    ];
+
+    $form['filter']['fullName'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Full Name'),
+      '#default_value' => $this->getRequest()->get('fullName'),
+    ];
+
+    $form['filter']['displayName'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Display Name'),
+      '#default_value' => $this->getRequest()->get('displayName'),
+    ];
+
+    $form['filter']['email'] = [
+      '#type' => 'email',
+      '#title' => $this->t('E-mail'),
+      '#default_value' => $this->getRequest()->get('email'),
     ];
 
     $form['filter']['quarantined'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Only show profiles with an active quarantine.'),
-      '#default_value' => $quarantined,
+      '#default_value' => $this->getRequest()->get('quarantined'),
     ];
 
     $form['filter']['actions']['#type'] = 'actions';
@@ -62,7 +78,10 @@ class ProfilesFilterForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $route_parameters = [];
     $fields = [
-      'search',
+      'username',
+      'fullName',
+      'displayName',
+      'email',
       'quarantined',
     ];
     foreach ($fields as $field) {
