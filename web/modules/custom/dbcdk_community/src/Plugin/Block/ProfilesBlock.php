@@ -194,7 +194,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
 
       // Fetch a list or profiles with an active quarantine.
       if (isset($this->filterQuery['quarantined']) && $this->filterQuery['quarantined']) {
-        $now = new DateTime(REQUEST_TIME);
+        $now = new DateTime();
         $profiles = $this->profileRepository->getQuarantinedProfiles($now, $page_filter);
         $profile_count = $this->profileRepository->countQuarantinedProfiles($now, $filter);
       }
@@ -290,7 +290,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         // a string with a unique name so we have to prepare it as a link.
         case 'username':
           $username = $profile->getUsername();
-          $row[] = Link::createFromRoute($username, 'page_manager.page_view_dbcdk_community_profile', [
+          $row[$field] = Link::createFromRoute($username, 'page_manager.page_view_dbcdk_community_profile', [
             'username' => $username,
           ]);
           break;
@@ -299,7 +299,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         // but a column we wish do display with a link to edit a profile.
         case 'edit_link':
           $username = $profile->getUsername();
-          $row[] = Link::createFromRoute($title, 'dbcdk_community.profile.edit', [
+          $row[$field] = Link::createFromRoute($title, 'dbcdk_community.profile.edit', [
             'username' => $username,
           ]);
           break;
@@ -308,7 +308,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         // settings page.
         case 'community_link':
           $community_site_url = Url::fromUri($this->urlGenerator->generate($profile));
-          $row[] = Link::fromTextAndUrl($this->t('View on Biblo.dk'), $community_site_url);
+          $row[$field] = Link::fromTextAndUrl($this->t('View on Biblo.dk'), $community_site_url);
           break;
 
         default:
