@@ -26,12 +26,13 @@ function dbcdk_community_requirements($phase) {
     try {
       // Try to do an arbitrary call the the community service. Getting an
       // actual result is not important here.
-      $profile_api->profileFindOne();
+      $profile_api->profileFindOne(json_encode(['limit' => 1]));
     }
     catch (\DBCDK\CommunityServices\ApiException $e) {
-      // If an exception is thrown then mark the requirement as failed.
+      // If an exception is thrown then mark requirement as failed and log it.
       $service_requirement['severity'] = REQUIREMENT_ERROR;
       $service_requirement['description'] = $e->getMessage();
+      Drupal::service('dbcdk_community.logger')->error($e);
     }
 
     $requirements[] = $service_requirement;
