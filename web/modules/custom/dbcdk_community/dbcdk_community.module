@@ -53,3 +53,15 @@ function dbcdk_community_toolbar_alter(&$items) {
     unset($items['home']);
   }
 }
+
+/**
+ * Implements hook_link_alter().
+ */
+function dbcdk_community_link_alter(&$variables) {
+  // Make all external links open in a new window.
+  /* @var \Drupal\Core\Url $url */
+  $url = $variables['url'];
+  if ($url->isExternal()) {
+    $variables['options']['attributes']['target'] = '_blank';
+  }
+}
