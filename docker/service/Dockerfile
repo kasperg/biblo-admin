@@ -5,6 +5,9 @@ WORKDIR /usr/src/app
 
 RUN npm install
 
+COPY run.sh run.sh
+RUN chmod u+x run.sh
+
 EXPOSE 3000
 
-CMD [ "npm", "start" ]
+CMD ["./run.sh"]

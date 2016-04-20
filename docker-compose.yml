@@ -32,8 +32,7 @@ db:
     MYSQL_USER: db
     MYSQL_PASSWORD: bP4pFxUvFcF2b1bV
 service:
-  build: .
-  dockerfile: docker/service/Dockerfile
+  build: docker/service
   ports:
     - '3000/tcp:3000/tcp'
   environment:
