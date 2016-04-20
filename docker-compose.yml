@@ -21,7 +21,7 @@ web:
     - service
     - hub
 db:
-  image: mariadb
+  image: mariadb:10
   ports:
     - '3306/tcp:3306/tcp'
   volumes:
@@ -53,7 +53,7 @@ service:
     - service_db
     - service_redis
 service_db:
-  image: postgres
+  image: postgres:9
   ports:
     - '5432/tcp:5432/tcp'
   environment:
@@ -76,11 +76,11 @@ swagger:
   links:
     - service
 hub:
-  image: selenium/hub
+  image: selenium/hub:2.53.0
   ports:
     - '4444/tcp:4444/tcp'
 firefox:
-  image: selenium/node-firefox
+  image: selenium/node-firefox:2.53.0
   links:
     - hub
     - web
