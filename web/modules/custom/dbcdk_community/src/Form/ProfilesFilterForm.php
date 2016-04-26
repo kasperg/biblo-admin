@@ -29,8 +29,9 @@ class ProfilesFilterForm extends FormBase {
     $form['filter'] = [
       '#type' => 'details',
       '#title' => $this->t('Filter list'),
-      // Open the filter box on page load if the URL contains a query string.
-      '#open' => (empty($this->getRequest()->getQueryString())) ? FALSE : TRUE,
+      // If the URL contains a query string we assume that it is caused by this
+      // form and that filters are in use so show them.
+      '#open' => (!empty($this->getRequest()->getQueryString())),
     ];
 
     $form['filter']['username'] = [
