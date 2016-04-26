@@ -199,6 +199,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
           $filter['where'][$filter_field] = ['like' => '%' . $this->filterQuery[$filter_field] . '%'];
         }
       }
+
       // Fetch a list or profiles with an active quarantine.
       if ($this->filterQuery['quarantined']) {
         $profiles = $this->getQuarantinedProfiles($filter);
@@ -266,28 +267,16 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $quarantines = (array) $this->quarantineApi->quarantineFind(json_encode($quarantined_filter));
 
     // Reduce all the quarantines to an array of quarantined profile ids.
-    // We do this to make sure a profile id only appears once since we use these
-    // values as "Where" arguments for the next request to the service, and a
-    // profile can have multiple quarantines at the same time.
-    $quarantine_ids = array_reduce($quarantines, function($result, Quarantine $quarantine) use ($profiles_filter) {
-      // For each id we want to check with an "or" condition, we have to include
-      // the 'where' conditions that has been provided as additional filters
-      // (ex: username, displayName etc.).
-      if (isset($profiles_filter['where'])) {
-        $result[$quarantine->getQuarantinedProfileId()] = array_merge($profiles_filter['where'], ['id' => $quarantine->getQuarantinedProfileId()]);
-      }
-      else {
-        $result[$quarantine->getQuarantinedProfileId()] = ['id' => $quarantine->getQuarantinedProfileId()];
-      }
-      return $result;
-    });
-
-    // Reset array keys so json_encode() will handle the ids as an indexed array
-    // and not an associative array.
-    $quarantine_ids = array_values($quarantine_ids);
+    $quarantine_ids = array_map(function(Quarantine $quarantine) {
+      return $quarantine->getQuarantinedProfileId();
+    }, $quarantines);
+    // A profile can have multiple active quarantines. Make sure each profile id
+    // occurs only once. array_unique maintains keys for entries so we use
+    // array_values to get a properly indexed array.
+    $quarantine_ids = array_values(array_unique($quarantine_ids));
 
     // Use the array of quarantined ids as "where" arguments.
-    $profiles_filter['where']['or'] = $quarantine_ids;
+    $profiles_filter['where']['id'] = ['inq' => $quarantine_ids];
 
     return (array) $this->profileApi->profileFind(json_encode($profiles_filter));
   }
@@ -319,28 +308,16 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
     $quarantines = (array) $this->quarantineApi->quarantineFind(json_encode($quarantined_filter));
 
     // Reduce all the quarantines to an array of quarantined profile ids.
-    // We do this to make sure a profile id only appears once since we use these
-    // values as "Where" arguments for the next request to the service, and a
-    // profile can have multiple quarantines at the same time.
-    $quarantine_ids = array_reduce($quarantines, function($result, Quarantine $quarantine) use ($profiles_filter) {
-      // For each id we want to check with an "or" condition, we have to include
-      // the 'where' conditions that has been provided as additional filters
-      // (ex: username, displayName etc.).
-      if (isset($profiles_filter['where'])) {
-        $result[$quarantine->getQuarantinedProfileId()] = array_merge($profiles_filter['where'], ['id' => $quarantine->getQuarantinedProfileId()]);
-      }
-      else {
-        $result[$quarantine->getQuarantinedProfileId()] = ['id' => $quarantine->getQuarantinedProfileId()];
-      }
-      return $result;
-    });
-
-    // Reset array keys so json_encode() will handle the ids as an indexed array
-    // and not an associative array.
-    $quarantine_ids = array_values($quarantine_ids);
+    $quarantine_ids = array_map(function(Quarantine $quarantine) {
+      return $quarantine->getQuarantinedProfileId();
+    }, $quarantines);
+    // A profile can have multiple active quarantines. Make sure each profile id
+    // occurs only once. array_unique maintains keys for entries so we use
+    // array_values to get a properly indexed array.
+    $quarantine_ids = array_keys(array_unique($quarantine_ids));
 
     // Use the array of quarantined ids as "where" arguments.
-    $profiles_filter['where']['or'] = $quarantine_ids;
+    $profiles_filter['where']['id'] = ['inq' => $quarantine_ids];
 
     $result = $this->profileApi->profileCount(json_encode($profiles_filter['where']));
     return (isset($result['count'])) ? $result['count'] : NULL;
