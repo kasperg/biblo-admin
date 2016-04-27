@@ -29,7 +29,7 @@ class ProfilesFilterForm extends FormBase {
     $form['filter'] = [
       '#type' => 'details',
       '#title' => $this->t('Filter list'),
-      '#description' => $this->t('Show profiles matching the following criteria.<br/><br/>For each criteria enter a value which the profile field must contain. Filters are case sensitive.'),
+      '#description' => $this->t('Show profiles matching the following criteria.<br/><br/>For each criteria enter a value which the profile field must contain. Filters are not case sensitive.'),
       // If the URL contains a query string we assume that it is caused by this
       // form and that filters are in use so show them.
       '#open' => (!empty($this->getRequest()->getQueryString())),

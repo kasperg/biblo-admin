@@ -196,7 +196,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       ];
       foreach ($filter_fields as $filter_field) {
         if (!empty($this->filterQuery[$filter_field])) {
-          $filter['where'][$filter_field] = ['like' => '%' . $this->filterQuery[$filter_field] . '%'];
+          $filter['where'][$filter_field] = ['regexp' => '/' . $this->filterQuery[$filter_field] . '/i'];
         }
       }
 
