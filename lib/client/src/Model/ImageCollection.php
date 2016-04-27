@@ -55,7 +55,8 @@ class ImageCollection implements ArrayAccess
         'profileImageCollection' => 'double',
         'groupCoverImageCollectionId' => 'double',
         'postImageCollection' => 'double',
-        'commentImageCollection' => 'double'
+        'commentImageCollection' => 'double',
+        'reviewImageCollection' => 'double'
     );
   
     static function swaggerTypes() {
@@ -71,7 +72,8 @@ class ImageCollection implements ArrayAccess
         'profileImageCollection' => 'profileImageCollection',
         'groupCoverImageCollectionId' => 'groupCoverImageCollectionId',
         'postImageCollection' => 'postImageCollection',
-        'commentImageCollection' => 'commentImageCollection'
+        'commentImageCollection' => 'commentImageCollection',
+        'reviewImageCollection' => 'reviewImageCollection'
     );
   
     static function attributeMap() {
@@ -87,7 +89,8 @@ class ImageCollection implements ArrayAccess
         'profileImageCollection' => 'setProfileImageCollection',
         'groupCoverImageCollectionId' => 'setGroupCoverImageCollectionId',
         'postImageCollection' => 'setPostImageCollection',
-        'commentImageCollection' => 'setCommentImageCollection'
+        'commentImageCollection' => 'setCommentImageCollection',
+        'reviewImageCollection' => 'setReviewImageCollection'
     );
   
     static function setters() {
@@ -103,7 +106,8 @@ class ImageCollection implements ArrayAccess
         'profileImageCollection' => 'getProfileImageCollection',
         'groupCoverImageCollectionId' => 'getGroupCoverImageCollectionId',
         'postImageCollection' => 'getPostImageCollection',
-        'commentImageCollection' => 'getCommentImageCollection'
+        'commentImageCollection' => 'getCommentImageCollection',
+        'reviewImageCollection' => 'getReviewImageCollection'
     );
   
     static function getters() {
@@ -141,6 +145,12 @@ class ImageCollection implements ArrayAccess
       */
     protected $commentImageCollection;
     
+    /**
+      * $reviewImageCollection 
+      * @var double
+      */
+    protected $reviewImageCollection;
+    
 
     /**
      * Constructor
@@ -155,6 +165,7 @@ class ImageCollection implements ArrayAccess
             $this->groupCoverImageCollectionId = $data["groupCoverImageCollectionId"];
             $this->postImageCollection = $data["postImageCollection"];
             $this->commentImageCollection = $data["commentImageCollection"];
+            $this->reviewImageCollection = $data["reviewImageCollection"];
         }
     }
     
@@ -260,6 +271,27 @@ class ImageCollection implements ArrayAccess
     {
         
         $this->commentImageCollection = $commentImageCollection;
+        return $this;
+    }
+    
+    /**
+     * Gets reviewImageCollection
+     * @return double
+     */
+    public function getReviewImageCollection()
+    {
+        return $this->reviewImageCollection;
+    }
+  
+    /**
+     * Sets reviewImageCollection
+     * @param double $reviewImageCollection 
+     * @return $this
+     */
+    public function setReviewImageCollection($reviewImageCollection)
+    {
+        
+        $this->reviewImageCollection = $reviewImageCollection;
         return $this;
     }
     

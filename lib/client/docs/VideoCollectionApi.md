@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 
 # **videoCollectionCount**
-> object videoCollectionCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 videoCollectionCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **videoCollectionCreateChangeStreamGetVideoCollectionsChangeStream**
-> object videoCollectionCreateChangeStreamGetVideoCollectionsChangeStream($options)
+> \SplFileObject videoCollectionCreateChangeStreamGetVideoCollectionsChangeStream($options)
 
 Create a change stream.
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -156,7 +156,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **videoCollectionCreateChangeStreamPostVideoCollectionsChangeStream**
-> object videoCollectionCreateChangeStreamPostVideoCollectionsChangeStream($options)
+> \SplFileObject videoCollectionCreateChangeStreamPostVideoCollectionsChangeStream($options)
 
 Create a change stream.
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -242,7 +242,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **videoCollectionExistsGetVideoCollectionsidExists**
-> object videoCollectionExistsGetVideoCollectionsidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 videoCollectionExistsGetVideoCollectionsidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -285,7 +285,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **videoCollectionExistsHeadVideoCollectionsid**
-> object videoCollectionExistsHeadVideoCollectionsid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 videoCollectionExistsHeadVideoCollectionsid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -459,7 +459,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **videoCollectionPrototypeCountResolutions**
-> object videoCollectionPrototypeCountResolutions($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 videoCollectionPrototypeCountResolutions($id, $where)
 
 Counts resolutions of videoCollection.
 
@@ -490,7 +490,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 

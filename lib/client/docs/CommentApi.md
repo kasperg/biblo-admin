@@ -17,23 +17,27 @@ Method | HTTP request | Description
 [**commentPrototypeCountFlags**](CommentApi.md#commentPrototypeCountFlags) | **GET** /Comments/{id}/flags/count | Counts flags of Comment.
 [**commentPrototypeCreateFlags**](CommentApi.md#commentPrototypeCreateFlags) | **POST** /Comments/{id}/flags | Creates a new instance in flags of this model.
 [**commentPrototypeCreateImage**](CommentApi.md#commentPrototypeCreateImage) | **POST** /Comments/{id}/image | Creates a new instance in image of this model.
+[**commentPrototypeCreateVideo**](CommentApi.md#commentPrototypeCreateVideo) | **POST** /Comments/{id}/video | Creates a new instance in video of this model.
 [**commentPrototypeDeleteFlags**](CommentApi.md#commentPrototypeDeleteFlags) | **DELETE** /Comments/{id}/flags | Deletes all flags of this model.
 [**commentPrototypeDestroyByIdFlags**](CommentApi.md#commentPrototypeDestroyByIdFlags) | **DELETE** /Comments/{id}/flags/{fk} | Delete a related item by id for flags.
 [**commentPrototypeDestroyImage**](CommentApi.md#commentPrototypeDestroyImage) | **DELETE** /Comments/{id}/image | Deletes image of this model.
+[**commentPrototypeDestroyVideo**](CommentApi.md#commentPrototypeDestroyVideo) | **DELETE** /Comments/{id}/video | Deletes video of this model.
 [**commentPrototypeFindByIdFlags**](CommentApi.md#commentPrototypeFindByIdFlags) | **GET** /Comments/{id}/flags/{fk} | Find a related item by id for flags.
 [**commentPrototypeGetFlags**](CommentApi.md#commentPrototypeGetFlags) | **GET** /Comments/{id}/flags | Queries flags of Comment.
 [**commentPrototypeGetImage**](CommentApi.md#commentPrototypeGetImage) | **GET** /Comments/{id}/image | Fetches hasOne relation image.
 [**commentPrototypeGetOwner**](CommentApi.md#commentPrototypeGetOwner) | **GET** /Comments/{id}/owner | Fetches belongsTo relation owner.
 [**commentPrototypeGetPost**](CommentApi.md#commentPrototypeGetPost) | **GET** /Comments/{id}/post | Fetches belongsTo relation post.
+[**commentPrototypeGetVideo**](CommentApi.md#commentPrototypeGetVideo) | **GET** /Comments/{id}/video | Fetches hasOne relation video.
 [**commentPrototypeUpdateAttributes**](CommentApi.md#commentPrototypeUpdateAttributes) | **PUT** /Comments/{id} | Update attributes for a model instance and persist it into the data source.
 [**commentPrototypeUpdateByIdFlags**](CommentApi.md#commentPrototypeUpdateByIdFlags) | **PUT** /Comments/{id}/flags/{fk} | Update a related item by id for flags.
 [**commentPrototypeUpdateImage**](CommentApi.md#commentPrototypeUpdateImage) | **PUT** /Comments/{id}/image | Update image of this model.
+[**commentPrototypeUpdateVideo**](CommentApi.md#commentPrototypeUpdateVideo) | **PUT** /Comments/{id}/video | Update video of this model.
 [**commentUpdateAll**](CommentApi.md#commentUpdateAll) | **POST** /Comments/update | Update instances of the model matched by where from the data source.
 [**commentUpsert**](CommentApi.md#commentUpsert) | **PUT** /Comments | Update an existing model instance or insert a new one into the data source.
 
 
 # **commentCount**
-> object commentCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 commentCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -62,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -119,7 +123,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **commentCreateChangeStreamGetCommentsChangeStream**
-> object commentCreateChangeStreamGetCommentsChangeStream($options)
+> \SplFileObject commentCreateChangeStreamGetCommentsChangeStream($options)
 
 Create a change stream.
 
@@ -148,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -162,7 +166,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **commentCreateChangeStreamPostCommentsChangeStream**
-> object commentCreateChangeStreamPostCommentsChangeStream($options)
+> \SplFileObject commentCreateChangeStreamPostCommentsChangeStream($options)
 
 Create a change stream.
 
@@ -191,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -248,7 +252,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **commentExistsGetCommentsidExists**
-> object commentExistsGetCommentsidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 commentExistsGetCommentsidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -277,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -291,7 +295,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **commentExistsHeadCommentsid**
-> object commentExistsHeadCommentsid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 commentExistsHeadCommentsid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -320,7 +324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -465,7 +469,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **commentPrototypeCountFlags**
-> object commentPrototypeCountFlags($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 commentPrototypeCountFlags($id, $where)
 
 Counts flags of Comment.
 
@@ -496,7 +500,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -587,6 +591,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\ImageCollection**](ImageCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **commentPrototypeCreateVideo**
+> \DBCDK\CommunityServices\Model\VideoCollection commentPrototypeCreateVideo($id, $data)
+
+Creates a new instance in video of this model.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\CommentApi();
+$id = "id_example"; // string | PersistedModel id
+$data = new \DBCDK\CommunityServices\Model\VideoCollection(); // \DBCDK\CommunityServices\Model\VideoCollection | 
+
+try { 
+    $result = $api_instance->commentPrototypeCreateVideo($id, $data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommentApi->commentPrototypeCreateVideo: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **data** | [**\DBCDK\CommunityServices\Model\VideoCollection**](\DBCDK\CommunityServices\Model\VideoCollection.md)|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\VideoCollection**](VideoCollection.md)
 
 ### Authorization
 
@@ -702,6 +751,48 @@ try {
     $api_instance->commentPrototypeDestroyImage($id);
 } catch (Exception $e) {
     echo 'Exception when calling CommentApi->commentPrototypeDestroyImage: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **commentPrototypeDestroyVideo**
+> commentPrototypeDestroyVideo($id)
+
+Deletes video of this model.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\CommentApi();
+$id = "id_example"; // string | PersistedModel id
+
+try { 
+    $api_instance->commentPrototypeDestroyVideo($id);
+} catch (Exception $e) {
+    echo 'Exception when calling CommentApi->commentPrototypeDestroyVideo: ', $e->getMessage(), "\n";
 }
 ?>
 ```
@@ -952,6 +1043,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **commentPrototypeGetVideo**
+> \DBCDK\CommunityServices\Model\VideoCollection commentPrototypeGetVideo($id, $refresh)
+
+Fetches hasOne relation video.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\CommentApi();
+$id = "id_example"; // string | PersistedModel id
+$refresh = true; // bool | 
+
+try { 
+    $result = $api_instance->commentPrototypeGetVideo($id, $refresh);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommentApi->commentPrototypeGetVideo: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **refresh** | **bool**|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\VideoCollection**](VideoCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **commentPrototypeUpdateAttributes**
 > \DBCDK\CommunityServices\Model\Comment commentPrototypeUpdateAttributes($id, $data)
 
@@ -1077,6 +1213,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\ImageCollection**](ImageCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **commentPrototypeUpdateVideo**
+> \DBCDK\CommunityServices\Model\VideoCollection commentPrototypeUpdateVideo($id, $data)
+
+Update video of this model.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\CommentApi();
+$id = "id_example"; // string | PersistedModel id
+$data = new \DBCDK\CommunityServices\Model\VideoCollection(); // \DBCDK\CommunityServices\Model\VideoCollection | 
+
+try { 
+    $result = $api_instance->commentPrototypeUpdateVideo($id, $data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CommentApi->commentPrototypeUpdateVideo: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **data** | [**\DBCDK\CommunityServices\Model\VideoCollection**](\DBCDK\CommunityServices\Model\VideoCollection.md)|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\VideoCollection**](VideoCollection.md)
 
 ### Authorization
 

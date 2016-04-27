@@ -1,6 +1,6 @@
 <?php
 /**
- * Like
+ * Review
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace DBCDK\CommunityServices\Model;
 
 use \ArrayAccess;
 /**
- * Like Class Doc Comment
+ * Review Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,19 +44,22 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Like implements ArrayAccess
+class Review implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'itemId' => 'string',
-        'value' => 'string',
+        'pid' => 'string',
+        'libraryid' => 'string',
+        'worktype' => 'string',
+        'content' => 'string',
+        'created' => '\DateTime',
+        'modified' => '\DateTime',
+        'rating' => 'double',
         'id' => 'double',
-        'profileId' => 'double',
-        'likeid' => 'double',
-        'reviewlikeid' => 'double'
+        'reviewownerid' => 'double'
     );
   
     static function swaggerTypes() {
@@ -68,12 +71,15 @@ class Like implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'itemId' => 'item_id',
-        'value' => 'value',
+        'pid' => 'pid',
+        'libraryid' => 'libraryid',
+        'worktype' => 'worktype',
+        'content' => 'content',
+        'created' => 'created',
+        'modified' => 'modified',
+        'rating' => 'rating',
         'id' => 'id',
-        'profileId' => 'profileId',
-        'likeid' => 'likeid',
-        'reviewlikeid' => 'reviewlikeid'
+        'reviewownerid' => 'reviewownerid'
     );
   
     static function attributeMap() {
@@ -85,12 +91,15 @@ class Like implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'itemId' => 'setItemId',
-        'value' => 'setValue',
+        'pid' => 'setPid',
+        'libraryid' => 'setLibraryid',
+        'worktype' => 'setWorktype',
+        'content' => 'setContent',
+        'created' => 'setCreated',
+        'modified' => 'setModified',
+        'rating' => 'setRating',
         'id' => 'setId',
-        'profileId' => 'setProfileId',
-        'likeid' => 'setLikeid',
-        'reviewlikeid' => 'setReviewlikeid'
+        'reviewownerid' => 'setReviewownerid'
     );
   
     static function setters() {
@@ -102,12 +111,15 @@ class Like implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'itemId' => 'getItemId',
-        'value' => 'getValue',
+        'pid' => 'getPid',
+        'libraryid' => 'getLibraryid',
+        'worktype' => 'getWorktype',
+        'content' => 'getContent',
+        'created' => 'getCreated',
+        'modified' => 'getModified',
+        'rating' => 'getRating',
         'id' => 'getId',
-        'profileId' => 'getProfileId',
-        'likeid' => 'getLikeid',
-        'reviewlikeid' => 'getReviewlikeid'
+        'reviewownerid' => 'getReviewownerid'
     );
   
     static function getters() {
@@ -116,16 +128,46 @@ class Like implements ArrayAccess
 
     
     /**
-      * $itemId 
+      * $pid 
       * @var string
       */
-    protected $itemId;
+    protected $pid;
     
     /**
-      * $value 
+      * $libraryid 
       * @var string
       */
-    protected $value;
+    protected $libraryid;
+    
+    /**
+      * $worktype 
+      * @var string
+      */
+    protected $worktype;
+    
+    /**
+      * $content 
+      * @var string
+      */
+    protected $content;
+    
+    /**
+      * $created 
+      * @var \DateTime
+      */
+    protected $created;
+    
+    /**
+      * $modified 
+      * @var \DateTime
+      */
+    protected $modified;
+    
+    /**
+      * $rating 
+      * @var double
+      */
+    protected $rating;
     
     /**
       * $id 
@@ -134,22 +176,10 @@ class Like implements ArrayAccess
     protected $id;
     
     /**
-      * $profileId 
+      * $reviewownerid 
       * @var double
       */
-    protected $profileId;
-    
-    /**
-      * $likeid 
-      * @var double
-      */
-    protected $likeid;
-    
-    /**
-      * $reviewlikeid 
-      * @var double
-      */
-    protected $reviewlikeid;
+    protected $reviewownerid;
     
 
     /**
@@ -160,54 +190,162 @@ class Like implements ArrayAccess
     {
         
         if ($data != null) {
-            $this->itemId = $data["itemId"];
-            $this->value = $data["value"];
+            $this->pid = $data["pid"];
+            $this->libraryid = $data["libraryid"];
+            $this->worktype = $data["worktype"];
+            $this->content = $data["content"];
+            $this->created = $data["created"];
+            $this->modified = $data["modified"];
+            $this->rating = $data["rating"];
             $this->id = $data["id"];
-            $this->profileId = $data["profileId"];
-            $this->likeid = $data["likeid"];
-            $this->reviewlikeid = $data["reviewlikeid"];
+            $this->reviewownerid = $data["reviewownerid"];
         }
     }
     
     /**
-     * Gets itemId
+     * Gets pid
      * @return string
      */
-    public function getItemId()
+    public function getPid()
     {
-        return $this->itemId;
+        return $this->pid;
     }
   
     /**
-     * Sets itemId
-     * @param string $itemId 
+     * Sets pid
+     * @param string $pid 
      * @return $this
      */
-    public function setItemId($itemId)
+    public function setPid($pid)
     {
         
-        $this->itemId = $itemId;
+        $this->pid = $pid;
         return $this;
     }
     
     /**
-     * Gets value
+     * Gets libraryid
      * @return string
      */
-    public function getValue()
+    public function getLibraryid()
     {
-        return $this->value;
+        return $this->libraryid;
     }
   
     /**
-     * Sets value
-     * @param string $value 
+     * Sets libraryid
+     * @param string $libraryid 
      * @return $this
      */
-    public function setValue($value)
+    public function setLibraryid($libraryid)
     {
         
-        $this->value = $value;
+        $this->libraryid = $libraryid;
+        return $this;
+    }
+    
+    /**
+     * Gets worktype
+     * @return string
+     */
+    public function getWorktype()
+    {
+        return $this->worktype;
+    }
+  
+    /**
+     * Sets worktype
+     * @param string $worktype 
+     * @return $this
+     */
+    public function setWorktype($worktype)
+    {
+        
+        $this->worktype = $worktype;
+        return $this;
+    }
+    
+    /**
+     * Gets content
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+  
+    /**
+     * Sets content
+     * @param string $content 
+     * @return $this
+     */
+    public function setContent($content)
+    {
+        
+        $this->content = $content;
+        return $this;
+    }
+    
+    /**
+     * Gets created
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+  
+    /**
+     * Sets created
+     * @param \DateTime $created 
+     * @return $this
+     */
+    public function setCreated($created)
+    {
+        
+        $this->created = $created;
+        return $this;
+    }
+    
+    /**
+     * Gets modified
+     * @return \DateTime
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
+  
+    /**
+     * Sets modified
+     * @param \DateTime $modified 
+     * @return $this
+     */
+    public function setModified($modified)
+    {
+        
+        $this->modified = $modified;
+        return $this;
+    }
+    
+    /**
+     * Gets rating
+     * @return double
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+  
+    /**
+     * Sets rating
+     * @param double $rating 
+     * @return $this
+     */
+    public function setRating($rating)
+    {
+        
+        $this->rating = $rating;
         return $this;
     }
     
@@ -233,65 +371,23 @@ class Like implements ArrayAccess
     }
     
     /**
-     * Gets profileId
+     * Gets reviewownerid
      * @return double
      */
-    public function getProfileId()
+    public function getReviewownerid()
     {
-        return $this->profileId;
+        return $this->reviewownerid;
     }
   
     /**
-     * Sets profileId
-     * @param double $profileId 
+     * Sets reviewownerid
+     * @param double $reviewownerid 
      * @return $this
      */
-    public function setProfileId($profileId)
+    public function setReviewownerid($reviewownerid)
     {
         
-        $this->profileId = $profileId;
-        return $this;
-    }
-    
-    /**
-     * Gets likeid
-     * @return double
-     */
-    public function getLikeid()
-    {
-        return $this->likeid;
-    }
-  
-    /**
-     * Sets likeid
-     * @param double $likeid 
-     * @return $this
-     */
-    public function setLikeid($likeid)
-    {
-        
-        $this->likeid = $likeid;
-        return $this;
-    }
-    
-    /**
-     * Gets reviewlikeid
-     * @return double
-     */
-    public function getReviewlikeid()
-    {
-        return $this->reviewlikeid;
-    }
-  
-    /**
-     * Sets reviewlikeid
-     * @param double $reviewlikeid 
-     * @return $this
-     */
-    public function setReviewlikeid($reviewlikeid)
-    {
-        
-        $this->reviewlikeid = $reviewlikeid;
+        $this->reviewownerid = $reviewownerid;
         return $this;
     }
     

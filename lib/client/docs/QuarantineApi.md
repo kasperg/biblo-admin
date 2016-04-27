@@ -66,7 +66,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **quarantineCount**
-> object quarantineCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 quarantineCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **quarantineCreateChangeStreamGetQuarantinesChangeStream**
-> object quarantineCreateChangeStreamGetQuarantinesChangeStream($options)
+> \SplFileObject quarantineCreateChangeStreamGetQuarantinesChangeStream($options)
 
 Create a change stream.
 
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -195,7 +195,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **quarantineCreateChangeStreamPostQuarantinesChangeStream**
-> object quarantineCreateChangeStreamPostQuarantinesChangeStream($options)
+> \SplFileObject quarantineCreateChangeStreamPostQuarantinesChangeStream($options)
 
 Create a change stream.
 
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -281,7 +281,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **quarantineExistsGetQuarantinesidExists**
-> object quarantineExistsGetQuarantinesidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 quarantineExistsGetQuarantinesidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -324,7 +324,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **quarantineExistsHeadQuarantinesid**
-> object quarantineExistsHeadQuarantinesid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 quarantineExistsHeadQuarantinesid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 

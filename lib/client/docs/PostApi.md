@@ -54,7 +54,7 @@ Method | HTTP request | Description
 
 
 # **postCount**
-> object postCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 postCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -140,7 +140,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postCreateChangeStreamGetPostsChangeStream**
-> object postCreateChangeStreamGetPostsChangeStream($options)
+> \SplFileObject postCreateChangeStreamGetPostsChangeStream($options)
 
 Create a change stream.
 
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -183,7 +183,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postCreateChangeStreamPostPostsChangeStream**
-> object postCreateChangeStreamPostPostsChangeStream($options)
+> \SplFileObject postCreateChangeStreamPostPostsChangeStream($options)
 
 Create a change stream.
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -269,7 +269,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postExistsGetPostsidExists**
-> object postExistsGetPostsidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 postExistsGetPostsidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postExistsHeadPostsid**
-> object postExistsHeadPostsid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 postExistsHeadPostsid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -341,7 +341,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -486,7 +486,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postPrototypeCountComments**
-> object postPrototypeCountComments($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 postPrototypeCountComments($id, $where)
 
 Counts comments of Post.
 
@@ -517,7 +517,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -531,7 +531,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postPrototypeCountFlags**
-> object postPrototypeCountFlags($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 postPrototypeCountFlags($id, $where)
 
 Counts flags of Post.
 
@@ -562,7 +562,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -576,7 +576,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **postPrototypeCountLikes**
-> object postPrototypeCountLikes($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 postPrototypeCountLikes($id, $where)
 
 Counts likes of Post.
 
@@ -607,7 +607,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 

@@ -77,7 +77,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **userCount**
-> object userCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 userCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **userCreateChangeStreamGetUsersChangeStream**
-> object userCreateChangeStreamGetUsersChangeStream($options)
+> \SplFileObject userCreateChangeStreamGetUsersChangeStream($options)
 
 Create a change stream.
 
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -206,7 +206,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **userCreateChangeStreamPostUsersChangeStream**
-> object userCreateChangeStreamPostUsersChangeStream($options)
+> \SplFileObject userCreateChangeStreamPostUsersChangeStream($options)
 
 Create a change stream.
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -292,7 +292,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **userExistsGetUsersidExists**
-> object userExistsGetUsersidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 userExistsGetUsersidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -335,7 +335,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **userExistsHeadUsersid**
-> object userExistsHeadUsersid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 userExistsHeadUsersid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -592,7 +592,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **userPrototypeCountAccessTokens**
-> object userPrototypeCountAccessTokens($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 userPrototypeCountAccessTokens($id, $where)
 
 Counts accessTokens of User.
 
@@ -623,7 +623,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 

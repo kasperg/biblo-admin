@@ -17,23 +17,27 @@ Method | HTTP request | Description
 [**flagPrototypeCreateComments**](FlagApi.md#flagPrototypeCreateComments) | **POST** /Flags/{id}/comments | Creates a new instance in comments of this model.
 [**flagPrototypeCreateGroups**](FlagApi.md#flagPrototypeCreateGroups) | **POST** /Flags/{id}/groups | Creates a new instance in groups of this model.
 [**flagPrototypeCreatePosts**](FlagApi.md#flagPrototypeCreatePosts) | **POST** /Flags/{id}/posts | Creates a new instance in posts of this model.
+[**flagPrototypeCreateReviews**](FlagApi.md#flagPrototypeCreateReviews) | **POST** /Flags/{id}/reviews | Creates a new instance in reviews of this model.
 [**flagPrototypeDestroyComments**](FlagApi.md#flagPrototypeDestroyComments) | **DELETE** /Flags/{id}/comments | Deletes comments of this model.
 [**flagPrototypeDestroyGroups**](FlagApi.md#flagPrototypeDestroyGroups) | **DELETE** /Flags/{id}/groups | Deletes groups of this model.
 [**flagPrototypeDestroyPosts**](FlagApi.md#flagPrototypeDestroyPosts) | **DELETE** /Flags/{id}/posts | Deletes posts of this model.
+[**flagPrototypeDestroyReviews**](FlagApi.md#flagPrototypeDestroyReviews) | **DELETE** /Flags/{id}/reviews | Deletes reviews of this model.
 [**flagPrototypeGetComments**](FlagApi.md#flagPrototypeGetComments) | **GET** /Flags/{id}/comments | Fetches hasOne relation comments.
 [**flagPrototypeGetGroups**](FlagApi.md#flagPrototypeGetGroups) | **GET** /Flags/{id}/groups | Fetches hasOne relation groups.
 [**flagPrototypeGetOwner**](FlagApi.md#flagPrototypeGetOwner) | **GET** /Flags/{id}/owner | Fetches belongsTo relation owner.
 [**flagPrototypeGetPosts**](FlagApi.md#flagPrototypeGetPosts) | **GET** /Flags/{id}/posts | Fetches hasOne relation posts.
+[**flagPrototypeGetReviews**](FlagApi.md#flagPrototypeGetReviews) | **GET** /Flags/{id}/reviews | Fetches hasOne relation reviews.
 [**flagPrototypeUpdateAttributes**](FlagApi.md#flagPrototypeUpdateAttributes) | **PUT** /Flags/{id} | Update attributes for a model instance and persist it into the data source.
 [**flagPrototypeUpdateComments**](FlagApi.md#flagPrototypeUpdateComments) | **PUT** /Flags/{id}/comments | Update comments of this model.
 [**flagPrototypeUpdateGroups**](FlagApi.md#flagPrototypeUpdateGroups) | **PUT** /Flags/{id}/groups | Update groups of this model.
 [**flagPrototypeUpdatePosts**](FlagApi.md#flagPrototypeUpdatePosts) | **PUT** /Flags/{id}/posts | Update posts of this model.
+[**flagPrototypeUpdateReviews**](FlagApi.md#flagPrototypeUpdateReviews) | **PUT** /Flags/{id}/reviews | Update reviews of this model.
 [**flagUpdateAll**](FlagApi.md#flagUpdateAll) | **POST** /Flags/update | Update instances of the model matched by where from the data source.
 [**flagUpsert**](FlagApi.md#flagUpsert) | **PUT** /Flags | Update an existing model instance or insert a new one into the data source.
 
 
 # **flagCount**
-> object flagCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 flagCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -62,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -119,7 +123,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **flagCreateChangeStreamGetFlagsChangeStream**
-> object flagCreateChangeStreamGetFlagsChangeStream($options)
+> \SplFileObject flagCreateChangeStreamGetFlagsChangeStream($options)
 
 Create a change stream.
 
@@ -148,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -162,7 +166,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **flagCreateChangeStreamPostFlagsChangeStream**
-> object flagCreateChangeStreamPostFlagsChangeStream($options)
+> \SplFileObject flagCreateChangeStreamPostFlagsChangeStream($options)
 
 Create a change stream.
 
@@ -191,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -248,7 +252,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **flagExistsGetFlagsidExists**
-> object flagExistsGetFlagsidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 flagExistsGetFlagsidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -277,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -291,7 +295,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **flagExistsHeadFlagsid**
-> object flagExistsHeadFlagsid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 flagExistsHeadFlagsid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -320,7 +324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -599,6 +603,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **flagPrototypeCreateReviews**
+> \DBCDK\CommunityServices\Model\Review flagPrototypeCreateReviews($id, $data)
+
+Creates a new instance in reviews of this model.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\FlagApi();
+$id = "id_example"; // string | PersistedModel id
+$data = new \DBCDK\CommunityServices\Model\Review(); // \DBCDK\CommunityServices\Model\Review | 
+
+try { 
+    $result = $api_instance->flagPrototypeCreateReviews($id, $data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlagApi->flagPrototypeCreateReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **data** | [**\DBCDK\CommunityServices\Model\Review**](\DBCDK\CommunityServices\Model\Review.md)|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](Review.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **flagPrototypeDestroyComments**
 > flagPrototypeDestroyComments($id)
 
@@ -700,6 +749,48 @@ try {
     $api_instance->flagPrototypeDestroyPosts($id);
 } catch (Exception $e) {
     echo 'Exception when calling FlagApi->flagPrototypeDestroyPosts: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **flagPrototypeDestroyReviews**
+> flagPrototypeDestroyReviews($id)
+
+Deletes reviews of this model.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\FlagApi();
+$id = "id_example"; // string | PersistedModel id
+
+try { 
+    $api_instance->flagPrototypeDestroyReviews($id);
+} catch (Exception $e) {
+    echo 'Exception when calling FlagApi->flagPrototypeDestroyReviews: ', $e->getMessage(), "\n";
 }
 ?>
 ```
@@ -905,6 +996,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **flagPrototypeGetReviews**
+> \DBCDK\CommunityServices\Model\Review flagPrototypeGetReviews($id, $refresh)
+
+Fetches hasOne relation reviews.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\FlagApi();
+$id = "id_example"; // string | PersistedModel id
+$refresh = true; // bool | 
+
+try { 
+    $result = $api_instance->flagPrototypeGetReviews($id, $refresh);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlagApi->flagPrototypeGetReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **refresh** | **bool**|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](Review.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **flagPrototypeUpdateAttributes**
 > \DBCDK\CommunityServices\Model\Flag flagPrototypeUpdateAttributes($id, $data)
 
@@ -1073,6 +1209,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\Post**](Post.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **flagPrototypeUpdateReviews**
+> \DBCDK\CommunityServices\Model\Review flagPrototypeUpdateReviews($id, $data)
+
+Update reviews of this model.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\FlagApi();
+$id = "id_example"; // string | PersistedModel id
+$data = new \DBCDK\CommunityServices\Model\Review(); // \DBCDK\CommunityServices\Model\Review | 
+
+try { 
+    $result = $api_instance->flagPrototypeUpdateReviews($id, $data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FlagApi->flagPrototypeUpdateReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **data** | [**\DBCDK\CommunityServices\Model\Review**](\DBCDK\CommunityServices\Model\Review.md)|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](Review.md)
 
 ### Authorization
 

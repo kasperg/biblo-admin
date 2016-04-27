@@ -25,6 +25,7 @@ Method | HTTP request | Description
 [**profilePrototypeCountOwnedGroups**](ProfileApi.md#profilePrototypeCountOwnedGroups) | **GET** /Profiles/{id}/ownedGroups/count | Counts ownedGroups of Profile.
 [**profilePrototypeCountPosts**](ProfileApi.md#profilePrototypeCountPosts) | **GET** /Profiles/{id}/posts/count | Counts posts of Profile.
 [**profilePrototypeCountQuarantines**](ProfileApi.md#profilePrototypeCountQuarantines) | **GET** /Profiles/{id}/quarantines/count | Counts quarantines of Profile.
+[**profilePrototypeCountReviews**](ProfileApi.md#profilePrototypeCountReviews) | **GET** /Profiles/{id}/reviews/count | Counts reviews of Profile.
 [**profilePrototypeCreateAccessTokens**](ProfileApi.md#profilePrototypeCreateAccessTokens) | **POST** /Profiles/{id}/accessTokens | Creates a new instance in accessTokens of this model.
 [**profilePrototypeCreateComments**](ProfileApi.md#profilePrototypeCreateComments) | **POST** /Profiles/{id}/comments | Creates a new instance in comments of this model.
 [**profilePrototypeCreateCommunityRoles**](ProfileApi.md#profilePrototypeCreateCommunityRoles) | **POST** /Profiles/{id}/communityRoles | Creates a new instance in communityRoles of this model.
@@ -34,6 +35,7 @@ Method | HTTP request | Description
 [**profilePrototypeCreateOwnedGroups**](ProfileApi.md#profilePrototypeCreateOwnedGroups) | **POST** /Profiles/{id}/ownedGroups | Creates a new instance in ownedGroups of this model.
 [**profilePrototypeCreatePosts**](ProfileApi.md#profilePrototypeCreatePosts) | **POST** /Profiles/{id}/posts | Creates a new instance in posts of this model.
 [**profilePrototypeCreateQuarantines**](ProfileApi.md#profilePrototypeCreateQuarantines) | **POST** /Profiles/{id}/quarantines | Creates a new instance in quarantines of this model.
+[**profilePrototypeCreateReviews**](ProfileApi.md#profilePrototypeCreateReviews) | **POST** /Profiles/{id}/reviews | Creates a new instance in reviews of this model.
 [**profilePrototypeDeleteAccessTokens**](ProfileApi.md#profilePrototypeDeleteAccessTokens) | **DELETE** /Profiles/{id}/accessTokens | Deletes all accessTokens of this model.
 [**profilePrototypeDeleteComments**](ProfileApi.md#profilePrototypeDeleteComments) | **DELETE** /Profiles/{id}/comments | Deletes all comments of this model.
 [**profilePrototypeDeleteCommunityRoles**](ProfileApi.md#profilePrototypeDeleteCommunityRoles) | **DELETE** /Profiles/{id}/communityRoles | Deletes all communityRoles of this model.
@@ -42,6 +44,7 @@ Method | HTTP request | Description
 [**profilePrototypeDeleteOwnedGroups**](ProfileApi.md#profilePrototypeDeleteOwnedGroups) | **DELETE** /Profiles/{id}/ownedGroups | Deletes all ownedGroups of this model.
 [**profilePrototypeDeletePosts**](ProfileApi.md#profilePrototypeDeletePosts) | **DELETE** /Profiles/{id}/posts | Deletes all posts of this model.
 [**profilePrototypeDeleteQuarantines**](ProfileApi.md#profilePrototypeDeleteQuarantines) | **DELETE** /Profiles/{id}/quarantines | Deletes all quarantines of this model.
+[**profilePrototypeDeleteReviews**](ProfileApi.md#profilePrototypeDeleteReviews) | **DELETE** /Profiles/{id}/reviews | Deletes all reviews of this model.
 [**profilePrototypeDestroyByIdAccessTokens**](ProfileApi.md#profilePrototypeDestroyByIdAccessTokens) | **DELETE** /Profiles/{id}/accessTokens/{fk} | Delete a related item by id for accessTokens.
 [**profilePrototypeDestroyByIdComments**](ProfileApi.md#profilePrototypeDestroyByIdComments) | **DELETE** /Profiles/{id}/comments/{fk} | Delete a related item by id for comments.
 [**profilePrototypeDestroyByIdCommunityRoles**](ProfileApi.md#profilePrototypeDestroyByIdCommunityRoles) | **DELETE** /Profiles/{id}/communityRoles/{fk} | Delete a related item by id for communityRoles.
@@ -50,6 +53,7 @@ Method | HTTP request | Description
 [**profilePrototypeDestroyByIdOwnedGroups**](ProfileApi.md#profilePrototypeDestroyByIdOwnedGroups) | **DELETE** /Profiles/{id}/ownedGroups/{fk} | Delete a related item by id for ownedGroups.
 [**profilePrototypeDestroyByIdPosts**](ProfileApi.md#profilePrototypeDestroyByIdPosts) | **DELETE** /Profiles/{id}/posts/{fk} | Delete a related item by id for posts.
 [**profilePrototypeDestroyByIdQuarantines**](ProfileApi.md#profilePrototypeDestroyByIdQuarantines) | **DELETE** /Profiles/{id}/quarantines/{fk} | Delete a related item by id for quarantines.
+[**profilePrototypeDestroyByIdReviews**](ProfileApi.md#profilePrototypeDestroyByIdReviews) | **DELETE** /Profiles/{id}/reviews/{fk} | Delete a related item by id for reviews.
 [**profilePrototypeDestroyImage**](ProfileApi.md#profilePrototypeDestroyImage) | **DELETE** /Profiles/{id}/image | Deletes image of this model.
 [**profilePrototypeExistsComments**](ProfileApi.md#profilePrototypeExistsComments) | **HEAD** /Profiles/{id}/comments/rel/{fk} | Check the existence of comments relation to an item by id.
 [**profilePrototypeExistsCommunityRoles**](ProfileApi.md#profilePrototypeExistsCommunityRoles) | **HEAD** /Profiles/{id}/communityRoles/rel/{fk} | Check the existence of communityRoles relation to an item by id.
@@ -63,6 +67,7 @@ Method | HTTP request | Description
 [**profilePrototypeFindByIdOwnedGroups**](ProfileApi.md#profilePrototypeFindByIdOwnedGroups) | **GET** /Profiles/{id}/ownedGroups/{fk} | Find a related item by id for ownedGroups.
 [**profilePrototypeFindByIdPosts**](ProfileApi.md#profilePrototypeFindByIdPosts) | **GET** /Profiles/{id}/posts/{fk} | Find a related item by id for posts.
 [**profilePrototypeFindByIdQuarantines**](ProfileApi.md#profilePrototypeFindByIdQuarantines) | **GET** /Profiles/{id}/quarantines/{fk} | Find a related item by id for quarantines.
+[**profilePrototypeFindByIdReviews**](ProfileApi.md#profilePrototypeFindByIdReviews) | **GET** /Profiles/{id}/reviews/{fk} | Find a related item by id for reviews.
 [**profilePrototypeGetAccessTokens**](ProfileApi.md#profilePrototypeGetAccessTokens) | **GET** /Profiles/{id}/accessTokens | Queries accessTokens of Profile.
 [**profilePrototypeGetComments**](ProfileApi.md#profilePrototypeGetComments) | **GET** /Profiles/{id}/comments | Queries comments of Profile.
 [**profilePrototypeGetCommunityRoles**](ProfileApi.md#profilePrototypeGetCommunityRoles) | **GET** /Profiles/{id}/communityRoles | Queries communityRoles of Profile.
@@ -72,6 +77,7 @@ Method | HTTP request | Description
 [**profilePrototypeGetOwnedGroups**](ProfileApi.md#profilePrototypeGetOwnedGroups) | **GET** /Profiles/{id}/ownedGroups | Queries ownedGroups of Profile.
 [**profilePrototypeGetPosts**](ProfileApi.md#profilePrototypeGetPosts) | **GET** /Profiles/{id}/posts | Queries posts of Profile.
 [**profilePrototypeGetQuarantines**](ProfileApi.md#profilePrototypeGetQuarantines) | **GET** /Profiles/{id}/quarantines | Queries quarantines of Profile.
+[**profilePrototypeGetReviews**](ProfileApi.md#profilePrototypeGetReviews) | **GET** /Profiles/{id}/reviews | Queries reviews of Profile.
 [**profilePrototypeLinkComments**](ProfileApi.md#profilePrototypeLinkComments) | **PUT** /Profiles/{id}/comments/rel/{fk} | Add a related item by id for comments.
 [**profilePrototypeLinkCommunityRoles**](ProfileApi.md#profilePrototypeLinkCommunityRoles) | **PUT** /Profiles/{id}/communityRoles/rel/{fk} | Add a related item by id for communityRoles.
 [**profilePrototypeLinkGroups**](ProfileApi.md#profilePrototypeLinkGroups) | **PUT** /Profiles/{id}/groups/rel/{fk} | Add a related item by id for groups.
@@ -89,6 +95,7 @@ Method | HTTP request | Description
 [**profilePrototypeUpdateByIdOwnedGroups**](ProfileApi.md#profilePrototypeUpdateByIdOwnedGroups) | **PUT** /Profiles/{id}/ownedGroups/{fk} | Update a related item by id for ownedGroups.
 [**profilePrototypeUpdateByIdPosts**](ProfileApi.md#profilePrototypeUpdateByIdPosts) | **PUT** /Profiles/{id}/posts/{fk} | Update a related item by id for posts.
 [**profilePrototypeUpdateByIdQuarantines**](ProfileApi.md#profilePrototypeUpdateByIdQuarantines) | **PUT** /Profiles/{id}/quarantines/{fk} | Update a related item by id for quarantines.
+[**profilePrototypeUpdateByIdReviews**](ProfileApi.md#profilePrototypeUpdateByIdReviews) | **PUT** /Profiles/{id}/reviews/{fk} | Update a related item by id for reviews.
 [**profilePrototypeUpdateImage**](ProfileApi.md#profilePrototypeUpdateImage) | **PUT** /Profiles/{id}/image | Update image of this model.
 [**profileUnilogin**](ProfileApi.md#profileUnilogin) | **POST** /Profiles/unilogin | Login a user with unilogin.
 [**profileUpdateAll**](ProfileApi.md#profileUpdateAll) | **POST** /Profiles/update | Update instances of the model matched by where from the data source.
@@ -182,7 +189,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profileCount**
-> object profileCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profileCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -211,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -268,7 +275,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profileCreateChangeStreamGetProfilesChangeStream**
-> object profileCreateChangeStreamGetProfilesChangeStream($options)
+> \SplFileObject profileCreateChangeStreamGetProfilesChangeStream($options)
 
 Create a change stream.
 
@@ -297,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -311,7 +318,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profileCreateChangeStreamPostProfilesChangeStream**
-> object profileCreateChangeStreamPostProfilesChangeStream($options)
+> \SplFileObject profileCreateChangeStreamPostProfilesChangeStream($options)
 
 Create a change stream.
 
@@ -340,7 +347,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -397,7 +404,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profileExistsGetProfilesidExists**
-> object profileExistsGetProfilesidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 profileExistsGetProfilesidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -426,7 +433,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -440,7 +447,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profileExistsHeadProfilesid**
-> object profileExistsHeadProfilesid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 profileExistsHeadProfilesid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -469,7 +476,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -652,7 +659,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profilePrototypeCountAccessTokens**
-> object profilePrototypeCountAccessTokens($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountAccessTokens($id, $where)
 
 Counts accessTokens of Profile.
 
@@ -683,7 +690,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -697,7 +704,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profilePrototypeCountComments**
-> object profilePrototypeCountComments($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountComments($id, $where)
 
 Counts comments of Profile.
 
@@ -728,7 +735,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -742,7 +749,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profilePrototypeCountCommunityRoles**
-> object profilePrototypeCountCommunityRoles($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountCommunityRoles($id, $where)
 
 Counts communityRoles of Profile.
 
@@ -773,7 +780,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -787,7 +794,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profilePrototypeCountGroups**
-> object profilePrototypeCountGroups($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountGroups($id, $where)
 
 Counts groups of Profile.
 
@@ -818,7 +825,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -832,7 +839,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profilePrototypeCountLikes**
-> object profilePrototypeCountLikes($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountLikes($id, $where)
 
 Counts likes of Profile.
 
@@ -863,7 +870,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -877,7 +884,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profilePrototypeCountOwnedGroups**
-> object profilePrototypeCountOwnedGroups($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountOwnedGroups($id, $where)
 
 Counts ownedGroups of Profile.
 
@@ -908,7 +915,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -922,7 +929,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profilePrototypeCountPosts**
-> object profilePrototypeCountPosts($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountPosts($id, $where)
 
 Counts posts of Profile.
 
@@ -953,7 +960,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -967,7 +974,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **profilePrototypeCountQuarantines**
-> object profilePrototypeCountQuarantines($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountQuarantines($id, $where)
 
 Counts quarantines of Profile.
 
@@ -998,7 +1005,52 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **profilePrototypeCountReviews**
+> \DBCDK\CommunityServices\Model\InlineResponse200 profilePrototypeCountReviews($id, $where)
+
+Counts reviews of Profile.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\ProfileApi();
+$id = "id_example"; // string | PersistedModel id
+$where = "where_example"; // string | Criteria to match model instances
+
+try { 
+    $result = $api_instance->profilePrototypeCountReviews($id, $where);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProfileApi->profilePrototypeCountReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **where** | **string**| Criteria to match model instances | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -1416,6 +1468,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **profilePrototypeCreateReviews**
+> \DBCDK\CommunityServices\Model\Review profilePrototypeCreateReviews($id, $data)
+
+Creates a new instance in reviews of this model.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\ProfileApi();
+$id = "id_example"; // string | PersistedModel id
+$data = new \DBCDK\CommunityServices\Model\Review(); // \DBCDK\CommunityServices\Model\Review | 
+
+try { 
+    $result = $api_instance->profilePrototypeCreateReviews($id, $data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProfileApi->profilePrototypeCreateReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **data** | [**\DBCDK\CommunityServices\Model\Review**](\DBCDK\CommunityServices\Model\Review.md)|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](Review.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **profilePrototypeDeleteAccessTokens**
 > profilePrototypeDeleteAccessTokens($id)
 
@@ -1727,6 +1824,48 @@ try {
     $api_instance->profilePrototypeDeleteQuarantines($id);
 } catch (Exception $e) {
     echo 'Exception when calling ProfileApi->profilePrototypeDeleteQuarantines: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **profilePrototypeDeleteReviews**
+> profilePrototypeDeleteReviews($id)
+
+Deletes all reviews of this model.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\ProfileApi();
+$id = "id_example"; // string | PersistedModel id
+
+try { 
+    $api_instance->profilePrototypeDeleteReviews($id);
+} catch (Exception $e) {
+    echo 'Exception when calling ProfileApi->profilePrototypeDeleteReviews: ', $e->getMessage(), "\n";
 }
 ?>
 ```
@@ -2087,6 +2226,50 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fk** | **string**| Foreign key for quarantines | 
+ **id** | **string**| PersistedModel id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **profilePrototypeDestroyByIdReviews**
+> profilePrototypeDestroyByIdReviews($fk, $id)
+
+Delete a related item by id for reviews.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\ProfileApi();
+$fk = "fk_example"; // string | Foreign key for reviews
+$id = "id_example"; // string | PersistedModel id
+
+try { 
+    $api_instance->profilePrototypeDestroyByIdReviews($fk, $id);
+} catch (Exception $e) {
+    echo 'Exception when calling ProfileApi->profilePrototypeDestroyByIdReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fk** | **string**| Foreign key for reviews | 
  **id** | **string**| PersistedModel id | 
 
 ### Return type
@@ -2686,6 +2869,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **profilePrototypeFindByIdReviews**
+> \DBCDK\CommunityServices\Model\Review profilePrototypeFindByIdReviews($fk, $id)
+
+Find a related item by id for reviews.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\ProfileApi();
+$fk = "fk_example"; // string | Foreign key for reviews
+$id = "id_example"; // string | PersistedModel id
+
+try { 
+    $result = $api_instance->profilePrototypeFindByIdReviews($fk, $id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProfileApi->profilePrototypeFindByIdReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fk** | **string**| Foreign key for reviews | 
+ **id** | **string**| PersistedModel id | 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](Review.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **profilePrototypeGetAccessTokens**
 > \DBCDK\CommunityServices\Model\AccessToken[] profilePrototypeGetAccessTokens($id, $filter)
 
@@ -3079,6 +3307,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\Quarantine[]**](Quarantine.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **profilePrototypeGetReviews**
+> \DBCDK\CommunityServices\Model\Review[] profilePrototypeGetReviews($id, $filter)
+
+Queries reviews of Profile.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\ProfileApi();
+$id = "id_example"; // string | PersistedModel id
+$filter = "filter_example"; // string | 
+
+try { 
+    $result = $api_instance->profilePrototypeGetReviews($id, $filter);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProfileApi->profilePrototypeGetReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **filter** | **string**|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review[]**](Review.md)
 
 ### Authorization
 
@@ -3864,6 +4137,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\Quarantine**](Quarantine.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **profilePrototypeUpdateByIdReviews**
+> \DBCDK\CommunityServices\Model\Review profilePrototypeUpdateByIdReviews($fk, $id, $data)
+
+Update a related item by id for reviews.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\ProfileApi();
+$fk = "fk_example"; // string | Foreign key for reviews
+$id = "id_example"; // string | PersistedModel id
+$data = new \DBCDK\CommunityServices\Model\Review(); // \DBCDK\CommunityServices\Model\Review | 
+
+try { 
+    $result = $api_instance->profilePrototypeUpdateByIdReviews($fk, $id, $data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProfileApi->profilePrototypeUpdateByIdReviews: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fk** | **string**| Foreign key for reviews | 
+ **id** | **string**| PersistedModel id | 
+ **data** | [**\DBCDK\CommunityServices\Model\Review**](\DBCDK\CommunityServices\Model\Review.md)|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](Review.md)
 
 ### Authorization
 

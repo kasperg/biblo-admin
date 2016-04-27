@@ -11,7 +11,7 @@
  * @link     https://github.com/swagger-api/swagger-codegen
  */
 /**
- *  Copyright 2015 SmartBear Software
+ *  Copyright 2016 SmartBear Software
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ use \ArrayAccess;
  * InlineResponse2002 Class Doc Comment
  *
  * @category    Class
- * @description The response body tells whether a displayname is taken
+ * @description 
  * @package     DBCDK\CommunityServices
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
@@ -51,33 +51,55 @@ class InlineResponse2002 implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        
+        'undefined' => 'object'
     );
   
+    static function swaggerTypes() {
+        return self::$swaggerTypes;
+    }
+
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
       * @var string[] 
       */
     static $attributeMap = array(
-        
+        'undefined' => 'undefined'
     );
   
+    static function attributeMap() {
+        return self::$attributeMap;
+    }
+
     /**
       * Array of attributes to setter functions (for deserialization of responses)
       * @var string[]
       */
     static $setters = array(
-        
+        'undefined' => 'setUndefined'
     );
   
+    static function setters() {
+        return self::$setters;
+    }
+
     /**
       * Array of attributes to getter functions (for serialization of requests)
       * @var string[]
       */
     static $getters = array(
-        
+        'undefined' => 'getUndefined'
     );
   
+    static function getters() {
+        return self::$getters;
+    }
+
+    
+    /**
+      * $undefined 
+      * @var object
+      */
+    protected $undefined;
     
 
     /**
@@ -86,9 +108,31 @@ class InlineResponse2002 implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        
         if ($data != null) {
-            
+            $this->undefined = $data["undefined"];
         }
+    }
+    
+    /**
+     * Gets undefined
+     * @return object
+     */
+    public function getUndefined()
+    {
+        return $this->undefined;
+    }
+  
+    /**
+     * Sets undefined
+     * @param object $undefined 
+     * @return $this
+     */
+    public function setUndefined($undefined)
+    {
+        
+        $this->undefined = $undefined;
+        return $this;
     }
     
     /**
@@ -139,9 +183,9 @@ class InlineResponse2002 implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) {
-            return json_encode(get_object_vars($this), JSON_PRETTY_PRINT);
+            return json_encode(\DBCDK\CommunityServices\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         } else {
-            return json_encode(get_object_vars($this));
+            return json_encode(\DBCDK\CommunityServices\ObjectSerializer::sanitizeForSerialization($this));
         }
     }
 }

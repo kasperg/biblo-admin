@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 
 # **fileContainerCount**
-> object fileContainerCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 fileContainerCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fileContainerCreateChangeStreamGetFileContainersChangeStream**
-> object fileContainerCreateChangeStreamGetFileContainersChangeStream($options)
+> \SplFileObject fileContainerCreateChangeStreamGetFileContainersChangeStream($options)
 
 Create a change stream.
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -156,7 +156,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fileContainerCreateChangeStreamPostFileContainersChangeStream**
-> object fileContainerCreateChangeStreamPostFileContainersChangeStream($options)
+> \SplFileObject fileContainerCreateChangeStreamPostFileContainersChangeStream($options)
 
 Create a change stream.
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -242,7 +242,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fileContainerDestroyContainer**
-> object fileContainerDestroyContainer($container)
+> \DBCDK\CommunityServices\Model\InlineResponse2002 fileContainerDestroyContainer($container)
 
 
 
@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 
@@ -329,7 +329,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fileContainerExistsGetFileContainersidExists**
-> object fileContainerExistsGetFileContainersidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 fileContainerExistsGetFileContainersidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -372,7 +372,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fileContainerExistsHeadFileContainersid**
-> object fileContainerExistsHeadFileContainersid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 fileContainerExistsHeadFileContainersid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -722,7 +722,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fileContainerRemoveFile**
-> object fileContainerRemoveFile($container, $file)
+> \DBCDK\CommunityServices\Model\InlineResponse2002 fileContainerRemoveFile($container, $file)
 
 
 
@@ -753,7 +753,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 
@@ -812,7 +812,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fileContainerUpload**
-> object fileContainerUpload()
+> \DBCDK\CommunityServices\Model\InlineResponse2003 fileContainerUpload()
 
 
 
@@ -837,7 +837,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2003**](InlineResponse2003.md)
 
 ### Authorization
 

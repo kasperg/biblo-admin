@@ -1,6 +1,6 @@
 <?php
 /**
- * GroupApi
+ * ReviewApi
  * PHP version 5
  *
  * @category Class
@@ -39,7 +39,7 @@ use \DBCDK\CommunityServices\ApiException;
 use \DBCDK\CommunityServices\ObjectSerializer;
 
 /**
- * GroupApi Class Doc Comment
+ * ReviewApi Class Doc Comment
  *
  * @category Class
  * @package  DBCDK\CommunityServices
@@ -47,7 +47,7 @@ use \DBCDK\CommunityServices\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class GroupApi
+class ReviewApi
 {
 
     /**
@@ -82,7 +82,7 @@ class GroupApi
     /**
      * Set the API client
      * @param \DBCDK\CommunityServices\ApiClient $apiClient set the API client
-     * @return GroupApi
+     * @return ReviewApi
      */
     public function setApiClient(ApiClient $apiClient)
     {
@@ -92,7 +92,7 @@ class GroupApi
   
     
     /**
-     * groupCount
+     * reviewCount
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -100,15 +100,15 @@ class GroupApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupCount($where = null)
+    public function reviewCount($where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupCountWithHttpInfo ($where);
+        list($response, $statusCode, $httpHeader) = $this->reviewCountWithHttpInfo ($where);
         return $response; 
     }
 
 
     /**
-     * groupCountWithHttpInfo
+     * reviewCountWithHttpInfo
      *
      * Count instances of the model matched by where from the data source.
      *
@@ -116,12 +116,12 @@ class GroupApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupCountWithHttpInfo($where = null)
+    public function reviewCountWithHttpInfo($where = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Groups/count";
+        $resourcePath = "/reviews/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -179,36 +179,36 @@ class GroupApi
     }
     
     /**
-     * groupCreate
+     * reviewCreate
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\Group $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\Group
+     * @param \DBCDK\CommunityServices\Model\Review $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupCreate($data = null)
+    public function reviewCreate($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupCreateWithHttpInfo ($data);
+        list($response, $statusCode, $httpHeader) = $this->reviewCreateWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * groupCreateWithHttpInfo
+     * reviewCreateWithHttpInfo
      *
      * Create a new instance of the model and persist it into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\Group $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Review $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupCreateWithHttpInfo($data = null)
+    public function reviewCreateWithHttpInfo($data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Groups";
+        $resourcePath = "/reviews";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -244,19 +244,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'POST',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Group'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -266,7 +266,7 @@ class GroupApi
     }
     
     /**
-     * groupCreateChangeStreamGetGroupsChangeStream
+     * reviewCreateChangeStreamGetReviewsChangeStream
      *
      * Create a change stream.
      *
@@ -274,15 +274,15 @@ class GroupApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupCreateChangeStreamGetGroupsChangeStream($options = null)
+    public function reviewCreateChangeStreamGetReviewsChangeStream($options = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupCreateChangeStreamGetGroupsChangeStreamWithHttpInfo ($options);
+        list($response, $statusCode, $httpHeader) = $this->reviewCreateChangeStreamGetReviewsChangeStreamWithHttpInfo ($options);
         return $response; 
     }
 
 
     /**
-     * groupCreateChangeStreamGetGroupsChangeStreamWithHttpInfo
+     * reviewCreateChangeStreamGetReviewsChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -290,12 +290,12 @@ class GroupApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupCreateChangeStreamGetGroupsChangeStreamWithHttpInfo($options = null)
+    public function reviewCreateChangeStreamGetReviewsChangeStreamWithHttpInfo($options = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Groups/change-stream";
+        $resourcePath = "/reviews/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -353,7 +353,7 @@ class GroupApi
     }
     
     /**
-     * groupCreateChangeStreamPostGroupsChangeStream
+     * reviewCreateChangeStreamPostReviewsChangeStream
      *
      * Create a change stream.
      *
@@ -361,15 +361,15 @@ class GroupApi
      * @return \SplFileObject
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupCreateChangeStreamPostGroupsChangeStream($options = null)
+    public function reviewCreateChangeStreamPostReviewsChangeStream($options = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupCreateChangeStreamPostGroupsChangeStreamWithHttpInfo ($options);
+        list($response, $statusCode, $httpHeader) = $this->reviewCreateChangeStreamPostReviewsChangeStreamWithHttpInfo ($options);
         return $response; 
     }
 
 
     /**
-     * groupCreateChangeStreamPostGroupsChangeStreamWithHttpInfo
+     * reviewCreateChangeStreamPostReviewsChangeStreamWithHttpInfo
      *
      * Create a change stream.
      *
@@ -377,12 +377,12 @@ class GroupApi
      * @return Array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupCreateChangeStreamPostGroupsChangeStreamWithHttpInfo($options = null)
+    public function reviewCreateChangeStreamPostReviewsChangeStreamWithHttpInfo($options = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Groups/change-stream";
+        $resourcePath = "/reviews/change-stream";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -442,7 +442,7 @@ class GroupApi
     }
     
     /**
-     * groupDeleteById
+     * reviewDeleteById
      *
      * Delete a model instance by id from the data source.
      *
@@ -450,15 +450,15 @@ class GroupApi
      * @return object
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupDeleteById($id)
+    public function reviewDeleteById($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupDeleteByIdWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewDeleteByIdWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * groupDeleteByIdWithHttpInfo
+     * reviewDeleteByIdWithHttpInfo
      *
      * Delete a model instance by id from the data source.
      *
@@ -466,16 +466,16 @@ class GroupApi
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupDeleteByIdWithHttpInfo($id)
+    public function reviewDeleteByIdWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupDeleteById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewDeleteById');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}";
+        $resourcePath = "/reviews/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -537,7 +537,7 @@ class GroupApi
     }
     
     /**
-     * groupExistsGetGroupsidExists
+     * reviewExistsGetReviewsidExists
      *
      * Check whether a model instance exists in the data source.
      *
@@ -545,15 +545,15 @@ class GroupApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupExistsGetGroupsidExists($id)
+    public function reviewExistsGetReviewsidExists($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupExistsGetGroupsidExistsWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewExistsGetReviewsidExistsWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * groupExistsGetGroupsidExistsWithHttpInfo
+     * reviewExistsGetReviewsidExistsWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -561,16 +561,16 @@ class GroupApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupExistsGetGroupsidExistsWithHttpInfo($id)
+    public function reviewExistsGetReviewsidExistsWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupExistsGetGroupsidExists');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewExistsGetReviewsidExists');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/exists";
+        $resourcePath = "/reviews/{id}/exists";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -632,7 +632,7 @@ class GroupApi
     }
     
     /**
-     * groupExistsHeadGroupsid
+     * reviewExistsHeadReviewsid
      *
      * Check whether a model instance exists in the data source.
      *
@@ -640,15 +640,15 @@ class GroupApi
      * @return \DBCDK\CommunityServices\Model\InlineResponse2001
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupExistsHeadGroupsid($id)
+    public function reviewExistsHeadReviewsid($id)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupExistsHeadGroupsidWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewExistsHeadReviewsidWithHttpInfo ($id);
         return $response; 
     }
 
 
     /**
-     * groupExistsHeadGroupsidWithHttpInfo
+     * reviewExistsHeadReviewsidWithHttpInfo
      *
      * Check whether a model instance exists in the data source.
      *
@@ -656,16 +656,16 @@ class GroupApi
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupExistsHeadGroupsidWithHttpInfo($id)
+    public function reviewExistsHeadReviewsidWithHttpInfo($id)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupExistsHeadGroupsid');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewExistsHeadReviewsid');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}";
+        $resourcePath = "/reviews/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -727,36 +727,36 @@ class GroupApi
     }
     
     /**
-     * groupFind
+     * reviewFind
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\Group[]
+     * @return \DBCDK\CommunityServices\Model\Review[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupFind($filter = null)
+    public function reviewFind($filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupFindWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewFindWithHttpInfo ($filter);
         return $response; 
     }
 
 
     /**
-     * groupFindWithHttpInfo
+     * reviewFindWithHttpInfo
      *
      * Find all instances of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Group[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Review[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupFindWithHttpInfo($filter = null)
+    public function reviewFindWithHttpInfo($filter = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Groups";
+        $resourcePath = "/reviews";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -792,19 +792,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Group[]'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review[]'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Group[]', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review[]', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group[]', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -814,42 +814,42 @@ class GroupApi
     }
     
     /**
-     * groupFindById
+     * reviewFindById
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return \DBCDK\CommunityServices\Model\Group
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupFindById($id, $filter = null)
+    public function reviewFindById($id, $filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupFindByIdWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewFindByIdWithHttpInfo ($id, $filter);
         return $response; 
     }
 
 
     /**
-     * groupFindByIdWithHttpInfo
+     * reviewFindByIdWithHttpInfo
      *
      * Find a model instance by id from the data source.
      *
      * @param string $id Model id (required)
      * @param string $filter Filter defining fields and include (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupFindByIdWithHttpInfo($id, $filter = null)
+    public function reviewFindByIdWithHttpInfo($id, $filter = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupFindById');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewFindById');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}";
+        $resourcePath = "/reviews/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -893,19 +893,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Group'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -915,36 +915,36 @@ class GroupApi
     }
     
     /**
-     * groupFindOne
+     * reviewFindOne
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return \DBCDK\CommunityServices\Model\Group
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupFindOne($filter = null)
+    public function reviewFindOne($filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupFindOneWithHttpInfo ($filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewFindOneWithHttpInfo ($filter);
         return $response; 
     }
 
 
     /**
-     * groupFindOneWithHttpInfo
+     * reviewFindOneWithHttpInfo
      *
      * Find first instance of the model matched by filter from the data source.
      *
      * @param string $filter Filter defining fields, where, include, order, offset, and limit (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupFindOneWithHttpInfo($filter = null)
+    public function reviewFindOneWithHttpInfo($filter = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Groups/findOne";
+        $resourcePath = "/reviews/findOne";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -980,19 +980,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Group'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1002,42 +1002,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeCountFlags
+     * reviewPrototypeCountFlags
      *
-     * Counts flags of Group.
+     * Counts flags of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCountFlags($id, $where = null)
+    public function reviewPrototypeCountFlags($id, $where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCountFlagsWithHttpInfo ($id, $where);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCountFlagsWithHttpInfo ($id, $where);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeCountFlagsWithHttpInfo
+     * reviewPrototypeCountFlagsWithHttpInfo
      *
-     * Counts flags of Group.
+     * Counts flags of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCountFlagsWithHttpInfo($id, $where = null)
+    public function reviewPrototypeCountFlagsWithHttpInfo($id, $where = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCountFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCountFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/flags/count";
+        $resourcePath = "/reviews/{id}/flags/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1103,42 +1103,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeCountMembers
+     * reviewPrototypeCountLikes
      *
-     * Counts members of Group.
+     * Counts likes of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return \DBCDK\CommunityServices\Model\InlineResponse200
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCountMembers($id, $where = null)
+    public function reviewPrototypeCountLikes($id, $where = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCountMembersWithHttpInfo ($id, $where);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCountLikesWithHttpInfo ($id, $where);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeCountMembersWithHttpInfo
+     * reviewPrototypeCountLikesWithHttpInfo
      *
-     * Counts members of Group.
+     * Counts likes of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $where Criteria to match model instances (optional)
      * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCountMembersWithHttpInfo($id, $where = null)
+    public function reviewPrototypeCountLikesWithHttpInfo($id, $where = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCountMembers');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCountLikes');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/members/count";
+        $resourcePath = "/reviews/{id}/likes/count";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1204,209 +1204,7 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeCountPosts
-     *
-     * Counts posts of Group.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param string $where Criteria to match model instances (optional)
-     * @return \DBCDK\CommunityServices\Model\InlineResponse200
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeCountPosts($id, $where = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCountPostsWithHttpInfo ($id, $where);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeCountPostsWithHttpInfo
-     *
-     * Counts posts of Group.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param string $where Criteria to match model instances (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeCountPostsWithHttpInfo($id, $where = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCountPosts');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/posts/count";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($where !== null) {
-            $queryParams['where'] = $this->apiClient->getSerializer()->toQueryValue($where);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\InlineResponse200'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\InlineResponse200', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeCreateCoverImage
-     *
-     * Creates a new instance in coverImage of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\ImageCollection
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeCreateCoverImage($id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCreateCoverImageWithHttpInfo ($id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeCreateCoverImageWithHttpInfo
-     *
-     * Creates a new instance in coverImage of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeCreateCoverImageWithHttpInfo($id, $data = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCreateCoverImage');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/coverImage";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'POST',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\ImageCollection'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\ImageCollection', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\ImageCollection', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeCreateFlags
+     * reviewPrototypeCreateFlags
      *
      * Creates a new instance in flags of this model.
      *
@@ -1415,15 +1213,15 @@ class GroupApi
      * @return \DBCDK\CommunityServices\Model\Flag
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCreateFlags($id, $data = null)
+    public function reviewPrototypeCreateFlags($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCreateFlagsWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCreateFlagsWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeCreateFlagsWithHttpInfo
+     * reviewPrototypeCreateFlagsWithHttpInfo
      *
      * Creates a new instance in flags of this model.
      *
@@ -1432,16 +1230,16 @@ class GroupApi
      * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCreateFlagsWithHttpInfo($id, $data = null)
+    public function reviewPrototypeCreateFlagsWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCreateFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCreateFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/flags";
+        $resourcePath = "/reviews/{id}/flags";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1507,42 +1305,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeCreateMembers
+     * reviewPrototypeCreateImage
      *
-     * Creates a new instance in members of this model.
+     * Creates a new instance in image of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Profile $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\Profile
+     * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\ImageCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCreateMembers($id, $data = null)
+    public function reviewPrototypeCreateImage($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCreateMembersWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCreateImageWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeCreateMembersWithHttpInfo
+     * reviewPrototypeCreateImageWithHttpInfo
      *
-     * Creates a new instance in members of this model.
+     * Creates a new instance in image of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Profile $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCreateMembersWithHttpInfo($id, $data = null)
+    public function reviewPrototypeCreateImageWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCreateMembers');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCreateImage');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/members";
+        $resourcePath = "/reviews/{id}/image";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1586,19 +1384,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'POST',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
+                $headerParams, '\DBCDK\CommunityServices\Model\ImageCollection'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\ImageCollection', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\ImageCollection', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1608,42 +1406,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeCreatePosts
+     * reviewPrototypeCreateLikes
      *
-     * Creates a new instance in posts of this model.
+     * Creates a new instance in likes of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Post $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\Post
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCreatePosts($id, $data = null)
+    public function reviewPrototypeCreateLikes($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeCreatePostsWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCreateLikesWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeCreatePostsWithHttpInfo
+     * reviewPrototypeCreateLikesWithHttpInfo
      *
-     * Creates a new instance in posts of this model.
+     * Creates a new instance in likes of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Post $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Post, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeCreatePostsWithHttpInfo($id, $data = null)
+    public function reviewPrototypeCreateLikesWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeCreatePosts');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCreateLikes');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/posts";
+        $resourcePath = "/reviews/{id}/likes";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1687,19 +1485,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'POST',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Post'
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Post', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Post', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -1709,40 +1507,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeDeleteFlags
+     * reviewPrototypeCreateVideo
      *
-     * Deletes all flags of this model.
+     * Creates a new instance in video of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @return void
+     * @param \DBCDK\CommunityServices\Model\VideoCollection $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\VideoCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeDeleteFlags($id)
+    public function reviewPrototypeCreateVideo($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDeleteFlagsWithHttpInfo ($id);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeCreateVideoWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeDeleteFlagsWithHttpInfo
+     * reviewPrototypeCreateVideoWithHttpInfo
      *
-     * Deletes all flags of this model.
+     * Creates a new instance in video of this model.
      *
      * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\VideoCollection $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeDeleteFlagsWithHttpInfo($id)
+    public function reviewPrototypeCreateVideoWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDeleteFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeCreateVideo');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/flags";
+        $resourcePath = "/reviews/{id}/video";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1768,7 +1568,11 @@ class GroupApi
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
         
-        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
   
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -1780,686 +1584,21 @@ class GroupApi
         // make the API Call
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
+                $resourcePath, 'POST',
                 $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeDeleteMembers
-     *
-     * Deletes all members of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDeleteMembers($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDeleteMembersWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeDeleteMembersWithHttpInfo
-     *
-     * Deletes all members of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDeleteMembersWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDeleteMembers');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/members";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeDeletePosts
-     *
-     * Deletes all posts of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDeletePosts($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDeletePostsWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeDeletePostsWithHttpInfo
-     *
-     * Deletes all posts of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDeletePostsWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDeletePosts');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/posts";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeDestroyByIdFlags
-     *
-     * Delete a related item by id for flags.
-     *
-     * @param string $fk Foreign key for flags (required)
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDestroyByIdFlags($fk, $id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDestroyByIdFlagsWithHttpInfo ($fk, $id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeDestroyByIdFlagsWithHttpInfo
-     *
-     * Delete a related item by id for flags.
-     *
-     * @param string $fk Foreign key for flags (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDestroyByIdFlagsWithHttpInfo($fk, $id)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeDestroyByIdFlags');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDestroyByIdFlags');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/flags/{fk}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeDestroyByIdMembers
-     *
-     * Delete a related item by id for members.
-     *
-     * @param string $fk Foreign key for members (required)
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDestroyByIdMembers($fk, $id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDestroyByIdMembersWithHttpInfo ($fk, $id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeDestroyByIdMembersWithHttpInfo
-     *
-     * Delete a related item by id for members.
-     *
-     * @param string $fk Foreign key for members (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDestroyByIdMembersWithHttpInfo($fk, $id)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeDestroyByIdMembers');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDestroyByIdMembers');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/members/{fk}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeDestroyByIdPosts
-     *
-     * Delete a related item by id for posts.
-     *
-     * @param string $fk Foreign key for posts (required)
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDestroyByIdPosts($fk, $id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDestroyByIdPostsWithHttpInfo ($fk, $id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeDestroyByIdPostsWithHttpInfo
-     *
-     * Delete a related item by id for posts.
-     *
-     * @param string $fk Foreign key for posts (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDestroyByIdPostsWithHttpInfo($fk, $id)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeDestroyByIdPosts');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDestroyByIdPosts');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/posts/{fk}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeDestroyCoverImage
-     *
-     * Deletes coverImage of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDestroyCoverImage($id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeDestroyCoverImageWithHttpInfo ($id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeDestroyCoverImageWithHttpInfo
-     *
-     * Deletes coverImage of this model.
-     *
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeDestroyCoverImageWithHttpInfo($id)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeDestroyCoverImage');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/coverImage";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeExistsMembers
-     *
-     * Check the existence of members relation to an item by id.
-     *
-     * @param string $fk Foreign key for members (required)
-     * @param string $id PersistedModel id (required)
-     * @return bool
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeExistsMembers($fk, $id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeExistsMembersWithHttpInfo ($fk, $id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeExistsMembersWithHttpInfo
-     *
-     * Check the existence of members relation to an item by id.
-     *
-     * @param string $fk Foreign key for members (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of bool, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeExistsMembersWithHttpInfo($fk, $id)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeExistsMembers');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeExistsMembers');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/members/rel/{fk}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'HEAD',
-                $queryParams, $httpBody,
-                $headerParams, 'bool'
+                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), 'bool', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -2469,7 +1608,557 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeFindByIdFlags
+     * reviewPrototypeDeleteFlags
+     *
+     * Deletes all flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDeleteFlags($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDeleteFlagsWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeDeleteFlagsWithHttpInfo
+     *
+     * Deletes all flags of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDeleteFlagsWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDeleteFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/flags";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeDeleteLikes
+     *
+     * Deletes all likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDeleteLikes($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDeleteLikesWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeDeleteLikesWithHttpInfo
+     *
+     * Deletes all likes of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDeleteLikesWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDeleteLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeDestroyByIdFlags
+     *
+     * Delete a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyByIdFlags($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDestroyByIdFlagsWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeDestroyByIdFlagsWithHttpInfo
+     *
+     * Delete a related item by id for flags.
+     *
+     * @param string $fk Foreign key for flags (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyByIdFlagsWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeDestroyByIdFlags');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDestroyByIdFlags');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/flags/{fk}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeDestroyByIdLikes
+     *
+     * Delete a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyByIdLikes($fk, $id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDestroyByIdLikesWithHttpInfo ($fk, $id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeDestroyByIdLikesWithHttpInfo
+     *
+     * Delete a related item by id for likes.
+     *
+     * @param string $fk Foreign key for likes (required)
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyByIdLikesWithHttpInfo($fk, $id)
+    {
+        
+        // verify the required parameter 'fk' is set
+        if ($fk === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeDestroyByIdLikes');
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDestroyByIdLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes/{fk}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($fk !== null) {
+            $resourcePath = str_replace(
+                "{" . "fk" . "}",
+                $this->apiClient->getSerializer()->toPathValue($fk),
+                $resourcePath
+            );
+        }// path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeDestroyImage
+     *
+     * Deletes image of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyImage($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDestroyImageWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeDestroyImageWithHttpInfo
+     *
+     * Deletes image of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyImageWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDestroyImage');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/image";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeDestroyVideo
+     *
+     * Deletes video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return void
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyVideo($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeDestroyVideoWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeDestroyVideoWithHttpInfo
+     *
+     * Deletes video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeDestroyVideoWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeDestroyVideo');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/video";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'DELETE',
+                $queryParams, $httpBody,
+                $headerParams
+            );
+            
+            return array(null, $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeFindByIdFlags
      *
      * Find a related item by id for flags.
      *
@@ -2478,15 +2167,15 @@ class GroupApi
      * @return \DBCDK\CommunityServices\Model\Flag
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeFindByIdFlags($fk, $id)
+    public function reviewPrototypeFindByIdFlags($fk, $id)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeFindByIdFlagsWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeFindByIdFlagsWithHttpInfo ($fk, $id);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeFindByIdFlagsWithHttpInfo
+     * reviewPrototypeFindByIdFlagsWithHttpInfo
      *
      * Find a related item by id for flags.
      *
@@ -2495,20 +2184,20 @@ class GroupApi
      * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeFindByIdFlagsWithHttpInfo($fk, $id)
+    public function reviewPrototypeFindByIdFlagsWithHttpInfo($fk, $id)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeFindByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeFindByIdFlags');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeFindByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeFindByIdFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/flags/{fk}";
+        $resourcePath = "/reviews/{id}/flags/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2578,46 +2267,46 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeFindByIdMembers
+     * reviewPrototypeFindByIdLikes
      *
-     * Find a related item by id for members.
+     * Find a related item by id for likes.
      *
-     * @param string $fk Foreign key for members (required)
+     * @param string $fk Foreign key for likes (required)
      * @param string $id PersistedModel id (required)
-     * @return \DBCDK\CommunityServices\Model\Profile
+     * @return \DBCDK\CommunityServices\Model\Like
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeFindByIdMembers($fk, $id)
+    public function reviewPrototypeFindByIdLikes($fk, $id)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeFindByIdMembersWithHttpInfo ($fk, $id);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeFindByIdLikesWithHttpInfo ($fk, $id);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeFindByIdMembersWithHttpInfo
+     * reviewPrototypeFindByIdLikesWithHttpInfo
      *
-     * Find a related item by id for members.
+     * Find a related item by id for likes.
      *
-     * @param string $fk Foreign key for members (required)
+     * @param string $fk Foreign key for likes (required)
      * @param string $id PersistedModel id (required)
-     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeFindByIdMembersWithHttpInfo($fk, $id)
+    public function reviewPrototypeFindByIdLikesWithHttpInfo($fk, $id)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeFindByIdMembers');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeFindByIdLikes');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeFindByIdMembers');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeFindByIdLikes');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/members/{fk}";
+        $resourcePath = "/reviews/{id}/likes/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2665,19 +2354,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -2687,252 +2376,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeFindByIdPosts
+     * reviewPrototypeGetFlags
      *
-     * Find a related item by id for posts.
-     *
-     * @param string $fk Foreign key for posts (required)
-     * @param string $id PersistedModel id (required)
-     * @return \DBCDK\CommunityServices\Model\Post
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeFindByIdPosts($fk, $id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeFindByIdPostsWithHttpInfo ($fk, $id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeFindByIdPostsWithHttpInfo
-     *
-     * Find a related item by id for posts.
-     *
-     * @param string $fk Foreign key for posts (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of \DBCDK\CommunityServices\Model\Post, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeFindByIdPostsWithHttpInfo($fk, $id)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeFindByIdPosts');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeFindByIdPosts');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/posts/{fk}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Post'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Post', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Post', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeGetCoverImage
-     *
-     * Fetches hasOne relation coverImage.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return \DBCDK\CommunityServices\Model\ImageCollection
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeGetCoverImage($id, $refresh = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeGetCoverImageWithHttpInfo ($id, $refresh);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeGetCoverImageWithHttpInfo
-     *
-     * Fetches hasOne relation coverImage.
-     *
-     * @param string $id PersistedModel id (required)
-     * @param bool $refresh  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeGetCoverImageWithHttpInfo($id, $refresh = null)
-    {
-        
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeGetCoverImage');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/coverImage";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        // query params
-        
-        if ($refresh !== null) {
-            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
-        }
-        
-        // path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'GET',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\ImageCollection'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\ImageCollection', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\ImageCollection', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeGetFlags
-     *
-     * Queries flags of Group.
+     * Queries flags of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $filter  (optional)
      * @return \DBCDK\CommunityServices\Model\Flag[]
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeGetFlags($id, $filter = null)
+    public function reviewPrototypeGetFlags($id, $filter = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeGetFlagsWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetFlagsWithHttpInfo ($id, $filter);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeGetFlagsWithHttpInfo
+     * reviewPrototypeGetFlagsWithHttpInfo
      *
-     * Queries flags of Group.
+     * Queries flags of review.
      *
      * @param string $id PersistedModel id (required)
      * @param string $filter  (optional)
      * @return Array of \DBCDK\CommunityServices\Model\Flag[], HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeGetFlagsWithHttpInfo($id, $filter = null)
+    public function reviewPrototypeGetFlagsWithHttpInfo($id, $filter = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeGetFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/flags";
+        $resourcePath = "/reviews/{id}/flags";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -2998,42 +2477,143 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeGetMembers
+     * reviewPrototypeGetImage
      *
-     * Queries members of Group.
+     * Fetches hasOne relation image.
      *
      * @param string $id PersistedModel id (required)
-     * @param string $filter  (optional)
-     * @return \DBCDK\CommunityServices\Model\Profile[]
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\ImageCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeGetMembers($id, $filter = null)
+    public function reviewPrototypeGetImage($id, $refresh = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeGetMembersWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetImageWithHttpInfo ($id, $refresh);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeGetMembersWithHttpInfo
+     * reviewPrototypeGetImageWithHttpInfo
      *
-     * Queries members of Group.
+     * Fetches hasOne relation image.
      *
      * @param string $id PersistedModel id (required)
-     * @param string $filter  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Profile[], HTTP status code, HTTP response headers (array of strings)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeGetMembersWithHttpInfo($id, $filter = null)
+    public function reviewPrototypeGetImageWithHttpInfo($id, $refresh = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeGetMembers');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetImage');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/members";
+        $resourcePath = "/reviews/{id}/image";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        // query params
+        
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
+        }
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\ImageCollection'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\ImageCollection', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\ImageCollection', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewPrototypeGetLikes
+     *
+     * Queries likes of review.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like[]
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeGetLikes($id, $filter = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetLikesWithHttpInfo ($id, $filter);
+        return $response; 
+    }
+
+
+    /**
+     * reviewPrototypeGetLikesWithHttpInfo
+     *
+     * Queries likes of review.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param string $filter  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeGetLikesWithHttpInfo($id, $filter = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetLikes');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/likes";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -3077,19 +2657,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Profile[]'
+                $headerParams, '\DBCDK\CommunityServices\Model\Like[]'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Profile[]', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like[]', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile[]', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -3099,7 +2679,7 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeGetOwner
+     * reviewPrototypeGetOwner
      *
      * Fetches belongsTo relation owner.
      *
@@ -3108,15 +2688,15 @@ class GroupApi
      * @return \DBCDK\CommunityServices\Model\Profile
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeGetOwner($id, $refresh = null)
+    public function reviewPrototypeGetOwner($id, $refresh = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeGetOwnerWithHttpInfo ($id, $refresh);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetOwnerWithHttpInfo ($id, $refresh);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeGetOwnerWithHttpInfo
+     * reviewPrototypeGetOwnerWithHttpInfo
      *
      * Fetches belongsTo relation owner.
      *
@@ -3125,16 +2705,16 @@ class GroupApi
      * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeGetOwnerWithHttpInfo($id, $refresh = null)
+    public function reviewPrototypeGetOwnerWithHttpInfo($id, $refresh = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeGetOwner');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetOwner');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/owner";
+        $resourcePath = "/reviews/{id}/owner";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -3200,42 +2780,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeGetPosts
+     * reviewPrototypeGetVideo
      *
-     * Queries posts of Group.
+     * Fetches hasOne relation video.
      *
      * @param string $id PersistedModel id (required)
-     * @param string $filter  (optional)
-     * @return \DBCDK\CommunityServices\Model\Post[]
+     * @param bool $refresh  (optional)
+     * @return \DBCDK\CommunityServices\Model\VideoCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeGetPosts($id, $filter = null)
+    public function reviewPrototypeGetVideo($id, $refresh = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeGetPostsWithHttpInfo ($id, $filter);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeGetVideoWithHttpInfo ($id, $refresh);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeGetPostsWithHttpInfo
+     * reviewPrototypeGetVideoWithHttpInfo
      *
-     * Queries posts of Group.
+     * Fetches hasOne relation video.
      *
      * @param string $id PersistedModel id (required)
-     * @param string $filter  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Post[], HTTP status code, HTTP response headers (array of strings)
+     * @param bool $refresh  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeGetPostsWithHttpInfo($id, $filter = null)
+    public function reviewPrototypeGetVideoWithHttpInfo($id, $refresh = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeGetPosts');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeGetVideo');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/posts";
+        $resourcePath = "/reviews/{id}/video";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -3248,8 +2828,8 @@ class GroupApi
   
         // query params
         
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
+        if ($refresh !== null) {
+            $queryParams['refresh'] = $this->apiClient->getSerializer()->toQueryValue($refresh);
         }
         
         // path params
@@ -3279,19 +2859,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'GET',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Post[]'
+                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Post[]', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Post[]', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -3301,258 +2881,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeLinkMembers
-     *
-     * Add a related item by id for members.
-     *
-     * @param string $fk Foreign key for members (required)
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\GroupProfile $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\GroupProfile
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeLinkMembers($fk, $id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeLinkMembersWithHttpInfo ($fk, $id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeLinkMembersWithHttpInfo
-     *
-     * Add a related item by id for members.
-     *
-     * @param string $fk Foreign key for members (required)
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\GroupProfile $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\GroupProfile, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeLinkMembersWithHttpInfo($fk, $id, $data = null)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeLinkMembers');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeLinkMembers');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/members/rel/{fk}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'PUT',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\GroupProfile'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\GroupProfile', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\GroupProfile', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeUnlinkMembers
-     *
-     * Remove the members relation to an item by id.
-     *
-     * @param string $fk Foreign key for members (required)
-     * @param string $id PersistedModel id (required)
-     * @return void
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeUnlinkMembers($fk, $id)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeUnlinkMembersWithHttpInfo ($fk, $id);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeUnlinkMembersWithHttpInfo
-     *
-     * Remove the members relation to an item by id.
-     *
-     * @param string $fk Foreign key for members (required)
-     * @param string $id PersistedModel id (required)
-     * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeUnlinkMembersWithHttpInfo($fk, $id)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeUnlinkMembers');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeUnlinkMembers');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/members/rel/{fk}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'DELETE',
-                $queryParams, $httpBody,
-                $headerParams
-            );
-            
-            return array(null, $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeUpdateAttributes
+     * reviewPrototypeUpdateAttributes
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Group $data An object of model property name/value pairs (optional)
-     * @return \DBCDK\CommunityServices\Model\Group
+     * @param \DBCDK\CommunityServices\Model\Review $data An object of model property name/value pairs (optional)
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeUpdateAttributes($id, $data = null)
+    public function reviewPrototypeUpdateAttributes($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeUpdateAttributesWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateAttributesWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeUpdateAttributesWithHttpInfo
+     * reviewPrototypeUpdateAttributesWithHttpInfo
      *
      * Update attributes for a model instance and persist it into the data source.
      *
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Group $data An object of model property name/value pairs (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Review $data An object of model property name/value pairs (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeUpdateAttributesWithHttpInfo($id, $data = null)
+    public function reviewPrototypeUpdateAttributesWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeUpdateAttributes');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateAttributes');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}";
+        $resourcePath = "/reviews/{id}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -3596,19 +2960,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'PUT',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Group'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -3618,7 +2982,7 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeUpdateByIdFlags
+     * reviewPrototypeUpdateByIdFlags
      *
      * Update a related item by id for flags.
      *
@@ -3628,15 +2992,15 @@ class GroupApi
      * @return \DBCDK\CommunityServices\Model\Flag
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeUpdateByIdFlags($fk, $id, $data = null)
+    public function reviewPrototypeUpdateByIdFlags($fk, $id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeUpdateByIdFlagsWithHttpInfo ($fk, $id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateByIdFlagsWithHttpInfo ($fk, $id, $data);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeUpdateByIdFlagsWithHttpInfo
+     * reviewPrototypeUpdateByIdFlagsWithHttpInfo
      *
      * Update a related item by id for flags.
      *
@@ -3646,20 +3010,20 @@ class GroupApi
      * @return Array of \DBCDK\CommunityServices\Model\Flag, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeUpdateByIdFlagsWithHttpInfo($fk, $id, $data = null)
+    public function reviewPrototypeUpdateByIdFlagsWithHttpInfo($fk, $id, $data = null)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeUpdateByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeUpdateByIdFlags');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeUpdateByIdFlags');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateByIdFlags');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/flags/{fk}";
+        $resourcePath = "/reviews/{id}/flags/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -3733,48 +3097,48 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeUpdateByIdMembers
+     * reviewPrototypeUpdateByIdLikes
      *
-     * Update a related item by id for members.
+     * Update a related item by id for likes.
      *
-     * @param string $fk Foreign key for members (required)
+     * @param string $fk Foreign key for likes (required)
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Profile $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\Profile
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\Like
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeUpdateByIdMembers($fk, $id, $data = null)
+    public function reviewPrototypeUpdateByIdLikes($fk, $id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeUpdateByIdMembersWithHttpInfo ($fk, $id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateByIdLikesWithHttpInfo ($fk, $id, $data);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeUpdateByIdMembersWithHttpInfo
+     * reviewPrototypeUpdateByIdLikesWithHttpInfo
      *
-     * Update a related item by id for members.
+     * Update a related item by id for likes.
      *
-     * @param string $fk Foreign key for members (required)
+     * @param string $fk Foreign key for likes (required)
      * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Profile $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Profile, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Like $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Like, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeUpdateByIdMembersWithHttpInfo($fk, $id, $data = null)
+    public function reviewPrototypeUpdateByIdLikesWithHttpInfo($fk, $id, $data = null)
     {
         
         // verify the required parameter 'fk' is set
         if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeUpdateByIdMembers');
+            throw new \InvalidArgumentException('Missing the required parameter $fk when calling reviewPrototypeUpdateByIdLikes');
         }
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeUpdateByIdMembers');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateByIdLikes');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/members/{fk}";
+        $resourcePath = "/reviews/{id}/likes/{fk}";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -3826,19 +3190,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'PUT',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Profile'
+                $headerParams, '\DBCDK\CommunityServices\Model\Like'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Profile', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Like', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Profile', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Like', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -3848,157 +3212,42 @@ class GroupApi
     }
     
     /**
-     * groupPrototypeUpdateByIdPosts
+     * reviewPrototypeUpdateImage
      *
-     * Update a related item by id for posts.
-     *
-     * @param string $fk Foreign key for posts (required)
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Post $data  (optional)
-     * @return \DBCDK\CommunityServices\Model\Post
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeUpdateByIdPosts($fk, $id, $data = null)
-    {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeUpdateByIdPostsWithHttpInfo ($fk, $id, $data);
-        return $response; 
-    }
-
-
-    /**
-     * groupPrototypeUpdateByIdPostsWithHttpInfo
-     *
-     * Update a related item by id for posts.
-     *
-     * @param string $fk Foreign key for posts (required)
-     * @param string $id PersistedModel id (required)
-     * @param \DBCDK\CommunityServices\Model\Post $data  (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Post, HTTP status code, HTTP response headers (array of strings)
-     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
-     */
-    public function groupPrototypeUpdateByIdPostsWithHttpInfo($fk, $id, $data = null)
-    {
-        
-        // verify the required parameter 'fk' is set
-        if ($fk === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fk when calling groupPrototypeUpdateByIdPosts');
-        }
-        // verify the required parameter 'id' is set
-        if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeUpdateByIdPosts');
-        }
-  
-        // parse inputs
-        $resourcePath = "/Groups/{id}/posts/{fk}";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
-  
-        
-        
-        // path params
-        
-        if ($fk !== null) {
-            $resourcePath = str_replace(
-                "{" . "fk" . "}",
-                $this->apiClient->getSerializer()->toPathValue($fk),
-                $resourcePath
-            );
-        }// path params
-        
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                "{" . "id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // body params
-        $_tempBody = null;
-        if (isset($data)) {
-            $_tempBody = $data;
-        }
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, 'PUT',
-                $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Post'
-            );
-            
-            if (!$response) {
-                return array(null, $statusCode, $httpHeader);
-            }
-
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Post', $httpHeader), $statusCode, $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Post', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-    }
-    
-    /**
-     * groupPrototypeUpdateCoverImage
-     *
-     * Update coverImage of this model.
+     * Update image of this model.
      *
      * @param string $id PersistedModel id (required)
      * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
      * @return \DBCDK\CommunityServices\Model\ImageCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeUpdateCoverImage($id, $data = null)
+    public function reviewPrototypeUpdateImage($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupPrototypeUpdateCoverImageWithHttpInfo ($id, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateImageWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * groupPrototypeUpdateCoverImageWithHttpInfo
+     * reviewPrototypeUpdateImageWithHttpInfo
      *
-     * Update coverImage of this model.
+     * Update image of this model.
      *
      * @param string $id PersistedModel id (required)
      * @param \DBCDK\CommunityServices\Model\ImageCollection $data  (optional)
      * @return Array of \DBCDK\CommunityServices\Model\ImageCollection, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupPrototypeUpdateCoverImageWithHttpInfo($id, $data = null)
+    public function reviewPrototypeUpdateImageWithHttpInfo($id, $data = null)
     {
         
         // verify the required parameter 'id' is set
         if ($id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $id when calling groupPrototypeUpdateCoverImage');
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateImage');
         }
   
         // parse inputs
-        $resourcePath = "/Groups/{id}/coverImage";
+        $resourcePath = "/reviews/{id}/image";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -4064,38 +3313,139 @@ class GroupApi
     }
     
     /**
-     * groupUpdateAll
+     * reviewPrototypeUpdateVideo
      *
-     * Update instances of the model matched by where from the data source.
+     * Update video of this model.
      *
-     * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\Group $data An object of model property name/value pairs (optional)
-     * @return object
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\VideoCollection $data  (optional)
+     * @return \DBCDK\CommunityServices\Model\VideoCollection
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupUpdateAll($where = null, $data = null)
+    public function reviewPrototypeUpdateVideo($id, $data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupUpdateAllWithHttpInfo ($where, $data);
+        list($response, $statusCode, $httpHeader) = $this->reviewPrototypeUpdateVideoWithHttpInfo ($id, $data);
         return $response; 
     }
 
 
     /**
-     * groupUpdateAllWithHttpInfo
+     * reviewPrototypeUpdateVideoWithHttpInfo
+     *
+     * Update video of this model.
+     *
+     * @param string $id PersistedModel id (required)
+     * @param \DBCDK\CommunityServices\Model\VideoCollection $data  (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\VideoCollection, HTTP status code, HTTP response headers (array of strings)
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewPrototypeUpdateVideoWithHttpInfo($id, $data = null)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling reviewPrototypeUpdateVideo');
+        }
+  
+        // parse inputs
+        $resourcePath = "/reviews/{id}/video";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded','application/xml','text/xml'));
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // body params
+        $_tempBody = null;
+        if (isset($data)) {
+            $_tempBody = $data;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'PUT',
+                $queryParams, $httpBody,
+                $headerParams, '\DBCDK\CommunityServices\Model\VideoCollection'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\VideoCollection', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\VideoCollection', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
+    /**
+     * reviewUpdateAll
      *
      * Update instances of the model matched by where from the data source.
      *
      * @param string $where Criteria to match model instances (optional)
-     * @param \DBCDK\CommunityServices\Model\Group $data An object of model property name/value pairs (optional)
+     * @param \DBCDK\CommunityServices\Model\Review $data An object of model property name/value pairs (optional)
+     * @return object
+     * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
+     */
+    public function reviewUpdateAll($where = null, $data = null)
+    {
+        list($response, $statusCode, $httpHeader) = $this->reviewUpdateAllWithHttpInfo ($where, $data);
+        return $response; 
+    }
+
+
+    /**
+     * reviewUpdateAllWithHttpInfo
+     *
+     * Update instances of the model matched by where from the data source.
+     *
+     * @param string $where Criteria to match model instances (optional)
+     * @param \DBCDK\CommunityServices\Model\Review $data An object of model property name/value pairs (optional)
      * @return Array of object, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupUpdateAllWithHttpInfo($where = null, $data = null)
+    public function reviewUpdateAllWithHttpInfo($where = null, $data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Groups/update";
+        $resourcePath = "/reviews/update";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -4157,36 +3507,36 @@ class GroupApi
     }
     
     /**
-     * groupUpsert
+     * reviewUpsert
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\Group $data Model instance data (optional)
-     * @return \DBCDK\CommunityServices\Model\Group
+     * @param \DBCDK\CommunityServices\Model\Review $data Model instance data (optional)
+     * @return \DBCDK\CommunityServices\Model\Review
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupUpsert($data = null)
+    public function reviewUpsert($data = null)
     {
-        list($response, $statusCode, $httpHeader) = $this->groupUpsertWithHttpInfo ($data);
+        list($response, $statusCode, $httpHeader) = $this->reviewUpsertWithHttpInfo ($data);
         return $response; 
     }
 
 
     /**
-     * groupUpsertWithHttpInfo
+     * reviewUpsertWithHttpInfo
      *
      * Update an existing model instance or insert a new one into the data source.
      *
-     * @param \DBCDK\CommunityServices\Model\Group $data Model instance data (optional)
-     * @return Array of \DBCDK\CommunityServices\Model\Group, HTTP status code, HTTP response headers (array of strings)
+     * @param \DBCDK\CommunityServices\Model\Review $data Model instance data (optional)
+     * @return Array of \DBCDK\CommunityServices\Model\Review, HTTP status code, HTTP response headers (array of strings)
      * @throws \DBCDK\CommunityServices\ApiException on non-2xx response
      */
-    public function groupUpsertWithHttpInfo($data = null)
+    public function reviewUpsertWithHttpInfo($data = null)
     {
         
   
         // parse inputs
-        $resourcePath = "/Groups";
+        $resourcePath = "/reviews";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -4222,19 +3572,19 @@ class GroupApi
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, 'PUT',
                 $queryParams, $httpBody,
-                $headerParams, '\DBCDK\CommunityServices\Model\Group'
+                $headerParams, '\DBCDK\CommunityServices\Model\Review'
             );
             
             if (!$response) {
                 return array(null, $statusCode, $httpHeader);
             }
 
-            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Group', $httpHeader), $statusCode, $httpHeader);
+            return array(\DBCDK\CommunityServices\ObjectSerializer::deserialize($response, '\DBCDK\CommunityServices\Model\Review', $httpHeader), $statusCode, $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Group', $e->getResponseHeaders());
+                $data = \DBCDK\CommunityServices\ObjectSerializer::deserialize($e->getResponseBody(), '\DBCDK\CommunityServices\Model\Review', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

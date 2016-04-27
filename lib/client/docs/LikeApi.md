@@ -15,13 +15,14 @@ Method | HTTP request | Description
 [**likeFindById**](LikeApi.md#likeFindById) | **GET** /Likes/{id} | Find a model instance by id from the data source.
 [**likeFindOne**](LikeApi.md#likeFindOne) | **GET** /Likes/findOne | Find first instance of the model matched by filter from the data source.
 [**likePrototypeGetPost**](LikeApi.md#likePrototypeGetPost) | **GET** /Likes/{id}/post | Fetches belongsTo relation post.
+[**likePrototypeGetReview**](LikeApi.md#likePrototypeGetReview) | **GET** /Likes/{id}/review | Fetches belongsTo relation review.
 [**likePrototypeUpdateAttributes**](LikeApi.md#likePrototypeUpdateAttributes) | **PUT** /Likes/{id} | Update attributes for a model instance and persist it into the data source.
 [**likeUpdateAll**](LikeApi.md#likeUpdateAll) | **POST** /Likes/update | Update instances of the model matched by where from the data source.
 [**likeUpsert**](LikeApi.md#likeUpsert) | **PUT** /Likes | Update an existing model instance or insert a new one into the data source.
 
 
 # **likeCount**
-> object likeCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 likeCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -50,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -107,7 +108,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **likeCreateChangeStreamGetLikesChangeStream**
-> object likeCreateChangeStreamGetLikesChangeStream($options)
+> \SplFileObject likeCreateChangeStreamGetLikesChangeStream($options)
 
 Create a change stream.
 
@@ -136,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -150,7 +151,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **likeCreateChangeStreamPostLikesChangeStream**
-> object likeCreateChangeStreamPostLikesChangeStream($options)
+> \SplFileObject likeCreateChangeStreamPostLikesChangeStream($options)
 
 Create a change stream.
 
@@ -179,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -236,7 +237,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **likeExistsGetLikesidExists**
-> object likeExistsGetLikesidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 likeExistsGetLikesidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -265,7 +266,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -279,7 +280,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **likeExistsHeadLikesid**
-> object likeExistsHeadLikesid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 likeExistsHeadLikesid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -308,7 +309,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -485,6 +486,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\DBCDK\CommunityServices\Model\Post**](Post.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP reuqest headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, application/xml, text/xml
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **likePrototypeGetReview**
+> \DBCDK\CommunityServices\Model\Review likePrototypeGetReview($id, $refresh)
+
+Fetches belongsTo relation review.
+
+### Example 
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new DBCDK\CommunityServices\Api\LikeApi();
+$id = "id_example"; // string | PersistedModel id
+$refresh = true; // bool | 
+
+try { 
+    $result = $api_instance->likePrototypeGetReview($id, $refresh);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LikeApi->likePrototypeGetReview: ', $e->getMessage(), "\n";
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| PersistedModel id | 
+ **refresh** | **bool**|  | [optional] 
+
+### Return type
+
+[**\DBCDK\CommunityServices\Model\Review**](Review.md)
 
 ### Authorization
 

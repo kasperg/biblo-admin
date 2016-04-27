@@ -276,6 +276,16 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for profilePrototypeCountReviews
+     *
+     * Counts reviews of Profile.
+     *
+     */
+    public function test_profilePrototypeCountReviews() {
+
+    }
+    
+    /**
      * Test case for profilePrototypeCreateAccessTokens
      *
      * Creates a new instance in accessTokens of this model.
@@ -366,6 +376,16 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for profilePrototypeCreateReviews
+     *
+     * Creates a new instance in reviews of this model.
+     *
+     */
+    public function test_profilePrototypeCreateReviews() {
+
+    }
+    
+    /**
      * Test case for profilePrototypeDeleteAccessTokens
      *
      * Deletes all accessTokens of this model.
@@ -446,6 +466,16 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for profilePrototypeDeleteReviews
+     *
+     * Deletes all reviews of this model.
+     *
+     */
+    public function test_profilePrototypeDeleteReviews() {
+
+    }
+    
+    /**
      * Test case for profilePrototypeDestroyByIdAccessTokens
      *
      * Delete a related item by id for accessTokens.
@@ -522,6 +552,16 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function test_profilePrototypeDestroyByIdQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeDestroyByIdReviews
+     *
+     * Delete a related item by id for reviews.
+     *
+     */
+    public function test_profilePrototypeDestroyByIdReviews() {
 
     }
     
@@ -656,6 +696,16 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Test case for profilePrototypeFindByIdReviews
+     *
+     * Find a related item by id for reviews.
+     *
+     */
+    public function test_profilePrototypeFindByIdReviews() {
+
+    }
+    
+    /**
      * Test case for profilePrototypeGetAccessTokens
      *
      * Queries accessTokens of Profile.
@@ -742,6 +792,16 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function test_profilePrototypeGetQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeGetReviews
+     *
+     * Queries reviews of Profile.
+     *
+     */
+    public function test_profilePrototypeGetReviews() {
 
     }
     
@@ -912,6 +972,16 @@ class ProfileApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function test_profilePrototypeUpdateByIdQuarantines() {
+
+    }
+    
+    /**
+     * Test case for profilePrototypeUpdateByIdReviews
+     *
+     * Update a related item by id for reviews.
+     *
+     */
+    public function test_profilePrototypeUpdateByIdReviews() {
 
     }
     

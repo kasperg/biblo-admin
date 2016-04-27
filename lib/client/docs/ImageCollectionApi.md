@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 
 # **imageCollectionCount**
-> object imageCollectionCount($where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 imageCollectionCount($where)
 
 Count instances of the model matched by where from the data source.
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -115,7 +115,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **imageCollectionCreateChangeStreamGetImageCollectionsChangeStream**
-> object imageCollectionCreateChangeStreamGetImageCollectionsChangeStream($options)
+> \SplFileObject imageCollectionCreateChangeStreamGetImageCollectionsChangeStream($options)
 
 Create a change stream.
 
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **imageCollectionCreateChangeStreamPostImageCollectionsChangeStream**
-> object imageCollectionCreateChangeStreamPostImageCollectionsChangeStream($options)
+> \SplFileObject imageCollectionCreateChangeStreamPostImageCollectionsChangeStream($options)
 
 Create a change stream.
 
@@ -187,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\SplFileObject**](\SplFileObject.md)
 
 ### Authorization
 
@@ -289,7 +289,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **imageCollectionExistsGetImageCollectionsidExists**
-> object imageCollectionExistsGetImageCollectionsidExists($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 imageCollectionExistsGetImageCollectionsidExists($id)
 
 Check whether a model instance exists in the data source.
 
@@ -318,7 +318,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -332,7 +332,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **imageCollectionExistsHeadImageCollectionsid**
-> object imageCollectionExistsHeadImageCollectionsid($id)
+> \DBCDK\CommunityServices\Model\InlineResponse2001 imageCollectionExistsHeadImageCollectionsid($id)
 
 Check whether a model instance exists in the data source.
 
@@ -361,7 +361,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 
@@ -506,7 +506,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **imageCollectionPrototypeCountResolutions**
-> object imageCollectionPrototypeCountResolutions($id, $where)
+> \DBCDK\CommunityServices\Model\InlineResponse200 imageCollectionPrototypeCountResolutions($id, $where)
 
 Counts resolutions of imageCollection.
 
@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\DBCDK\CommunityServices\Model\InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
