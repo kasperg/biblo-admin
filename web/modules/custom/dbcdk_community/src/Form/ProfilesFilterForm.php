@@ -54,7 +54,7 @@ class ProfilesFilterForm extends FormBase {
     ];
 
     $form['filter']['email'] = [
-      '#type' => 'email',
+      '#type' => 'textfield',
       '#title' => $this->t('E-mail'),
       '#default_value' => $this->getRequest()->get('email'),
     ];
