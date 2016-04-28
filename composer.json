@@ -20,7 +20,8 @@
         "drush/drush": "~8.0",
         "drupal/console": "~0.10",
         "drupal/adminimal_theme": "^8.1",
-        "drupal/page_manager": "^8.1"
+        "drupal/page_manager": "^8.1",
+        "drupal/monolog": "^8.1"
     },
     "require-dev": {
         "behat/behat": "^3.0",
