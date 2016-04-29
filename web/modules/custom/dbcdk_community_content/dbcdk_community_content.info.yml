@@ -1,0 +1,8 @@
+name: 'DBCDK Community Content'
+type: module
+description: 'This module allows editors to create/edit/delete content for the DBCDK Community Service.'
+package: DBCDK
+version: 8.x-1.0
+core: 8.x
+dependencies:
+  - dbcdk_community
