@@ -20,7 +20,7 @@ use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\dbcdk_community\Content\FlaggableContentRepository;
+use Drupal\dbcdk_community_moderation\Content\FlaggableContentRepository;
 
 /**
  * Provides a 'FlaggedContentDetails' block.
@@ -129,7 +129,7 @@ class FlaggedContentDetailsBlock extends BlockBase implements ContainerFactoryPl
       $plugin_id,
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
-      $container->get('dbcdk_community.content.flaggable_content_repository'),
+      $container->get('dbcdk_community_moderation.content.flaggable_content_repository'),
       $container->get('dbcdk_community.api.profile'),
       $url_generator,
       $container->get('date.formatter')

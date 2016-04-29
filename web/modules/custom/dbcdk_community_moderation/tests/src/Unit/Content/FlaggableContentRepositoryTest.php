@@ -13,14 +13,14 @@ use DBCDK\CommunityServices\Model\Flag;
 use DBCDK\CommunityServices\Model\ImageCollection;
 use DBCDK\CommunityServices\Model\Post;
 use DBCDK\CommunityServices\Model\VideoCollection;
-use Drupal\dbcdk_community\Content\FlaggableContent;
-use Drupal\dbcdk_community\Content\FlaggableContentRepository;
+use Drupal\dbcdk_community_moderation\Content\FlaggableContent;
+use Drupal\dbcdk_community_moderation\Content\FlaggableContentRepository;
 use Drupal\Tests\UnitTestCase;
 
 /**
  * Tests flaggable content retrieval.
  *
- * @group dbcdk_community
+ * @group dbcdk_community_moderation
  */
 class FlaggableContentRepositoryTest extends UnitTestCase {
 

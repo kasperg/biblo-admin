@@ -56,7 +56,7 @@ class BlockTestBase extends UnitTestCase {
     $this->logger = $this->getMock('\Psr\Log\LoggerInterface');
 
     $this->flaggableContentRepository = $this->getMockBuilder(
-      '\Drupal\dbcdk_community\Content\FlaggableContentRepository'
+      '\Drupal\dbcdk_community_moderation\Content\FlaggableContentRepository'
     )->disableOriginalConstructor()->getMock();
 
     $this->profileApi = $this->getMock(

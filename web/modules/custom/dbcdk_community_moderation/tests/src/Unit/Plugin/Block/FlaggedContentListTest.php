@@ -9,7 +9,7 @@ namespace Drupal\Tests\dbcdk_community_moderation\Unit\Plugin\Block;
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Flag;
 use DBCDK\CommunityServices\Model\Post;
-use Drupal\dbcdk_community\Content\FlaggableContent;
+use Drupal\dbcdk_community_moderation\Content\FlaggableContent;
 use Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentList;
 use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
 

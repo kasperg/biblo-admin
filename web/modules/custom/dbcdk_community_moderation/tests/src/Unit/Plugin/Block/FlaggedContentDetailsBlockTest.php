@@ -11,7 +11,7 @@ use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Post;
 use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Plugin\Context\ContextDefinition;
-use Drupal\dbcdk_community\Content\FlaggableContent;
+use Drupal\dbcdk_community_moderation\Content\FlaggableContent;
 use Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentDetailsBlock;
 use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
 

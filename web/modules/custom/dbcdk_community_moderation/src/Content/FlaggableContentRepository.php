@@ -5,7 +5,7 @@
  * FlaggableContentRepository class definition.
  */
 
-namespace Drupal\dbcdk_community\Content;
+namespace Drupal\dbcdk_community_moderation\Content;
 
 use DBCDK\CommunityServices\Api\CommentApi;
 use DBCDK\CommunityServices\Api\FlagApi;
@@ -86,7 +86,7 @@ class FlaggableContentRepository {
    *   An array of filters to use when retrieving the content. If an empty
    *   filter is used then all flaggable content available will be returned.
    *
-   * @return \Drupal\dbcdk_community\Content\FlaggableContent[]
+   * @return \Drupal\dbcdk_community_moderation\Content\FlaggableContent[]
    *   All flaggable content matching the filter.
    */
   protected function getContent(array $filter = []) {
@@ -195,7 +195,7 @@ class FlaggableContentRepository {
    * This method provides a simple way to fetch collections for a
    * FlaggableContent object.
    *
-   * @param \Drupal\dbcdk_community\Content\FlaggableContent $content
+   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContent $content
    *   The FlaggableContent object we wish to fetch collections from.
    * @param string $type
    *   The type of collection we wish to fetch.
@@ -243,7 +243,7 @@ class FlaggableContentRepository {
    * This method wraps the getCollection() method to provide a simple way to
    * fetch image collections for a FlaggableContent object.
    *
-   * @param \Drupal\dbcdk_community\Content\FlaggableContent $content
+   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContent $content
    *   The FlaggableContent object we wish to fetch collections from.
    *
    * @return \DBCDK\CommunityServices\Model\ImageCollection[]
@@ -259,7 +259,7 @@ class FlaggableContentRepository {
    * This method wraps the getCollection() method to provide a simple way to
    * fetch video collections for a FlaggableContent object.
    *
-   * @param \Drupal\dbcdk_community\Content\FlaggableContent $content
+   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContent $content
    *   The FlaggableContent object we wish to fetch collections from.
    *
    * @return \DBCDK\CommunityServices\Model\VideoCollection[]

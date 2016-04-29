@@ -5,7 +5,7 @@
  * FlaggableContent class definition.
  */
 
-namespace Drupal\dbcdk_community\Content;
+namespace Drupal\dbcdk_community_moderation\Content;
 
 use DBCDK\CommunityServices\Model\Flag;
 

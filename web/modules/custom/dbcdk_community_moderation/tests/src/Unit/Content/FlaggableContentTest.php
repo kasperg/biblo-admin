@@ -11,13 +11,13 @@ use DateTime;
 use DBCDK\CommunityServices\Model\Comment;
 use DBCDK\CommunityServices\Model\Flag;
 use DBCDK\CommunityServices\Model\Post;
-use Drupal\dbcdk_community\Content\FlaggableContent;
+use Drupal\dbcdk_community_moderation\Content\FlaggableContent;
 use Drupal\Tests\UnitTestCase;
 
 /**
  * Tests flaggable content.
  *
- * @group dbcdk_community
+ * @group dbcdk_community_moderation
  */
 class FlaggableContentTest extends UnitTestCase {
 
@@ -33,7 +33,7 @@ class FlaggableContentTest extends UnitTestCase {
   /**
    * Test expected string content.
    *
-   * @param \Drupal\dbcdk_community\Content\FlaggableContent $flaggable
+   * @param \Drupal\dbcdk_community_moderation\Content\FlaggableContent $flaggable
    *   The flaggable content to test.
    * @param string $title
    *   The expected title for the content.

@@ -13,10 +13,10 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
-use Drupal\dbcdk_community\Content\FlaggableContentRepository;
 use Drupal\dbcdk_community\Url\ModelUrlGenerator;
 use Drupal\dbcdk_community\Url\PropertyUrlGenerator;
 use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
+use Drupal\dbcdk_community_moderation\Content\FlaggableContentRepository;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -104,7 +104,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       $plugin_id,
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
-      $container->get('dbcdk_community.content.flaggable_content_repository'),
+      $container->get('dbcdk_community_moderation.content.flaggable_content_repository'),
       $url_generator,
       $container->get('date.formatter')
     );
@@ -150,7 +150,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       '#empty' => $this->t('There is currently no flagged content'),
     ];
 
-    /* @var \Drupal\dbcdk_community\Content\FlaggableContent[] $page_content_elements */
+    /* @var \Drupal\dbcdk_community_moderation\Content\FlaggableContent[] $page_content_elements */
     $page_content_elements = array_slice($all_content_elements, $page * $content_per_page, $content_per_page);
     foreach ($page_content_elements as $content_element) {
 
