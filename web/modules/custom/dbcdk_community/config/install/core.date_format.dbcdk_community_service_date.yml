@@ -1,0 +1,8 @@
+uuid: 85e1d2d9-09e5-41de-8900-a8a9c4486a8b
+langcode: en
+status: true
+dependencies: {  }
+id: dbcdk_community_service_date
+label: 'DBCDK Community Service date'
+locked: false
+pattern: 'j. F Y'
