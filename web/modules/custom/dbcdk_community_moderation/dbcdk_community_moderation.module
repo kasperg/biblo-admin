@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file
+ * Module file for DBCDK Community Moderation.
+ */
+
+/**
+ * Implements hook_user_login().
+ */
+function dbcdk_community_moderation_user_login(\Drupal\user\Entity\User $account) {
+  // Redirect moderators to the flagged content list.
+  if (in_array('admin_moderator', $account->getRoles())) {
+    $url = new \Drupal\Core\Url('page_manager.page_view_dbcdk_community_flagged_content');
+    $redirect = new \Symfony\Component\HttpFoundation\RedirectResponse($url->toString());
+    $redirect->send();
+  }
+}
