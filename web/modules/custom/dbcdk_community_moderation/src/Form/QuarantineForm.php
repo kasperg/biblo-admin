@@ -17,7 +17,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
-use Drupal\dbcdk_community\Profile\Profile;
+use Drupal\dbcdk_community_moderation\Profile\Profile;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -43,7 +43,7 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
   /**
    * Community Service Profile from the context.
    *
-   * @var \Drupal\dbcdk_community\Profile\Profile $profile
+   * @var \Drupal\dbcdk_community_moderation\Profile\Profile $profile
    */
   protected $profile;
 
@@ -56,7 +56,7 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
    *   The Community Service Quarantine API.
    * @param \DBCDK\CommunityServices\Model\Quarantine $quarantine
    *   The Community Quarantine we wish to alter.
-   * @param \DBCDK\CommunityServices\Model\Profile $profile
+   * @param \Drupal\dbcdk_community_moderation\Profile\Profile $profile
    *   The Community Profile we wish to alter a quarantine on.
    */
   public function __construct(LoggerInterface $logger, QuarantineApi $quarantine_api, Quarantine $quarantine = NULL, Profile $profile = NULL) {
@@ -84,8 +84,8 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
         $quarantine = NULL;
       }
 
-      /* @var \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository */
-      $profile_repository = $container->get('dbcdk_community.profile.profile_repository');
+      /* @var \Drupal\dbcdk_community_moderation\Profile\ProfileRepository $profile_repository */
+      $profile_repository = $container->get('dbcdk_community_moderation.profile.profile_repository');
       $profile = $profile_repository->getProfileByUsername($container->get('request_stack')->getCurrentRequest()->get('username'));
     }
     catch (ApiException $e) {

@@ -10,8 +10,8 @@ namespace Drupal\dbcdk_community_moderation\Plugin\Block;
 use DBCDK\CommunityServices\Model\CommunityRole;
 use DBCDK\CommunityServices\ApiException;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\dbcdk_community\Profile\Profile;
-use Drupal\dbcdk_community\Profile\ProfileRepository;
+use Drupal\dbcdk_community_moderation\Profile\Profile;
+use Drupal\dbcdk_community_moderation\Profile\ProfileRepository;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -61,7 +61,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin implementation definition.
    * @param \Psr\Log\LoggerInterface $logger
    *   The logger to use.
-   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   * @param \Drupal\dbcdk_community_moderation\Profile\ProfileRepository $profile_repository
    *   The profile repository to use.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   Drupal's date-formatter service.
@@ -82,7 +82,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $plugin_id,
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
-      $container->get('dbcdk_community.profile.profile_repository'),
+      $container->get('dbcdk_community_moderation.profile.profile_repository'),
       $container->get('date.formatter')
     );
   }

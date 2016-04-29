@@ -12,7 +12,7 @@ use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
-use Drupal\dbcdk_community\Profile\ProfileRepository;
+use Drupal\dbcdk_community_moderation\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
@@ -85,7 +85,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The logger to use.
    * @param FormBuilder $form_builder
    *   Drupal Cores form builder.
-   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   * @param \Drupal\dbcdk_community_moderation\Profile\ProfileRepository $profile_repository
    *   The repository to use when accessing profiles.
    * @param \Drupal\dbcdk_community\Url\UrlGeneratorInterface $url_generator
    *   The generator to use when creating urls to the frontend site.
@@ -126,7 +126,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
       $container->get('form_builder'),
-      $container->get('dbcdk_community.profile.profile_repository'),
+      $container->get('dbcdk_community_moderation.profile.profile_repository'),
       $url_generator,
       [
         'page_number' => $request_stack->getCurrentRequest()->query->get('page'),

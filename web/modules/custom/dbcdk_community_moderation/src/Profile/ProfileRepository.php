@@ -4,7 +4,7 @@
  * Class definition for ProfileRepository.
  */
 
-namespace Drupal\dbcdk_community\Profile;
+namespace Drupal\dbcdk_community_moderation\Profile;
 
 use DateTime;
 use DBCDK\CommunityServices\Api\CommunityRoleApi;
@@ -349,7 +349,7 @@ class ProfileRepository {
    * Find out if we have to remove or add any roles from a Community Profile
    * based on values from $form_state and the current Community Profile's roles.
    *
-   * @param \Drupal\dbcdk_community\Profile\Profile $profile
+   * @param \Drupal\dbcdk_community_moderation\Profile\Profile $profile
    *   The profile to update.
    * @param array $new_role_ids
    *   An array of new role ids.

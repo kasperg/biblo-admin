@@ -64,7 +64,7 @@ class BlockTestBase extends UnitTestCase {
     );
 
     $this->profileRepository = $this->getMockBuilder(
-      '\Drupal\dbcdk_community\Profile\ProfileRepository'
+      '\Drupal\dbcdk_community_moderation\Profile\ProfileRepository'
     )->disableOriginalConstructor()->getMock();
 
     $this->quarantineApi = $this->getMock(

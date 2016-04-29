@@ -4,19 +4,19 @@
  * Test case for ProfileRepository.
  */
 
-namespace Drupal\dbcdk_community\Test\Content;
+namespace Drupal\dbcdk_community_moderation\Test\Content;
 
 use DBCDK\CommunityServices\Model\CommunityRole;
 use DBCDK\CommunityServices\Model\Profile as ModelProfile;
 use DBCDK\CommunityServices\Model\Quarantine;
-use Drupal\dbcdk_community\Profile\Profile;
-use Drupal\dbcdk_community\Profile\ProfileRepository;
+use Drupal\dbcdk_community_moderation\Profile\Profile;
+use Drupal\dbcdk_community_moderation\Profile\ProfileRepository;
 use PHPUnit_Framework_TestCase;
 
 /**
  * Profile retrieval.
  *
- * @group dbcdk_community
+ * @group dbcdk_community_moderation
  */
 class ProfileRepositoryTest extends PHPUnit_Framework_TestCase {
 

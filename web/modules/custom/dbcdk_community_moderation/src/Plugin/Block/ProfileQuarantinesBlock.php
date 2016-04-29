@@ -17,7 +17,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
-use Drupal\dbcdk_community\Profile\ProfileRepository;
+use Drupal\dbcdk_community_moderation\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -61,7 +61,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
    *   The plugin implementation definition.
    * @param \Psr\Log\LoggerInterface $logger
    *   The logger to use.
-   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   * @param \Drupal\dbcdk_community_moderation\Profile\ProfileRepository $profile_repository
    *   The profile repository to use.
    * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
    *   Drupal's date formatter to format dates to Drupal Date Formats.
@@ -82,7 +82,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       $plugin_id,
       $plugin_definition,
       $container->get('dbcdk_community.logger'),
-      $container->get('dbcdk_community.profile.profile_repository'),
+      $container->get('dbcdk_community_moderation.profile.profile_repository'),
       $container->get('date.formatter')
     );
   }

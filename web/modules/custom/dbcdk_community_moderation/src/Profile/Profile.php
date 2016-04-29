@@ -4,7 +4,7 @@
  * Class definition for Profiles.
  */
 
-namespace Drupal\dbcdk_community\Profile;
+namespace Drupal\dbcdk_community_moderation\Profile;
 
 use \DBCDK\CommunityServices\Model\Profile as ModelProfile;
 

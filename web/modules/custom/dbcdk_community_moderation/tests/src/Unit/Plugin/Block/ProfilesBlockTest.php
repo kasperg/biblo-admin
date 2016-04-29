@@ -10,7 +10,7 @@ use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile as ModelProfile;
 use DBCDK\CommunityServices\Model\Quarantine;
 use Drupal\dbcdk_community_moderation\Plugin\Block\ProfilesBlock;
-use Drupal\dbcdk_community\Profile\Profile;
+use Drupal\dbcdk_community_moderation\Profile\Profile;
 use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
 
 /**

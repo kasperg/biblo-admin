@@ -16,8 +16,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
-use Drupal\dbcdk_community\Profile\Profile;
-use Drupal\dbcdk_community\Profile\ProfileRepository;
+use Drupal\dbcdk_community_moderation\Profile\Profile;
+use Drupal\dbcdk_community_moderation\Profile\ProfileRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -29,14 +29,14 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
   /**
    * The profile repository to use.
    *
-   * @var \Drupal\dbcdk_community\Profile\ProfileRepository $profileRepository
+   * @var \Drupal\dbcdk_community_moderation\Profile\ProfileRepository $profileRepository
    */
   protected $profileRepository;
 
   /**
    * The Community Service Profile object from the username context.
    *
-   * @var \Drupal\dbcdk_community\Profile\Profile $profile
+   * @var \Drupal\dbcdk_community_moderation\Profile\Profile $profile
    */
   protected $profile;
 
@@ -45,7 +45,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    *
    * @param \Psr\Log\LoggerInterface $logger
    *   The logger to use.
-   * @param \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository
+   * @param \Drupal\dbcdk_community_moderation\Profile\ProfileRepository $profile_repository
    *   The repository for use for handling profiles.
    * @param \DBCDK\CommunityServices\Model\Profile $profile
    *   The DBCDK Community Profile object we wish to edit.
@@ -60,8 +60,8 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    /* @var \Drupal\dbcdk_community\Profile\ProfileRepository $profile_repository */
-    $profile_repository = $container->get('dbcdk_community.profile.profile_repository');
+    /* @var \Drupal\dbcdk_community_moderation\Profile\ProfileRepository $profile_repository */
+    $profile_repository = $container->get('dbcdk_community_moderation.profile.profile_repository');
     /* @var LoggerInterface $logger */
     $logger = $container->get('dbcdk_community.logger');
 
