@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\dbcdk_community\Form\ProfileEditForm.
+ * Contains \Drupal\dbcdk_community_moderation\Form\ProfileEditForm.
  */
 
-namespace Drupal\dbcdk_community\Form;
+namespace Drupal\dbcdk_community_moderation\Form;
 
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\CommunityRole;
@@ -84,7 +84,7 @@ class ProfileEditForm extends FormBase implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'dbcdk_community_profile_edit_form';
+    return 'dbcdk_community_moderation_profile_edit_form';
   }
 
   /**

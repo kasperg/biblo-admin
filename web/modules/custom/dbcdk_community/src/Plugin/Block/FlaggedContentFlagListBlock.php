@@ -178,7 +178,7 @@ class FlaggedContentFlagListBlock extends BlockBase implements ContainerFactoryP
     // If there are  any unread flags then support marking them all as read.
     $form = NULL;
     if (!empty($unread_flags)) {
-      $form = $this->formBuilder->getForm('Drupal\dbcdk_community\Form\FlagsMarkReadForm', $unread_flags);
+      $form = $this->formBuilder->getForm('Drupal\dbcdk_community_moderation\Form\FlagsMarkReadForm', $unread_flags);
     }
 
     return [

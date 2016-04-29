@@ -213,7 +213,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
 
     $build = [];
     // Build exposed filter form.
-    $build['filter'] = $this->formBuilder->getForm('Drupal\dbcdk_community\Form\ProfilesFilterForm');
+    $build['filter'] = $this->formBuilder->getForm('Drupal\dbcdk_community_moderation\Form\ProfilesFilterForm');
 
     // Build a table of profiles.
     $table_columns = [
@@ -299,7 +299,7 @@ class ProfilesBlock extends BlockBase implements ContainerFactoryPluginInterface
         // but a column we wish do display with a link to edit a profile.
         case 'edit_link':
           $username = $profile->getUsername();
-          $row[$field] = Link::createFromRoute($title, 'dbcdk_community.profile.edit', [
+          $row[$field] = Link::createFromRoute($title, 'dbcdk_community_moderation.profile.edit', [
             'username' => $username,
           ]);
           break;

@@ -4,7 +4,7 @@
  * Class definition for FlagsMarkReadForm.
  */
 
-namespace Drupal\dbcdk_community\Form;
+namespace Drupal\dbcdk_community_moderation\Form;
 
 use DBCDK\CommunityServices\Api\FlagApi;
 use DBCDK\CommunityServices\ApiException;
@@ -54,7 +54,7 @@ class FlagsMarkReadForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'dbcdk_community_flagged_content_mark_all_as_read_form';
+    return 'dbcdk_community_moderation_flagged_content_mark_all_as_read_form';
   }
 
   /**

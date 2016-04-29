@@ -268,7 +268,7 @@ class ProfileBlock extends BlockBase implements ContainerFactoryPluginInterface 
       [
         '#type' => 'link',
         '#title' => $this->t('Edit'),
-        '#url' => new Url('dbcdk_community.profile.edit', [
+        '#url' => new Url('dbcdk_community_moderation.profile.edit', [
           'username' => $profile->getUsername(),
         ]),
         '#attributes' => [

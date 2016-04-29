@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\dbcdk_community\Form\QuarantineForm.
+ * Contains \Drupal\dbcdk_community_moderation\Form\QuarantineForm.
  */
 
-namespace Drupal\dbcdk_community\Form;
+namespace Drupal\dbcdk_community_moderation\Form;
 
 use DBCDK\CommunityServices\Api\QuarantineApi;
 use DBCDK\CommunityServices\ApiException;
@@ -106,7 +106,7 @@ class QuarantineForm extends FormBase implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'dbcdk_community_quarantine_form';
+    return 'dbcdk_community_moderation_quarantine_form';
   }
 
   /**

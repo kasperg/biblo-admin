@@ -138,7 +138,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
       $build['add_quarantine'] = [
         '#type' => 'link',
         '#title' => $this->t('Create quarantine'),
-        '#url' => new Url('dbcdk_community.profile.quarantine.add', [
+        '#url' => new Url('dbcdk_community_moderation.profile.quarantine.add', [
           'username' => $profile->getUsername(),
         ]),
         '#attributes' => [
@@ -199,7 +199,7 @@ class ProfileQuarantinesBlock extends BlockBase implements ContainerFactoryPlugi
         // The edit_link field is not a field provided by the Community Service
         // but a column we wish to display with a link to edit a quarantine.
         case 'edit_link':
-          $row[$field] = Link::createFromRoute($title, 'dbcdk_community.profile.quarantine.edit', [
+          $row[$field] = Link::createFromRoute($title, 'dbcdk_community_moderation.profile.quarantine.edit', [
             'username' => $username,
             'quarantine_id' => $quarantine->getId(),
           ]);

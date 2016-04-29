@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\dbcdk_community\Form\ProfilesFilterForm.
+ * Contains \Drupal\dbcdk_community_moderation\Form\ProfilesFilterForm.
  */
 
-namespace Drupal\dbcdk_community\Form;
+namespace Drupal\dbcdk_community_moderation\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -19,7 +19,7 @@ class ProfilesFilterForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'dbcdk_community_profiles_filter_form';
+    return 'dbcdk_community_moderation_profiles_filter_form';
   }
 
   /**

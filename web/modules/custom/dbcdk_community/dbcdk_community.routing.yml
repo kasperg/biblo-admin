@@ -5,27 +5,3 @@ dbcdk_community.settings_form:
     _title: 'DBC Community Settings'
   requirements:
    _permission: 'administer site configuration'
-
-dbcdk_community.profile.edit:
-  path: '/admin/dbcdk-community/profiles/{username}/edit'
-  defaults:
-    _title: 'Edit Profile'
-    _form: 'Drupal\dbcdk_community\Form\ProfileEditForm'
-  requirements:
-   _permission: 'dbcdk community moderate profiles'
-
-dbcdk_community.profile.quarantine.add:
-  path: '/admin/dbcdk-community/profiles/{username}/quarantine/add'
-  defaults:
-    _title: 'Create Quarantine'
-    _form: 'Drupal\dbcdk_community\Form\QuarantineForm'
-  requirements:
-   _permission: 'dbcdk community moderate profiles'
-
-dbcdk_community.profile.quarantine.edit:
-  path: '/admin/dbcdk-community/profiles/{username}/quarantine/{quarantine_id}/edit'
-  defaults:
-    _title: 'Edit Quarantine'
-    _form: 'Drupal\dbcdk_community\Form\QuarantineForm'
-  requirements:
-   _permission: 'dbcdk community moderate profiles'
