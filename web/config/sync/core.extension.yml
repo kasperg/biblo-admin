@@ -7,6 +7,7 @@ module:
   ctools: 0
   dbcdk_community: 0
   dbcdk_community_content: 0
+  dbcdk_community_moderation: 0
   dblog: 0
   dynamic_page_cache: 0
   editor: 0
