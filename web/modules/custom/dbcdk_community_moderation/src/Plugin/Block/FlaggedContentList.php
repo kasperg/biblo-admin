@@ -180,7 +180,7 @@ class FlaggedContentList extends BlockBase implements ContainerFactoryPluginInte
       $table['#rows'][] = [
         'content' => [
           'data' => [
-            '#theme' => 'dbcdk_community__flagged_content__content',
+            '#theme' => 'dbcdk_community_moderation__flagged_content__content',
             '#content' => $content_element->getContent(),
             '#image_collection_count' => count($this->flaggableContentRepository->getImageCollections($content_element)),
             '#video_collection_count' => count($this->flaggableContentRepository->getVideoCollections($content_element)),
