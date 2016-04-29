@@ -4,7 +4,7 @@
  * Definition of FlaggedContentDetailsBlockTest.
  */
 
-namespace Drupal\Tests\dbcdk_community\Unit\Plugin\Block;
+namespace Drupal\Tests\dbcdk_community_moderation\Unit\Plugin\Block;
 
 use DateTime;
 use DBCDK\CommunityServices\ApiException;
@@ -12,19 +12,20 @@ use DBCDK\CommunityServices\Model\Post;
 use DBCDK\CommunityServices\Model\Profile;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\dbcdk_community\Content\FlaggableContent;
-use Drupal\dbcdk_community\Plugin\Block\FlaggedContentDetailsBlock;
+use Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentDetailsBlock;
+use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
 
 /**
  * Tests for FlaggedContentDetailsBlock.
  *
- * @group dbcdk_community
+ * @group dbcdk_community_moderation
  */
 class FlaggedContentDetailsBlockTest extends BlockTestBase {
 
   /**
    * Generate a new FlaggedContentDetailsBlock wired up with mocks.
    *
-   * @return \Drupal\dbcdk_community\Plugin\Block\FlaggedContentDetailsBlock
+   * @return \Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentDetailsBlock
    *   New block ready for testing.
    */
   protected function newFlaggedContentDetailsBlock() {

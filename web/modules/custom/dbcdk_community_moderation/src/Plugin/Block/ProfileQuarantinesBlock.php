@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\dbcdk_community\Plugin\Block\ProfileQuarantinesBlock.
+ * Contains ProfileQuarantinesBlock.
  */
 
-namespace Drupal\dbcdk_community\Plugin\Block;
+namespace Drupal\dbcdk_community_moderation\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Quarantine;
@@ -26,7 +26,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * This block provides an overview of a Community Profile's Quarantines.
  *
  * @Block(
- *   id = "dbcdk_community_profile_quarantines_block",
+ *   id = "dbcdk_community_community_profile_quarantines_block",
  *   admin_label = @Translation("DBCDK Community Profile Quarantines"),
  *   context = {
  *     "username" = @ContextDefinition("string")

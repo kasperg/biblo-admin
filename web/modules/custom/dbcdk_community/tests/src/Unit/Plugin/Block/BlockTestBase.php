@@ -89,10 +89,14 @@ class BlockTestBase extends UnitTestCase {
       'Drupal\Core\Form\FormBuilder'
     )->disableOriginalConstructor()->getMock();
 
-    $namespace = '\Drupal\dbcdk_community\Plugin\Block';
-    $this->pager = $this->getFunctionMock($namespace, 'pager_default_initialize');
-
-    $this->message = $this->getFunctionMock($namespace, 'drupal_set_message');
+    $namespaces = [
+      '\Drupal\dbcdk_community\Plugin\Block',
+      '\Drupal\dbcdk_community_moderation\Plugin\Block',
+    ];
+    foreach ($namespaces as $namespace) {
+      $this->pager = $this->getFunctionMock($namespace, 'pager_default_initialize');
+      $this->message = $this->getFunctionMock($namespace, 'drupal_set_message');
+    }
   }
 
   /**

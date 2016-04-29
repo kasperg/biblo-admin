@@ -12,7 +12,7 @@ variant: block_display
 variant_settings:
   blocks:
     4a4a416a-f25b-463a-9228-406b075d5a7d:
-      id: dbcdk_community_profile_block
+      id: dbcdk_community_moderation_profile_block
       label: Profile
       provider: dbcdk_community
       label_display: visible
@@ -22,7 +22,7 @@ variant_settings:
       context_mapping:
         username: username
     206a0096-7fe9-47ff-aa18-24ac36511de7:
-      id: dbcdk_community_profile_quarantines_block
+      id: dbcdk_community_community_profile_quarantines_block
       label: Quarantines
       provider: dbcdk_community
       label_display: visible

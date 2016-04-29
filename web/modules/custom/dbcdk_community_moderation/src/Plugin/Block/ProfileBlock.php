@@ -5,7 +5,7 @@
  * Contains \Drupal\dbcdk_community\Plugin\Block\ProfileBlock.
  */
 
-namespace Drupal\dbcdk_community\Plugin\Block;
+namespace Drupal\dbcdk_community_moderation\Plugin\Block;
 
 use DBCDK\CommunityServices\Model\CommunityRole;
 use DBCDK\CommunityServices\ApiException;
@@ -26,7 +26,7 @@ use Drupal\Component\Utility\Xss;
  * This block provides a display of a single Community Service Profile.
  *
  * @Block(
- *   id = "dbcdk_community_profile_block",
+ *   id = "dbcdk_community_moderation_profile_block",
  *   admin_label = @Translation("DBCDK Community Profile"),
  *   context = {
  *     "username" = @ContextDefinition("string")

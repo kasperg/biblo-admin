@@ -4,25 +4,26 @@
  * Definition of ProfileBlockTest.
  */
 
-namespace Drupal\Tests\dbcdk_community\Unit\Plugin\Block;
+namespace Drupal\Tests\dbcdk_community_moderation\Unit\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Profile as ModelProfile;
 use Drupal\Core\Plugin\Context\ContextDefinition;
-use Drupal\dbcdk_community\Plugin\Block\ProfileBlock;
+use Drupal\dbcdk_community_moderation\Plugin\Block\ProfileBlock;
 use Drupal\dbcdk_community\Profile\Profile;
+use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
 
 /**
  * Tests for ProfileBlock.
  *
- * @group dbcdk_community
+ * @group dbcdk_community_moderation
  */
 class ProfileBlockTest extends BlockTestBase {
 
   /**
    * Generate a new ProfileBlock wired up with mocks.
    *
-   * @return \Drupal\dbcdk_community\Plugin\Block\ProfileBlock
+   * @return \Drupal\dbcdk_community_moderation\Plugin\Block\ProfileBlock
    *   New block ready for testing.
    */
   protected function newProfileBlock() {

@@ -4,25 +4,26 @@
  * Definition of FlaggedContentListTest.
  */
 
-namespace Drupal\Tests\dbcdk_community\Unit\Plugin\Block;
+namespace Drupal\Tests\dbcdk_community_moderation\Unit\Plugin\Block;
 
 use DBCDK\CommunityServices\ApiException;
 use DBCDK\CommunityServices\Model\Flag;
 use DBCDK\CommunityServices\Model\Post;
 use Drupal\dbcdk_community\Content\FlaggableContent;
-use Drupal\dbcdk_community\Plugin\Block\FlaggedContentList;
+use Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentList;
+use Drupal\Tests\dbcdk_community\Unit\Plugin\Block\BlockTestBase;
 
 /**
  * Test class for FlaggedContentList block.
  *
- * @group dbcdk_community
+ * @group dbcdk_community_moderation
  */
 class FlaggedContentListTest extends BlockTestBase {
 
   /**
    * Generate a new FlaggedContentList wired up with mocks.
    *
-   * @return \Drupal\dbcdk_community\Plugin\Block\FlaggedContentList
+   * @return \Drupal\dbcdk_community_moderation\Plugin\Block\FlaggedContentList
    *   New block ready for testing.
    */
   public function newFlaggedContentList() {

@@ -12,7 +12,7 @@ variant: block_display
 variant_settings:
   blocks:
     9efc2544-4d17-44b4-aa00-b62694f2b943:
-      id: dbcdk_community_profiles_block
+      id: dbcdk_community_moderation_profiles_block
       label: Profiles
       provider: dbcdk_community
       label_display: visible

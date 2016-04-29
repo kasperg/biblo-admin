@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Contains \Drupal\dbcdk_community\Plugin\Block\ProfilesBlock.
+ * Contains \Drupal\dbcdk_community_moderation\Plugin\Block\ProfilesBlock.
  */
 
-namespace Drupal\dbcdk_community\Plugin\Block;
+namespace Drupal\dbcdk_community_moderation\Plugin\Block;
 
 use DateTime;
 use DBCDK\CommunityServices\ApiException;
@@ -30,7 +30,7 @@ use Drupal\dbcdk_community\Url\UrlGeneratorInterface;
  * This block provides a list of users from the Community Service.
  *
  * @Block(
- *   id = "dbcdk_community_profiles_block",
+ *   id = "dbcdk_community_moderation_profiles_block",
  *   admin_label = @Translation("DBCDK Community Profiles"),
  * )
  */
