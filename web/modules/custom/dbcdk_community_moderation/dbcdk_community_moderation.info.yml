@@ -1,0 +1,8 @@
+name: 'DBCDK Community Moderation'
+type: module
+description: 'This module allows moderation of the DBCDK Community Services.'
+package: DBCDK
+version: 8.x-1.0
+core: 8.x
+dependencies:
+  - dbcdk_community

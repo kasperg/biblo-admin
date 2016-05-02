@@ -1,0 +1,6 @@
+dbcdk_community_moderation:
+  title: 'Moderation'
+  description: 'Moderate DBCDK Community content and profiles.'
+  route_name: page_manager.page_view_dbcdk_community_flagged_content
+  parent: system.admin
+  weight: -9

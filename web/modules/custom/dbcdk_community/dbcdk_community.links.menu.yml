@@ -3,10 +3,3 @@ dbcdk_community.settings_form:
   description: 'Configure the DBCDK Community service connection and administration.'
   route_name: dbcdk_community.settings_form
   parent: system.admin_config_services
-
-dbcdk_community.moderation:
-  title: 'Moderation'
-  description: 'Moderate DBCDK Community content and profiles.'
-  route_name: page_manager.page_view_dbcdk_community_flagged_content
-  parent: system.admin
-  weight: -9

@@ -56,7 +56,7 @@ class BlockTestBase extends UnitTestCase {
     $this->logger = $this->getMock('\Psr\Log\LoggerInterface');
 
     $this->flaggableContentRepository = $this->getMockBuilder(
-      '\Drupal\dbcdk_community\Content\FlaggableContentRepository'
+      '\Drupal\dbcdk_community_moderation\Content\FlaggableContentRepository'
     )->disableOriginalConstructor()->getMock();
 
     $this->profileApi = $this->getMock(
@@ -64,7 +64,7 @@ class BlockTestBase extends UnitTestCase {
     );
 
     $this->profileRepository = $this->getMockBuilder(
-      '\Drupal\dbcdk_community\Profile\ProfileRepository'
+      '\Drupal\dbcdk_community_moderation\Profile\ProfileRepository'
     )->disableOriginalConstructor()->getMock();
 
     $this->quarantineApi = $this->getMock(
@@ -89,10 +89,14 @@ class BlockTestBase extends UnitTestCase {
       'Drupal\Core\Form\FormBuilder'
     )->disableOriginalConstructor()->getMock();
 
-    $namespace = '\Drupal\dbcdk_community\Plugin\Block';
-    $this->pager = $this->getFunctionMock($namespace, 'pager_default_initialize');
-
-    $this->message = $this->getFunctionMock($namespace, 'drupal_set_message');
+    $namespaces = [
+      '\Drupal\dbcdk_community\Plugin\Block',
+      '\Drupal\dbcdk_community_moderation\Plugin\Block',
+    ];
+    foreach ($namespaces as $namespace) {
+      $this->pager = $this->getFunctionMock($namespace, 'pager_default_initialize');
+      $this->message = $this->getFunctionMock($namespace, 'drupal_set_message');
+    }
   }
 
   /**
