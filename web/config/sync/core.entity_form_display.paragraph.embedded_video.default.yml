@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.embedded_video.field_embedded_video
     - paragraphs.paragraphs_type.embedded_video
   module:
-    - video
+    - video_embed_field
 id: paragraph.embedded_video.default
 targetEntityType: paragraph
 bundle: embedded_video
@@ -14,18 +14,9 @@ mode: default
 content:
   field_embedded_video:
     weight: 0
-    settings:
-      allowed_providers:
-        vimeo: vimeo
-        youtube: youtube
-        dailymotion: 0
-        facebook: 0
-        instagram: 0
-        vine: 0
-      file_directory: 'video-thumbnails/[date:custom:Y]-[date:custom:m]'
-      uri_scheme: public
+    settings: {  }
     third_party_settings: {  }
-    type: video_embed
+    type: video_embed_field_textfield
 hidden:
   created: true
   uid: true

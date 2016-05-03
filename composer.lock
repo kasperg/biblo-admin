@@ -1244,22 +1244,32 @@
             "time": "2015-11-17 13:21:21"
         },
         {
-            "name": "drupal/video",
-            "version": "8.1.2",
+            "name": "drupal/video_embed_field",
+            "version": "8.1.0-rc8",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/video",
-                "reference": "a0f381dcefe45090e8f1de41fd32e42965c78a91"
+                "url": "https://git.drupal.org/project/video_embed_field",
+                "reference": "4c01b410084ff35ff3995dba2d3c5dd878544e9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/video-8.x-1.2.zip",
-                "reference": null,
+                "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-1.0-rc8.zip",
+                "reference": "4c01b410084ff35ff3995dba2d3c5dd878544e9e",
                 "shasum": null
             },
             "require": {
                 "drupal/core": "8.*",
-                "drupal/file": "8.*"
+                "drupal/field": "8.*"
+            },
+            "replace": {
+                "drupal/video_embed_media": "self.version",
+                "drupal/video_embed_wysiwyg": "self.version"
+            },
+            "suggest": {
+                "drupal/ckeditor": "Required by drupal/video_embed_wysiwyg",
+                "drupal/core": "Required by drupal/video_embed_media, drupal/video_embed_wysiwyg",
+                "drupal/field": "Required by drupal/video_embed_wysiwyg",
+                "drupal/media_entity": "Required by drupal/video_embed_media"
             },
             "type": "drupal-module",
             "extra": {
@@ -1275,9 +1285,9 @@
             "license": [
                 "GPL-2.0+"
             ],
-            "description": "A field type for storing uploaded or embedded videos.",
-            "homepage": "https://www.drupal.org/project/video",
-            "time": "2016-02-14 17:12:08"
+            "description": "A field type for displaying videos from 3rd party providers such as YouTube and Vimeo.",
+            "homepage": "https://www.drupal.org/project/video_embed_field",
+            "time": "2016-04-29 11:04:49"
         },
         {
             "name": "drush/drush",

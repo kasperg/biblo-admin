@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.embedded_video.field_embedded_video
     - paragraphs.paragraphs_type.embedded_video
   module:
-    - video
+    - video_embed_field
 id: paragraph.embedded_video.default
 targetEntityType: paragraph
 bundle: embedded_video
@@ -14,13 +14,14 @@ mode: default
 content:
   field_embedded_video:
     weight: 0
-    label: hidden
+    label: above
     settings:
+      responsive: true
+      width: '854'
+      height: '480'
       autoplay: true
-      width: '640'
-      height: '360'
     third_party_settings: {  }
-    type: video_embed_player
+    type: video_embed_field_video
 hidden:
   created: true
   uid: true

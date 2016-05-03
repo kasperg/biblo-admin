@@ -30,7 +30,7 @@ module:
   text: 0
   toolbar: 0
   user: 0
-  video: 0
+  video_embed_field: 0
   minimal: 1000
 theme:
   stable: 0
