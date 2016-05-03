@@ -41,18 +41,6 @@ content:
       add_mode: button
       form_display_mode: default
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 6
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 7
-    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
@@ -65,4 +53,6 @@ content:
     weight: 4
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  promote: true
+  sticky: true
