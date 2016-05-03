@@ -1,0 +1,26 @@
+uuid: 4221d8b2-3f1f-4b4f-a301-1f9ab5698a77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_embedded_video
+    - paragraphs.paragraphs_type.embedded_video
+  module:
+    - video
+id: paragraph.embedded_video.field_embedded_video
+field_name: field_embedded_video
+entity_type: paragraph
+bundle: embedded_video
+label: 'Embedded Video'
+description: 'The URL for the <em>Youtube</em> or <em>Vimeo</em> video you wish to embed.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_extensions: ''
+  file_directory: 'videos/[date:custom:Y]-[date:custom:m]'
+  max_filesize: ''
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: video
